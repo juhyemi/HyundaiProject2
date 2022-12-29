@@ -1,18 +1,22 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html xmlns="//www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 
 
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,user-scalable=no">
 <!-- // PG크로스브라우징필수내용 -->
 
 
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+
 <script type="text/javascript" src="./resources/js/jquery/optimizer.js"></script>
 
 <link rel="stylesheet" type="text/css" href="./resources/css/main1.css">
@@ -121,6 +125,7 @@
 	</div>
 	<!-- // 접속 국가 체크 -->
 
+
 	<div class="xans-element- xans-popup xans-popup-multipopup ">
 		<!--
           $banner_popup_no =
@@ -196,8 +201,7 @@
 						class="EC-Layout-Basket-count">0</span></em></a></li>
 		</ul>
 	</header>
-
-<div class="basket-block">
+	<div class="basket-block">
     <div class="basket-wrap-iframe">
         <iframe class="basket-iframe" id="basketIframe" name="basketIframe" frameborder="0" scrolling="no" src="/blank.html"></iframe>
         <!-- <div class="basket-wrap-ajax">
@@ -205,6 +209,6 @@
         </div> -->
     </div>
 </div>
-	
+
 	<!-- // header -->
 	<!-- gnb -->
