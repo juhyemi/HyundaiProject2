@@ -13,7 +13,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="./resources/js/jquery/optimizer.js"></script>
+<script type="text/javascript" src="../resources/js/jquery/optimizer.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/main2.css">
