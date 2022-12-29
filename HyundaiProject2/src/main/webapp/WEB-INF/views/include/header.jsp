@@ -19,8 +19,8 @@
 
 <script type="text/javascript" src="./resources/js/jquery/optimizer.js"></script>
 
-<link rel="stylesheet" type="text/css" href="./resources/css/main1.css">
-<link rel="stylesheet" type="text/css" href="./resources/css/main2.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/main2.css">
 
 
 
