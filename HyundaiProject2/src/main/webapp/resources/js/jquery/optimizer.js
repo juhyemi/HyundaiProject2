@@ -645,7 +645,7 @@ function basketOpen() {
 basketCountSync();
 dimmerOpen(basketClose);
 //  replace 링크 변경
-window.top.document.getElementById('basketIframe').contentWindow.location.replace('./cartdetail.jsp');
+window.top.document.getElementById('basketIframe').contentWindow.location.replace('./cartdetail.html');
 $('.basket-wrap-iframe').addClass('active');
 $('html').addClass('fixed');
 $('body').addClass('fixed');
