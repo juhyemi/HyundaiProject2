@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 
-<%@ include file="include/header.jsp"%>
+<%@ include file="./include/header.jsp"%>
 
   <div id="gnb">
     <!-- <div class="dimmer"></div> -->
@@ -481,38 +481,6 @@
         </script>
         <!-- // video-block -->
 
-
-
-
-        <!-- section2 -->
-        <div class="section section2 only-pc">
-          <ul pandassi-banner-group="ready" pandassi-banner-group-code="7450ea31729c127972f5">
-            <li pandassi-banner="ready"=""="">
-              <a href="/about/stockist.html" target="_self" title="Stockist">
-                <div class="img"><img
-                    src="https://matinkim.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/74a8cbfaef68f41574044b05efb71eed.jpg">
-                </div>
-                <div class="desc">
-                  <h2>Stockist</h2>
-                  <p>On / Offline Store</p>
-                </div>
-              </a>
-            </li>
-            <li pandassi-banner="ready"=""="">
-              <a href="/collection-view.html?product_no=3360&amp;cate_no=90&amp;display_group=1" target="_self"
-                title="Collection">
-                <div class="img"><img
-                    src="https://matinkim.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/0333554aaa6094a6653bc08d3cfbe316.jpg">
-                </div>
-                <div class="desc">
-                  <h2>'M'</h2>
-                  <p>Winter 2022 Collection</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <!-- // section2 -->
 
 
 

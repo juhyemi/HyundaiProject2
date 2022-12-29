@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html xmlns="//www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
@@ -15,6 +16,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"
 	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
 	crossorigin="anonymous"></script>
+
 <script type="text/javascript" src="./resources/js/jquery/optimizer.js"></script>
 
 <link rel="stylesheet" type="text/css" href="./resources/css/main1.css">
@@ -122,6 +124,7 @@
 		</div>
 	</div>
 	<!-- // 접속 국가 체크 -->
+
 
 	<div class="xans-element- xans-popup xans-popup-multipopup ">
 		<!--
