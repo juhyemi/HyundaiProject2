@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <link rel="stylesheet"  type="text/css"  href="./c1.css">
+  <link rel="stylesheet"  type="text/css"  href="./c2.css">
+  <link rel="stylesheet"  type="text/css"  href="./productDetail.css">
+</head>
+<body class="product-detail">
 
+<%@ include file="../include/header.jsp"%>
     <div id="wrap">
         <div id="container">
             <div id="contents">    
@@ -200,8 +210,6 @@
     </div>
         </div>
     </div>
-
-
-
-
-<%@ include file="../include/footer.jsp"%>
+<%-- <%@ include file="/layout/header.jsp"%> --%>
+</body>
+</html>

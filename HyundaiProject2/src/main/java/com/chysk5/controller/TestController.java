@@ -35,4 +35,10 @@ public class TestController {
 		return "check";
 	}
 	
+	@GetMapping("/main")
+	public String testMain(Model model) {
+		
+		return "main";
+	}
+	
 }
