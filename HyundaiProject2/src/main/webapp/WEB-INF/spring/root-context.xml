@@ -2,18 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xmlns:context="http://www.springframework.org/schema/context"
-   xmlns:tx="http://www.springframework.org/schema/tx"
    xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-   xmlns:aop="http://www.springframework.org/schema/aop"
    xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
       http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
    
    <!-- Root Context: defines shared resources visible to all other web components -->
-      
+
+   <!-- 
    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+      <property name="driverClassName"
+       value="oracle.jdbc.driver.OracleDriver"></property>
+      <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521/xepdb1"></property>
+      property에 의해 set메서드가 호출된다.
+      
       <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
       <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521/xepdb1"></property>
       <property name="username" value="book_ex"></property>
@@ -22,20 +24,40 @@
    
    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
    <constructor-arg ref="hikariConfig"></constructor-arg>
+   스프링에서 위에 있는 hikariConfig 빈을 참조해서 주입해 주는것이다.
    </bean>
+   
    
    <bean id="sqlSessionFactory" 
       class="org.mybatis.spring.SqlSessionFactoryBean">
    <property name="dataSource" ref="dataSource"></property>
    </bean>
+    -->
    
-   <bean id="transactionManager" 
-      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-      <property name="dataSource" ref="dataSource"></property>
+   <!-- @@@@@  -->
+   
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+       <property name="url" value="jdbc:oracle:thin:@edudb_high?TNS_ADMIN=C:\\dev64\\OracleWallet"/>
+       <property name="username" value="CHYSK5"/>
+       <property name="password" value="HyundaiDB123"/>
    </bean>
    
-   <mybatis-spring:scan base-package="org.kosa.mapper"/>
-   <context:component-scan base-package="org.kosa.service" />
+   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+       <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+       <property name="dataSource" ref="dataSource"/>
+   </bean>
    
-      
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg ref="sqlSessionFactory"/>
+   </bean>
+   
+   
+   <!-- @@@@  -->
+   <mybatis-spring:scan base-package="org.kosa.mapper"/>
+   
+   
+   
+   
+   
 </beans>
