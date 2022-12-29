@@ -16,7 +16,7 @@
     <div class="product-list-wrap">
         <div class="header">
             <div class="category">
-                <h2 class="xans-element- xans-product xans-product-headcategory ">Tops</h2>
+                <h2 class="xans-element- xans-product xans-product-headcategory ">Topss</h2>
                 <span class="xans-element- xans-product xans-product-normalmenu count displaynone ">227</span>
             </div>           
         </div>
