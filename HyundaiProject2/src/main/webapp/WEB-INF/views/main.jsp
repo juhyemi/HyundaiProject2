@@ -47,7 +47,7 @@
           <!-- <li><a href="/product/list.html?cate_no=85"><span>Essential</span></a></li> -->
           <li><a href="/product/list.html?cate_no=92"><span style="color: #03C95B;">Underwear</span></a></li>
           <li><a href="/product/list.html?cate_no=26"><span>Outerwears</span></a></li>
-          <li><a href="/product/list.html?cate_no=27"><span>Tops</span></a></li>
+          <li><a href="/product/list/Tops"><span>Tops</span></a></li>
           <li><a href="/product/list.html?cate_no=28"><span>Bottoms</span></a></li>
           <li><a href="/product/list.html?cate_no=42"><span>Dresses</span></a></li>
           <li><a href="/product/list.html?cate_no=70"><span>Bags</span></a></li>
