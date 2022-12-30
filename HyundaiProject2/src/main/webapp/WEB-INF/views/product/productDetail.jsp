@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <link rel="stylesheet"  type="text/css"  href="./c1.css">
-  <link rel="stylesheet"  type="text/css"  href="./c2.css">
-  <link rel="stylesheet"  type="text/css"  href="./productDetail.css">
+  <link rel="stylesheet"  type="text/css"  href="../resources/css/product/c1.css">
+  <link rel="stylesheet"  type="text/css"  href="../resources/css/product/c2.css">
+  <link rel="stylesheet"  type="text/css"  href="../resources/css/product/productDetail.css">
 </head>
 <body class="product-detail">
 

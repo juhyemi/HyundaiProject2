@@ -6,9 +6,7 @@
   
   
 	  <select id="getList" resultType="com.chysk5.domain.TestDTO">
-	  	<![CDATA[
 	  	SELECT * FROM TestTable
-	  	]]>
 	  </select>
 	  
 	  
