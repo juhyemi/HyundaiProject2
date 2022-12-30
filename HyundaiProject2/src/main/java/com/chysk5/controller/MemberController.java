@@ -2,8 +2,10 @@ package com.chysk5.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.chysk5.domain.MemberDTO;
 import com.chysk5.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,27 +23,40 @@ public class MemberController {
 	private final MemberService service;
 	
 	// 로그인 페이지로 이동
-	@GetMapping("login")
+	@GetMapping("/login")
 	public String login() {
 		return "member/login";
 	}
 	
 	// 회원가입 페이지로 이동
-	@GetMapping("join")
+	@GetMapping("/join")
 	public String join() {
 		return "member/join";
 	}
 	
+	// 회원가입
+	@PostMapping("/joinAction")
+	public String joinAction(MemberDTO member){
+		
+		log.info("join...." + member);
+		
+		service.join(member);
+		
+		return "redirect:/member/login";
+	}
+	
+	
+	
 	// 아이디 찾기 페이지로 이동
-	@GetMapping("find_id")
+	@GetMapping("/findId")
 	public String find_id() {
-		return "member/find_id";
+		return "member/findId";
 	}
 	
 	// 비밀번호 찾기 페이지로 이동
-	@GetMapping("find_pwd")
+	@GetMapping("/findPwd")
 	public String find_pwd() {
-		 return "member/find_pwd";
+		 return "member/findPwd";
 	}
 	
 	

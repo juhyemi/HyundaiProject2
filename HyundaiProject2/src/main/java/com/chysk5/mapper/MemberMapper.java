@@ -1,5 +1,8 @@
 package com.chysk5.mapper;
 
-public class MemberMapper {
+import com.chysk5.domain.MemberDTO;
 
+public interface MemberMapper {
+
+	public int insertMember(MemberDTO member);
 }
