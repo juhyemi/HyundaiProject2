@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller
-@RequestMapping("/test/")
+@RequestMapping("/test")
 @RequiredArgsConstructor
 public class TestController {
 	
@@ -26,19 +26,28 @@ public class TestController {
 	public String testdatabase(Model model) {
 		log.info(">>>>>>/data 호출");
 		
-		List<TestDTO> list = service.getDB();
-		
-		model.addAttribute("board",list);
-		
 		log.info(model);
 		
-		return "check";
+		return "testImage";
 	}
+	
+	
+	
 	
 	@GetMapping("/main")
 	public String testMain(Model model) {
-		
+		log.info("###################################################");
+		System.out.println("check");
 		return "main";
 	}
+	
+	
+	@GetMapping("/aaa")
+	public String testImage(Model model) {
+		log.info(">>>>>>> : testImage");
+		
+		return "testImage";
+	}
+	
 	
 }
