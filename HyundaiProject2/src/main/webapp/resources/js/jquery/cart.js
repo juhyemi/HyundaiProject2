@@ -639,24 +639,7 @@ var basketData = null;
 * 2022-06-21
 * 이석훈
 */
-function basketOpen() {
 
-// 장바구니 카운트 갱신
-basketCountSync();
-dimmerOpen(basketClose);
-//  replace 링크 변경
-window.top.document.getElementById('basketIframe').contentWindow.location.replace('../../WEB-INF/views/cartdetail.jsp');
-$('.basket-wrap-iframe').addClass('active');
-$('html').addClass('fixed');
-$('body').addClass('fixed');
-
-
-$('.basket-iframe').on('load', function () {
-  // bodyLoadingClose();
-  // basketIframeLoaded();
-  $('.basket-iframe').unbind('load');
-});
-}
 function basketIframeLoaded() {
 $('.basket-iframe').unbind('load');
 // $('.basket-wrap-iframe').addClass('active');
