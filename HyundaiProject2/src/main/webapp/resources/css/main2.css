@@ -2660,7 +2660,7 @@ input[type=checkbox] {
   border-radius: 0;
   width: 16px;
   height: 16px;
-  background-image: url("/img/common/ico-checkbox.svg");
+  background-image: url("../img/common/ico-checkbox.svg");
   background-repeat: no-repeat;
   background-position: 0 0;
   -webkit-background-size: 100% 100%;
@@ -2668,7 +2668,7 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:checked {
-  background-image: url("/img/common/ico-checkbox-checked.svg");
+  background-image: url("../img/common/ico-checkbox-checked.svg");
 }
 
 input[type=checkbox]:focus {
