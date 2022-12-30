@@ -23,7 +23,7 @@
    crossorigin="anonymous"></script>
 <script type="text/javascript" src="../resources/js/jquery/optimizer.js"></script>
 <title>마뗑킴</title>
-<link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="../resources/css/order/cart.css">
+
+
 
 

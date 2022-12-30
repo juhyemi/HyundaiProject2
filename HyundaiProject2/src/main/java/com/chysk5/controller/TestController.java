@@ -41,6 +41,17 @@ public class TestController {
 		return "main";
 	}
 	
+
+	@GetMapping("/register")
+	public String testRegister(Model model) {
+		
+		return "/resell/register";
+	}
 	
-	
+	@GetMapping("/resell/ProductDetail")
+	public String testResellProductDetail(Model model) {
+		
+		return "/resell/resellProductDetail";
+	}
+
 }
