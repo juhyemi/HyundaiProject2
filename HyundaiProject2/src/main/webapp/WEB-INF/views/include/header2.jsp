@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 	<!-- header -->
 	<header data-bordered="true">
 		<div class="js-gnb-menu menu">
@@ -186,7 +187,7 @@
 					<li class="xans-record-"><a
 						href="/collection-view.html?product_no=3011&amp;cate_no=89&amp;display_group=1"><span><span
 								style="font-size: 12px; color: #555555;">2022 S/S
-									Essential</span></span></a></li>
+									Essential</span></span></a></li>
 					<li class="xans-record-"><a
 						href="/collection-view.html?product_no=2564&amp;cate_no=89&amp;display_group=1"><span><span
 								style="font-size: 12px; color: #555555;">2022 S/S 1st</span></span></a></li>
