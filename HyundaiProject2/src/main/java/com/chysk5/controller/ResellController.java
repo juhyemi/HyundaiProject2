@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
-import com.chysk5.domain.ResellProductDTO;
+import com.chysk5.domain.ResellProductInfoDTO;
 import com.chysk5.service.ResellService;
 
 import lombok.AllArgsConstructor;
@@ -32,14 +34,16 @@ public class ResellController {
 	public String getMyResellProduct(@RequestParam("pro_opt_id") String pro_opt_id, Model model){
 		
 		log.info("pro_opt_id: " + pro_opt_id);
-		ResellProductDTO resellProductDTO = new ResellProductDTO();
+		ResellProductInfoDTO resellProductInfoDTO = new ResellProductInfoDTO();
 		
-		resellProductDTO = service.getMyResellProduct(pro_opt_id);
-		resellProductDTO.setPro_opt_id(pro_opt_id);
+		resellProductInfoDTO = service.getMyResellProduct(pro_opt_id);
 		
-		log.info("resellProduct: " + resellProductDTO);
+		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_name());
+		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_opt_id());
+		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_opt_size());
+		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_price());
 		
-		model.addAttribute("product", resellProductDTO);
+		model.addAttribute("product", resellProductInfoDTO);
 		
 		return "resell/register";
 	}
@@ -51,5 +55,17 @@ public class ResellController {
 		service.register(regResellProductDTO);
 		rttr.addFlashAttribute("result");
 		return "redirect:/main";
+	}
+	
+	@ResponseBody
+	@GetMapping("/register/myRank")
+	public String getPriceRank(PriceRankDTO priceRankDTO) {
+		log.info("getPriceRank*********");
+		log.info(priceRankDTO.getPro_opt_id());
+		log.info(priceRankDTO.getRe_price());
+		
+		String rank = String.valueOf(service.getPriceRank(priceRankDTO));
+		log.info(rank + "번째 순위 임 !!!");
+		return rank;
 	}
 }

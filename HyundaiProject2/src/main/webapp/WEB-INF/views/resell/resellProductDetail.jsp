@@ -244,7 +244,6 @@
 									<div class="background show" id="resellModal">
 										<div class="window">
 											<div class="popup">
-
 												<div class="sizeBtn">
 													<input type="button" class="resellPrice"
 														value="132,000(XL)"> <input type="button"
