@@ -10,12 +10,12 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
+@Secured({"ROLE_MEMBER"})
 @RequestMapping("/mypage/")
 @RequiredArgsConstructor
 public class MypageController {
 
 	// 마이페이지 메인 화면으로 이동
-	@Secured({"ROLE_MEMBER"})
 	@GetMapping("/index")
 	public void index() {}
 	
