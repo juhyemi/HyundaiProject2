@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<img alt="사진 안나옴" src="../resources/images/1.jpg">
+<img alt="사진 안나옴" src="https://matinkim.com/web/product/medium/202212/529460578b3d45465b84384a6cc2cb94.jpg">
 
 </body>
   </html>
