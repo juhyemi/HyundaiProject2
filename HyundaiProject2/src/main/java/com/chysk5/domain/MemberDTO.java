@@ -1,5 +1,6 @@
 package com.chysk5.domain;
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -11,8 +12,8 @@ public class MemberDTO {
 
 	private String mem_id;
 	private String mem_pwd;
-	
 	private String mem_name;
+	private boolean enabled;
 	
 	private String mem_phone;
 	private String mobile1;
@@ -30,5 +31,7 @@ public class MemberDTO {
 	private String mem_postno;
 	
 	private String mem_joindate;
+	private Date mem_updateDate;
+	private List<AuthDTO> authList;
 	
 }

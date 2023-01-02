@@ -12,16 +12,20 @@
 			</div>
 			<span>MENU</span>
 		</div>
+		<img src="${contextPath}/resources/img/common/logo-chysk5.png"/>
 
-		<a href="/" class="logo"><span>Matin Kim</span></a>
+		<a href="/" class="logo"><span>CHYSK 5</span></a>
 
 		<ul class="util">
 			<li><a href="javascript:languageOpen();" class="language"><span
 					class="hidden">Language</span></a></li>
-			<li
-				class="xans-element- xans-layout xans-layout-statelogoff inline-block "><a
-				href="javascript:login();" class="myshop"><span class="hidden">Login</span></a>
+			<li class="xans-element- xans-layout xans-layout-statelogoff inline-block ">
+				<a href="/mypage/index" class="myshop">
+					<span class="hidden">Login</span>
+				</a>
 			</li>
+
+			
 			<li class="xans-element- xans-layout xans-layout-statelogoff "><a
 				href="javascript:basketOpen();" class="basket"><span
 					class="hidden">Bag</span><em><span
@@ -33,9 +37,7 @@
 		<div class="basket-wrap-iframe">
 			<iframe class="basket-iframe" id="basketIframe" name="basketIframe"
 				frameborder="0" scrolling="no"></iframe>
-			<!-- <div class="basket-wrap-ajax">
-            <div class="basket-wrap"></div>
-        </div> -->
+
 		</div>
 	</div>
 
@@ -58,9 +60,21 @@
 				<li class=""><a href="/about/index.html"><span>About</span></a></li>
 				<li class=""><a href="/cscenter/index.html"><span>Help</span></a></li>
 				<li class=" only-mobile"><a href="javascript:languageOpen();"><span>Language</span></a></li>
-				<li
-					class="xans-element- xans-layout xans-layout-statelogoff  only-mobile "><a
-					href="javascript:login();"><span>Login</span></a></li>
+				
+				
+				<li class="xans-element- xans-layout xans-layout-statelogoff ">
+					<!-- 로그인이 안되어 있을 경우 -->
+					<sec:authorize access="isAnonymous()">
+						<a href="/member/login"><span>Login</span></a>
+					</sec:authorize>
+					<!-- 로그인이 되어있을 경우 -->
+					<sec:authorize access="isAuthenticated()">
+						<a href="#" onclick="logoutSubmit();"><span>Logout</span></a>
+						<form id="logoutFrm" action="/member/logout" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						</form>
+					</sec:authorize>
+				</li>
 			</ul>
 
 		</div>
@@ -87,12 +101,7 @@
 				</ul>
 				<div class="sub-cate-banner" pandassi-banner-group="disable"
 					pandassi-banner-group-code="dd121b15d57874a6eef1">
-					<div pandassi-banner="">
-						<a href="_link_" target="_target_">_imgTag_</a>
-					</div>
-					<div pandassi-banner="">
-						<a href="_link_" target="_target_">_imgTag_</a>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -186,7 +195,7 @@
 					<li class="xans-record-"><a
 						href="/collection-view.html?product_no=3011&amp;cate_no=89&amp;display_group=1"><span><span
 								style="font-size: 12px; color: #555555;">2022 S/S
-									Essential</span></span></a></li>
+									Essential</span></span></a></li>
 					<li class="xans-record-"><a
 						href="/collection-view.html?product_no=2564&amp;cate_no=89&amp;display_group=1"><span><span
 								style="font-size: 12px; color: #555555;">2022 S/S 1st</span></span></a></li>

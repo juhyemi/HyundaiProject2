@@ -3,11 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chysk5.mapper.MemberMapper">
-
+	
+	<!-- 회원가입 -->
 	<insert id="insertMember">
 		INSERT INTO member(mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth)
 		VALUES (#{mem_id}, #{mem_pwd}, #{mem_name}, #{mem_phone}, #{mem_email}, #{mem_birth})
 	</insert>
 
+	<!-- 로그인 -->
+	<resultMap type="com.chysk5.domain.MemberDTO" id="memberMap">
+		<id property="mem_id" column="mem_id" />
+		<result property="mem_id" column="mem_id" />
+		<result property="mem_pwd" column="mem_pwd" />
+		<result property="mem_name" column="mem_name" />
+		<result property="mem_phone" column="mem_phone" />
+		<result property="mem_email" column="mem_email" />
+		<result property="mem_birth" column="mem_birth" />
+		<result property="mem_address" column="mem_address" />
+		<result property="mem_postno" column="mem_postno" />
+		<result property="mem_joindate" column="mem_joindate" />
+		<result property="updateDate" column="mem_updateDate" />
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+
+	<resultMap type="com.chysk5.domain.AuthDTO" id="authMap">
+		<result property="mem_id" column="mem_id" />
+		<result property="authority" column="authority" />
+	</resultMap>
+	
+	<select id="read" resultMap="memberMap">
+		SELECT mem.mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth, mem_address, mem_postno, enabled, mem_joindate, mem_updateDate, authority
+		FROM member mem LEFT OUTER JOIN authorities auth ON mem.mem_id = auth.mem_id
+		WHERE mem.mem_id = #{mem_id}
+	</select>
 
 </mapper>
