@@ -2,13 +2,67 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.chysk5.mapper.ProductMapper">
-  
-  	<select id="getPList" resultType="com.chysk5.domain.ProductDTO">
-  		SELECT * FROM product WHERE pro_category = #{kind}
-  	</select>
-  	
+<mapper namespace="com.chysk5.mapper.ProductMapper">
 
-  
-  </mapper>
+	<select id="getPList" resultType="com.chysk5.domain.ProductDTO">
+
+		SELECT p.pro_id, p.pro_name,
+		p.pro_category, p.pro_price, i.pro_loc
+		FROM
+		product p,
+		(SELECT
+		product_pro_id, pro_loc
+		FROM (select
+		product_pro_id,
+		pro_loc, rank()
+		OVER(PARTITION BY
+		product_pro_id ORDER
+		BY pro_loc) AS
+		rank from
+		pro_image)
+		WHERE rank = 1
+		) i
+		WHERE p.pro_id = i.product_pro_id
+		AND
+		p.pro_category=#{category}
+
+	</select>
+
+	<select id="getProductOption"
+		resultType="com.chysk5.domain.ProductDTO">
+
+		SELECT pro_id, pro_name, pro_category, pro_price
+		FROM product
+		WHERE pro_id = #{pro_id}
+
+	</select>
+
+	<select id="getProductSize"
+		resultType="com.chysk5.domain.ProductSizeDTO">
+
+		SELECT distinct pro_opt_size, product_pro_id FROM
+		product_option
+		WHERE product_pro_id = #{pro_id}
+		ORDER BY
+            (
+            CASE pro_opt_size
+            WHEN 'S' THEN 0
+            WHEN 'M' THEN 1
+            WHEN 'L' THEN 2
+            ELSE 3
+            END
+            )
+
+	</select>
+
+	<select id="getProductImg"
+		resultType="com.chysk5.domain.ProductImgDTO">
+
+		SELECT pro_loc, product_pro_id FROM pro_image
+		WHERE product_pro_id = #{pro_id}
+
+	</select>
+
+
+</mapper>
   

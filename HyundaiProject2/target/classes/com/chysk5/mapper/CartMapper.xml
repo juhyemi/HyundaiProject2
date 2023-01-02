@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.chysk5.mapper.CartMapper">
-<select id="cartList" resultType="org.chysk5.domain.CartDTO">
+  PUBLIC "-//mybatis.com//DTD Mapper 3.0//EN"
+  "https://mybatis.com/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chysk5.mapper.CartMapper">
+<select id="cartList" resultType="com.chysk5.domain.CartDTO">
 <![CDATA[
 select * from cart 
 ]]>
