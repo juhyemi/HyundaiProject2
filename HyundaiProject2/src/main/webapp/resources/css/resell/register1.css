@@ -1511,8 +1511,9 @@ html,body {
 }
 
 body,input,textarea,select,button {
-    font-family: sans-serif;
+    font-family: "Helvetica Neue","NotoSansKR",sans-serif;
     -webkit-font-smoothing: antialiased;
+  	color: "grey";
 }
 
 textarea {

@@ -875,7 +875,10 @@
 								<span id="resellProductCaption" class="resellProductCaption">
 									<span class="size">${product.resellProductDTO.pro_opt_size}</span>
 								</span> <span id="resellProductCaption" class="resellProductCaption">
-									<span class="originalprice">${product.resellProductDTO.pro_price}</span>
+								<script>
+								let pro_price = ${product.resellProductDTO.pro_price }.toLocaleString();
+								</script>
+									<span class="originalprice">pro_price</span>
 								</span>
 
 							</div>
@@ -886,7 +889,7 @@
 							<div>
 								<form action="" method="post">
 
-									<input id="input1" type="text" placeholder="가격을 입력하세용~" /> 
+									<input id="input1" type="text" onkeyup="inputNumberFormat(this);" placeholder="가격을 입력하세용~" maxlength="10"/> 
 								<!--	<input id="input2" type="submit" />   -->
 										<!-- <input id="input3" type="submit"
 										value="최저가 순위보기" />  -->
@@ -908,23 +911,15 @@
 													<td>${resellPrice.re_price}</td>
 												</tr>
 											</c:forEach>
-
 										</table>
-
-
 										<div id="closeModal">
-
 											<button type="button"
 												class="btn btn-order btn-dark btn-full close-resell-btn"
 												onclick="close_modal();">
 												<span id="closeModalPrice">창 닫기</span>
 										</div>
-
 									</div>
-
-
 								</div>
-
 							</div>
 
 
@@ -1347,7 +1342,8 @@ function getMyRank() {
 		url: "/resell/register/myRank",
 		data: productInfo,
 		success: function(data) {
-			 $("#showPriceRank").text(data + "번째 순위 입니다!!");
+			if() 
+			$("#showPriceRank").text(data + "번째 순위 입니다!!");
 		},
 		error: function() {
 			alert("ajax 통신 실패");
@@ -1359,7 +1355,38 @@ function getMyRank() {
 
 </script>
 
+<script>
 
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
+} 
+
+function inputNumberFormat(obj) {
+    obj.value = comma(uncomma(obj.value));
+}
+
+function inputOnlyNumberFormat(obj) {
+    obj.value = onlynumber(uncomma(obj.value));
+}
+
+function onlynumber(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+}
+
+/* 영역 안 가격 */
+
+var money = $('#money').text();
+var money2 = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+$('#money').text(money2);
+
+</script>
 
 
 
