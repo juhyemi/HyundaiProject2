@@ -1,39 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%@ include file="../include/header.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="https://contents.sixshop.com/uploadedFiles/67701/css/designSetting1672214543310.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/resell/register1.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/resell/register2.css">
-
+<link rel="stylesheet" type="text/css" href="/js/slick/slick.css"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	href="https://contents.sixshop.com/uploadedFiles/67701/css/designSetting1672214543310.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/resell/register1.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/resell/register2.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/resell/register3.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/main2.css">
 
-<link id="smartPopup" rel="stylesheet" type="text/css" href="https://app4you.cafe24.com/SmartPopup/assets/css/front.css?vs=202103191120" media="all"><link rel="stylesheet" type="text/css" href="https://app4you.cafe24.com/SmartPopup/assets/uipack/slick/1.8.1/css/smart-popup.slick.css?vs=202103191120">
-<script src="https://app4you.cafe24.com/SmartPopup/assets/uipack/slick/1.8.1/js/smart-popup.slick.js?vs=202103191120"></script>
+<link id="smartPopup" rel="stylesheet" type="text/css"
+	href="https://app4you.cafe24.com/SmartPopup/assets/css/front.css?vs=202103191120"
+	media="all">
+<link rel="stylesheet" type="text/css"
+	href="https://app4you.cafe24.com/SmartPopup/assets/uipack/slick/1.8.1/css/smart-popup.slick.css?vs=202103191120">
+<script
+	src="https://app4you.cafe24.com/SmartPopup/assets/uipack/slick/1.8.1/js/smart-popup.slick.js?vs=202103191120"></script>
 
 
 <script src="https://static.sixshop.com/resources/js/norequire/ssa.js"></script>
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Belleza:400%7CFedero:400%7CLato:700,300,400,900%7CMontserrat:500%7CPhilosopher:400,700%7CTenor+Sans:400%7CNanum+Gothic:700,400%7CKarla:700&amp;subset=korean">
-<script>WebFont.load({google:{families:['Belleza:400','Federo:400','Lato:700,300,400,900','Montserrat:500','Philosopher:400,700','Tenor+Sans:400','Nanum+Gothic:700,400:korean','Karla:700']}});</script>
+
 <link rel="stylesheet" type="text/css"
 	href="https://contents.sixshop.com/uploadedFiles/67701/css/designSetting1672214543310.css">
 
 
-<link rel="canonical"
-	href="https://worthwhilemovement.com/product/Project2-37-1">
 
-
-<title>상품이름</title>
+<title>"${product.resellProductDTO.pro_name}"</title>
 
 </head>
 
 <body class="display display-home display desktop">
 
-<%@ include file="../include/header2.jsp"%>
+	<%@ include file="../include/header2.jsp"%>
 
 	<div id="searchOptimizeTextDiv"
 		style="position: absolute !important; top: -999999px !important; left: -999999px !important"></div>
@@ -130,256 +137,9 @@
 					href="/login?returnUrl=/product/Project2-37-1"> <span
 					class="headerCustomerContent" data-type="english">LOG IN</span> <span
 					class="headerCustomerContent" data-type="korean">로그인</span>
-					<div
-						class="headerCustomerContent ico-user-border systemIcon systemIconWeight_normal"
-						data-type="icon"></div>
-					<div
-						class="headerCustomerContent ico-snowman-border systemIcon systemIconWeight_normal"
-						data-type="icon-snowman"></div>
+
 				</a>
 			</div>
-			<div id="headerProductSearchInMobileMenu"
-				class="header-productSearch-InMobileMenu bottom">
-				<div
-					class="headerProductSearchContent ico-search-border systemIcon systemIconWeight_normal"
-					data-type="icon"></div>
-				<form action="" onsubmit="return false;">
-					<input type="search"
-						onkeyup="require('v2/mall/util/common').goSearchResultPage(event)">
-				</form>
-			</div>
-			<div
-				class="site-division-background-mobile site-division-background-mobile-color"></div>
-			<div class="site-division-background-mobile2"></div>
-
-			<ul class="headerMenuListContents mobile">
-
-				<li data-pageno="926222" class="menu-navi menu-main pageMenu"><a
-					class="menu-name" alt="ABOUT" href="/about">ABOUT</a>
-				<div class="menu-opener"></div>
-					<div class="subMenuNaviListDiv">
-						<ul class="subMenuNaviList"></ul>
-					</div></li>
-				<li data-pageno="1975212" class="menu-navi menu-main pageMenu"><a
-					class="menu-name" alt="CONTACT" href="/contact">CONTACT</a>
-				<div class="menu-opener"></div>
-					<div class="subMenuNaviListDiv">
-						<ul class="subMenuNaviList"></ul>
-					</div></li>
-				<li data-pageno="926220"
-					class="menu-navi menu-main pageMenu subMenu-exist"><a
-					class="menu-name" alt="PROJECT" href="/project">PROJECT</a>
-				<div class="menu-opener"></div>
-					<div class="subMenuNaviListDiv">
-						<ul class="subMenuNaviList">
-							<li data-pageno="1462933" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Project 1 RENEWAL" href="/project1">Project
-									1 [RENEWAL]</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1462934" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Project 2 KNIT" href="/project2">Project
-									2 [KNIT]</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1462935" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Project 3 BAG" href="/project3">Project
-									3 [BAG]</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1462936" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Project 4 ACC" href="/project4">Project
-									4 [ACC]</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1462937" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Project 5 LEATHER" href="/project5">Project
-									5 [LEATHER]</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1462938" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Project 6 CAP  HAT" href="/project6">Project
-									6 [CAP &amp; HAT]</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1462939" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Project 7 LIFESTYLE" href="/project7">Project
-									7 [LIFESTYLE]</a>
-							<div class="menu-opener"></div></li>
-						</ul>
-					</div></li>
-				<li data-pageno="926221"
-					class="menu-navi menu-main pageMenu subMenu-exist"><a
-					class="menu-name" alt="ARCHIVE" href="/archive">ARCHIVE</a>
-				<div class="menu-opener"></div>
-					<div class="subMenuNaviListDiv">
-						<ul class="subMenuNaviList">
-							<li data-pageno="2209010" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Gift guide  Knitwear curation"
-								href="/p13">•Gift guide &amp; Knitwear curation</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2204138" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Exclusive knitwear Triple store"
-								href="/p_triplestore2_">•Exclusive knitwear (Triple store)</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2197654" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•22 FW Style sample p2  p3"
-								href="/22fwstylesample">•22 F/W Style sample 'p2 &amp; p3'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2193488" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•With Elizaveta burganova"
-								href="/elizavetaburganova">•With 'Elizaveta burganova'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2175734" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•With Dongho" href="/p10_">•With
-									'Dongho'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2144765" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•With Nice earth plants"
-								href="/niceearthplants">•With 'Nice earth plants'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2168768" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Artist collaboration with Blueroom"
-								href="/v07">•Artist collaboration with 'Blueroom'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2149715" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•22 FW P2 Editorial lookbook"
-								href="/fp09">•22 F/W P2 Editorial lookbook</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2149568" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•22 FW P2 lookbook" href="/fp08">•22
-									F/W P2 lookbook</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2149485" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•22 FW Video 2" href="/v06-2">•22 F/W
-									Video (2)</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2149444" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•22 FW Video 1" href="/v06">•22 F/W
-									Video (1)</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2170442" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•With Aerim choe  Love of the bush"
-								href="/aerimchoe">•With 'Aerim choe' &amp; Love of the bush</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2120912" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Artist collaboration with Sofi"
-								href="/v05">•Artist collaboration with 'Sofi'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2142699" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•22 Fall editorial In berlin"
-								href="/inberlin">•22 Fall editorial 'In berlin'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2103813" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•With Kwanwon seo" href="/kwanwonseo">•With
-									'Kwanwon seo'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2082960" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•22 Summer  Fall editorial lookbook"
-								href="/fp06">•22 Summer &amp; Fall editorial lookbook</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2045139" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•22 Summer editorial lookbook"
-								href="/p04">•22 Summer editorial lookbook</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2072137" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•With Im mute" href="/immute">•With
-									'Im mute'</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2072914" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Outdoor mood in jeju"
-								href="/p_triplestore1">•Outdoor mood in jeju</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1999727" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•New perspective" href="/fp05">•New
-									perspective</a>
-							<div class="menu-opener"></div></li>
-						</ul>
-					</div></li>
-				<li data-pageno="1975670"
-					class="menu-navi menu-main pageMenu subMenu-exist"><a
-					class="menu-name" alt="COLLABORATION" href="/collaboration">COLLABORATION</a>
-				<div class="menu-opener"></div>
-					<div class="subMenuNaviListDiv">
-						<ul class="subMenuNaviList">
-							<li data-pageno="1975669" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Polyteru 2 2022" href="/polyteru2022-2">•Polyteru
-									[2] 2022</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2207056" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Obscura 3 2022" href="/obscura2022-3">•Obscura
-									[3] 2022</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2083762" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Hatchingroom 2022"
-								href="/hatchingroom2022">•Hatchingroom 2022</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980323" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Choe 2022" href="/choe2022">•Choe
-									2022</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980644" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Obscura 2 2022" href="/obscura2022-2">•Obscura
-									[2] 2022</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="2208909" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Polyteru 2022" href="/polyteru2022">•Polyteru
-									2022</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1977381" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Obscura 2022" href="/obscura2022">•Obscura
-									2022</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980928" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Triple store 2021"
-								href="/triplestore2021">•Triple store 2021</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980930" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Moonan 2021" href="/untitled-2">•Moonan
-									2021</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980933" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•After pray 2021" href="/untitled-4">•After
-									pray 2021</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980929" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Steady every wear 2021"
-								href="/untitled-1">•Steady every wear 2021</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980931" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•Shirter 2021" href="/untitled-3">•Shirter
-									2021</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980934" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•After pray 2 2020" href="/untitled-5">•After
-									pray [2] 2020</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980937" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•After pray 2020" href="/untitled-6">•After
-									pray 2020</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1980938" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="•After pray 2019" href="/untitled-7">•After
-									pray 2019</a>
-							<div class="menu-opener"></div></li>
-						</ul>
-					</div></li>
-				<li data-pageno="961952"
-					class="menu-navi menu-main pageMenu subMenu-exist"><a
-					class="menu-name" alt="SERVICE" href="/service">SERVICE</a>
-				<div class="menu-opener"></div>
-					<div class="subMenuNaviListDiv">
-						<ul class="subMenuNaviList">
-							<li data-pageno="1977326" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Journal" href="/journal">Journal</a>
-							<div class="menu-opener"></div></li>
-							<li data-pageno="1171790" class="menu-navi menu-sub pageMenu"><a
-								class="menu-name" alt="Moodboard" href="/moodboard">Moodboard</a>
-							<div class="menu-opener"></div></li>
-						</ul>
-					</div></li>
-				<li data-pageno="926223" class="menu-navi menu-main pageMenu"><a
-					class="menu-name" alt="NOTICE" href="/notice">NOTICE</a>
-				<div class="menu-opener"></div>
-					<div class="subMenuNaviListDiv">
-						<ul class="subMenuNaviList"></ul>
-					</div></li>
-
-			</ul>
 
 
 
@@ -391,12 +151,6 @@
 
 
 
-				<a id="headerSns-instagram"
-					class="headerSns-icons userCustomIcon-icomoon-instagram"
-					href="https://www.instagram.com/worthwhile_movement"
-					data-originallink="https://www.instagram.com/worthwhile_movement"
-					target="_blank"><div data-i="icomoon-instagram"
-						class="icomoon-instagram"></div></a>
 
 
 
@@ -408,7 +162,7 @@
 
 
 
-		<div class="document-background"></div>
+
 
 		<div class="site-header-content-group">
 			<div id="siteHeader"
@@ -440,228 +194,228 @@
 
 								<li data-pageno="926222" class="menu-navi menu-main pageMenu"><a
 									class="menu-name" alt="ABOUT" href="/about">ABOUT</a>
-								<div class="menu-opener"></div>
+									<div class="menu-opener"></div>
 									<div class="subMenuNaviListDiv">
 										<ul class="subMenuNaviList"></ul>
 									</div></li>
 								<li data-pageno="1975212" class="menu-navi menu-main pageMenu"><a
 									class="menu-name" alt="CONTACT" href="/contact">CONTACT</a>
-								<div class="menu-opener"></div>
+									<div class="menu-opener"></div>
 									<div class="subMenuNaviListDiv">
 										<ul class="subMenuNaviList"></ul>
 									</div></li>
 								<li data-pageno="926220"
 									class="menu-navi menu-main pageMenu subMenu-exist"><a
 									class="menu-name" alt="PROJECT" href="/project">PROJECT</a>
-								<div class="menu-opener"></div>
+									<div class="menu-opener"></div>
 									<div class="subMenuNaviListDiv">
 										<ul class="subMenuNaviList">
 											<li data-pageno="1462933" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Project 1 RENEWAL" href="/project1">Project
 													1 [RENEWAL]</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1462934" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Project 2 KNIT" href="/project2">Project
 													2 [KNIT]</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1462935" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Project 3 BAG" href="/project3">Project
 													3 [BAG]</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1462936" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Project 4 ACC" href="/project4">Project
 													4 [ACC]</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1462937" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Project 5 LEATHER" href="/project5">Project
 													5 [LEATHER]</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1462938" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Project 6 CAP  HAT" href="/project6">Project
 													6 [CAP &amp; HAT]</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1462939" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Project 7 LIFESTYLE" href="/project7">Project
 													7 [LIFESTYLE]</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 										</ul>
 									</div></li>
 								<li data-pageno="926221"
 									class="menu-navi menu-main pageMenu subMenu-exist"><a
 									class="menu-name" alt="ARCHIVE" href="/archive">ARCHIVE</a>
-								<div class="menu-opener"></div>
+									<div class="menu-opener"></div>
 									<div class="subMenuNaviListDiv">
 										<ul class="subMenuNaviList">
 											<li data-pageno="2209010" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Gift guide  Knitwear curation"
 												href="/p13">•Gift guide &amp; Knitwear curation</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2204138" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Exclusive knitwear Triple store"
 												href="/p_triplestore2_">•Exclusive knitwear (Triple
 													store)</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2197654" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•22 FW Style sample p2  p3"
 												href="/22fwstylesample">•22 F/W Style sample 'p2 &amp;
 													p3'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2193488" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•With Elizaveta burganova"
 												href="/elizavetaburganova">•With 'Elizaveta burganova'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2175734" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•With Dongho" href="/p10_">•With
 													'Dongho'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2144765" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•With Nice earth plants"
 												href="/niceearthplants">•With 'Nice earth plants'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2168768" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Artist collaboration with Blueroom"
 												href="/v07">•Artist collaboration with 'Blueroom'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2149715" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•22 FW P2 Editorial lookbook"
 												href="/fp09">•22 F/W P2 Editorial lookbook</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2149568" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•22 FW P2 lookbook" href="/fp08">•22
 													F/W P2 lookbook</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2149485" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•22 FW Video 2" href="/v06-2">•22
 													F/W Video (2)</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2149444" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•22 FW Video 1" href="/v06">•22
 													F/W Video (1)</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2170442" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•With Aerim choe  Love of the bush"
 												href="/aerimchoe">•With 'Aerim choe' &amp; Love of the
 													bush</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2120912" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Artist collaboration with Sofi"
 												href="/v05">•Artist collaboration with 'Sofi'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2142699" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•22 Fall editorial In berlin"
 												href="/inberlin">•22 Fall editorial 'In berlin'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2103813" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•With Kwanwon seo" href="/kwanwonseo">•With
 													'Kwanwon seo'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2082960" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•22 Summer  Fall editorial lookbook"
 												href="/fp06">•22 Summer &amp; Fall editorial lookbook</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2045139" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•22 Summer editorial lookbook"
 												href="/p04">•22 Summer editorial lookbook</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2072137" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•With Im mute" href="/immute">•With
 													'Im mute'</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2072914" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Outdoor mood in jeju"
 												href="/p_triplestore1">•Outdoor mood in jeju</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1999727" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•New perspective" href="/fp05">•New
 													perspective</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 										</ul>
 									</div></li>
 								<li data-pageno="1975670"
 									class="menu-navi menu-main pageMenu subMenu-exist"><a
 									class="menu-name" alt="COLLABORATION" href="/collaboration">COLLABORATION</a>
-								<div class="menu-opener"></div>
+									<div class="menu-opener"></div>
 									<div class="subMenuNaviListDiv">
 										<ul class="subMenuNaviList">
 											<li data-pageno="1975669" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Polyteru 2 2022"
 												href="/polyteru2022-2">•Polyteru [2] 2022</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2207056" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Obscura 3 2022"
 												href="/obscura2022-3">•Obscura [3] 2022</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2083762" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Hatchingroom 2022"
 												href="/hatchingroom2022">•Hatchingroom 2022</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980323" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Choe 2022" href="/choe2022">•Choe
 													2022</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980644" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Obscura 2 2022"
 												href="/obscura2022-2">•Obscura [2] 2022</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="2208909" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Polyteru 2022" href="/polyteru2022">•Polyteru
 													2022</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1977381" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Obscura 2022" href="/obscura2022">•Obscura
 													2022</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980928" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Triple store 2021"
 												href="/triplestore2021">•Triple store 2021</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980930" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Moonan 2021" href="/untitled-2">•Moonan
 													2021</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980933" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•After pray 2021" href="/untitled-4">•After
 													pray 2021</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980929" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Steady every wear 2021"
 												href="/untitled-1">•Steady every wear 2021</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980931" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•Shirter 2021" href="/untitled-3">•Shirter
 													2021</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980934" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•After pray 2 2020"
 												href="/untitled-5">•After pray [2] 2020</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980937" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•After pray 2020" href="/untitled-6">•After
 													pray 2020</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1980938" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="•After pray 2019" href="/untitled-7">•After
 													pray 2019</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 										</ul>
 									</div></li>
 								<li data-pageno="961952"
 									class="menu-navi menu-main pageMenu subMenu-exist"><a
 									class="menu-name" alt="SERVICE" href="/service">SERVICE</a>
-								<div class="menu-opener"></div>
+									<div class="menu-opener"></div>
 									<div class="subMenuNaviListDiv">
 										<ul class="subMenuNaviList">
 											<li data-pageno="1977326" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Journal" href="/journal">Journal</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 											<li data-pageno="1171790" class="menu-navi menu-sub pageMenu"><a
 												class="menu-name" alt="Moodboard" href="/moodboard">Moodboard</a>
-											<div class="menu-opener"></div></li>
+												<div class="menu-opener"></div></li>
 										</ul>
 									</div></li>
 								<li data-pageno="926223" class="menu-navi menu-main pageMenu"><a
 									class="menu-name" alt="NOTICE" href="/notice">NOTICE</a>
-								<div class="menu-opener"></div>
+									<div class="menu-opener"></div>
 									<div class="subMenuNaviListDiv">
 										<ul class="subMenuNaviList"></ul>
 									</div></li>
@@ -1106,7 +860,8 @@
 							class="content clearfix info align_left">
 							<div id="shopProductNameWrapper" class="row">
 								<h1 id="shopProductName"
-									class="row name designSettingElement productName">상품이름</h1>
+									class="row name designSettingElement productName">${product.resellProductDTO.pro_name}
+								</h1>
 
 							</div>
 
@@ -1118,9 +873,12 @@
 
 							<div id="resellProduct">
 								<span id="resellProductCaption" class="resellProductCaption">
-									<span class="size">XL</span>
+									<span class="size">${product.resellProductDTO.pro_opt_size}</span>
 								</span> <span id="resellProductCaption" class="resellProductCaption">
-									<span class="originalprice">179,000원</span>
+								<script>
+								let pro_price = ${product.resellProductDTO.pro_price }.toLocaleString();
+								</script>
+									<span class="originalprice">pro_price</span>
 								</span>
 
 							</div>
@@ -1131,32 +889,66 @@
 							<div>
 								<form action="" method="post">
 
-									<input id="input1" type="text" placeholder="가격을 입력하세용~" /> <input
-										id="input2" type="submit" /> <input id="input3" type="submit"
-										value="최저가 순위보기" />
+									<input id="input1" type="text" onkeyup="inputNumberFormat(this);" placeholder="가격을 입력하세용~" maxlength="10"/> 
+								<!--	<input id="input2" type="submit" />   -->
+										<!-- <input id="input3" type="submit"
+										value="최저가 순위보기" />  -->
+										<a href="#none"
+												onclick="getMyRank();"><span>순위 확인</span></a>
+										<a href="#none"
+												onclick="show_resell_modal();"><span>최저가 순위보기</span></a>
 								</form>
 							</div>
 
+							<!-- size modal창-->
+							<div class="background show" id="resellModal">
+								<div class="window">
+									<div class="popup">
+										<table class="type06">
+											<c:forEach var="resellPrice" items="${product.resellPrice}">
+												<tr>
+													<th scope="row">${resellPrice.pro_opt_size}</th>
+													<td>${resellPrice.re_price}</td>
+												</tr>
+											</c:forEach>
+										</table>
+										<div id="closeModal">
+											<button type="button"
+												class="btn btn-order btn-dark btn-full close-resell-btn"
+												onclick="close_modal();">
+												<span id="closeModalPrice">창 닫기</span>
+										</div>
+									</div>
+								</div>
+							</div>
 
-							<div id="showPriceRank">해당 가격은 5번째 입니다.</div>
 
+							<div id="showPriceRank"></div>
+							<!-- 
+							<c:forEach var="resellPrice" items="${product.resellPrice}">
 
+								<p>size : ${resellPrice.pro_opt_size}</p>
+
+								<p>price : ${resellPrice.re_price}</p>
+ 
+							</c:forEach>
+							-->
 							<div id="productAdditionalInfo"
 								class="row productInfo designSettingElement text-body">
 
-							<div id="tax">
-								<div class="point rewardPointRate">
-									<span class="title">수수료</span> <span
-										class="rewardPointInfo description">3% </span>
-								</div>
-								<div id="shopProductRewardPointInfo"
-									class="rewardPoint-wrapper designSettingElement text-body hide">
-									<div class="rewardPoint-info">
-										<span class="rewardPoint-title">기본 적립</span><span
-											class="rewardPoint-description">3%</span>
+								<div id="tax">
+									<div class="point rewardPointRate">
+										<span class="title">수수료</span> <span
+											class="rewardPointInfo description">3% </span>
+									</div>
+									<div id="shopProductRewardPointInfo"
+										class="rewardPoint-wrapper designSettingElement text-body hide">
+										<div class="rewardPoint-info">
+											<span class="rewardPoint-title">기본 적립</span><span
+												class="rewardPoint-description">3%</span>
+										</div>
 									</div>
 								</div>
-							</div>	
 
 
 
@@ -1182,7 +974,7 @@
 								</div>
 							</div>
 
-
+							<!-- 
 							<div id="productActionButtonDiv"
 								class="productActionButtonDiv row">
 								<div class="normalButton">
@@ -1193,6 +985,21 @@
 											data-is-mini-cart-available="true"
 											onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
 											등록하기</button>
+									</div>
+
+								</div>
+							</div>
+ -->
+
+							<div id="productActionButtonDiv"
+								class="productActionButtonDiv row">
+								<div class="normalButton">
+									<div class="btn-wrapper buyButton">
+										<button id="btn_buyNow"
+											data-prooptid="${product.resellProductDTO.pro_opt_id}"
+											class="buyNowResell designSettingElement button 
+                                          "
+											type="button" onclick="regResell();">등록하기</button>
 									</div>
 
 								</div>
@@ -1232,20 +1039,16 @@
 			</div>
 
 
-			</div>
-
-
 		</div>
 
 
-
-	</div>
-
 	</div>
 
 
 
+	</div>
 
+	</div>
 
 
 
@@ -1345,9 +1148,6 @@
 
 
 
-
-
-
 		<div id="togetherBuyProductsClone" class="hide"></div>
 
 
@@ -1382,7 +1182,6 @@
 				</div>
 			</div>
 		</div>
-
 
 
 		<div id="productActionButtonDivClone"
@@ -1477,19 +1276,125 @@
 
 
 
+	<form action="/resell/register" method="post" class="reg_product">
+		<input type="hidden" name="member_mem_id" class="send_member_id">
+		<input type="hidden" name="re_id" class="send_re_id"> <input
+			type="hidden" name="re_price" class="send_re_price"> <input
+			type="hidden" name="product_option_pro_opt_id"
+			class="send_pro_opt_id"> <input type="hidden"
+			name="re_available" class="send_re_available">
+	</form>
 
 
+<script>
+function show_resell_modal() {
+	const resellModal = document.getElementById("resellModal")
+	resellModal.style.display = "flex"
+}
 
+function close_modal() {
+	const closeModal = document
+			.getElementById("closeModal")
+	resellModal.style.display = "none"
+}
 
+</script>
 
+	<script>
+/* resell product register  */
+//$("#btn_buyNow").on("click", function() {
+	function regResell(){
+ //let member_id = $(this).data("member_id"); 추후에 변경할 내용
+ let member_mem_id = "chung";
+ let re_id = "10"; // 추후 변경
+ let re_price = document.getElementById("input1").value;
+ let pro_opt_id = $("#btn_buyNow").data("prooptid");
+ let re_available = "0"; //추후 변경
+ 
+ console.log(member_mem_id);
+ console.log(re_id);
+ console.log(re_price);
+ console.log(pro_opt_id);
+ console.log(re_available);
+ 
+ $(".send_member_id").val(member_mem_id);
+ $(".send_re_id").val(re_id);
+ $(".send_re_price").val(re_price);
+ $(".send_pro_opt_id").val(pro_opt_id);
+ $(".send_re_available").val(re_available);
+ $(".reg_product").submit();
+	}
 
+</script>
 
-
+<script>
+function getMyRank() {
 	
-
+	let productInfo={
+			pro_opt_id: ${product.resellProductDTO.pro_opt_id},
+			re_price: document.getElementById("input1").value
+	}
 	
+	console.log(productInfo); 
+	
+	$.ajax({
+		type: "get",
+		url: "/resell/register/myRank",
+		data: productInfo,
+		success: function(data) {
+			if() 
+			$("#showPriceRank").text(data + "번째 순위 입니다!!");
+		},
+		error: function() {
+			alert("ajax 통신 실패");
+		}
+	})
+	}
 
 
 
-<%@ include file="../include/footer.jsp"%>
+</script>
 
+<script>
+
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
+} 
+
+function inputNumberFormat(obj) {
+    obj.value = comma(uncomma(obj.value));
+}
+
+function inputOnlyNumberFormat(obj) {
+    obj.value = onlynumber(uncomma(obj.value));
+}
+
+function onlynumber(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+}
+
+/* 영역 안 가격 */
+
+var money = $('#money').text();
+var money2 = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+$('#money').text(money2);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+	<%@ include file="../include/footer.jsp"%>
