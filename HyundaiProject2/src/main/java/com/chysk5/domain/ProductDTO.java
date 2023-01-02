@@ -20,6 +20,5 @@ public class ProductDTO {
 	private Date pro_ragdate;
 	private Long pro_price;
 	private String pro_loc;
-	private String pro_opt_id;
 
 }
