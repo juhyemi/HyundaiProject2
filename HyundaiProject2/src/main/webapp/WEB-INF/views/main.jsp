@@ -419,16 +419,5 @@
   </div>
   <!-- // 로그인 -->
 
-  <!-- 장바구니 -->
-  <div class="basket-block">
-    <div class="basket-wrap-iframe">
-      <iframe class="basket-iframe" id="basketIframe" name="basketIframe" frameborder="0" scrolling="no"
-        src="/blank.html"></iframe>
-      <!-- <div class="basket-wrap-ajax">
-          <div class="basket-wrap"></div>
-      </div> -->
-    </div>
-  </div>
-  <!-- // 장바구니 -->
 
    <%@ include file="./include/footer.jsp"%>
