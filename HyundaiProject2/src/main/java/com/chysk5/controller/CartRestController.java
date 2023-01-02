@@ -36,7 +36,6 @@ public class CartRestController {
 	    log.info(opt_id);
 	    log.info(cart);   
 	    log.info("id가 set 되었을까??");
-	    if())
 	    
 	    service.addCart(cart);
 		
