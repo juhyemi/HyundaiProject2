@@ -838,7 +838,7 @@ setTimeout(() => {
 
 }
 function customAlertClose() {
-$('.custom-alert').remove();
+$('.custom-alert').remove(); 
 };
 /* // 커스텀 alert */
 

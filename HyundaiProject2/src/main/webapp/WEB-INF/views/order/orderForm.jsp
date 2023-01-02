@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-
+<link rel="stylesheet" type="text/css" href="../resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/order/orderForm1.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/order/orderForm2.css">
+
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
 
-</head>
+	</head>
 
 <body id="userStyle" class="orderform">    
 

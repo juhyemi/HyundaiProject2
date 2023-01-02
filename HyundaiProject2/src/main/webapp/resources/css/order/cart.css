@@ -319,7 +319,7 @@
 }
 
 .basket-wrap .btn-block {
-  margin-top: 30px;
+   margin-top: 30px;
 }
 
 @media (max-width: 1280px) {
@@ -338,7 +338,7 @@
   }
 
   .basket-wrap .basket-list {
-      height: calc(100vh - 310px);
+      height: calc(100vh - 450px);
   }
 
   .basket-wrap .btn-block {
@@ -686,7 +686,7 @@ body {
   position: relative;
   overflow: hidden auto;
   font-size: 13px;
-  line-height: 1.66667;
+  line-height: 1;
   width: 100%;
 }
 
@@ -1271,7 +1271,7 @@ header div.menu .menu-wrap .hamburger {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -ms-flex-direction: column;
+  -ms-flex-direction: column;  
   flex-direction: column;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
