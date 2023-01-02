@@ -1,6 +1,5 @@
-@charset "UTF-8";
 .order-result-block {
-  margin: 80px auto 80px auto;
+  margin: 80px auto 0 auto;
   max-width: 740px;
   padding: 0 var(--wrap-padding);
   display: -webkit-box;

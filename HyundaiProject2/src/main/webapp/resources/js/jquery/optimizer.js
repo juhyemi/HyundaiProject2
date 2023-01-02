@@ -642,10 +642,10 @@ var basketData = null;
 function basketOpen() {
 
 // 장바구니 카운트 갱신
-basketCountSync();
-dimmerOpen(basketClose);
+//basketCountSync();
+//dimmerOpen(basketClose);
 //  replace 링크 변경
-window.top.document.getElementById('basketIframe').contentWindow.location.replace('./cartdetail.html');
+window.top.document.getElementById('basketIframe').contentWindow.location.replace('/cart/cartList');
 $('.basket-wrap-iframe').addClass('active');
 $('html').addClass('fixed');
 $('body').addClass('fixed');
@@ -677,7 +677,7 @@ basketCountSync();
 
 dimmerClose();
 $('.basket-wrap-iframe').removeClass('active');
-window.top.document.getElementById('basketIframe').contentWindow.location.replace('/blank.html');
+window.top.document.getElementById('basketIframe').contentWindow.location.replace('/cart/cartList');
 // $('.basket-iframe').attr('/blank.html');
 // $('.basket-wrap-ajax').html('');
 // $('.basket-wrap-ajax .basket-wrap').html('');
