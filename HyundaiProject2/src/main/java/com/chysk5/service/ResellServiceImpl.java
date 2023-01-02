@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
+import com.chysk5.domain.ResellProductDTO;
 import com.chysk5.domain.ResellProductInfoDTO;
 import com.chysk5.mapper.ResellMapper;
 
@@ -54,6 +55,17 @@ public class ResellServiceImpl implements ResellService {
 		log.info("몇번째 순위인지 가져오기");
 		int rank = mapper.getMyRank(priceRankDTO.getPro_opt_id(), priceRankDTO.getRe_price());
 		return rank + 1;
+	}
+
+	@Override
+	public List<ResellProductDTO> getResellProductList() {
+		
+		log.info("resellProdList Service 실행");
+		
+		List<ResellProductDTO> list = mapper.getResellProductList();
+		
+		
+		return list;
 	}
 	
 	

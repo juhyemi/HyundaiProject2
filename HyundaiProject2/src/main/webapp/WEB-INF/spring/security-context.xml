@@ -27,6 +27,7 @@
 		<security:form-login login-page="/member/login"
 			authentication-success-handler-ref="customLoginSuccess" />
 
+
 		<security:logout logout-url="/member/logout"
 			invalidate-session="true" delete-cookies="remember-me, JSESSION_ID" />
 

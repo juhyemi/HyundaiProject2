@@ -395,3 +395,7 @@ h2 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
+
+.btn-write {
+  width: 70px;
+}
