@@ -25,7 +25,7 @@
                 <div class="item slick-slide slick-current slick-active" pandassi-banner="ready"=""=""
                   data-slick-index="0" aria-hidden="false" tabindex="0" role="tabpanel" id="slick-slide00"
                   aria-describedby="slick-slide-control00" style="width: 1691px;">
-                  <a href="#!" target="_self" tabindex="0">
+                  <a href="#" target="_self" tabindex="0">
                     <div class="img" style="color: #fff;"><img
                         src="https://matinkim.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/ea99b23863540e0b42de09c98b9758f8.jpg">
                     </div>
