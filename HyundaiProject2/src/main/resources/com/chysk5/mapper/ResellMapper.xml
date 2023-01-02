@@ -49,6 +49,15 @@
 		WHERE ROWNUM = 1
 		]]>
 	</select>
+	
+	<select id="existData" resultType="int">
+	<![CDATA[
+		SELECT count(*)
+		FROM r_product
+		WHERE r_product.product_option_pro_opt_id = #{pro_opt_id}
+		AND re_price < #{re_price}
+		]]>
+	</select>
 
 </mapper>
   

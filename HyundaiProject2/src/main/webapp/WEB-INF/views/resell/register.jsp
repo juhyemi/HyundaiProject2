@@ -875,10 +875,8 @@
 								<span id="resellProductCaption" class="resellProductCaption">
 									<span class="size">${product.resellProductDTO.pro_opt_size}</span>
 								</span> <span id="resellProductCaption" class="resellProductCaption">
-								<script>
-								let pro_price = ${product.resellProductDTO.pro_price }.toLocaleString();
-								</script>
-									<span class="originalprice">pro_price</span>
+
+									<span class="originalprice" id="originalPrice"></span>
 								</span>
 
 							</div>
@@ -1342,8 +1340,11 @@ function getMyRank() {
 		url: "/resell/register/myRank",
 		data: productInfo,
 		success: function(data) {
-			if() 
-			$("#showPriceRank").text(data + "번째 순위 입니다!!");
+			if(data == 1) {
+				$("#showPriceRank").text("최저가 입니다. 빠른 판매를 원하시면 해당 가격으로 설정하세요");
+			} else {
+				$("#showPriceRank").text(data + "번째 순위 입니다!");
+			}
 		},
 		error: function() {
 			alert("ajax 통신 실패");
@@ -1356,7 +1357,7 @@ function getMyRank() {
 </script>
 
 <script>
-
+/*
 function comma(str) {
     str = String(str);
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
@@ -1379,13 +1380,23 @@ function onlynumber(str) {
     str = String(str);
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
 }
-
+*/
 /* 영역 안 가격 */
 
+/*
 var money = $('#money').text();
 var money2 = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 $('#money').text(money2);
+*/
+</script>
 
+<script>
+
+	let price = ${product.resellProductDTO.pro_price};
+	let commaPrice = price.toLocaleString("ko-KR");
+	
+	console.log("가격은: " + commaPrice);
+	$("#originalPrice").text(commaPrice);
 </script>
 
 
