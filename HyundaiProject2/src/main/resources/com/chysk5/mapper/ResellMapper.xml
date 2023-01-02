@@ -49,6 +49,11 @@
 		WHERE ROWNUM = 1
 		]]>
 	</select>
+	
+	<select id="getResellProductList" resultType="com.chysk5.domain.ResellProductDTO">
+		select * from r_product 
+	
+	</select>
 
 </mapper>
   

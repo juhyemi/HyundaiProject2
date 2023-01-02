@@ -28,7 +28,7 @@ public class MemberMapperTests {
 	public void insertTest() {
 		MemberDTO member = new MemberDTO();
 				
-		member.setMem_id("nanunkongee");
+		member.setMem_id("nanunkongee2");
 		member.setMem_pwd("a1234");
 		member.setMem_name("콩이");
 		member.setMem_email("kong2@naver.com");
