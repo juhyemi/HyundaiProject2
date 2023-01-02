@@ -9,6 +9,11 @@
 		INSERT INTO member(mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth)
 		VALUES (#{mem_id}, #{mem_pwd}, #{mem_name}, #{mem_phone}, #{mem_email}, #{mem_birth})
 	</insert>
+	
+	<insert id="insertAuth">
+		INSERT INTO authorities(mem_id, authority)
+		VALUES (#{mem_id}, #{authority})
+	</insert>
 
 	<!-- 로그인 -->
 	<resultMap type="com.chysk5.domain.MemberDTO" id="memberMap">
@@ -22,7 +27,7 @@
 		<result property="mem_address" column="mem_address" />
 		<result property="mem_postno" column="mem_postno" />
 		<result property="mem_joindate" column="mem_joindate" />
-		<result property="updateDate" column="mem_updateDate" />
+		<result property="updateDate" column="updateDate" />
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 
@@ -32,7 +37,7 @@
 	</resultMap>
 	
 	<select id="read" resultMap="memberMap">
-		SELECT mem.mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth, mem_address, mem_postno, enabled, mem_joindate, mem_updateDate, authority
+		SELECT mem.mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth, mem_address, mem_postno, enabled, mem_joindate, updateDate, authority
 		FROM member mem LEFT OUTER JOIN authorities auth ON mem.mem_id = auth.mem_id
 		WHERE mem.mem_id = #{mem_id}
 	</select>

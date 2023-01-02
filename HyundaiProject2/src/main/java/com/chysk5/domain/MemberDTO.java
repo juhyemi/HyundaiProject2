@@ -31,7 +31,7 @@ public class MemberDTO {
 	private String mem_postno;
 	
 	private String mem_joindate;
-	private Date mem_updateDate;
+	private Date updateDate;
 	private List<AuthDTO> authList;
 	
 }

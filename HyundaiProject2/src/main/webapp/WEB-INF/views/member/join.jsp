@@ -6,13 +6,27 @@
 <body>
 	<%@ include file="../include/header2.jsp"%>
 
+<script>
+    function agreeDescToggle(target) {
+        if ($('#' + target).hasClass('active')) {
+            $('#' + target).removeClass('active');
+        } else {
+            $('#' + target).addClass('active');
+        }
+    }
 
+</script>
 
 	<div id="wrap">
 		<div id="container">
 			<div id="contents">
 				<div class="join-wrap">
+					<div class="header-title-block">
+						<h1>Welcome at Matin Kim</h1>
+						<p>마뗑킴에 오신 것을 환영합니다.</p>
+					</div>
 					<form id="joinForm" name="joinForm" action="/member/join" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<div class="xans-element- xans-member xans-member-join">
 							<div class="title-block">
 								<h2>기본정보</h2>
@@ -140,7 +154,7 @@
 									</button>
 								</div>
 							</div>
-							<div id="agree_service_check" class="agree-desc-block active">
+							<div id="agree_service_check" class="agree-desc-block">
 								<div class="block">
 									<div class="fr-view fr-view-mall-agreement">
 										<p>
@@ -258,7 +272,7 @@
 									</button>
 								</div>
 							</div>
-							<div id="agree_privacy_check" class="agree-desc-block active">
+							<div id="agree_privacy_check" class="agree-desc-block">
 								<div class="block">
 									<div class="fr-view fr-view-privacy-required">
 										<p>1. 개인정보 수집목적 및 이용목적</p>
@@ -303,10 +317,7 @@
 	</div>
 
 	<script type="text/javascript">
-	$(document).ready(function(){
-		
-		
-	});
+
 	
 	function frmSubmit(){
 		$("#joinForm").submit();

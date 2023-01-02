@@ -9,9 +9,10 @@
 <bean id="customLoginSuccess" class="com.chysk5.security.CustomLoginSuccessHandler"></bean>
 <bean id="customUserDetailsService" class="com.chysk5.security.CustomUserDetailsService"></bean>
 
-	<security:http auto-config="true" use-expressions="true"> 
+	<security:http> 
 		
 		<security:intercept-url pattern="/main" access="permitAll"/>
+		<security:intercept-url pattern="/member/*" access="permitAll"/>
 		<security:intercept-url pattern="/product/*" access="permitAll"/>
 		
 		<security:form-login login-page="/member/login" authentication-success-handler-ref="customLoginSuccess"/>
