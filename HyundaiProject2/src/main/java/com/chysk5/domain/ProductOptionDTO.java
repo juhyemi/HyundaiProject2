@@ -18,5 +18,13 @@ public class ProductOptionDTO {
 	private String pro_opt_color;
 	private Long pro_opt_stock;
 	private String product_pro_id;
-
+ 
+	
+    public ProductOptionDTO(String product_pro_id,String pro_name, String pro_opt_size) {
+    	
+      this.product_pro_id=product_pro_id;
+      this.pro_name=pro_name;
+      this.pro_opt_size=pro_opt_size;
+    	
+    }
 }

@@ -30,10 +30,12 @@
 	</ul>
 </header>
 
-<div class="basket-block">
-	<div class="basket-wrap-iframe">
-		<iframe class="basket-iframe" id="basketIframe" name="basketIframe" frameborder="0" scrolling="no"></iframe>
-		<!-- <div class="basket-wrap-ajax">
+  <div class="basket-block">
+      <div class="basket-wrap-iframe">
+         <iframe class="basket-iframe" id="basketIframe" name="basketIframe"
+            frameborder="0" scrolling="no" src='/cart/cartList'></iframe>
+         <!-- <div class="basket-wrap-ajax">
+
             <div class="basket-wrap"></div>
         </div> -->
 	</div>

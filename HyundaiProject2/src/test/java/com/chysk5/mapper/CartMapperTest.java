@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chysk5.domain.CartDTO;
+import com.chysk5.domain.ProductOptionDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -39,4 +40,15 @@ public class CartMapperTest {
 //		cart.setProduct_option_pro_opt_id("3");	
 //		mapper.addCart(cart);		
 //	}
+	
+	@Test
+	public void searchOptid() {
+		
+		String pro_id="140";
+		String pro_name="MATIN SYMBOL HOODY IN BLUE";
+		String pro_opt_size="M";
+	  ProductOptionDTO product=new ProductOptionDTO(pro_id,pro_name,pro_opt_size);
+		String optid= mapper.searchOptid(product);	 
+	    log.info(optid);
+	}
 }

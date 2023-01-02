@@ -2,6 +2,7 @@ package com.chysk5.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +18,12 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/cart/")
+
 public class CartController {
     private CartSerivce service;
     
     // 장바구니 목록 출력
+    @Secured({"ROLE_MEMBER"})
 	@GetMapping("/cartList")
 	public 	void cartlist(Model model) {
 		
@@ -32,7 +35,9 @@ public class CartController {
 		model.addAttribute("cartList",cartList);
 		//return "cart/cartList";
 	}
-   	
+    
+    //장바구니 담기 테스트 코드
+    @Secured({"ROLE_MEMBER"})
 	@GetMapping("/cartInsertTest")
 	public void cartaddpage(Model model) {
 		log.info("cartaddpage");

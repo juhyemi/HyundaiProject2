@@ -13,9 +13,13 @@
 		<button type="button" class="addCart_btn">카트 담기</button>
 		<script>
 			$('.addCart_btn').click(function() {
-				var opt_id = "3";
+				var proid ="130";
+				var proname="MATIN SYMBOL RAGLAN SLEEVE MTM IN BLACK";
+				var pro_opt_size="S";
 				var data = {
-					product_option_pro_opt_id : opt_id
+				    pro_id : proid,
+				    pro_name : proname,
+				    pro_opt_size : pro_opt_size
 				};
 				$.ajax({
 					url : "/cartAjax/addCart",
