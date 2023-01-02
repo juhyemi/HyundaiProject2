@@ -10,11 +10,10 @@ import com.chysk5.domain.ResellPriceDTO;
 import com.chysk5.domain.ResellProductDTO;
 
 public interface ResellMapper {
-	
-	public ResellProductDTO getMyResellProduct(String pro_opt_id);
-	public List<ResellPriceDTO> getPriceList(String pro_opt_id);
-	public int register(RegResellProductDTO regResellProductDTO);
-	public int getMyRank(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") String re_price);
-	public List<ResellProductDTO> getResellProductList();
-	
+   
+   public ResellProductDTO getMyResellProduct(String pro_opt_id);
+   public List<ResellPriceDTO> getPriceList(String pro_opt_id);
+   public int register(RegResellProductDTO regResellProductDTO);
+   public int getMyRank(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
+   public int existData(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
 }

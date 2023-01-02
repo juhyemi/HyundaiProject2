@@ -13,4 +13,5 @@ public class ResellProductDTO {
 	private String pro_price;
 	private String pro_opt_size;
 	private String pro_opt_id;
+	private String pro_loc;
 }

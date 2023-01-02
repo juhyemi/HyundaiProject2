@@ -71,7 +71,7 @@ public class ResellMapperTests {
 		priceRankDTO.setPro_opt_id("4");
 		priceRankDTO.setRe_price("25000");
 		
-		int rank = mapper.getMyRank(priceRankDTO.getPro_opt_id(), priceRankDTO.getRe_price());
+		int rank = mapper.getMyRank(priceRankDTO.getPro_opt_id(), 25000);
 		
 		log.info(rank + "번째 순위입니다!");
 	}

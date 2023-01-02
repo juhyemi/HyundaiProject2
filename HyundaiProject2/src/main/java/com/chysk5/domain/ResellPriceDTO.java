@@ -6,5 +6,5 @@ import lombok.Data;
 public class ResellPriceDTO {
 	
 	private String pro_opt_size;
-	private String re_price;
+	private int re_price;
 }
