@@ -63,8 +63,11 @@ public class ResellController {
 		log.info("getPriceRank*********");
 		log.info(priceRankDTO.getPro_opt_id());
 		log.info(priceRankDTO.getRe_price());
+		String noCommaPrice = priceRankDTO.getRe_price().replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
 		
-		String rank = String.valueOf(service.getPriceRank(priceRankDTO));
+		int pInt = Integer.parseInt(noCommaPrice);
+		
+		String rank = String.valueOf(service.getPriceRank(priceRankDTO.getPro_opt_id(), pInt));
 		log.info(rank + "번째 순위 임 !!!");
 		return rank;
 	}

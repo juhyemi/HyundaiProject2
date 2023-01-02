@@ -6,13 +6,18 @@
 
 	<select id="getMyResellProduct"
 		resultType="com.chysk5.domain.ResellProductDTO">
-		SELECT pro_name, pro_opt_size, pro_price
+		SELECT r.pro_name, r.pro_opt_size, r.pro_price, r.pro_loc
+		FROM(
+		SELECT pro_name, pro_opt_size, pro_price, pro_loc
 		FROM product p
 		INNER
 		JOIN product_option po
 		ON p.pro_id = po.product_pro_id
+        INNER JOIN pro_image pi on pi.product_pro_id = po.pro_opt_id
 		WHERE pro_opt_id
 		= #{pro_opt_id}
+        ORDER BY PRO_LOC ASC) r
+        WHERE ROWNUM = 1
 	</select>
 
 	<select id="getPriceList" resultType="com.chysk5.domain.ResellPriceDTO">

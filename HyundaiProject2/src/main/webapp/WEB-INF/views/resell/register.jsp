@@ -654,12 +654,6 @@
 									data-shopproductsequence="0" '="" data-ratio="1.00">
 									<img data-shopproductsequence="0"
 										imgsrc="/uploadedFiles/67701/product/image_1669013784464.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669013784464_2500.jpg"
-										style="transform-origin: 57.02% 99.83% 0px;"><img
-										data-shopproductsequence="0"
-										imgsrc="/uploadedFiles/67701/product/image_1669013784464.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669013784464_1000.jpg">
 								</div>
@@ -667,11 +661,6 @@
 									class="shopProductImgMainWrapper type_thumbnails sequence_1"
 									data-shopproductsequence="1" '="" data-ratio="1.00">
 									<img data-shopproductsequence="1"
-										imgsrc="/uploadedFiles/67701/product/image_1669013784339.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669013784339_2500.jpg"><img
-										data-shopproductsequence="1"
 										imgsrc="/uploadedFiles/67701/product/image_1669013784339.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669013784339_1000.jpg">
@@ -681,12 +670,6 @@
 									data-shopproductsequence="2" '="" data-ratio="1.25">
 									<img data-shopproductsequence="2"
 										imgsrc="/uploadedFiles/67701/product/image_1669871844019.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669871844019_2500.jpg"
-										style="transform-origin: 38.58% 99.32% 0px;"><img
-										data-shopproductsequence="2"
-										imgsrc="/uploadedFiles/67701/product/image_1669871844019.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669871844019_1000.jpg">
 								</div>
@@ -694,12 +677,6 @@
 									class="shopProductImgMainWrapper type_thumbnails sequence_3"
 									data-shopproductsequence="3" '="" data-ratio="1.25">
 									<img data-shopproductsequence="3"
-										imgsrc="/uploadedFiles/67701/product/image_1669871844241.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669871844241_2500.jpg"
-										style="transform-origin: 27.75% 99.59% 0px;"><img
-										data-shopproductsequence="3"
 										imgsrc="/uploadedFiles/67701/product/image_1669871844241.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669871844241_1000.jpg">
@@ -709,12 +686,6 @@
 									data-shopproductsequence="4" '="" data-ratio="1.00">
 									<img data-shopproductsequence="4"
 										imgsrc="/uploadedFiles/67701/product/image_1669012465283.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012465283_2500.jpg"
-										style="transform-origin: 81.22% 96.62% 0px;"><img
-										data-shopproductsequence="4"
-										imgsrc="/uploadedFiles/67701/product/image_1669012465283.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012465283_1000.jpg">
 								</div>
@@ -722,11 +693,6 @@
 									class="shopProductImgMainWrapper type_thumbnails sequence_5"
 									data-shopproductsequence="5" '="" data-ratio="1.00">
 									<img data-shopproductsequence="5"
-										imgsrc="/uploadedFiles/67701/product/image_1669012465463.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012465463_2500.jpg"><img
-										data-shopproductsequence="5"
 										imgsrc="/uploadedFiles/67701/product/image_1669012465463.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012465463_1000.jpg">
@@ -749,12 +715,6 @@
 									data-shopproductsequence="7" '="" data-ratio="1.00">
 									<img data-shopproductsequence="7"
 										imgsrc="/uploadedFiles/67701/product/image_1669012838413.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012838413_2500.jpg"
-										style="transform-origin: 20.98% 44.5% 0px;"><img
-										data-shopproductsequence="7"
-										imgsrc="/uploadedFiles/67701/product/image_1669012838413.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012838413_1000.jpg">
 								</div>
@@ -763,11 +723,6 @@
 									data-shopproductsequence="8" '="" data-ratio="1.00">
 									<img data-shopproductsequence="8"
 										imgsrc="/uploadedFiles/67701/product/image_1669012838633.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012838633_2500.jpg"><img
-										data-shopproductsequence="8"
-										imgsrc="/uploadedFiles/67701/product/image_1669012838633.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012838633_1000.jpg">
 								</div>
@@ -775,11 +730,6 @@
 									class="shopProductImgMainWrapper type_thumbnails sequence_9"
 									data-shopproductsequence="9" '="" data-ratio="1.00">
 									<img data-shopproductsequence="9"
-										imgsrc="/uploadedFiles/67701/product/image_1636356590156.jpg"
-										class="shopProductImgMainZoom type_thumbnails"
-										onmousemove="require(&quot;common/common&quot;).imgZoomIn($(this))"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1636356590156_2500.jpg"><img
-										data-shopproductsequence="9"
 										imgsrc="/uploadedFiles/67701/product/image_1636356590156.jpg"
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1636356590156_1000.jpg">
@@ -887,14 +837,15 @@
 							<div>
 								<form action="" method="post">
 
-									<input id="input1" type="text" onkeyup="inputNumberFormat(this);" placeholder="가격을 입력하세용~" maxlength="10"/> 
-								<!--	<input id="input2" type="submit" />   -->
-										<!-- <input id="input3" type="submit"
+									<input id="input1" type="text"
+										onkeyup="inputNumberFormat(this);" placeholder="가격을 입력하세용~"
+										maxlength="10" numberOnly />
+									<!--	<input id="input2" type="submit" />   -->
+									<!-- <input id="input3" type="submit"
 										value="최저가 순위보기" />  -->
-										<a href="#none"
-												onclick="getMyRank();"><span>순위 확인</span></a>
-										<a href="#none"
-												onclick="show_resell_modal();"><span>최저가 순위보기</span></a>
+									<a href="#none" class="input2" onclick="getMyRank();"><span>순위 확인</span></a> <a
+										href="#none" class="input3" onclick="show_resell_modal();"><span>최저가
+											순위보기</span></a>
 								</form>
 							</div>
 
@@ -961,12 +912,13 @@
 									<div class="product-order-summary-row">
 										<span class="title">판매 금액</span> <span class="row-content">
 											<i class="ico-info-triangle no-ico-hover-effect hide"></i>&nbsp;
-											<span id="product-order-total-quantity">0원</span>
+											<span id="product-order-total-quantity">0</span> <span>원</span>
+
 										</span>
 									</div>
 									<div class="product-order-summary-row">
 										<span class="title">정산 금액</span> <span class="row-content">
-											<span id="product-order-total-price">0원</span>
+											<span id="product-order-total-price">0</span> <span>원</span>
 										</span>
 									</div>
 								</div>
@@ -1170,12 +1122,12 @@
 				<div class="product-order-summary-row">
 					<span class="title">주문 수량</span> <span class="row-content">
 						<i class="ico-info-triangle no-ico-hover-effect hide"></i>&nbsp; <span
-						id="fixed-order-box-product-order-total-quantity">0개</span>
+						id="fixed-order-box-product-order-total-quantity"></span>
 					</span>
 				</div>
 				<div class="product-order-summary-row">
 					<span class="title">총 상품 금액</span> <span class="row-content">
-						<span id="fixed-order-box-product-order-total-price">0원</span>
+						<span id="fixed-order-box-product-order-total-price"></span>
 					</span>
 				</div>
 			</div>
@@ -1284,7 +1236,7 @@
 	</form>
 
 
-<script>
+	<script>
 function show_resell_modal() {
 	const resellModal = document.getElementById("resellModal")
 	resellModal.style.display = "flex"
@@ -1325,7 +1277,7 @@ function close_modal() {
 
 </script>
 
-<script>
+	<script>
 function getMyRank() {
 	
 	let productInfo={
@@ -1333,7 +1285,15 @@ function getMyRank() {
 			re_price: document.getElementById("input1").value
 	}
 	
-	console.log(productInfo); 
+	
+	
+	let og_price = document.getElementById("input1").value;
+	og_price = og_price.replace(",", "");
+	let og_comma = (og_price * 1).toLocaleString("ko-KR"); 
+	let with_tax = Math.round(og_price * 0.97)
+	with_tax = with_tax.toLocaleString("ko-KR");
+	
+	console.log(og_price, og_comma,with_tax); 
 	
 	$.ajax({
 		type: "get",
@@ -1342,8 +1302,12 @@ function getMyRank() {
 		success: function(data) {
 			if(data == 1) {
 				$("#showPriceRank").text("최저가 입니다. 빠른 판매를 원하시면 해당 가격으로 설정하세요");
+				$("#product-order-total-quantity").text(og_comma);
+				$("#product-order-total-price").text(with_tax);
 			} else {
 				$("#showPriceRank").text(data + "번째 순위 입니다!");
+				$("#product-order-total-quantity").text(og_comma);
+				$("#product-order-total-price").text(with_tax);
 			}
 		},
 		error: function() {
@@ -1356,8 +1320,8 @@ function getMyRank() {
 
 </script>
 
-<script>
-/*
+	<script>
+
 function comma(str) {
     str = String(str);
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
@@ -1380,17 +1344,17 @@ function onlynumber(str) {
     str = String(str);
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
 }
-*/
+
 /* 영역 안 가격 */
 
-/*
+
 var money = $('#money').text();
 var money2 = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 $('#money').text(money2);
-*/
+
 </script>
 
-<script>
+	<script>
 
 	let price = ${product.resellProductDTO.pro_price};
 	let commaPrice = price.toLocaleString("ko-KR");

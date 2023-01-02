@@ -50,13 +50,13 @@ public class ResellServiceImpl implements ResellService {
 	}
 
 	@Override
-	public int getPriceRank(PriceRankDTO priceRankDTO) {
+	public int getPriceRank(String pro_opt_id, int pInt) {
 		log.info("몇번째 순위인지 가져오기");
-		int existData = mapper.existData(priceRankDTO.getPro_opt_id(), priceRankDTO.getRe_price());
+		int existData = mapper.existData(pro_opt_id, pInt);
 		int rank = 0;
 		
 		if(existData != 0) {
-			rank = mapper.getMyRank(priceRankDTO.getPro_opt_id(), priceRankDTO.getRe_price());
+			rank = mapper.getMyRank(pro_opt_id, pInt);
 		}
 		
 		return rank + 1;
