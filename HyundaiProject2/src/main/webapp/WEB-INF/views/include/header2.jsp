@@ -56,7 +56,7 @@
                href="javascript:void(0);"><span>Search</span><i></i></a></li>
             <li class="space"></li>
             <li class=""><a href="/about/index.html"><span>About</span></a></li>
-            <li class=""><a href="/cscenter/index.html"><span>Help</span></a></li>
+            <li class=""><a href="/talks/tlist"><span>Fashion Talks</span></a></li>
             <li class=" only-mobile"><a href="javascript:languageOpen();"><span>Language</span></a></li>
             <li
                class="xans-element- xans-layout xans-layout-statelogoff  only-mobile "><a
