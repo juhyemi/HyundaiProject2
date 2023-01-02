@@ -1,6 +1,8 @@
 package com.chysk5.controller;
 
 
+import java.util.List;
+
 /*
  * 기범
  */
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
+import com.chysk5.domain.ResellProductDTO;
 import com.chysk5.domain.ResellProductInfoDTO;
 import com.chysk5.service.ResellService;
 
@@ -24,11 +27,22 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/resell/")
+@RequestMapping("/resell")
 @AllArgsConstructor
 public class ResellController {
 	
 	private ResellService service;
+	
+	@GetMapping
+	public String getResellProductList() {
+		
+		log.info("resell controller 호출");
+		
+		List<ResellProductDTO> list =  service.getResellProductList();
+		
+		return "resell/resellproductList";
+	}
+	
 	
 	@GetMapping("/register")
 	public String getMyResellProduct(@RequestParam("pro_opt_id") String pro_opt_id, Model model){
