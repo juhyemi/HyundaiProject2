@@ -28,9 +28,11 @@ public class MemberServiceImpl implements MemberService {
 		String birth = member.getBirth_year() + "/" + member.getBirth_month() + "/" + member.getBirth_day();
 		member.setMem_birth(birth);
 		
-		log.info("***** register " + member);
+		log.info("***** join " + member);
 		
 		return mapper.insertMember(member);
 	}
+
+
 
 }

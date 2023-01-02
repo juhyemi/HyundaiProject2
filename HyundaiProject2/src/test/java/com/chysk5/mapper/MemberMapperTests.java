@@ -41,4 +41,15 @@ public class MemberMapperTests {
 		
 		log.info("insert result : " + result);
 	}
+	
+	@Test
+	public void testRead() {
+		
+		MemberDTO dto = mapper.read("admin90");
+		
+		log.info(dto);
+		
+		dto.getAuthList().forEach(authDTO -> log.info(authDTO));
+	}
+
 }

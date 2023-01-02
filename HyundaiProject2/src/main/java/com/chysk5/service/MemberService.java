@@ -9,5 +9,5 @@ public interface MemberService {
 	
 	// 회원가입
 	public int join(MemberDTO member);
-
+	
 }

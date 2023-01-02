@@ -1,6 +1,7 @@
 package com.chysk5.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,26 +17,18 @@ import lombok.extern.log4j.Log4j;
  * */
 @Controller
 @Log4j
-@RequestMapping("/member/")
+@RequestMapping("/member/*")
 @RequiredArgsConstructor
 public class MemberController {	
 	
 	private final MemberService service;
 	
-	// 로그인 페이지로 이동
-	@GetMapping("/login")
-	public String login() {
-		return "member/login";
-	}
-	
 	// 회원가입 페이지로 이동
 	@GetMapping("/join")
-	public String join() {
-		return "member/join";
-	}
+	public void joinForm() {}
 	
 	// 회원가입
-	@PostMapping("/joinAction")
+	@PostMapping("/join")
 	public String joinAction(MemberDTO member){
 		
 		log.info("join...." + member);
@@ -45,7 +38,31 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 	
+	// 로그인 페이지로 이동
+	@GetMapping("/login")
+	public void loginForm(String error, String logout, Model model) {
+		
+		log.info("error: " + error);
+		log.info("logout: " + logout);
+		
+		if(error != null) {
+			model.addAttribute("error", "Login Error Check Your Account");
+		}
+		
+		if(logout != null) {
+			model.addAttribute("logout", "Logout!!");
+		}
+	}
+
 	
+	// 로그아웃
+	@PostMapping("/logout")
+	public String logoutAction() {
+		
+		log.info("logout....");
+		
+		return "redirect:/main";
+	}
 	
 	// 아이디 찾기 페이지로 이동
 	@GetMapping("/findId")

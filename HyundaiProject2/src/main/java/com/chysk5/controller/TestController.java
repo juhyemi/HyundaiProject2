@@ -58,5 +58,11 @@ public class TestController {
 		
 		return "/resell/resellProductDetail";
 	}
+	
+	@GetMapping("/sec")
+	public String testSecurity() {
+		
+		return "/testSec";
+	}
    
 }

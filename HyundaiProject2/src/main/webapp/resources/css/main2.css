@@ -1908,7 +1908,7 @@ header .logo {
   display: block;
   width: 226px;
   height: 34px;
-  background-image: url("/img/common/logo-black.svg");
+  background-image: url("/img/common/logo_chysk5.png");
   background-repeat: no-repeat;
   background-position: 0 0;
   -webkit-background-size: 100% 100%;
@@ -2425,7 +2425,7 @@ header .util li a.basket em span {
   }
 
   body.header-transparent:not(.not-transparent) header .logo {
-      background-image: url("/img/common/logo-white.svg");
+      background-image: url("/img/common/logo_chysk5.png");
   }
 
   body.header-transparent:not(.not-transparent) header .util li a.basket {
