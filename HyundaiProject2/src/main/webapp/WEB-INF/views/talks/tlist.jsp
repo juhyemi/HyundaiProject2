@@ -17,12 +17,12 @@
         <div class="cscenter-layout">     
             <div class="xans-element- xans-board xans-board-listpackage-1 xans-board-listpackage xans-board-1 contents-block "><div class="title-block">
                     <h2>Notice</h2>
-                    <button type="button" class="btn btn-sm btn-dark btn-full" onclick="location.href='/talks/tform'"><span>WRITE</span></button>
+                    <button type="button" class="btn btn-sm btn-dark btn-write" onclick="location.href='/talks/tform'"><span>WRITE</span></button>
                 </div>
     <div class="board-list-block">
                     <ul class="xans-element- xans-board xans-board-notice-1 xans-board-notice xans-board-1">
                         <li class="notice xans-record-">
-                            <a href="/article/notice/1/240928/">운송장 출력 제한 지역 안내 *업데이트</a>
+                            <a href="/talks/tcontent/0">Fashion Talks 안내사항</a>
                             <span>2022-11-22</span>
     </ul>
     <ul class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1">

@@ -39,39 +39,27 @@
 	</div>
 </div>
 
-<!-- // header -->
-<!-- gnb -->
-<div id="gnb">
-	<!-- <div class="dimmer"></div> -->
-	<div class="menu-block depth1">
-		<ul>
-			<li><a href="/product/list.html?cate_no=45">
-					<span>New In</span>
-				</a></li>
-			<!-- <li><a href="/product/list.html?cate_no=66"><span style="color: red;">Black Friday</span></a></li> -->
-			<li class="is-sub" cate-no="Shop"><a href="javascript:void(0);">
-					<span>Shop</span><i></i>
-				</a></li>
-			<li><a href="/project.html?cate_no=81">
-					<span>Project</span>
-				</a></li>
-			<li class="is-sub" cate-no="Collections"><a href="javascript:void(0);">
-					<span>Collections</span><i></i>
-				</a></li>
-			<li class="is-sub" cate-no="Search"><a href="javascript:void(0);">
-					<span>Search</span><i></i>
-				</a></li>
-			<li class="space"></li>
-			<li class=""><a href="/about/index.html">
-					<span>About</span>
-				</a></li>
-			<li class=""><a href="/cscenter/index.html">
-					<span>Help</span>
-				</a></li>
-			<li class=" only-mobile"><a href="javascript:languageOpen();">
-					<span>Language</span>
-				</a></li>
-			<li class="xans-element- xans-layout xans-layout-statelogoff ">
+
+   <!-- // header -->
+   <!-- gnb -->
+   <div id="gnb">
+      <!-- <div class="dimmer"></div> -->
+      <div class="menu-block depth1">
+         <ul>
+            <li><a href="/product/list.html?cate_no=45"><span>New
+                     In</span></a></li>
+            <!-- <li><a href="/product/list.html?cate_no=66"><span style="color: red;">Black Friday</span></a></li> -->
+            <li class="is-sub" cate-no="Shop"><a href="javascript:void(0);"><span>Shop</span><i></i></a></li>
+            <li><a href="/project.html?cate_no=81"><span>Project</span></a></li>
+            <li class="is-sub" cate-no="Collections"><a
+               href="javascript:void(0);"><span>Collections</span><i></i></a></li>
+            <li class="is-sub" cate-no="Search"><a
+               href="javascript:void(0);"><span>Search</span><i></i></a></li>
+            <li class="space"></li>
+            <li class=""><a href="/about/index.html"><span>About</span></a></li>
+            <li class=""><a href="/talks/tlist"><span>Fashion Talks</span></a></li>
+            <li class=" only-mobile"><a href="javascript:languageOpen();"><span>Language</span></a></li>
+           <li class="xans-element- xans-layout xans-layout-statelogoff ">
 				<!-- 로그인이 안되어 있을 경우 --> 
 				<sec:authorize access="isAnonymous()">
 					<a href="/member/login">
@@ -88,7 +76,8 @@
 					</form>
 				</sec:authorize>
 			</li>
-		</ul>
+         </ul>
+
 
 	</div>
 
