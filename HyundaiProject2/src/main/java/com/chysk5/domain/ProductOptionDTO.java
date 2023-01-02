@@ -1,25 +1,22 @@
 package com.chysk5.domain;
 
-
-
-
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
-public class ProductDTO {
+public class ProductOptionDTO {
 	
 	private String pro_id;
 	private String pro_name;
 	private String pro_category;
-	private Date pro_ragdate;
 	private Long pro_price;
-	private String pro_loc;
 	private String pro_opt_id;
+	private String pro_opt_size;
+	private String pro_opt_color;
+	private Long pro_opt_stock;
+	private String product_pro_id;
 
 }
