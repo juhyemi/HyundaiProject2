@@ -1,18 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" href="${contextPath}/resources/css/main1.css" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/member/find_id.css" type="text/css">
 </head>
 <body>    
 <%@ include file="../include/header2.jsp"%>
-
-<script type="text/javascript">
-function frmSubmit(){
-	$("#findPasswdForm").submit();
-}
-
-</script>
 
 <div id="wrap">
 	<div id="container">
@@ -64,5 +55,6 @@ function frmSubmit(){
 		</div>
 	</div>
 </div>
+
 
 <%@ include file="../include/footer.jsp"%>

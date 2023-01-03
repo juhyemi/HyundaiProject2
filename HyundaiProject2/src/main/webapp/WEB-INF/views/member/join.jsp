@@ -7,6 +7,17 @@
 	<%@ include file="../include/header2.jsp"%>
 
 <script>
+$(document).ready(function(){
+	$("#sAgreeAllChecked").click(function(){
+		if($("#sAgreeAllChecked").is(":checked") == true){
+			$(".ec-base-chk").attr("checked", "checked");
+		}else{
+			$(".ec-base-chk").removeAttr("checked");
+		}
+		
+	});
+});
+
 
 var idPass = false;
 
@@ -29,10 +40,12 @@ function checkId(){
 		    },
 			success : function(result){
 				if(result != ''){
-					alert("이미 사용중인 아이디입니다.");
+					$("#idMsg").text("이미 사용중인 아이디입니다.");
+					$("#idMsg").css("color", "red");
 					idPass = false;
 				}else{
-					alert("사용 가능한 아이디입니다.");
+					$("#idMsg").text("사용 가능한 아이디입니다.");
+					$("#idMsg").css("color", "green");
 					idPass = true;
 				}
 			},
@@ -51,8 +64,7 @@ function frmSubmit(){
 	
 	var pwdCheck = $("#user_passwd_confirm");
 	if($("#passwd").val() != pwdCheck.val()){
-		alert("비밀번호가 일치하지 않습니다.");
-		pwdCheck.val('');
+		alert("비밀번호가 일치하지 않습니다."); 
 		pwdCheck.focus();
 		return;
 	}
@@ -98,6 +110,7 @@ function frmSubmit(){
 												<p class="form-title">아이디*</p> 
 												<input id="member_id" name="mem_id" class="inputTypeText" placeholder="아이디*" value="" type="text">
 												<div class="err-msg-system" id="idMsg"></div>
+												
 											</label>
 										</div>
 										<button type="button" class="btn btn-sm btn-dark btn-id-check" id="id-check-btn" onclick="checkId();">
@@ -158,7 +171,8 @@ function frmSubmit(){
 									<div>
 										<div class="form-block email-block flex-column-2">
 											<label class="ePlaceholderEach required" title="이메일*" style="width: 75%;">
-												<p class="form-title">이메일*</p> <input id="email1" name="mem_email" value="" type="text" placeholder="이메일*">
+												<p class="form-title">이메일*</p> 
+												<input id="email1" name="mem_email" value="" type="text" placeholder="이메일*">
 												<div class="err-msg-system" id="emailMsg"></div>
 												<div class="err-msg">이메일 항목은 필수 입력값입니다.</div>
 											</label>

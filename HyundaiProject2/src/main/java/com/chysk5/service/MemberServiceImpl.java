@@ -55,6 +55,25 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.checkId(mem_id);
 	}
 
+	// 아이디 찾기
+	@Override
+	public MemberDTO findId(MemberDTO member) {
+		
+		log.info("***** find id : " + member);
+		
+		return mapper.findId(member);
+	}
+
+	// 비밀번호 찾기
+	@Override
+	public MemberDTO findPwd(MemberDTO member) {
+
+		log.info("***** find password : " + member);
+		
+		return mapper.findPwd(member);
+	}
+
+	
 
 
 }

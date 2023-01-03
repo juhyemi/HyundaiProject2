@@ -1503,7 +1503,7 @@ sup {
 .empty-icon-block .inner {
   display: block;
   position: relative;
-  background-image: url("/img/common/ico-empty.svg");
+  background-image: url("/resources/img/common/ico-empty.svg");
   background-position: 50% 0;
   -webkit-background-size: 32px 32px;
   background-size: 32px 32px;
