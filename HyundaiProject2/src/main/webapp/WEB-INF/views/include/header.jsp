@@ -9,6 +9,8 @@
 <head>
 <meta name="viewport"
    content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/js/jquery/optimizer.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/js/jquery/security.js"></script>

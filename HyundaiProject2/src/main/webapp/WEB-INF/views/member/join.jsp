@@ -7,14 +7,73 @@
 	<%@ include file="../include/header2.jsp"%>
 
 <script>
-    function agreeDescToggle(target) {
-        if ($('#' + target).hasClass('active')) {
-            $('#' + target).removeClass('active');
-        } else {
-            $('#' + target).addClass('active');
-        }
-    }
 
+var idPass = false;
+
+function checkId(){
+	var csrfHeadName="${_csrf.headerName}";
+    var csrfTokenValue="${_csrf.token}";
+	var mem_id = $("#member_id").val();
+	
+	if(mem_id == ''){
+		alert("아이디를 입력하세요.");
+	}else{
+		$.ajax({
+			url : '/member/checkId',
+			data : {
+				mem_id : mem_id
+			},
+			type : 'post',
+			beforeSend : function(xhr) {
+		        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+		    },
+			success : function(result){
+				if(result != ''){
+					alert("이미 사용중인 아이디입니다.");
+					idPass = false;
+				}else{
+					alert("사용 가능한 아이디입니다.");
+					idPass = true;
+				}
+			},
+			error : function(error){
+				console.log(error);
+			}
+		});
+	}
+}
+
+function frmSubmit(){
+	if(idPass == false){
+		alert("아이디 중복 확인을 해주세요.");
+		return;
+	}
+	
+	var pwdCheck = $("#user_passwd_confirm");
+	if($("#passwd").val() != pwdCheck.val()){
+		alert("비밀번호가 일치하지 않습니다.");
+		pwdCheck.val('');
+		pwdCheck.focus();
+		return;
+	}
+	
+	if($("#name").val() == ''){
+		alert("이름을 입력해주세요.");
+		$("#name").focus();
+		return;
+	}
+	
+	$("#joinForm").submit();			
+	
+}
+
+	function agreeDescToggle(target) {
+		if ($('#' + target).hasClass('active')) {
+			$('#' + target).removeClass('active');
+		} else {
+			$('#' + target).addClass('active');
+		}
+	}
 </script>
 
 	<div id="wrap">
@@ -36,11 +95,12 @@
 									<div class="member-id-block">
 										<div class="form-block">
 											<label class="ePlaceholderEach required" title="아이디*">
-												<p class="form-title">아이디*</p> <input id="member_id" name="mem_id" class="inputTypeText" placeholder="아이디*" value="" type="text">
+												<p class="form-title">아이디*</p> 
+												<input id="member_id" name="mem_id" class="inputTypeText" placeholder="아이디*" value="" type="text">
 												<div class="err-msg-system" id="idMsg"></div>
 											</label>
 										</div>
-										<button type="button" class="btn btn-sm btn-dark btn-id-check" onclick="checkId('/member/check_id.html')">
+										<button type="button" class="btn btn-sm btn-dark btn-id-check" id="id-check-btn" onclick="checkId();">
 											<span>중복확인</span>
 										</button>
 									</div>
@@ -48,7 +108,8 @@
 									<div>
 										<div class="form-block">
 											<label class="ePlaceholderEach required" title="비밀번호*">
-												<p class="form-title">비밀번호*</p> <input id="passwd" name="mem_pwd" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호*">
+												<p class="form-title">비밀번호*</p> 
+												<input id="passwd" name="mem_pwd" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호*">
 												<div class="info-msg">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)</div>
 												<div class="err-msg">비밀번호 항목은 필수 입력값입니다.</div>
 											</label>
@@ -56,7 +117,8 @@
 
 										<div class="form-block">
 											<label class="ePlaceholderEach required" title="비밀번호 확인*">
-												<p class="form-title">비밀번호 확인*</p> <input id="user_passwd_confirm" name="user_passwd_confirm" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호 확인*">
+												<p class="form-title">비밀번호 확인*</p> 
+												<input id="user_passwd_confirm" name="user_passwd_confirm" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호 확인*">
 												<div class="err-msg">비밀번호 확인 항목은 필수 입력값입니다.</div>
 											</label>
 										</div>
@@ -134,7 +196,7 @@
 								<div class="agree-title">
 									<div class="text">
 										<p>
-											<span class="ec-base-chk"><input type="checkbox" id="sAgreeAllChecked"><em class="checkbox"></em></span>
+											<span class="ec-base-chk"><input type="checkbox" id="sAgreeAllChecked" required><em class="checkbox"></em></span>
 										</p>
 										<label for="sAgreeAllChecked" class="all">이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</label>
 									</div>
@@ -262,7 +324,7 @@
 								<div class="agree-title">
 									<div class="text">
 										<p>
-											<input id="agree_privacy_check0" name="agree_privacy_check[]" fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침" fw-msg="개인정보 수집 및 이용 방침에 동의하세요" class="ec-base-chk" value="1" type="checkbox">
+											<input id="agree_privacy_check0" name="agree_privacy_check[]" fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침" fw-msg="개인정보 수집 및 이용 방침에 동의하세요" class="ec-base-chk" value="1" type="checkbox" required>
 											<label for="agree_privacy_check0">동의함</label>
 										</p>
 										<label for="agree_privacy_check0">[필수] 개인정보 수집 및 이용 동의</label>
@@ -316,13 +378,6 @@
 		</div>
 	</div>
 
-	<script type="text/javascript">
 
-	
-	function frmSubmit(){
-		$("#joinForm").submit();
-	}
-	
-	</script>
 
 	<%@ include file="../include/footer.jsp"%>

@@ -21,8 +21,7 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/product/*"
 			access="permitAll" /> 
-   <!--   	<security:intercept-url pattern="/cart/cartList"
-			access="permitAll" /> -->
+		<security:intercept-url pattern="/member/checkId" access="permitAll"/>
 
 		<security:form-login login-page="/member/login"
 			authentication-success-handler-ref="customLoginSuccess" />

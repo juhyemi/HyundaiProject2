@@ -46,6 +46,15 @@ public class MemberServiceImpl implements MemberService {
 		mapper.insertAuth(auth);
 	}
 
+	// 아이디 중복 확인
+	@Override
+	public String checkId(String mem_id) {
+
+		log.info("***** checkId " + mem_id);
+		
+		return mapper.checkId(mem_id);
+	}
+
 
 
 }

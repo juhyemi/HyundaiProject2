@@ -1,11 +1,15 @@
 package com.chysk5.mapper;
-import java.text.SimpleDateFormat;
+import javax.sql.DataSource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.chysk5.domain.MemberDTO;
 
@@ -18,10 +22,15 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Log4j
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@WebAppConfiguration
 public class MemberMapperTests {
-
+	
+	@Setter(onMethod_ = @Autowired)
+	private PasswordEncoder encoder;
+	
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
+	
 	
 	// 회원가입
 	@Test
@@ -50,6 +59,18 @@ public class MemberMapperTests {
 		log.info(dto);
 		
 		dto.getAuthList().forEach(authDTO -> log.info(authDTO));
+	}
+	
+	@Test
+	public void testCheckId() {
+		
+		String mem_id = "user2";
+		
+		log.info("test check id : " + mem_id);
+		
+		int result = mapper.checkId(mem_id);
+		
+		log.info(result);
 	}
 
 }

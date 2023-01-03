@@ -46,6 +46,8 @@ public class ResellController {
 		log.info(list);
 		
 		model.addAttribute("rProduct", list);
+//		List<ResellProductDTO> list =  service.getResellProductList();
+
 		
 		return "resell/resellproductList";
 	}
