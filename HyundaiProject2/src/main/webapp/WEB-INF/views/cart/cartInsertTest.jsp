@@ -8,13 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-     
+<input id="mem_id" type="hidden" value='<sec:authentication property="principal.member.mem_id"/>'/>
 	<p class="addCart">
 		<button type="button" class="addCart_btn">카트 담기</button>
 		<script>
+		    
 		     var csrfHeadName="${_csrf.headerName}";
 		     var csrfTokenValue="${_csrf.token}";
 			$('.addCart_btn').click(function() {
+				var memid = $("#mem_id").val();
 				var proid ="577";
 				var proname="DRESS UP CROP JACKET IN BROWN";
 				var pro_opt_size="S";
