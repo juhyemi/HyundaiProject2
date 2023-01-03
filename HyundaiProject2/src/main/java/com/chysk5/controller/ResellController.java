@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
-import com.chysk5.domain.ResellProductDTO;
 import com.chysk5.domain.ResellProductInfoDTO;
+import com.chysk5.domain.ResellProductListDTO;
 import com.chysk5.service.ResellService;
 
 import lombok.AllArgsConstructor;
@@ -34,11 +34,16 @@ public class ResellController {
 	private ResellService service;
 	
 	@GetMapping
-	public String getResellProductList() {
+	public String getResellProductList(Model model) {
 		
 		log.info("resell controller 호출");
 		
-		List<ResellProductDTO> list =  service.getResellProductList();
+		List<ResellProductListDTO> list =  service.getResellProductList();
+		
+		log.info("데이터 전달 성공");
+		log.info(list);
+		
+		model.addAttribute("rProduct", list);
 		
 		return "resell/resellproductList";
 	}

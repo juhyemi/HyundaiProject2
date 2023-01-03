@@ -8,6 +8,8 @@ import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
 import com.chysk5.domain.ResellProductDTO;
+import com.chysk5.domain.ResellProductImgDTO;
+import com.chysk5.domain.ResellProductListDTO;
 
 public interface ResellMapper {
 	
@@ -15,6 +17,7 @@ public interface ResellMapper {
 	public List<ResellPriceDTO> getPriceList(String pro_opt_id);
 	public int register(RegResellProductDTO regResellProductDTO);
 	public int getMyRank(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") String re_price);
-	public List<ResellProductDTO> getResellProductList();
 	
+	public List<ResellProductListDTO> getResellProductList();
+	public List<ResellProductImgDTO> getResellProductListImg(String proId);
 }

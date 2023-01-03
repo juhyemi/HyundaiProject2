@@ -80,6 +80,7 @@
                <li><a href="/product/list/Tops"><span>Tops</span></a></li>
                <li><a href="/product/list/Bottoms"><span>Bottoms</span></a></li>
                <li><a href="/product/list/Accessories"><span>Accessories</span></a></li>
+               <li><a href="/resell"><span>Resell</span></a></li>
                <!-- <li><a href="/product/list.html?cate_no=66"><span>Sale</span></a></li> -->
             </ul>
             <div class="sub-cate-banner" pandassi-banner-group="disable"

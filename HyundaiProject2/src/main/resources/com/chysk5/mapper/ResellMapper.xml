@@ -50,9 +50,15 @@
 		]]>
 	</select>
 	
-	<select id="getResellProductList" resultType="com.chysk5.domain.ResellProductDTO">
-		select * from r_product 
 	
+	<!--함세강 작성  -->
+	<select id="getResellProductList" resultType="com.chysk5.domain.ResellProductListDTO">
+		select * from resell_Prolist_view
+	
+	</select>
+	
+	<select id="getResellProductListImg" resultType="com.chysk5.domain.ResellProductImgDTO">
+		select * from pro_image where product_pro_id = #{proId}
 	</select>
 
 </mapper>
