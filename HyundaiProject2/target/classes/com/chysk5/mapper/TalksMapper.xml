@@ -7,6 +7,7 @@
 	<select id="getTalksList" resultType="com.chysk5.domain.TalksDTO">
 	
 		SELECT talks_id, talks_title, talks_regdate FROM talks
+		ORDER BY talks_id DESC
 	
 	</select>
 	
@@ -16,5 +17,7 @@
 		WHERE talks_id = #{talks_id}
 	
 	</select>
+	
+
 	
 </mapper>

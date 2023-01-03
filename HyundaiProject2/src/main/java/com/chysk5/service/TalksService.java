@@ -9,5 +9,6 @@ public interface TalksService {
 	public List<TalksDTO> getTalksList();
 	
 	public TalksDTO getTalksContent(String talks_id);
+	
 
 }

@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chysk5.domain.TalksDTO;
+import com.chysk5.service.TalksService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -20,6 +21,7 @@ public class TalksMapperTest {
 	
 	@Setter(onMethod_ = @Autowired)
 	private TalksMapper mapper;
+	private TalksService service;
 	
 	@Test
 	public void selectTalksList() {
@@ -42,5 +44,7 @@ public class TalksMapperTest {
 		log.info(content);
 		
 	}
+	
+
 
 }

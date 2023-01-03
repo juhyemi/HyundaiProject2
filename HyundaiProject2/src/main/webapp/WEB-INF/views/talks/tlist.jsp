@@ -12,11 +12,11 @@
             <div id="contents">
     <div class="cscenter-wrap" style="max-width: 1280px">
         <div class="header">
-            <h2>Help</h2>
+            <h2>Fashion Talks</h2>
         </div>    
         <div class="cscenter-layout">     
             <div class="xans-element- xans-board xans-board-listpackage-1 xans-board-listpackage xans-board-1 contents-block "><div class="title-block">
-                    <h2>Notice</h2>
+                    <h2>Talks List</h2>
                     <button type="button" class="btn btn-sm btn-dark btn-write" onclick="location.href='/talks/tform'"><span>WRITE</span></button>
                 </div>
     <div class="board-list-block">

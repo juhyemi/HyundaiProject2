@@ -94,9 +94,7 @@
 					</a></li>
 				<!-- <li><a href="/product/list.html?cate_no=102"><span style="color: red;">Sale</span></a></li> -->
 				<!-- <li><a href="/product/list.html?cate_no=85"><span>Essential</span></a></li> -->
-				<li><a href="/product/list.html?cate_no=92">
-						<span style="color: #03C95B;">Underwear</span>
-					</a></li>
+				
 				<li><a href="/product/list/Outerwears">
 						<span>Outerwears</span>
 					</a></li>
@@ -155,14 +153,10 @@
 									<option value="0" selected="selected">상품분류 선택</option>
 									<option value="87" selected="selected">Shop</option>
 									<option value="45">New In</option>
-									<option value="66">Season Off</option>
 									<option value="26">Outerwears</option>
 									<option value="27">Tops</option>
 									<option value="28">Bottoms</option>
-									<option value="42">Dresses</option>
-									<option value="70">Bags</option>
 									<option value="44">Accessories</option>
-									<option value="91">Beauty</option>
 									<option value="49">SALE (change,refund X)</option>
 							</select></span>
 							<div class="form-block">
