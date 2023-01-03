@@ -10,5 +10,7 @@ public interface TalksMapper {
 	
 	public TalksDTO getTalksContent(String talks_id);
 	
+	public int delete(String talks_id);
+	
 
 }

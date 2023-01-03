@@ -15,7 +15,7 @@ $(document).ready(function(){
 	  var answer = confirm ('해당 글을 삭제하시겠습니까? 삭제 후 되돌리기는 불가능합니다.');
 	  if(answer){
 	
-	    location.replace("/talks/tlist");
+	    location.replace("delete");
 	    alert("삭제되었습니다.");
 	
 	  }
@@ -49,7 +49,6 @@ $(document).ready(function(){
 
 											</div>
 										</div>
-										<input type="hidden" value= "${talksContent.talks_id}">
 										<div class="btn-group-center mt40">
 											<a id="btnDel" href="#" class= "btn btn-sm btn-white btn-pd32 displaynone">
 												<span>Delete</span>

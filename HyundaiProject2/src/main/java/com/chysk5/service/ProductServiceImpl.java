@@ -58,5 +58,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		return mapper.getProductImg(pro_id);
 	}
+	
+	
 
 }

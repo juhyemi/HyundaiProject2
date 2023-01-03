@@ -18,6 +18,10 @@
 	
 	</select>
 	
+	<delete id="delete">
+	   DELETE FROM talks
+	   WHERE talks_id = #{talks_id}
+	</delete> 
 
 	
 </mapper>

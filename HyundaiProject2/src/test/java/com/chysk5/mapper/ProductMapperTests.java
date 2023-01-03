@@ -28,9 +28,9 @@ public class ProductMapperTests {
 		
 		log.info("selectList.....");
 		
-		String kind = "Tops";
+		String category = "Tops";
 		
-		List<ProductDTO> list = mapper.getPList(kind);
+		List<ProductDTO> list = mapper.getPList(category);
 		
 		log.info(list);
 	}
