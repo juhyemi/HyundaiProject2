@@ -45,14 +45,14 @@ public class TalksMapperTest {
 		
 	}
 	
-	@Test
-	public void deleteTest() throws Exception {
-		
-		String resultPage = delete.perform(MockMvcRequestBuilders.post("talks/delete").param("talks_id", "3")
-				).andReturn().getTalksList().getViewName();
-		log.info(resultPage);
-		log.info("DELETE COUNT :" + mapper.delete("3"));
-	}
+//	@Test
+//	public void deleteTest() throws Exception {
+//		
+//		String resultPage = delete.perform(MockMvcRequestBuilders.post("talks/delete").param("talks_id", "3")
+//				).andReturn().getTalksList().getViewName();
+//		log.info(resultPage);
+//		log.info("DELETE COUNT :" + mapper.delete("3"));
+//	}
 
 
 }

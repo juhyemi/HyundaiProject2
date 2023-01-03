@@ -1,10 +1,25 @@
 package com.chysk5.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.mapper.ResellMapper;
+import com.chysk5.service.MyPageService;
+import com.chysk5.service.ResellService;
+
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -12,8 +27,11 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Secured({"ROLE_MEMBER"})
 @RequestMapping("/mypage/")
-@RequiredArgsConstructor
+@AllArgsConstructor
+
 public class MypageController {
+	
+	private MyPageService service;
 
 	// 마이페이지 메인 화면으로 이동
 	@GetMapping("/index")
@@ -35,5 +53,19 @@ public class MypageController {
 	@GetMapping("/modify")
 	public void modify() {}
 	
+	@GetMapping("/myResell")
+	public String getMyResellList(Model model) {
+		log.info("MyResell 페이지 이동");
+		
+		List<MyResellProductDTO> myResellList = new ArrayList<>();
 	
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    User user = (User)authentication.getPrincipal();    
+	    String mem_id = user.getUsername();
+	    
+		myResellList = service.getMyResellList(mem_id);
+		model.addAttribute("myResellList", myResellList);
+		
+		return "mypage/myResellPage";
+	}
 }
