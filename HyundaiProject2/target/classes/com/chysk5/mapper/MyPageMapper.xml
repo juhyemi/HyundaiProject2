@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.chysk5.mapper.MyPageMapper">
+  
+  	<select id="getMyResellList" resultType="com.chysk5.domain.MyResellProductDTO">
+
+	SELECT r.re_regdate, r.re_price, p.pro_name, po.pro_opt_size
+	FROM r_product r
+	INNER JOIN product_option po
+	ON r.product_option_pro_opt_id = po.pro_opt_id
+	INNER JOIN member m
+	ON m.mem_id = r.member_mem_id
+	INNER JOIN product p
+	ON p.pro_id = po.product_pro_id
+	WHERE m.mem_id =#{mem_id}
+	
+	</select>
+  
+  </mapper>
