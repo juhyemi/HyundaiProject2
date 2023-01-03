@@ -55,7 +55,7 @@
             <li class="is-sub" cate-no="Search"><a
                href="javascript:void(0);"><span>Search</span><i></i></a></li>
             <li class="space"></li>
-            <li class=""><a href="/about/index.html"><span>Resell</span></a></li>
+            <li class=""><a href="/resell"><span>Resell</span></a></li>
             <li class=""><a href="/talks/tlist"><span>Fashion Talks</span></a></li>
             <li class=" only-mobile"><a href="javascript:languageOpen();"><span>Language</span></a></li>
            <li class="xans-element- xans-layout xans-layout-statelogoff ">
@@ -87,7 +87,6 @@
                <li><a href="/product/list/Tops"><span>Tops</span></a></li>
                <li><a href="/product/list/Bottoms"><span>Bottoms</span></a></li>
                <li><a href="/product/list/Accessories"><span>Accessories</span></a></li>
-               <li><a href="/resell"><span>Resell</span></a></li>
                <!-- <li><a href="/product/list.html?cate_no=66"><span>Sale</span></a></li> -->
             </ul>
             <div class="sub-cate-banner" pandassi-banner-group="disable"

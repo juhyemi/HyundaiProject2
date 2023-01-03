@@ -5,6 +5,7 @@ import java.util.List;
 import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
+import com.chysk5.domain.ResellProductDetailInfoDTO;
 import com.chysk5.domain.ResellProductInfoDTO;
 import com.chysk5.domain.ResellProductListDTO;
 
@@ -16,6 +17,7 @@ public interface ResellService {
    public int getPriceRank(String pro_opt_id, int pInt);
 
 	
-	public List<ResellProductListDTO> getResellProductList();
+   public List<ResellProductListDTO> getResellProductList();
+   public List<ResellProductDetailInfoDTO> getResellProductListDetail();
 	
 }
