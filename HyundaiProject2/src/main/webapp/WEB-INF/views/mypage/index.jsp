@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/mypage.css">
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
 </head>
-<body class="main header-transparent">    
+<body>    
 <%@ include file="../include/header2.jsp"%>
 
 <div id="wrap">

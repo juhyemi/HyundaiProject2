@@ -176,12 +176,12 @@
               </a>
             </li>
             <li pandassi-banner="ready"=""="">
-              <a href="/product/list.html?cate_no=92" target="_self">
+              <a href="/product/list/Tops" target="_self">
                 <div class="img"><img
                     src="https://matinkim.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/c2ad8bed8c1ee13c9927066787a8be52.jpg">
                 </div>
                 <div class="desc">
-                  <h2>Underwear</h2>
+                  <h2>Tops</h2>
                 </div>
               </a>
             </li>
