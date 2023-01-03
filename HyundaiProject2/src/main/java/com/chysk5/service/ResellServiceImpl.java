@@ -21,7 +21,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ResellServiceImpl implements ResellService {
 
-   private ResellMapper mapper;
+   private final ResellMapper mapper;
    
    @Transactional
    @Override
