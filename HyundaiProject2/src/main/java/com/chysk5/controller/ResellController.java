@@ -34,6 +34,7 @@ public class ResellController {
 	private ResellService service;
 	
 	/*
+
 	@GetMapping
 	public String getResellProductList(Model model) {
 		
@@ -49,7 +50,7 @@ public class ResellController {
 		return "resell/resellproductList";
 	}
 	*/
-	
+
 	@GetMapping("/register")
 	public String getMyResellProduct(@RequestParam("pro_opt_id") String pro_opt_id, Model model){
 		
