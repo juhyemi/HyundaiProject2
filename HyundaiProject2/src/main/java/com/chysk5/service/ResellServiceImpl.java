@@ -9,7 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
+<<<<<<< HEAD
+=======
+import com.chysk5.domain.ResellProductImgDTO;
+>>>>>>> ham
 import com.chysk5.domain.ResellProductInfoDTO;
+import com.chysk5.domain.ResellProductListDTO;
 import com.chysk5.mapper.ResellMapper;
 
 import lombok.AllArgsConstructor;
@@ -49,6 +54,7 @@ public class ResellServiceImpl implements ResellService {
       return getPrice;
    }
 
+<<<<<<< HEAD
    @Override
    public int getPriceRank(String pro_opt_id, int pInt) {
       log.info("몇번째 순위인지 가져오기");
@@ -65,3 +71,42 @@ public class ResellServiceImpl implements ResellService {
    
    
 }
+=======
+	@Override
+	public int getPriceRank(PriceRankDTO priceRankDTO) {
+		log.info("몇번째 순위인지 가져오기");
+		int rank = mapper.getMyRank(priceRankDTO.getPro_opt_id(), priceRankDTO.getRe_price());
+		return rank + 1;
+	}
+
+	@Transactional
+	@Override
+	public List<ResellProductListDTO> getResellProductList() {
+		
+		log.info("resellProdList Service 실행");
+		
+		List<ResellProductListDTO> list = mapper.getResellProductList();
+		
+		log.info(list);
+		
+		for (ResellProductListDTO dto : list) {
+			String proId = dto.getPro_id();
+			
+			List<ResellProductImgDTO> listImgs = mapper.getResellProductListImg(proId);
+			log.info(">>>>>>>>>>>>>>>>>>>>>>>>> : ");
+			log.info(listImgs);
+			
+			dto.setList(listImgs);
+			
+		}
+		
+		log.info(list);
+		
+		
+		return list;
+	}
+	
+	
+	
+}
+>>>>>>> ham

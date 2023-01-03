@@ -1,17 +1,21 @@
 package com.chysk5.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.List;
 
-@Setter
-@Getter
-@ToString
+import lombok.Data;
+
+@Data
 public class ResellProductDTO {
 	
 	private String pro_name;
 	private String pro_price;
 	private String pro_opt_size;
 	private String pro_opt_id;
+<<<<<<< HEAD
 	private String pro_loc;
+=======
+	
+	
+	
+>>>>>>> ham
 }
