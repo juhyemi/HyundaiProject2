@@ -10,19 +10,12 @@ import com.chysk5.domain.ResellProductListDTO;
 
 public interface ResellService {
 
-<<<<<<< HEAD
    public ResellProductInfoDTO getMyResellProduct(String pro_opt_id);
    public List<ResellPriceDTO> getPrice(String pro_opt_id);
    public int register(RegResellProductDTO regResellProductDTO);
    public int getPriceRank(String pro_opt_id, int pInt);
-}
-=======
-	public ResellProductInfoDTO getMyResellProduct(String pro_opt_id);
-	public List<ResellPriceDTO> getPrice(String pro_opt_id);
-	public int register(RegResellProductDTO regResellProductDTO);
-	public int getPriceRank(PriceRankDTO priceRankDTO);
+
 	
 	public List<ResellProductListDTO> getResellProductList();
 	
 }
->>>>>>> ham

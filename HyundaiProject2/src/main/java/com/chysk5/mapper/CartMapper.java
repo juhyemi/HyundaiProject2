@@ -2,18 +2,30 @@ package com.chysk5.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.ProductOptionDTO;
 
 
+@Mapper
 public interface CartMapper {
 	
 	// 카트 목록 조회
 	public List<CartDTO>cartList(String mem_id);
 	//product 옵션 id 조회
 	public String searchOptid(ProductOptionDTO product);
+	
 	// 카트 담기
 	public void addCart(CartDTO cart);
+	// 카트 물품 존재 체크
+	public int checkCart(CartDTO Cart);
+    // 카트에 물품 존재 할 시 장바구니 수량 증가
+	public void increaseCount(CartDTO Cart);
+	
+	// 장바구니 물품 삭제
+	public void delete(String mem_id,String pro_optId);
+	
     
 }
 

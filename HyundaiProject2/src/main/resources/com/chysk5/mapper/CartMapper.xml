@@ -16,8 +16,8 @@ where rownumber<=1
 order by product_pro_id
 ) pi
 where p.pro_id= pi.product_pro_id
-  and p.pro_id =c.product_option_pro_opt_id
-  and p.pro_id =po.pro_opt_id
+  and p.pro_id =po.product_pro_id
+  and po.pro_opt_id=c.product_option_pro_opt_id
   and c.member_mem_id =#{mem_id}
 ]]>
 </select>
@@ -29,7 +29,7 @@ values(cart_seq.nextval,SYSDATE,1,#{member_mem_id},#{product_option_pro_opt_id},
 </insert>
 
 <!--option id 조회 -->
-<select id="searchOptid" parameterType="String" resultType="java.lang.String" >
+<select id="searchOptid" resultType="String" >
 
 select a.pro_opt_id
 from product_option a,product b
@@ -38,4 +38,27 @@ where a.product_pro_id= #{product_pro_id}
  and b.pro_name= #{pro_name}
  
 </select>
+
+<select id="checkCart" resultType="int">
+		select count(*) from cart
+                     where product_option_pro_opt_id =#{product_option_pro_opt_id}
+                     and member_mem_id = #{member_mem_id}
+</select>
+
+<update id="increaseCount">
+            update cart
+            set cart_amount = 1 + (
+                     select cart_amount from cart
+                      where product_option_pro_opt_id =#{product_option_pro_opt_id}
+                     and member_mem_id = #{member_mem_id}
+                     )
+               where product_option_pro_opt_id =#{product_option_pro_opt_id}
+                     and member_mem_id = #{member_mem_id}       
+</update>
+
+
+<delete id = "delete">
+		delete from cart where member_mem_id = #{member_mem_id} and product_option_pro_opt_id =#{product_option_pro_opt_id}
+	</delete>
+
 </mapper>
