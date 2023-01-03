@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.chysk5.domain.TalksDTO;
@@ -36,7 +37,7 @@ public class TalksController {
 	//talks글 내용
 	@GetMapping("tcontent/{talks_id}")
 	public String talksContent(@PathVariable("talks_id") String talks_id, Model model) {
-		log.info("call talksContent controller..........");
+		log.info("call talksContent..........");
 		
 		TalksDTO talksContent = service.getTalksContent(talks_id);
 		log.info(talksContent);
@@ -50,5 +51,6 @@ public class TalksController {
 		log.info("call talksFrom controller.........");
 		
 	}
+	
 
 }
