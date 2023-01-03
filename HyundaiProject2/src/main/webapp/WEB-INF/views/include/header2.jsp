@@ -52,13 +52,10 @@
                      In</span></a></li>
             <!-- <li><a href="/product/list.html?cate_no=66"><span style="color: red;">Black Friday</span></a></li> -->
             <li class="is-sub" cate-no="Shop"><a href="javascript:void(0);"><span>Shop</span><i></i></a></li>
-            <li><a href="/project.html?cate_no=81"><span>Project</span></a></li>
-            <li class="is-sub" cate-no="Collections"><a
-               href="javascript:void(0);"><span>Collections</span><i></i></a></li>
             <li class="is-sub" cate-no="Search"><a
                href="javascript:void(0);"><span>Search</span><i></i></a></li>
             <li class="space"></li>
-            <li class=""><a href="/about/index.html"><span>About</span></a></li>
+            <li class=""><a href="/about/index.html"><span>Resell</span></a></li>
             <li class=""><a href="/talks/tlist"><span>Fashion Talks</span></a></li>
             <li class=" only-mobile"><a href="javascript:languageOpen();"><span>Language</span></a></li>
            <li class="xans-element- xans-layout xans-layout-statelogoff ">
@@ -81,20 +78,11 @@
          </ul>
 
 
-<<<<<<< HEAD
-	</div>
-=======
+</div>
       <div class="menu-block depth2" cate-no="Shop">
          <div class="sub">
             <ul>
-               <li><a href="/product/list.html?cate_no=86"><span>Must
-                        Have</span></a></li>
-               <li><a href="/product/list.html?cate_no=66"><span
-                     style="color: red;">Season Off</span></a></li>
-               <!-- <li><a href="/product/list.html?cate_no=102"><span style="color: red;">Sale</span></a></li> -->
-               <!-- <li><a href="/product/list.html?cate_no=85"><span>Essential</span></a></li> -->
-               <li><a href="/product/list.html?cate_no=92"><span
-                     style="color: #03C95B;">Underwear</span></a></li>
+
                <li><a href="/product/list/Outerwears"><span>Outerwears</span></a></li>
                <li><a href="/product/list/Tops"><span>Tops</span></a></li>
                <li><a href="/product/list/Bottoms"><span>Bottoms</span></a></li>
@@ -108,20 +96,11 @@
             </div>
          </div>
       </div>
->>>>>>> ham
 
 	<div class="menu-block depth2" cate-no="Shop">
 		<div class="sub">
 			<ul>
-				<li><a href="/product/list.html?cate_no=86">
-						<span>Must Have</span>
-					</a></li>
-				<li><a href="/product/list.html?cate_no=66">
-						<span style="color: red;">Season Off</span>
-					</a></li>
-				<!-- <li><a href="/product/list.html?cate_no=102"><span style="color: red;">Sale</span></a></li> -->
-				<!-- <li><a href="/product/list.html?cate_no=85"><span>Essential</span></a></li> -->
-				
+			
 				<li><a href="/product/list/Outerwears">
 						<span>Outerwears</span>
 					</a></li>

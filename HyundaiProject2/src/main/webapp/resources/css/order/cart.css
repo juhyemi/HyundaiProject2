@@ -686,7 +686,7 @@ body {
   position: relative;
   overflow: hidden auto;
   font-size: 13px;
-  line-height: 1;
+  line-height: 1.66667;
   width: 100%;
 }
 
