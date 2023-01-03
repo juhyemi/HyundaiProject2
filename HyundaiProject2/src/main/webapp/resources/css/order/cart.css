@@ -338,7 +338,7 @@
   }
 
   .basket-wrap .basket-list {
-      height: calc(100vh - 450px);
+      height: calc(100vh - 300px);
   }
 
   .basket-wrap .btn-block {

@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chysk5.domain.MemberDTO;
@@ -69,28 +68,52 @@ public class MemberController {
 			model.addAttribute("logout", "Logout!!");
 		}
 	}
-
 	
-	// 로그아웃
-	@PostMapping("/logout")
-	public String logoutAction() {
-		
-		log.info("logout....");
-		
-		return "redirect:/main";
-	}
 	
-	// 아이디 찾기 페이지로 이동
+	// 아이디 찾기 페이지
 	@GetMapping("/findId")
-	public String find_id() {
-		return "member/findId";
+	public void findId() {}
+	
+	// 아이디 찾기 Action
+	@PostMapping("/findId")
+	public String findIdAction(MemberDTO member, Model model) {
+		
+		log.info("find id action.... " + member);
+		
+		MemberDTO result = service.findId(member);
+		
+		log.info("find id action result... " + result);
+		
+		model.addAttribute("member", result);
+		
+		return "member/findIdResult";
 	}
 	
-	// 비밀번호 찾기 페이지로 이동
+	// 아이디 찾기 결과 페이지
+	@GetMapping("/findIdResult")
+	public void findIdResult() {}
+	
+	
+	// 비밀번호 찾기 페이지
 	@GetMapping("/findPwd")
 	public String find_pwd() {
 		 return "member/findPwd";
 	}
 	
+	// 비밀번호 찾기 Action
+	@PostMapping("/findPwd")
+	public String findPwdAction(MemberDTO member, Model model) {
+		
+		log.info("find password action...." + member);
+		
+		MemberDTO result = service.findPwd(member);
+		
+		model.addAttribute("member", result);
+		
+		return "member/pwdModify";
+	}
+	
+//	@GetMapping("/pwdModify")
+//	public void 
 	
 }

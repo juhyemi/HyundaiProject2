@@ -209,11 +209,6 @@
 							<li class="price"><strong><span><span
 										class="total_product_price_display_front">261,000</span></span></strong></li>
 						</ul>
-						<ul class="displaynone">
-							<li class="price-title">부가세</li>
-							<li class="price"><strong><span><span
-										class="total_product_vat_price_front">0</span></span></strong></li>
-						</ul>
 						<ul class="">
 							<li class="price-title">할인금액</li>
 							<li class="price" id="total_benefit_price_area"><strong>-</strong><strong><span

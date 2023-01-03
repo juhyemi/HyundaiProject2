@@ -24,9 +24,20 @@
 		<li class="xans-element- xans-layout xans-layout-statelogoff inline-block "><a href="/mypage/index" class="myshop">
 				<span class="hidden">Login</span>
 			</a></li>
-		<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="javascript:basketOpen();" class="basket">
-				<span class="hidden">Bag</span><em><span class="EC-Layout-Basket-count">0</span></em>
-			</a></li>
+		<li class="xans-element- xans-layout xans-layout-statelogoff ">
+			<!-- 로그인이 안되어 있을 때 -->
+			<sec:authorize access="isAnonymous()">
+				<a href="/member/login" class="basket">
+					<span class="hidden">Bag</span><em><span class="EC-Layout-Basket-count">0</span></em>
+				</a>
+			</sec:authorize>
+			<!-- 로그인이 되어있을 때 -->
+			<sec:authorize access="isAuthenticated()">
+				<a href="javascript:basketOpen();" class="basket">
+					<span class="hidden">Bag</span><em><span class="EC-Layout-Basket-count">0</span></em>
+				</a>
+			</sec:authorize>
+		</li>
 	</ul>
 </header>
 
@@ -119,30 +130,6 @@
 		</div>
 	</div>
 
-	<div class="menu-block depth2" cate-no="Collections">
-		<div class="sub">
-			<ul class="js-collection-dept2">
-				<li class="is-sub" id="mo_dept2_90" cate-no="Collections_90"><a href="javascript:void(0);">
-						<span>22’ Fall Winter</span><i></i>
-					</a></li>
-				<li class="is-sub" id="mo_dept2_89" cate-no="Collections_89"><a href="javascript:void(0);">
-						<span>22’ Spring Summer</span><i></i>
-					</a></li>
-				<li class="is-sub" id="mo_dept2_88" cate-no="Collections_88"><a href="javascript:void(0);">
-						<span>21’ Fall Winter</span><i></i>
-					</a></li>
-			</ul>
-			<div class="sub-cate-banner" pandassi-banner-group="ready" pandassi-banner-group-code="bae699bc046331b5b96c">
-				<div pandassi-banner="ready"=""="">
-					<a href="/collection-view.html?product_no=3360&amp;cate_no=68&amp;display_group=1" target="_self">
-						<img src="https://matinkim.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/e2e972ba48ad7e420c3565d206247387.png">
-					</a>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
 	<div class="menu-block depth2 search" cate-no="Search">
 		<div class="sub">
 			<div class="block">
@@ -184,57 +171,6 @@
 		</div>
 	</div>
 
-	<div class="menu-block depth3" id="mo_dept3_89" cate-no="Collections_89">
-		<div class="sub">
-			<ul>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=2917&amp;cate_no=89&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2022 Hot Summer</span></span>
-					</a></li>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=2916&amp;cate_no=89&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2022 S/S 3rd</span></span>
-					</a></li>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=2759&amp;cate_no=89&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2022 S/S 2nd</span></span>
-					</a></li>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=3011&amp;cate_no=89&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2022 S/S Essential</span></span>
-					</a></li>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=2564&amp;cate_no=89&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2022 S/S 1st</span></span>
-					</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="menu-block depth3" id="mo_dept3_88" cate-no="Collections_88">
-		<div class="sub">
-			<ul>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=2465&amp;cate_no=88&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2021 F/W 3rd</span></span>
-					</a></li>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=2466&amp;cate_no=88&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">MATIN KIM X ASICS</span></span>
-					</a></li>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=2488&amp;cate_no=88&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2021 F/W 2nd</span></span>
-					</a></li>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=2489&amp;cate_no=88&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2021 F/W 1st</span></span>
-					</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="menu-block depth3" id="mo_dept3_90" cate-no="Collections_90">
-		<div class="sub">
-			<ul>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=3360&amp;cate_no=90&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2022 Winter</span></span>
-					</a></li>
-				<li class="xans-record-"><a href="/collection-view.html?product_no=3235&amp;cate_no=90&amp;display_group=1">
-						<span><span style="font-size: 12px; color: #555555;">2022 Pre Fall</span></span>
-					</a></li>
-			</ul>
-		</div>
-	</div>
 </div>
 <div class="gnb-dimmer"></div>
 
