@@ -1,12 +1,15 @@
 package com.chysk5.domain;
 
+import java.util.Date;
+
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
-@Getter
-@ToString
+@Data
+@NoArgsConstructor
 public class ProductOptionDTO {
 	
 	private String pro_id;

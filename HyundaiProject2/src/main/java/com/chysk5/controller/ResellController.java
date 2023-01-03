@@ -33,15 +33,15 @@ public class ResellController {
 	
 	private ResellService service;
 	
-	@GetMapping
-	public String getResellProductList() {
-		
-		log.info("resell controller 호출");
-		
-		List<ResellProductDTO> list =  service.getResellProductList();
-		
-		return "resell/resellproductList";
-	}
+	/*
+	 * @GetMapping public String getResellProductList() {
+	 * 
+	 * log.info("resell controller 호출");
+	 * 
+	 * List<ResellProductDTO> list = service.getResellProductList();
+	 * 
+	 * return "resell/resellproductList"; }
+	 */
 	
 	
 	@GetMapping("/register")
