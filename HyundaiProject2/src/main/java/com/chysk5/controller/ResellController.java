@@ -38,7 +38,7 @@ public class ResellController {
 		
 		log.info("resell controller 호출");
 		
-		List<ResellProductDTO> list =  service.getResellProductList();
+//		List<ResellProductDTO> list =  service.getResellProductList();
 		
 		return "resell/resellproductList";
 	}

@@ -11,4 +11,7 @@ public interface MemberService {
 	// 회원가입
 	public void join(MemberDTO member);
 	
+	// 아이디 중복 체크
+	public String checkId(String mem_id);
+	
 }
