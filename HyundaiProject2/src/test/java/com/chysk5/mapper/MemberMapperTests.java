@@ -68,7 +68,7 @@ public class MemberMapperTests {
 		
 		log.info("test check id : " + mem_id);
 		
-		int result = mapper.checkId(mem_id);
+		String result = mapper.checkId(mem_id);
 		
 		log.info(result);
 	}
