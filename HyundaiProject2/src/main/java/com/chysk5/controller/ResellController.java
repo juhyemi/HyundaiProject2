@@ -3,13 +3,10 @@ package com.chysk5.controller;
 
 import java.util.List;
 
-/*
- * 기범
- */
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,18 +20,22 @@ import com.chysk5.domain.ResellProductListDTO;
 import com.chysk5.service.ResellService;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
+
+
+/*
+ *  정기범, 함세강 작성
+ */
 
 @Controller
 @Log4j
 @RequestMapping("/resell")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ResellController {
 	
-	private ResellService service;
+	private final ResellService service;
 	
-	/*
-
 	@GetMapping
 	public String getResellProductList(Model model) {
 		
@@ -46,12 +47,24 @@ public class ResellController {
 		log.info(list);
 		
 		model.addAttribute("rProduct", list);
-//		List<ResellProductDTO> list =  service.getResellProductList();
-
 		
-		return "resell/resellproductList";
+		return "resell/resellProductList";
 	}
-	*/
+	
+	
+	@GetMapping("/{proId}")
+	public String getResellProductDetail(@PathVariable String proId) {
+		
+		log.info(">>>>>>>>>>>> getResellProductDetail 컨트롤러 호출");
+		log.info(proId);
+		
+		
+		
+		
+		return "resell/resellProductDetail";
+	}
+	
+
 
 	@GetMapping("/register")
 	public String getMyResellProduct(@RequestParam("pro_opt_id") String pro_opt_id, Model model){

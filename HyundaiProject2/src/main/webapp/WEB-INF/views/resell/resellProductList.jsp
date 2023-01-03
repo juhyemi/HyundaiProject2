@@ -24,7 +24,6 @@
                         <div class="thumbnail">
                             <div class="prdImg">
                                 <a href="/resell/${rProduct.pro_id}" name="anchorBoxName_3005">
-                                    <%-- <img class="thumb1" src="${rProduct.list.get(0).pro_loc}" data-src="${rProduct.list.get(0).pro_loc" id="eListPrdImage3005_1" alt="${rProduct.pro_name}"><br><img class="thumb2" src="${rProduct.list.get(1).pro_loc" alt="${rProduct.pro_name}"><br></a> --%>
                                     <img class="thumb1" src="${rProduct.list.get(0).pro_loc}" data-src="${rProduct.list.get(0).pro_loc}" id="eListPrdImage3004_1" alt="${rProduct.pro_name}"><br><img class="thumb2" src="${rProduct.list.get(1).pro_loc}" alt="${rProduct.pro_name}"><br></a>
                             </div>
                         </div>
