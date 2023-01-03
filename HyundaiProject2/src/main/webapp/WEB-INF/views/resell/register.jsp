@@ -7,14 +7,14 @@
 
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css"
-	href="https://contents.sixshop.com/uploadedFiles/67701/css/designSetting1672214543310.css">
+
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/resell/register1.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/resell/register2.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/resell/register3.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/resell/register4.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/main2.css">
 
@@ -29,8 +29,9 @@
 
 <script src="https://static.sixshop.com/resources/js/norequire/ssa.js"></script>
 
+<!--  
 <link rel="stylesheet" type="text/css"
-	href="https://contents.sixshop.com/uploadedFiles/67701/css/designSetting1672214543310.css">
+	href="https://contents.sixshop.com/uploadedFiles/67701/css/designSetting1672214543310.css"> -->
 
 
 
@@ -649,6 +650,8 @@
 							imgsrc="/uploadedFiles/67701/product/image_1669013784464.jpg">
 							<div id="shopProductImgsMainDiv" class="main img-div img imgZoom"
 								style="padding-top: 100%;">
+								
+								<!-- 
 								<div
 									class="shopProductImgMainWrapper type_thumbnails sequence_0"
 									data-shopproductsequence="0" '="" data-ratio="1.00">
@@ -710,13 +713,14 @@
 										class="shopProductImgMain thumbnails"
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012465061_1000.jpg">
 								</div>
+								 -->
+								
 								<div
 									class="shopProductImgMainWrapper type_thumbnails sequence_7 on"
 									data-shopproductsequence="7" '="" data-ratio="1.00">
 									<img data-shopproductsequence="7"
-										imgsrc="/uploadedFiles/67701/product/image_1669012838413.jpg"
 										class="shopProductImgMain thumbnails"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1669012838413_1000.jpg">
+										src="${product.resellProductDTO.pro_loc}">
 								</div>
 								<div
 									class="shopProductImgMainWrapper type_thumbnails sequence_8"
@@ -735,6 +739,8 @@
 										src="https://contents.sixshop.com/thumbnails/uploadedFiles/67701/product/image_1636356590156_1000.jpg">
 								</div>
 							</div>
+							
+							<!-- 
 							<div id="shopProductImgsThumbDiv" class="sub img-div">
 								<div class="sub img" data-shopproductsequence="0">
 									<div class="shopProductImgRatio"
@@ -797,6 +803,8 @@
 										onclick="require(&quot;v2/mall/service/product&quot;).detail.displayProductImg(event)"></div>
 								</div>
 							</div>
+							 -->
+							
 							<div class="swiper-button-prev swiper-button-black"></div>
 							<div class="swiper-button-next swiper-button-black"></div>
 							<div class="swiper-pagination"></div>
@@ -855,9 +863,9 @@
 									<div class="popup">
 										<table class="type06">
 											<c:forEach var="resellPrice" items="${product.resellPrice}">
-												<tr>
+												<tr style="border-bottom: 0.5px solid #222;">
 													<th scope="row">${resellPrice.pro_opt_size}</th>
-													<td>${resellPrice.re_price}</td>
+													<td><fmt:formatNumber value="${resellPrice.re_price }" type="number"/></td>
 												</tr>
 											</c:forEach>
 										</table>
@@ -1289,27 +1297,35 @@ function getMyRank() {
 	
 	let og_price = document.getElementById("input1").value;
 	og_price = og_price.replace(",", "");
+	
+	var tmpPrice = parseInt(og_price);
+	
 	let og_comma = (og_price * 1).toLocaleString("ko-KR"); 
 	let with_tax = Math.round(og_price * 0.97)
 	with_tax = with_tax.toLocaleString("ko-KR");
 	
-	console.log(og_price, og_comma,with_tax); 
+	console.log(og_price, og_comma,with_tax, tmpPrice); 
 	
 	$.ajax({
 		type: "get",
 		url: "/resell/register/myRank",
 		data: productInfo,
 		success: function(data) {
-			if(data == 1) {
-				$("#showPriceRank").text("최저가 입니다. 빠른 판매를 원하시면 해당 가격으로 설정하세요");
-				$("#product-order-total-quantity").text(og_comma);
-				$("#product-order-total-price").text(with_tax);
+			if(tmpPrice % 100 == 0) {
+				if(data == 1) {
+					$("#showPriceRank").text("최저가 입니다. 빠른 판매를 원하시면 해당 가격으로 설정하세요");
+					$("#product-order-total-quantity").text(og_comma);
+					$("#product-order-total-price").text(with_tax);
+				} else {
+					$("#showPriceRank").text(data + "번째 순위 입니다!");
+					$("#product-order-total-quantity").text(og_comma);
+					$("#product-order-total-price").text(with_tax);
+					}
 			} else {
-				$("#showPriceRank").text(data + "번째 순위 입니다!");
-				$("#product-order-total-quantity").text(og_comma);
-				$("#product-order-total-price").text(with_tax);
+				alert("100원 단위로 입력하세요.");
 			}
-		},
+			},
+
 		error: function() {
 			alert("ajax 통신 실패");
 		}
