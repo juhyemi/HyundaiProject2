@@ -8,8 +8,11 @@ import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
 import com.chysk5.domain.ResellProductDTO;
+import com.chysk5.domain.ResellProductImgDTO;
+import com.chysk5.domain.ResellProductListDTO;
 
 public interface ResellMapper {
+<<<<<<< HEAD
    
    public ResellProductDTO getMyResellProduct(String pro_opt_id);
    public List<ResellPriceDTO> getPriceList(String pro_opt_id);
@@ -17,3 +20,14 @@ public interface ResellMapper {
    public int getMyRank(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
    public int existData(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
 }
+=======
+	
+	public ResellProductDTO getMyResellProduct(String pro_opt_id);
+	public List<ResellPriceDTO> getPriceList(String pro_opt_id);
+	public int register(RegResellProductDTO regResellProductDTO);
+	public int getMyRank(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") String re_price);
+	
+	public List<ResellProductListDTO> getResellProductList();
+	public List<ResellProductImgDTO> getResellProductListImg(String proId);
+}
+>>>>>>> ham

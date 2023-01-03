@@ -81,7 +81,34 @@
          </ul>
 
 
+<<<<<<< HEAD
 	</div>
+=======
+      <div class="menu-block depth2" cate-no="Shop">
+         <div class="sub">
+            <ul>
+               <li><a href="/product/list.html?cate_no=86"><span>Must
+                        Have</span></a></li>
+               <li><a href="/product/list.html?cate_no=66"><span
+                     style="color: red;">Season Off</span></a></li>
+               <!-- <li><a href="/product/list.html?cate_no=102"><span style="color: red;">Sale</span></a></li> -->
+               <!-- <li><a href="/product/list.html?cate_no=85"><span>Essential</span></a></li> -->
+               <li><a href="/product/list.html?cate_no=92"><span
+                     style="color: #03C95B;">Underwear</span></a></li>
+               <li><a href="/product/list/Outerwears"><span>Outerwears</span></a></li>
+               <li><a href="/product/list/Tops"><span>Tops</span></a></li>
+               <li><a href="/product/list/Bottoms"><span>Bottoms</span></a></li>
+               <li><a href="/product/list/Accessories"><span>Accessories</span></a></li>
+               <li><a href="/resell"><span>Resell</span></a></li>
+               <!-- <li><a href="/product/list.html?cate_no=66"><span>Sale</span></a></li> -->
+            </ul>
+            <div class="sub-cate-banner" pandassi-banner-group="disable"
+               pandassi-banner-group-code="dd121b15d57874a6eef1">
+               
+            </div>
+         </div>
+      </div>
+>>>>>>> ham
 
 	<div class="menu-block depth2" cate-no="Shop">
 		<div class="sub">
