@@ -1011,7 +1011,8 @@ div.layerProgress {
 }
 
 .mt20 {
-  margin-top: 20px !important;
+    margin-top: 40px !important;
+    margin-bottom: 50px !important;
 }
 
 .mt24 {
@@ -4213,4 +4214,24 @@ body.product-detail footer {
       -o-transform: translateX(100%);
       transform: translateX(100%);
   }
+}
+
+.result{
+	width: 100%;
+	margin: 0px auto;
+}
+
+.result .id{
+	margin: 0 auto;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.result .gaip{
+	margin: 0 auto;
+}
+
+.fmt{
+	margin-top: 20px !important;
+    margin-bottom: 40px !important;
 }

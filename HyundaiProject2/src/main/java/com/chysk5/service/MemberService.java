@@ -14,4 +14,10 @@ public interface MemberService {
 	// 아이디 중복 체크
 	public String checkId(String mem_id);
 	
+	// 아이디 찾기
+	public MemberDTO findId(MemberDTO member);
+	
+	// 비밀번호 찾기
+	public MemberDTO findPwd(MemberDTO member);
+	
 }

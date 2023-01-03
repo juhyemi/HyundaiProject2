@@ -9,8 +9,8 @@
       <ul>
         <li><a href="/product/list.html?cate_no=45">New In</a></li>
         <li><a href="/product/list.html?cate_no=26">Shop</a></li>
-        <li><a href="/project.html?cate_no=81">Project</a></li>
-        <li><a href="/collection.html?cate_no=68">Collections</a></li>
+        <li><a href="/project.html?cate_no=81">Resell</a></li>
+        <li><a href="/collection.html?cate_no=68">Fashion Talks</a></li>
         <li><a href="/about/index.html">About</a></li>
         <li><a href="/cscenter/index.html">Help</a></li>
       </ul>
@@ -20,7 +20,7 @@
     <div class="xans-element- xans-layout xans-layout-footer footer-block">
       <div class="detail">
         <div class="company ">
-          <h2>(주)마뗑킴</h2>
+          <h2>(주) CHYSK 5</h2>
           <p>
             대표이사 : 김다인 / 대표전화 : 1877-8170<br>
             04793, 서울특별시 성동구 아차산로5길 24-33 (성수동2가) 3층<br>
@@ -35,8 +35,8 @@
             <br>
             1877-8170<br>
             <strong>AM 12:00 ~ PM 17:00 (토, 일, 공휴일 휴무)</strong><br>
-            업무 관련문의: matinkimcrew@gmail.com<br>
-            CS 관련문의: matinkimcs@gmail.com<br>
+            업무 관련문의: chysk5crew@gmail.com<br>
+            CS 관련문의: chysk5cs@gmail.com<br>
           </p>
         </div>
       </div>
@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="xans-element- xans-layout xans-layout-footer footer-block-end ">
-      <div class="copyright">ⓒ MATINKIM All rights reserved.</div>
+      <div class="copyright">ⓒ CHYSK5 All rights reserved.</div>
     </div>
   </div>
 

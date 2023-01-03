@@ -54,9 +54,11 @@
 
 				<div class="header">
 					<div class="select-all">
-						<label><input id="allCheck" type="checkbox"
-							onclick="Basket.setCheckBasketList('basket_product_normal_type_normal', this);">
-							&nbsp;<span>전체선택 <em
+						<label>
+						 <!--  <input type="checkbox" id="one" name="number" value="1"> 전체선택 -->
+						<input id="allCheck" type="checkbox"
+							onclick="Basket.setCheckBasketList('basket_product_normal_type_normal', this);"> -->
+							 &nbsp;<span>전체선택 <em
 								class="xans-element- xans-order xans-order-normtitle ">(2)
 							</em>
 						</span></label>
@@ -209,15 +211,10 @@
 							<li class="price"><strong><span><span
 										class="total_product_price_display_front">261,000</span></span></strong></li>
 						</ul>
-						<ul class="displaynone">
-							<li class="price-title">부가세</li>
-							<li class="price"><strong><span><span
-										class="total_product_vat_price_front">0</span></span></strong></li>
-						</ul>
 						<ul class="">
 							<li class="price-title">할인금액</li>
 							<li class="price" id="total_benefit_price_area"><strong>-</strong><strong><span
-									id="total_product_discount_price_front">11,800</span></strong></li>
+									id="total_product_discount_price_front">0</span></strong></li>
 						</ul>
 						<ul>
 							<li class="price-title">배송비</li>
@@ -258,6 +255,11 @@
 		</div>
 	</div>
 	<div id="criteo-tags-div" style="display: none;"></div>
+	<!-- <script>
+	$("input:checkbox[id='one']").prop("checked", true);
+	$("input:checkbox[id='one']").prop("checked", false);
+	
+	</script> -->
 </body>
 </html>
 </html>

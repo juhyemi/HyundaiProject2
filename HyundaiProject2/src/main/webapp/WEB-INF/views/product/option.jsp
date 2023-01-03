@@ -62,8 +62,9 @@ $(document).ready(function(){
 
 								<div class="xans-element- xans-product xans-product-detaildesign product-detail-block">
 									<p class="product_name_css xans-record-">
-										<span class="title"><span style="font-size: 18px; color: #000000; font-weight: bold;">상품명</span></span> <span class="value"><span style="font-size: 18px; color: #000000; font-weight: bold;"><c:out value="${product.pro_name }" /></span></span>
-
+										<span class="title"><span style="font-size: 18px; color: #000000; font-weight: bold;">상품명</span></span> <span class="value" ><span style="font-size: 18px; color: #000000; font-weight: bold;"><c:out value="${product.pro_name}"/></span></span>
+                                        <input id="pro_name" type="hidden" value='<c:out value="${product.pro_name}"/>'/>   
+                                        <input id="pro_id" type="hidden" value='<c:out value="${product.pro_id}"/>'/>   
 									</p>
 									<p class="ma_product_code_css xans-record-">
 										<span class="title"><span style="font-size: 12px; color: #555555;">자체상품코드</span></span>
@@ -132,9 +133,12 @@ $(document).ready(function(){
 							</div>
 							<div class="xans-element- xans-product xans-product-action product-action-block">
 								<div class="buy-block ">
-									<button type="button" class="btn btn-order btn-dark btn-full " onclick="product_submit_action(1, '/exec/front/order/basket/', this)">
-										<span id="btnBuy">ADD TO CART</span>
+								<button type="button" class="btn btn-order btn-dark btn-full" >
+										<span id="btn_Buy">ADD TO CART</span>
 									</button>
+									<!-- <button type="button" class="btn btn-order btn-dark btn-full " onclick="product_submit_action(1, '/exec/front/order/basket/', this)">
+										<span id="btnBuy">ADD TO CART</span>
+									</button> -->
 
 								</div>
 								<div class="displaynone ">
@@ -229,6 +233,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+
 	<script>
 
    
@@ -286,8 +291,57 @@ $(document).ready(function(){
 
 
 
-  
-    </script>
+
+		     var csrfHeadName="${_csrf.headerName}";
+		     var csrfTokenValue="${_csrf.token}";
+			$('#btn_Buy').click(function() {
+				var proid =$('#pro_id').val();			
+			   var proname=$('#pro_name').val();		        
+			    alert(proname);
+			    alert(proid);
+				var pro_opt_size="S";	
+				var data = {
+				    pro_id : proid,
+				    pro_name : proname,
+				    pro_opt_size : pro_opt_size
+				};			
+				
+				$.ajax({
+					url : "/cartAjax/addCart",
+					type : "post",
+					data : data,
+					beforeSend : function(xhr) {
+				        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+				    },
+					success : function(result) {
+						if(result=="update"){
+							console.log("수량증가");
+							alert("카트존재 수량 증가");
+						}/* else if(result=="login"){
+							alert("login 필요");
+							window.location.replace('/member/login');
+						} */
+						else{
+							console.log("카트담기 성공");
+							alert("카트 담기 성공");
+						}
+						window.top.document.getElementById('basketIframe').contentWindow.location.replace('/cart/cartList');
+						$('.basket-wrap-iframe').addClass('active');
+						$('html').addClass('fixed');
+						$('body').addClass('fixed');
+					},
+					error : function() {
+						alert("카트 담기 실패");
+					}
+					
+					
+				 });
+				
+			    
+
+			});
+		</script>
+
 	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

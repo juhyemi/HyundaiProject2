@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
+import com.chysk5.domain.ResellProductDetailInfoDTO;
 import com.chysk5.domain.ResellProductImgDTO;
 import com.chysk5.domain.ResellProductInfoDTO;
 import com.chysk5.domain.ResellProductListDTO;
@@ -93,6 +94,12 @@ public class ResellServiceImpl implements ResellService {
 		
 		
 		return list;
+	}
+
+	@Override
+	public List<ResellProductDetailInfoDTO> getResellProductListDetail() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

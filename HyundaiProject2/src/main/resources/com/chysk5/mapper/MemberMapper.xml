@@ -48,5 +48,20 @@
 		FROM MEMBER
 		WHERE mem_id = #{mem_id}
 	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findId" resultType="com.chysk5.domain.MemberDTO">
+		SELECT mem_id, mem_name, mem_email, mem_joindate
+		FROM member
+		WHERE mem_name = #{mem_name} AND mem_email = #{mem_email}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPwd" resultType="com.chysk5.domain.MemberDTO">
+		SELECT mem_id, mem_name, mem_email
+		FROM member
+		WHERE mem_id = ${mem_id} AND mem_name = ${mem_name} AND mem_email = ${mem_email}
+	</select>
+
 
 </mapper>

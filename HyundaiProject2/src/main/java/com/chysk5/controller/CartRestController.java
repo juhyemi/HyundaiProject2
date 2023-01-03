@@ -2,7 +2,12 @@ package com.chysk5.controller;
 
 
 
+import java.security.Principal;
+
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,15 +34,24 @@ public class CartRestController {
 	// 장바구니 담기 -- session 으로 mem_id 받아와야 한다
 	@Secured({"ROLE_MEMBER"})
 	@PostMapping("/addCart")
-	public String addCart(@RequestParam("pro_name") String pro_name,@RequestParam("pro_opt_size") String pro_opt_size,@RequestParam("pro_id") String pro_id)throws Exception{
-	  	   
+	public String addCart(Principal prc,@RequestParam("pro_name") String pro_name,@RequestParam("pro_opt_size") String pro_opt_size,@RequestParam("pro_id") String pro_id)throws Exception{
+		String mem_id= prc.getName();
 	    log.info("add cart");
-	    String mem_id="yoon";
 	    log.info(pro_name);
-	  //cart.setMember_mem_id(mem_id);
-	    
+		/*
+		 * Authentication authentication =
+		 * SecurityContextHolder.getContext().getAuthentication(); User user =
+		 * (User)authentication.getPrincipal(); String mem_id=user.getUsername();
+		 */
+		/*
+		 * if(mem_id==null) { return "login"; }
+		 */
+    	log.info("user id:"+mem_id);
+		log.info("get cart list");       
+		log.info(pro_name); 
 	    //product_opt_id 조회
-	    ProductOptionDTO product=new ProductOptionDTO(pro_id,pro_name,pro_opt_size);
+	   
+		ProductOptionDTO product=new ProductOptionDTO(pro_id,pro_name,pro_opt_size);
 	    log.info(product);
  	    String opt_id=service.searchOptid(product); 
      	// cart 삽입(존재여부 체크 )
