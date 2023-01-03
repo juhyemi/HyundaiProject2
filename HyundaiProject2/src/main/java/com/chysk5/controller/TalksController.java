@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.TalksDTO;
 import com.chysk5.service.TalksService;
@@ -50,6 +52,17 @@ public class TalksController {
 	public void talksForm() {
 		log.info("call talksFrom controller.........");
 		
+	}
+	
+	//talks 글 삭제
+	@PostMapping("content/delete")
+	public String delete(@RequestParam("talks_id") String talks_id, RedirectAttributes rttr) {
+		log.info("call talksFrom controller.........");
+		log.info(talks_id);
+		if(service.delete(talks_id)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect: talks/tlist";
 	}
 	
 

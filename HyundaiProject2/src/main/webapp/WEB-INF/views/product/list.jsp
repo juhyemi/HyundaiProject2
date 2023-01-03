@@ -24,8 +24,8 @@
                         <div class="thumbnail">
                             <div class="prdImg">
                                 <a href="/product/option/${pList.pro_id }">
-                                    <img class="thumb1" src="${pList.pro_loc}" id="eListPrdImage3493_1" ><br>
-                                    <img class="thumb2" src="//matinkim.com/web/product/small/202212/836b6eee45cfad4f96503da396c4dabe.jpg" ><br></a>
+                                    <img class="thumb1" src="${pList.loc1}" id="eListPrdImage3493_1" ><br>
+                                    <img class="thumb2" src="${pList.loc2}"  ><br></a>
                             </div>
                         </div>
                         <div class="description">

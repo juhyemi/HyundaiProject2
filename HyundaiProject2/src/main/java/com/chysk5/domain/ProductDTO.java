@@ -19,6 +19,8 @@ public class ProductDTO {
 	private String pro_category;
 	private Date pro_ragdate;
 	private Long pro_price;
+	private String loc1;
+	private String loc2;
 	private String pro_loc;
 
 }

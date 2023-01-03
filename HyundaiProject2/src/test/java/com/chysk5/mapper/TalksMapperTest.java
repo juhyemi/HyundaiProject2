@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.chysk5.domain.TalksDTO;
 import com.chysk5.service.TalksService;
@@ -21,7 +22,6 @@ public class TalksMapperTest {
 	
 	@Setter(onMethod_ = @Autowired)
 	private TalksMapper mapper;
-	private TalksService service;
 	
 	@Test
 	public void selectTalksList() {
@@ -45,6 +45,14 @@ public class TalksMapperTest {
 		
 	}
 	
+	@Test
+	public void deleteTest() throws Exception {
+		
+		String resultPage = delete.perform(MockMvcRequestBuilders.post("talks/delete").param("talks_id", "3")
+				).andReturn().getTalksList().getViewName();
+		log.info(resultPage);
+		log.info("DELETE COUNT :" + mapper.delete("3"));
+	}
 
 
 }

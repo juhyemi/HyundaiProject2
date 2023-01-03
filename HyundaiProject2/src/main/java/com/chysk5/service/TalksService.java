@@ -10,5 +10,7 @@ public interface TalksService {
 	
 	public TalksDTO getTalksContent(String talks_id);
 	
+	public boolean delete(String talks_id);
+	
 
 }

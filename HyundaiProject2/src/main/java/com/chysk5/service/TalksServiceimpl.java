@@ -42,5 +42,14 @@ public class TalksServiceimpl implements TalksService {
 		
 		return mapper.getTalksContent(talks_id);	
 	}
+	
+	//talks 게시판 글 삭제
+	@Override
+	public boolean delete(String talks_id) {
+		log.info("deletetalks........." + talks_id);
+		
+		return mapper.delete(talks_id) ==1 ;
+	}
+	
 
 }

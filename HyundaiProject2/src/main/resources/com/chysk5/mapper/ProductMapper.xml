@@ -6,25 +6,10 @@
 
 	<select id="getPList" resultType="com.chysk5.domain.ProductDTO">
 
-		SELECT p.pro_id, p.pro_name,
-		p.pro_category, p.pro_price, i.pro_loc
-		FROM
-		product p,
-		(SELECT
-		product_pro_id, pro_loc
-		FROM (select
-		product_pro_id,
-		pro_loc, rank()
-		OVER(PARTITION BY
-		product_pro_id ORDER
-		BY pro_loc) AS
-		rank from
-		pro_image)
-		WHERE rank = 1
-		) i
-		WHERE p.pro_id = i.product_pro_id
-		AND
-		p.pro_category=#{category}
+		SELECT p.pro_id, p.pro_name, p.pro_category, p.pro_price, i1.loc1, i2.loc2
+		FROM product p, product_list_img1 i1, product_list_img2 i2
+		WHERE i1.product_pro_id = i2.product_pro_id AND p.pro_id = i1.product_pro_id AND p.pro_category = #{category}
+		ORDER BY p.pro_name
 
 	</select>
 
@@ -32,7 +17,8 @@
 		resultType="com.chysk5.domain.ProductDTO">
 
 		SELECT pro_id, pro_name, pro_category, pro_price
-		FROM product
+		FROM
+		product
 		WHERE pro_id = #{pro_id}
 
 	</select>
@@ -44,14 +30,15 @@
 		product_option
 		WHERE product_pro_id = #{pro_id}
 		ORDER BY
-            (
-            CASE pro_opt_size
-            WHEN 'S' THEN 0
-            WHEN 'M' THEN 1
-            WHEN 'L' THEN 2
-            ELSE 3
-            END
-            )
+		(
+		CASE
+		pro_opt_size
+		WHEN 'S' THEN 0
+		WHEN 'M' THEN 1
+		WHEN 'L' THEN 2
+		ELSE 3
+		END
+		)
 
 	</select>
 
@@ -59,9 +46,13 @@
 		resultType="com.chysk5.domain.ProductImgDTO">
 
 		SELECT pro_loc, product_pro_id FROM pro_image
-		WHERE product_pro_id = #{pro_id}
+		WHERE
+		product_pro_id = #{pro_id}
 
 	</select>
+
+
+
 
 
 </mapper>
