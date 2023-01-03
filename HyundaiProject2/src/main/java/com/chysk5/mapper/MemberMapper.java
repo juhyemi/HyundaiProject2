@@ -16,4 +16,7 @@ public interface MemberMapper {
 	
 	// 로그인
 	public MemberDTO read(String mem_id);
+	
+	// 아이디 중복 확인
+	public String checkId(String mem_id);
 }
