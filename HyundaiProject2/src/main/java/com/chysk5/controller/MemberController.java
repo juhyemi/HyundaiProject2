@@ -96,24 +96,28 @@ public class MemberController {
 	
 	// 비밀번호 찾기 페이지
 	@GetMapping("/findPwd")
-	public String find_pwd() {
-		 return "member/findPwd";
-	}
+	public void find_pwd() {}
 	
 	// 비밀번호 찾기 Action
 	@PostMapping("/findPwd")
-	public String findPwdAction(MemberDTO member, Model model) {
+	public MemberDTO findPwdAction(MemberDTO member, Model model) {
 		
 		log.info("find password action...." + member);
 		
 		MemberDTO result = service.findPwd(member);
 		
-		model.addAttribute("member", result);
-		
-		return "member/pwdModify";
+		return result;
 	}
 	
-//	@GetMapping("/pwdModify")
-//	public void 
+	@GetMapping("/pwdModify")
+	public void pwdModify() {}
+	
+	@PostMapping("/pwdModify")
+	public void pwdModifyAction(MemberDTO member) {
+		
+		log.info("modify password .... " + member);
+		
+	
+	}
 	
 }

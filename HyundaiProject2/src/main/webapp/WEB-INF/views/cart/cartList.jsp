@@ -238,10 +238,8 @@
 			<div class="xans-element- xans-order xans-order-totalsummary ">
 				<div
 					class="xans-element- xans-order xans-order-totalorder btn-block ">
-					<button type="button" class="btn btn-md btn-white btn-full"
-						onclick="Basket.orderSelectBasket(this)"
-						link-order="/order/orderform.html?basket_type=all_buy"
-						link-login="/member/login.html">
+					<button type="button" id="orderform" class="btn btn-md btn-white btn-full"
+						onclick=" window.open('/order/orderForm', '_parent')">
 						<span>선택상품 주문</span>
 					</button>
 					<!-- 네이버 체크아웃 구매 버튼  -->
@@ -260,6 +258,13 @@
 	$("input:checkbox[id='one']").prop("checked", false);
 	
 	</script> -->
+	<script>
+/* 	$('#orderform').click(){
+		  window.location.href ='/order/orderForm';
+	}; */
+	</script> 
 </body>
+
+
 </html>
 </html>

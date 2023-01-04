@@ -10,7 +10,7 @@ import com.chysk5.domain.CartDTO;
 @Mapper
 public interface OrderMapper {
 	
-	
-	public List<CartDTO> orderList(String mem_id,String cart_select);
+	/* 주문양식 주문 물품 조회 */
+	public List<CartDTO> orderFormList(String mem_id);
 }
 
