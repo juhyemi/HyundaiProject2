@@ -8,16 +8,53 @@
 <%@ include file="../include/header2.jsp"%>
 
 <script type="text/javascript">
-function frmSubmit(){
-	$("#findPasswdForm").submit();
-}
-
+$(document).ready(function(){
+	
+	$("#findBtn").on("click", function(){
+		
+		var csrfHeadName="${_csrf.headerName}";
+	    var csrfTokenValue="${_csrf.token}";
+		
+	    var mem_id = $("#member_id").val();
+		var mem_name = $("#name").val();
+		var mem_email = $("#email").val();
+		
+		$.ajax({
+			
+			url : "/member/findPwd",
+			type : "post",
+			data : {
+				mem_id : mem_id,
+				mem_name : mem_name,
+				mem_email : mem_email
+			},
+			beforeSend : function(xhr) {
+		        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+		    },
+		    success : function(result){
+		    	if(result == null){
+		    		alert("일치하는 회원 정보가 없습니다.");
+		    	}else{
+		    		window.location.href = "/member/pwModify"
+		    	}
+		    },
+		    error : function(error){
+		    	console.log(error);	
+		    }
+		});
+		
+		
+		
+	});
+	
+	
+});
 </script>
 
 <div id="wrap">
 	<div id="container">
 		<div id="contents">
-			<form id="findPasswdForm" action="/member/findPwd method="post" >
+			
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<input id="nextUrl" name="nextUrl"
 					value="/member/passwd/find_passwd_question.html" type="hidden">
@@ -53,14 +90,13 @@ function frmSubmit(){
 
 						</fieldset>
 						<div class="btn-group-center mt40">
-							<button type="button" class="btn btn-md btn-dark btn-pd32" onclick="frmSubmit();">
+							<button type="button" class="btn btn-md btn-dark btn-pd32" id="findBtn">
 								<span>확인</span>
 							</button>
 						</div>
 
 					</div>
 				</div>
-			</form>
 		</div>
 	</div>
 </div>
