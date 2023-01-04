@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.service.MyPageService;
@@ -66,11 +67,12 @@ public class MypageController {
 		return "mypage/myResellPage";
 	}
 	
-	@DeleteMapping(value="/{re_id}")
-	public int removeMyResellProduct(@PathVariable("re_id") String re_id) {
-		
+	@ResponseBody
+	@DeleteMapping(value="/myResell/{re_id}")
+	public void removeMyResellProduct(@PathVariable("re_id") String re_id) {
+		log.info("hello");
 		int result = service.removeMyResellProduct(re_id);
 		
-		return 0;
+		return;
 	}
 }

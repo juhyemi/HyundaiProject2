@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>	
-	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/mypage.css">
-<link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/mypage/mypage.css">
+<link rel="stylesheet" type="text/css" href="/js/slick/slick.css"
+	crossorigin="anonymous">
 
 <div id="wrap">
 	<div id="container">
@@ -34,7 +37,8 @@
 							<li class="js-recent"><a
 								href="/product/recent_view_product.html">최근 본 상품</a></li>
 							<li class="js-modify"><a href="/member/modify.html">내 계정</a></li>
-							<li class="js-modify"><a href="/member/modify.html">나의 판매 목록</a></li>
+							<li class="js-modify"><a href="/member/modify.html">나의
+									판매 목록</a></li>
 							<li><a href="/exec/front/Member/logout/">로그아웃</a></li>
 						</ul>
 					</div>
@@ -51,8 +55,8 @@
 							class="xans-element- xans-myshop xans-myshop-orderhistorytab order-tab ">
 							<ul class="menu">
 								<li class="tab_class selected"><a
-									href="/myshop/order/list.html?history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">판매 내역 조회
-										<sup>(<span id="xans_myshop_total_orders">1</span>)
+									href="/myshop/order/list.html?history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">판매
+										내역 조회 <sup>(<span id="xans_myshop_total_orders">1</span>)
 									</sup>
 								</a></li>
 								<li class="tab_class_cs"><a
@@ -60,7 +64,7 @@
 										내역 <sup>(<span id="xans_myshop_total_orders_cs">0</span>)
 									</sup>
 								</a></li>
-								
+
 							</ul>
 						</div>
 
@@ -116,60 +120,65 @@
                         $count = 10
                     -->
 							<div class="">
-							
-					<c:forEach var="List" items="${myResellList }">
-											
-										
-								<div class="items-block xans-record-">
-									<div class="item-header ">
-										<ul class="info-block">
-											<li class="first">
-												<ul>
-													<li class="sub-title">등록 날짜</li>
-													<li class="value">${List.re_regdate} </li>
-													
-													<!--  
+
+								<c:forEach var="List" items="${myResellList }" varStatus="count">
+
+
+									<div class="items-block xans-record" id="resell${count.index }">
+										<div class="item-header ">
+											<ul class="info-block">
+												<li class="first">
+													<ul>
+														<li class="sub-title">등록 날짜</li>
+														<li class="value">${List.re_regdate}</li>
+
+														<!--  
 													<li class="sub-title">주문번호</li>
 													<li class="value"><a
 														href="/myshop/order/detail.html?order_id=20221229-0003219&amp;page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29"
 														class="line">20221229-0003219</a></li>
 														 -->
-														 
-													<li class="sub-title">판매 예정 금액</li>
-													<li class="value only-pc"><fmt:formatNumber value="${List.re_price }" type="number"/></li>
-												</ul>
-											</li>
-											<li class="last only-pc">
-												<ul>
-													<li class=""><a class="btn btn-sm btn-gray btn-pd16" id="cancelBtn"
-														href="#none" data-reid="${List.re_id }"><span>등록 취소</span></a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</div>
 
-									<div class="item-prod">
-										<div class="block">
-											<div class="thumb">
-												<a
-													href="/product/detail.html?product_no=3363&amp;cate_no=26"><img
-													src="${List.pro_loc }"
-													onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"
-													alt=""></a>
-											</div>
-											<div class="item-desc">
-												<div class="detail">
-													<div class="name">
-														<a
-															href="/product/detail.html?product_no=3363&amp;cate_no=26">${List.pro_name }</a>
-													</div>
-													<div class="option ">[옵션: ${List.pro_opt_size } ]</div>
-													<div class="price text-center">판매 가격: <fmt:formatNumber value="${List.re_price }" type="number"/>
-													</div>
-													
-													
-													<!-- 
+														<li class="sub-title">판매 예정 금액</li>
+														<li class="value only-pc"><fmt:formatNumber
+																value="${List.re_price }" type="number" /></li>
+													</ul>
+												</li>
+												<li class="last only-pc">
+													<ul>
+														<li class=""><a
+															class="btn btn-sm btn-gray btn-pd16 cancelBtn"
+															href="#none"
+															onclick="cancelResell(${List.re_id }, ${count.index })"><span>등록
+																	취소</span></a></li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+
+										<div class="item-prod">
+											<div class="block">
+												<div class="thumb">
+													<a
+														href="/product/detail.html?product_no=3363&amp;cate_no=26"><img
+														src="${List.pro_loc }"
+														onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"
+														alt=""></a>
+												</div>
+												<div class="item-desc">
+													<div class="detail">
+														<div class="name">
+															<a
+																href="/product/detail.html?product_no=3363&amp;cate_no=26">${List.pro_name }</a>
+														</div>
+														<div class="option ">[옵션: ${List.pro_opt_size } ]</div>
+														<div class="price text-center">
+															판매 가격:
+															<fmt:formatNumber value="${List.re_price }" type="number" />
+														</div>
+
+
+														<!-- 
 													<div class="btn-block only-mobile">
 														<ul>
 															<li class=""><a class="btn btn-sm btn-gray btn-pd16"
@@ -191,23 +200,22 @@
 														</ul>
 													</div>
 													 -->
-													
+
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="status">
-								
-											 <button type="button"
-												class="btn btn-sm btn-gray btn-pd16">
-												<span>등록 취소</span>
-											</button>
-											
-											<!-- 
+											<div class="status">
+
+												<button type="button" class="btn btn-sm btn-gray btn-pd16">
+													<span>가격 수정</span>
+												</button>
+
+												<!-- 
 											<p class="displaynone">
 												<a href="#none" class="line" onclick="">[]</a>
 											</p>
 											 -->
-											<!-- 
+												<!-- 
 											<button type="button"
 												class="btn btn-sm btn-gray btn-pd16 displaynone"
 												onclick="OrderHistory.withdraw('C','20221229-0003219|3363|000B|495111','F', 'F', 'F', '' , '')">
@@ -229,15 +237,15 @@
 												<span>상세정보</span>
 											</button>
 											 -->
+											</div>
 										</div>
 									</div>
-								</div>
-								
-								
-		</c:forEach>
+
+
+								</c:forEach>
 
 							</div>
-							
+
 							<!-- 등록한 상품 내역이 없을 경우 -->
 							<div class="empty-block mt40 displaynone">
 								<div class="empty-icon-block line">
@@ -246,8 +254,8 @@
 									</div>
 								</div>
 							</div>
-							
-							
+
+
 							<!-- 페이징 처리 -->
 							<div
 								class="xans-element- xans-myshop xans-myshop-orderhistorypaging paginate">
@@ -274,10 +282,34 @@
 </div>
 
 <script>
-function removeMyResell() {
+
+function cancelResell(re_id, count) {
 	
-	let re_id = $(this).data("reid");
-	console.log("*************sre_id: " + re_id)
+	console.log("re_id" + re_id);
+	console.log("count: " + count);
+	
+	   var csrfHeadName="${_csrf.headerName}";
+	   var csrfTokenValue="${_csrf.token}";
+	
+	   if(confirm('해당 상품을 삭제하시겠습니까?'))
+		{
+		   	$.ajax({
+		      type: "delete",
+		      url: "/mypage/myResell/" + re_id,
+		      beforeSend : function(xhr) {
+		           xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+		       },
+		      data: re_id,
+		      success: function(data) {
+		    	  $('div'+"#resell"+count).fadeOut();
+		      },
+		      error : function(error){
+		          console.log(error);   
+		       }
+		   })
+	   
+		}
+
 }
 
 </script>
