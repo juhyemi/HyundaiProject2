@@ -75,6 +75,25 @@
 	<select id="getResellProductListImg" resultType="com.chysk5.domain.ResellProductImgDTO">
 		select * from pro_image where product_pro_id = #{proId}
 	</select>
+	
+	<select id="getResellProductDetail" resultType="com.chysk5.domain.ResellProductDetailInfoDTO">
+		select pro_id, pro_name,pro_category, pro_price
+		from product
+		where pro_id = #{proId}
+	</select>
+
+	<select id="getResellProductDetailImgs" resultType="com.chysk5.domain.ResellProductImgDTO">
+		select *
+		from pro_image
+		where product_pro_id = #{proId}
+	</select>
+	
+	<select id="getResellProductDetailSizes" resultType="com.chysk5.domain.ResellProductSizeDTO">
+		select pro_opt_size
+		from resell_pro_detail_size
+		where pro_id = #{proId}
+	</select>
+	
 
 </mapper>
   
