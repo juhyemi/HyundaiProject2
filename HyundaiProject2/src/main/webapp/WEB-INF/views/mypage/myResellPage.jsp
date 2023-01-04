@@ -125,33 +125,24 @@
 										<ul class="info-block">
 											<li class="first">
 												<ul>
-													<li class="sub-title">주문일</li>
-													<li class="value">2022-12-29</li>
+													<li class="sub-title">등록 날짜</li>
+													<li class="value">${List.re_regdate} </li>
+													
+													<!--  
 													<li class="sub-title">주문번호</li>
 													<li class="value"><a
 														href="/myshop/order/detail.html?order_id=20221229-0003219&amp;page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29"
 														class="line">20221229-0003219</a></li>
+														 -->
+														 
 													<li class="sub-title">판매 예정 금액</li>
 													<li class="value only-pc"><fmt:formatNumber value="${List.re_price }" type="number"/></li>
 												</ul>
 											</li>
 											<li class="last only-pc">
 												<ul>
-													<li class=""><a class="btn btn-sm btn-gray btn-pd16"
-														href="#none"
-														onclick="OrderHistory.orderCancel('20221229-0003219')"><span>주문취소</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/cancel.html?order_id=20221229-0003219"><span>취소신청</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/exchange.html?order_id=20221229-0003219"><span>교환신청</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/return.html?order_id=20221229-0003219"><span>반품신청</span></a>
+													<li class=""><a class="btn btn-sm btn-gray btn-pd16" id="cancelBtn"
+														href="#none" data-reid="${List.re_id }"><span>등록 취소</span></a>
 													</li>
 												</ul>
 											</li>
@@ -163,7 +154,7 @@
 											<div class="thumb">
 												<a
 													href="/product/detail.html?product_no=3363&amp;cate_no=26"><img
-													src="//matinkim.com/web/product/medium/202210/cfffd3ceb36503e835b741758741e29d.jpg"
+													src="${List.pro_loc }"
 													onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"
 													alt=""></a>
 											</div>
@@ -281,5 +272,14 @@
 		</div>
 	</div>
 </div>
+
+<script>
+function removeMyResell() {
+	
+	let re_id = $(this).data("reid");
+	console.log("*************sre_id: " + re_id)
+}
+
+</script>
 
 <%@ include file="../include/footer.jsp"%>

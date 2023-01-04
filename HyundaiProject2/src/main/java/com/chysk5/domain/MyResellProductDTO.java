@@ -9,4 +9,6 @@ public class MyResellProductDTO {
 	private int re_price;
 	private String pro_name;
 	private String pro_opt_size;
+	private String pro_loc;
+	private String re_id;
 }
