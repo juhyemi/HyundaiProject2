@@ -8,7 +8,8 @@
 <body class="product-detail">
 
 	<%@ include file="../include/header2.jsp"%>
-	<script type="text/javascript">
+
+<script type="text/javascript">
 $(document).ready(function(){
 	 $(".pro_opt_size").click(function (){
 		 $(".pro_opt_size").removeClass("ec-product-selected");
@@ -32,7 +33,7 @@ $(document).ready(function(){
 							<div class="xans-element- xans-product xans-product-image ">
 
 								<div class="only-pc">
-									
+
 									<ul class="xans-element- xans-product xans-product-addimage prdImages add">
 										<li class="displaynone xans-record-"><a href="javascript:void(0);">
 												<img src="/resources/images/2.jpg" class="ThumbImage" alt="">
@@ -52,19 +53,19 @@ $(document).ready(function(){
 								<div class="xans-element- xans-product xans-product-headcategory ">
 									<ul class="category">
 										<li><a href="/">Shop</a></li>
-										<li class=""><em>/</em>
-										<a href="/product/list/${product.pro_category }"><c:out value = "${product.pro_category}" /></a></li>
-										<li class="displaynone"><em>/</em>
-										<a href=""></a></li>
+										<li class=""><em>/</em> <a href="/product/list/${product.pro_category }">
+												<c:out value="${product.pro_category}" />
+											</a></li>
+										<li class="displaynone"><em>/</em> <a href=""></a></li>
 										<li class="displaynone"><em>/</em><strong><a href=""></a></strong></li>
 									</ul>
 								</div>
 
 								<div class="xans-element- xans-product xans-product-detaildesign product-detail-block">
 									<p class="product_name_css xans-record-">
-										<span class="title"><span style="font-size: 18px; color: #000000; font-weight: bold;">상품명</span></span> <span class="value" ><span style="font-size: 18px; color: #000000; font-weight: bold;"><c:out value="${product.pro_name}"/></span></span>
-                                        <input id="pro_name" type="hidden" value='<c:out value="${product.pro_name}"/>'/>   
-                                        <input id="pro_id" type="hidden" value='<c:out value="${product.pro_id}"/>'/>   
+										<span class="title"><span style="font-size: 18px; color: #000000; font-weight: bold;">상품명</span></span> <span class="value"><span style="font-size: 18px; color: #000000; font-weight: bold;"><c:out value="${product.pro_name}" /></span></span>
+										<input id="pro_name" type="hidden" value='<c:out value="${product.pro_name}"/>' />
+										<input id="pro_id" type="hidden" value='<c:out value="${product.pro_id}"/>' />
 									</p>
 									<p class="ma_product_code_css xans-record-">
 										<span class="title"><span style="font-size: 12px; color: #555555;">자체상품코드</span></span>
@@ -83,8 +84,7 @@ $(document).ready(function(){
 									</ul>
 									<p></p>
 									<p class="product_price_css xans-record-">
-										<span class="title"><span style="font-size: 14px; color: #000000;">판매가</span></span> <span class="value"><span style="font-size: 14px; color: #000000;"><strong id="span_product_price_text" style="text-decoration: line-through;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_price}" /></strong>
-											<input id="product_price" name="product_price" value="" type="hidden"></span></span>
+										<span class="title"><span style="font-size: 14px; color: #000000;">판매가</span></span> <span class="value"><span style="font-size: 14px; color: #000000;"><strong id="span_product_price_text" style="text-decoration: line-through;"><fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_price}" /></strong> <input id="product_price" name="product_price" value="" type="hidden"></span></span>
 									</p>
 									<p class="product_custom_css xans-record-">
 										<span class="title"><span style="font-size: 13px; color: #555555;">소비자가</span></span> <span class="value"><span style="font-size: 13px; color: #555555;"><span id="span_product_price_custom" class="displaynone"><strike>188,000</strike></span></span></span>
@@ -121,7 +121,7 @@ $(document).ready(function(){
 									<div class="option-block">
 										<ul option_product_no="3492" option_select_element="ec-option-select-finder" option_sort_no="1" option_type="T" item_listing_type="C" option_title="SIZE" product_type="product_option" product_option_area="product_option_3492_0" option_style="button" ec-dev-id="product_option_id1" ec-dev-name="option1" ec-dev-class="ProductOption0" class="ec-product-button" required="true">
 											<c:forEach var="sizeList" items="${sizeList }">
-												<li class="pro_opt_size" option_value="P0000FEI000A"  title="${sizeList.pro_opt_size}"><a href="#none">
+												<li class="pro_opt_size" option_value="P0000FEI000A" title="${sizeList.pro_opt_size}"><a href="#none">
 														<span><c:out value="${sizeList.pro_opt_size }" /></span>
 													</a></li>
 											</c:forEach>
@@ -133,7 +133,7 @@ $(document).ready(function(){
 							</div>
 							<div class="xans-element- xans-product xans-product-action product-action-block">
 								<div class="buy-block ">
-								<button type="button" class="btn btn-order btn-dark btn-full" >
+									<button type="button" class="btn btn-order btn-dark btn-full">
 										<span id="btn_Buy">ADD TO CART</span>
 									</button>
 									<!-- <button type="button" class="btn btn-order btn-dark btn-full " onclick="product_submit_action(1, '/exec/front/order/basket/', this)">
@@ -291,6 +291,8 @@ $(document).ready(function(){
 
 
 
+</script>
+<script>
 
 		     var csrfHeadName="${_csrf.headerName}";
 		     var csrfTokenValue="${_csrf.token}";
@@ -340,7 +342,7 @@ $(document).ready(function(){
 			    
 
 			});
-		</script>
+</script>
 
 	<%@ include file="../include/footer.jsp"%>
 </body>

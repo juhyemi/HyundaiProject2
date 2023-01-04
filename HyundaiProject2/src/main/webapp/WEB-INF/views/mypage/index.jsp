@@ -75,8 +75,6 @@
 											<td class="xans-element- xans-myshop xans-myshop-benefit "><span>신수진</span></td>
 										</tr>
 										<tr>
-
-f
 										</tr>
 										<tr>
 											<th>총 구매 금액</th>

@@ -26,5 +26,7 @@ public interface MemberMapper {
 	// 비밀번호 찾기
 	public MemberDTO findPwd(MemberDTO member);
 	
-
+	// 비밀번호 변경
+	
+	
 }
