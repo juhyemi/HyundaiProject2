@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
+import com.chysk5.domain.ResellProductDetailInfoDTO;
 import com.chysk5.domain.ResellProductInfoDTO;
 import com.chysk5.domain.ResellProductListDTO;
 import com.chysk5.service.ResellService;
@@ -53,13 +54,16 @@ public class ResellController {
 	
 	
 	@GetMapping("/{proId}")
-	public String getResellProductDetail(@PathVariable String proId) {
+	public String getResellProductDetail(@PathVariable String proId,Model model) {
 		
 		log.info(">>>>>>>>>>>> getResellProductDetail 컨트롤러 호출");
 		log.info(proId);
 		
+		ResellProductDetailInfoDTO dto = service.getResellProductListDetail(proId);
 		
+		model.addAttribute("productDetail", dto);
 		
+		log.info("데이터 전달 성공 : "+ dto);
 		
 		return "resell/resellProductDetail";
 	}

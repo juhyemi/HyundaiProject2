@@ -18,6 +18,6 @@ public interface ResellService {
 
 	
    public List<ResellProductListDTO> getResellProductList();
-   public List<ResellProductDetailInfoDTO> getResellProductListDetail();
+   public ResellProductDetailInfoDTO getResellProductListDetail(String proId);
 	
 }
