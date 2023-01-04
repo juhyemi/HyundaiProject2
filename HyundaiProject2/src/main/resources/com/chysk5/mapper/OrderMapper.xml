@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chysk5.mapper.OrderMapper">
+
+<!-- 주문양식 주문 물품 조회 -->
+<select id="orderFormList" resultType="com.chysk5.domain.CartDTO">
+<![CDATA[
+select c.*,p.pro_name,p.pro_price,po.pro_opt_size,po.pro_opt_stock,pi.pro_loc
+from cart c, product p, product_option po,(
+select pro_loc, product_pro_id from(
+select pro_loc, product_pro_id,row_number()over(partition by product_pro_id order by pro_Loc) as rownumber
+from pro_image)
+where rownumber<=1
+order by product_pro_id
+) pi
+where p.pro_id= pi.product_pro_id
+   and p.pro_id =po.product_pro_id
+   and po.pro_opt_id=c.product_option_pro_opt_id
+   and c.cart_select='1'
+  and c.member_mem_id =#{mem_id}
+]]>
+</select>
+
+</mapper>
