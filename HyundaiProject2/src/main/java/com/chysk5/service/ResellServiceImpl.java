@@ -12,6 +12,7 @@ import com.chysk5.domain.ResellProductDetailInfoDTO;
 import com.chysk5.domain.ResellProductImgDTO;
 import com.chysk5.domain.ResellProductInfoDTO;
 import com.chysk5.domain.ResellProductListDTO;
+import com.chysk5.domain.ResellProductSizeDTO;
 import com.chysk5.mapper.ResellMapper;
 
 import lombok.AllArgsConstructor;
@@ -97,9 +98,17 @@ public class ResellServiceImpl implements ResellService {
 	}
 
 	@Override
-	public List<ResellProductDetailInfoDTO> getResellProductListDetail() {
-		// TODO Auto-generated method stub
-		return null;
+	public ResellProductDetailInfoDTO getResellProductListDetail(String proId) {
+		
+		ResellProductDetailInfoDTO dto = mapper.getResellProductDetail(proId);
+		
+		List<ResellProductImgDTO> list1 = mapper.getResellProductDetailImgs(proId);
+		dto.setListImg(list1);
+		
+		List<ResellProductSizeDTO> list2 = mapper.getResellProductDetailSizes(proId);
+		dto.setListSize(list2);
+		
+		return dto;
 	}
 	
 	

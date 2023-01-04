@@ -19,6 +19,7 @@ where p.pro_id= pi.product_pro_id
   and p.pro_id =po.product_pro_id
   and po.pro_opt_id=c.product_option_pro_opt_id
   and c.member_mem_id =#{mem_id}
+order by c.cart_regdate desc
 ]]>
 </select>
 

@@ -27,38 +27,12 @@
 									<ul
 										class="xans-element- xans-product xans-product-image prdImages first ">
 										<li><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/medium/202212/b0e0f072ffa87b784aa10c8dfb3c15ac.jpg"
+												src="${productDetail.listImg.get(0).pro_loc}"
 												class="ThumbImage" alt=""></a></li>
 									</ul>
-									<ul
-										class="xans-element- xans-product xans-product-addimage prdImages add">
-										<li class="displaynone xans-record-"><a
-											href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/small/202212/9b4f15762c8af66afee1fd63d5ad3c96.jpg"
-												class="ThumbImage" alt=""></a></li>
-										<li class="xans-record-"><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/extra/small/202212/cbd3d598de93bc92ffeb363f6fc0a2fe.jpg"
-												class="ThumbImage" alt=""></a></li>
-										<li class="xans-record-"><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/extra/small/202212/63b33ea4c7bdde56b2c330a13c2d3a0f.jpg"
-												class="ThumbImage" alt=""></a></li>
-										<li class="xans-record-"><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/extra/small/202212/1a40a1b209673119da6f7bff22a47c1c.jpg"
-												class="ThumbImage" alt=""></a></li>
-										<li class="xans-record-"><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/extra/small/202212/27f872d87591473e8f93b04aa9685c70.jpg"
-												class="ThumbImage" alt=""></a></li>
-										<li class="xans-record-"><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/extra/small/202212/218a98f4c254bfd4575063fd04345970.jpg"
-												class="ThumbImage" alt=""></a></li>
-										<li class="xans-record-"><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/extra/small/202212/ef9bc8f423eaa0dd442eaec6e8f0015d.jpg"
-												class="ThumbImage" alt=""></a></li>
-										<li class="xans-record-"><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/extra/small/202212/9ac46a2a27f802fbff5f5167a09ad139.jpg"
-												class="ThumbImage" alt=""></a></li>
-										<li class="xans-record-"><a href="javascript:void(0);"><img
-												src="//matinkim.com/web/product/extra/small/202212/10a5058a634c5d58ffc8bef33a4f73c5.jpg"
+									<ul class="xans-element- xans-product xans-product-addimage prdImages add">
+										 <li class="xans-record-"><a href="javascript:void(0);"><img
+												src="${productDetail.listImg.get(1).pro_loc}"
 												class="ThumbImage" alt=""></a></li>
 									</ul>
 								</div>
@@ -70,7 +44,7 @@
 									class="xans-element- xans-product xans-product-headcategory ">
 									<ul class="category">
 										<li><a href="/">PersonalSelling</a></li>
-										<li class=""><em>/</em><a href="/category/tops/27/">Tops</a>
+										<li class=""><em>/</em><a href="/product/list/${productDetail.pro_category}"><c:out value="${productDetail.pro_category}"></c:out></a>
 										</li>
 										<li class="displaynone"><em>/</em><a href=""></a></li>
 										<li class="displaynone"><em>/</em><strong><a
@@ -84,14 +58,14 @@
 										<span class="title"><span
 											style="font-size: 18px; color: #000000; font-weight: bold;">상품명</span></span>
 										<span class="value"><span
-											style="font-size: 18px; color: #000000; font-weight: bold;">LINE
-												POINTED HOODY ZIP CARDIGAN IN BLACK</span></span>
+											style="font-size: 18px; color: #000000; font-weight: bold;"><c:out value="${productDetail.pro_name }"></c:out></span></span>
 									</p>
 									<p class="ma_product_code_css xans-record-">
 										<span class="title"><span
 											style="font-size: 12px; color: #555555;">자체상품코드</span></span>
 
 									</p>
+									<!-- 
 									<p class="summary_desc_css xans-record-">
 										<span class="title"><span
 											style="font-size: 12px; color: #555555;">상품요약정보</span></span> <span
@@ -99,12 +73,13 @@
 											style="font-size: 12px; color: #555555;">포근하고 부드러운 촉감의
 												입체감이 있는 텍스처, 후드와 배색이 포인트인 투웨이 후드 가디건</span></span>
 									</p>
+									 -->
 									<p class="prd_price_sale_css xans-record-">
 										<span class="title"><span
 											style="font-size: 14px; color: #000000; font-weight: bold;">할인판매가</span></span>
 										<span class="value"><span><span
-												style="font-size: 14px; color: #000000; font-weight: bold;"><span
-													id="span_product_price_sale">169,200 </span></span></span></span>
+												style="font-size: 14px; color: #000000;"><span
+													id="span_product_price_sale">사이즈를 선택해주세요 </span></span></span></span>
 									</p>
 									<ul class="discountMember">
 										<li><a href="#"><img
@@ -184,7 +159,7 @@
 							</div>
 
 							<div class="js-option-color-block active">
-								<div class="option-title">Color</div>
+								<div class="option-title">발매가</div>
 								<div class="option-color-block">
 									<div id="self-option" class="displaynone"></div>
 									<div
@@ -192,15 +167,17 @@
 										<div
 											class="xans-element- xans-product xans-product-relationlist">
 											<div class="items js-option-color">
+												<!-- 
 												<span prod-no="" class=" active null" alt="BLACK"
 													title="BLACK" style="color: rgb(0, 0, 0);">BLACK</span> <span
 													id="pcode-P0000FEJ" class="border" prod-no="3493"
 													alt="IVORY" title="IVORY"
 													style="color: rgb(255, 255, 240);">IVORY</span>
+												 -->
 											</div>
 										</div>
 									</div>
-									<p class="selected-item">black</p>
+									<p class="selected-item"><fmt:formatNumber value="${productDetail.pro_price}" pattern="#,###"/></p>
 								</div>
 							</div>
 							<div
