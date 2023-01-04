@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-	integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/product/c1.css">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/product/c2.css">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/product/productDetail.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/product/c1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/product/c2.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/product/productDetail.css">
 </head>
 <body class="product-detail">
 
@@ -18,19 +11,100 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	 $(".pro_opt_size").click(function (){
-		 $(".pro_opt_size").removeClass("ec-product-selected");
-		 $(this).addClass("ec-product-selected");	   
-	 }
-	 
-	  
-     if ($('.option-block ul li').length === 1) {        
-                 $('.option-block ul li a').addClass("ec-product-selected");
-         }
-   
 	
+	var a = $(".pro_opt_size").length;
+
+	
+	if (a === 1) {        
+            $('.pro_opt_size').addClass("ec-product-selected");
+    }else{
+    	
+    	$(".pro_opt_size").on("click", function(){
+    		
+        	$(".pro_opt_size").removeClass("ec-product-selected");
+			$(this).addClass("ec-product-selected");	   
+    	}); 
+    } 
+	 
 });
+
+function smsRestockClose() {
+    $('.sms-restock-iframe').removeClass('active').css('height', '0px').attr('src', '/blank.html');
+}
+
+function infoAct(target) {
+    $('.info-tab li, .info-desc').removeClass('active');
+    $('.js-' + target).addClass('active');
+    $('#' + target).addClass('active');
+}
+
+function product_submit_action(a, b, c) {
+    // 옵션 체크
+    var optionCnt = $('.xans-product-option ul').length;
+    var cnt = $('.option-block').find('li.ec-product-selected').length;
+
+    // console.log('optionCnt',optionCnt);
+
+    if (optionCnt > 0 && cnt <= 0) {
+        return alert('옵션을 선택해주세요');
+    }
+
+    product_submit(a, b, c);
+}
+
+$(document).ready(function(){
+
+     var csrfHeadName="${_csrf.headerName}";
+     var csrfTokenValue="${_csrf.token}";
+     
+	$('#btn_Buy').click(function() {
+		var proid =$('#pro_id').val();			
+	   var proname=$('#pro_name').val();		        
+	    alert(proname);
+	    alert(proid);
+		var pro_opt_size="S";	
+		var data = {
+		    pro_id : proid,
+		    pro_name : proname,
+		    pro_opt_size : pro_opt_size
+		};			
+		
+		$.ajax({
+			url : "/cartAjax/addCart",
+			type : "post",
+			data : data,
+			beforeSend : function(xhr) {
+		        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+		    },
+			success : function(result) {
+				if(result=="update"){
+					console.log("수량증가");
+					alert("카트존재 수량 증가");
+				}/* else if(result=="login"){
+					alert("login 필요");
+					window.location.replace('/member/login');
+				} */
+				else{
+					console.log("카트담기 성공");
+					alert("카트 담기 성공");
+				}
+				window.top.document.getElementById('basketIframe').contentWindow.location.replace('/cart/cartList');
+				$('.basket-wrap-iframe').addClass('active');
+				$('html').addClass('fixed');
+				$('body').addClass('fixed');
+			},
+			error : function() {
+				alert("카트 담기 실패");
+			}
+			
+		 }); 
+	});
+});
+
+
+
  </script>
+ 
 	<div id="wrap">
 		<div id="container">
 			<div id="contents">
@@ -41,8 +115,6 @@ $(document).ready(function(){
 							<div class="xans-element- xans-product xans-product-image ">
 
 								<div class="only-pc">
-
-
 									<ul class="xans-element- xans-product xans-product-addimage prdImages add">
 										<li class="displaynone xans-record-"><a href="javascript:void(0);">
 												<img src="/resources/images/2.jpg" class="ThumbImage" alt="">
@@ -76,11 +148,9 @@ $(document).ready(function(){
 								<div
 									class="xans-element- xans-product xans-product-detaildesign product-detail-block">
 									<p class="product_name_css xans-record-">
-										<span class="title"><span style="font-size: 18px; color: #000000; font-weight: bold;">상품명</span></span> 
-                    <span class="value"><span style="font-size: 18px; color: #000000; font-weight: bold;"><c:out value="${product.pro_name}" /></span></span>
+										<span class="title"><span style="font-size: 18px; color: #000000; font-weight: bold;">상품명</span></span> <span class="value"><span style="font-size: 18px; color: #000000; font-weight: bold;"><c:out value="${product.pro_name}" /></span></span>
 										<input id="pro_name" type="hidden" value='<c:out value="${product.pro_name}"/>' />
 										<input id="pro_id" type="hidden" value='<c:out value="${product.pro_id}"/>' />
-
 									</p>
 									<p class="ma_product_code_css xans-record-">
 										<span class="title"><span
@@ -115,7 +185,6 @@ $(document).ready(function(){
                     <span class="value"><span style="font-size: 14px; color: #000000;"><strong id="span_product_price_text" style="text-decoration: line-through;">
                     <fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_price}" /></strong> 
                     <input id="product_price" name="product_price" value="" type="hidden"></span></span>
-
 									</p>
 									<p class="product_custom_css xans-record-">
 										<span class="title"><span
@@ -343,6 +412,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 
+
 	<script>
 
    
@@ -453,6 +523,7 @@ $(document).ready(function(){
 
 			});
 </script>
+
 
 	<%@ include file="../include/footer.jsp"%>
 </body>

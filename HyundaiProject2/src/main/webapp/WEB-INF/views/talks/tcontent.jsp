@@ -14,9 +14,8 @@ $(document).ready(function(){
 	 $("#btnDel").click(function (){
 	  var answer = confirm ('해당 글을 삭제하시겠습니까? 삭제 후 되돌리기는 불가능합니다.');
 	  if(answer){
-	
-	    location.replace("delete");
-	    alert("삭제되었습니다.");
+		  
+	    $("#deleteForm").submit();
 	
 	  }
 	 });
@@ -34,7 +33,7 @@ $(document).ready(function(){
 							<div class="title-block">
 								<h2>Talks</h2>
 							</div>
-							<form id="BoardDelForm" name="" action="/exec/front/Board/del/1" method="post" target="_self" enctype="multipart/form-data">
+							
 								<div class="xans-element- xans-board xans-board-read-1 xans-board-read xans-board-1 ">
 									<div class="board-read-block">
 										<ul class="title">
@@ -53,6 +52,10 @@ $(document).ready(function(){
 											<a id="btnDel" href="#" class= "btn btn-sm btn-white btn-pd32 displaynone">
 												<span>Delete</span>
 											</a>
+											<form id="deleteForm" action="/talks/delete" method="post">
+												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+												<input type="hidden" name="talks_id" value="${talksContent.talks_id }">
+											</form>
 
 											<a href="/talks/tlist" class="btn btn-sm btn-dark btn-pd32">
 												<span>Back to List</span>
@@ -60,7 +63,7 @@ $(document).ready(function(){
 										</div>
 									</div>
 								</div>
-							</form>
+							
 						</div>
 					</div>
 				</div>

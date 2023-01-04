@@ -1,7 +1,13 @@
 package com.chysk5.controller;
 
+import java.nio.charset.Charset;
+import java.security.Principal;
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.TalksDTO;
 import com.chysk5.service.TalksService;
@@ -55,14 +60,36 @@ public class TalksController {
 	}
 	
 	//talks 글 삭제
-	@PostMapping("content/delete")
-	public String delete(@RequestParam("talks_id") String talks_id, RedirectAttributes rttr) {
+	@PostMapping("delete")
+	public ResponseEntity<String> delete(@RequestParam() String talks_id) throws Exception {
 		log.info("call talksFrom controller.........");
-		log.info(talks_id);
-		if(service.delete(talks_id)) {
-			rttr.addFlashAttribute("result", "success");
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		
+		int result = service.delete(talks_id);
+		
+		log.info(result);
+		
+		try {
+			if(result > 0) {
+				String msg = "<script>alert('삭제를 성공했습니다'); location.href='/talks/tlist';</script>";
+				
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+			}else {
+				throw new Exception();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('삭제를 실패했습니다.'); location.href='/talks/tlist';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
 		}
-		return "redirect: talks/tlist";
+		
+		return entity;
+		
 	}
 	
 
