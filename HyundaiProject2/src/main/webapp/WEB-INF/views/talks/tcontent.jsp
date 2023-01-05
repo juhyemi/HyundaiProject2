@@ -12,7 +12,7 @@ $(document).ready(function(){
 	
 	
 	 $("#btnDel").click(function (){
-	  var answer = confirm ('해당 글을 삭제하시겠습니까? 삭제 후 되돌리기는 불가능합니다.');
+	  var answer = confirm ('해당 글을 작성하시겠습니까?');
 	  if(answer){
 		  
 	    $("#deleteForm").submit();
@@ -31,7 +31,7 @@ $(document).ready(function(){
 					<div class="cscenter-layout">
 						<div class="xans-element- xans-board xans-board-readpackage-1 xans-board-readpackage xans-board-1 contents-block ">
 							<div class="title-block">
-								<h2>Talks</h2>
+								<h2><a href="/talks/tlist">Fashion Talks</a></h2>
 							</div>
 							
 								<div class="xans-element- xans-board xans-board-read-1 xans-board-read xans-board-1 ">
@@ -54,7 +54,7 @@ $(document).ready(function(){
 											</a>
 											<form id="deleteForm" action="/talks/delete" method="post">
 												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-												<input type="hidden" name="talks_id" value="${talksContent.talks_id }">
+												<input type="hidden" name="talks_id" value="${talksContent.talks_id }" />
 											</form>
 
 											<a href="/talks/tlist" class="btn btn-sm btn-dark btn-pd32">
