@@ -57,7 +57,7 @@
 									<p class="product_name_css xans-record-">
 										<span class="title"><span
 											style="font-size: 18px; color: #000000; font-weight: bold;">상품명</span></span>
-										<span class="value"><span
+										<span class="value"><span id="proName"
 											style="font-size: 18px; color: #000000; font-weight: bold;"><c:out value="${productDetail.pro_name }"></c:out></span></span>
 									</p>
 									<p class="ma_product_code_css xans-record-">
@@ -180,6 +180,8 @@
 									<p class="selected-item"><fmt:formatNumber value="${productDetail.pro_price}" pattern="#,###"/></p>
 								</div>
 							</div>
+							
+							
 							<div
 								class="xans-element- xans-product xans-product-option xans-record-">
 								<div
@@ -194,10 +196,18 @@
 											option_style="button" ec-dev-id="product_option_id1"
 											ec-dev-name="option1" ec-dev-class="ProductOption0"
 											class="ec-product-button" required="true">
-											<li class="" option_value="P0000FEI000A" link_image=""
-												title="사이즈 선택하기"><a href="#none"
-												onclick="size_show_modal();"><span>사이즈 선택하기</span></a></li>
+											
+											<c:forEach var="sizeDTO" items="${productDetail.listSize}">
+												
+												<li class="pro_opt_size" option_value="P0000FEI000A" title=""><a href="#none">
+														<span id="sizeVal"><c:out value="${sizeDTO.pro_opt_size}" /></span>
+												</a></li>
+												
+											</c:forEach>
+										  
 										</ul>
+										
+										
 										<select required="true"
 											product_option_area_select="product_option_3492_0"
 											id="product_option_id1" name="option1" option_title="SIZE"
@@ -209,6 +219,10 @@
 									</div>
 								</div>
 							</div>
+							
+							
+							
+							
 							<div
 								class="xans-element- xans-product xans-product-action product-action-block">
 								<div class="buy-block ">
@@ -286,10 +300,10 @@
 							</div>
 
 
-							<table class="type06">
+							<table class="type06" id="priceTable">
 								<tr>
-									<th scope="row">2022-12-10</th>
-									<td>135,000원</td>
+									<th scope="row" colspan="2">최근 5일 평균 거래가</th>
+									<!-- <td>135,000원</td> -->
 								</tr>
 								<tr>
 									<th scope="row" class="even">최근 날짜 2</th>
@@ -390,5 +404,108 @@
 				</div>
 			</div>
 		</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+	$(".pro_opt_size ").on("click", function(){
+		var sizeVal = $(this).find('span').text();
+		var proName = '<c:out value="${productDetail.pro_name}"/>'
+		
+		let searchOBJ = {
+				"sizeVal" : sizeVal,
+				"proName" : proName
+			}
+		
+		var csrfHeadName="${_csrf.headerName}";
+	    var csrfTokenValue="${_csrf.token}";
+		
+		
+		$.ajax({
+			type: 'post',
+			url : '/resell/price',
+			data : JSON.stringify(searchOBJ),
+			contentType : "application/json; charset=utf-8",
+			dataType : "json",
+			beforeSend : function(xhr) {
+	              xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+	          },
+			success : function(result){
+				var tag = "";
+				var price = parseInt(result.re_low_price);
+				price = price.toLocaleString('ko-KR');
+				//var obj = JSON.parse(result)
+				alert("ajax 성공");
+				alert(price.toLocaleString('ko-KR'));
+				
+				tag+=`<span id="span_product_price_sale">\${price}</span>`
+				
+				$("#span_product_price_sale").html(tag);
+				var tabletag = "";
+				tabletag=`<tr>
+							  <th scope="row" colspan="2">최근 5일 평균 거래가</th>
+						  </tr>`
+				/* 
+				 */
+				for(var i=0; i<result.datePriceList.length;i++){
+					
+					/* 여기부터 하면 됩니다. 0,1,2,3,4 */
+					console.log(result.datePriceList[i].re_selldate)
+					console.log(result.datePriceList[i].avg_price)
+					
+					var avgprice=parseInt(result.datePriceList[i].avg_price);
+					avgprice = avgprice.toLocaleString('ko-KR');
+					
+					if(i%2==0){
+						tabletag+=`
+								<tr>
+									<th scope="row" class="even">\${result.datePriceList[i].re_selldate}</th>
+									<td class="even">\${avgprice}원</td>
+								</tr>
+							   	`
+					}else {
+						tabletag+=`
+								<tr>
+								<th scope="row">\${result.datePriceList[i].re_selldate}</th>
+								<td>\${avgprice}원</td>
+								</tr>
+								`
+					}
+					
+ 
+				}
+				
+				$("#priceTable").html(tabletag);
+				
+				
+			},
+			error : function(result){
+				alert("ajax 실패")
+				
+			}
+		})
+		
+			
+		
+		
+		
+		
+    	$(".pro_opt_size").removeClass("ec-product-selected");
+		$(this).addClass("ec-product-selected");
+		
+		
+	});
+	 
+
+
+	
+});
+
+
+
+
+</script>
+
 
 		<%@ include file="../include/footer.jsp"%>

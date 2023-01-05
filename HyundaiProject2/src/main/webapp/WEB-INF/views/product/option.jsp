@@ -275,6 +275,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 							</div>
+							
 							<div
 								class="xans-element- xans-product xans-product-action product-action-block">
 								<div class="buy-block ">
