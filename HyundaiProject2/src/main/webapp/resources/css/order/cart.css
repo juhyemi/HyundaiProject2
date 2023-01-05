@@ -247,11 +247,11 @@
 }
 
 .basket-wrap .basket-list .items-block li .block .desc .quantity-block button.btn-minus {
-  background-image: url("/img/common/ico-quantity-minus.svg");
+  background-image: url("ico-quantity-minus.svg");
 }
 
 .basket-wrap .basket-list .items-block li .block .desc .quantity-block button.btn-plus {
-  background-image: url("/img/common/ico-quantity-plus.svg");
+  background-image: url("ico-quantity-plus.svg");
 }
 
 .basket-wrap .basket-list .items-block li .block .desc .quantity-block button span {
@@ -1942,7 +1942,7 @@ header .util li a.basket em span {
   #gnb .menu-block.depth1 > ul > li .sub .is-sub a i {
       display: block;
       opacity: 1;
-      background-image: url("/img/common/btn-plus.svg");
+      background-image: url("btn-plus.svg");
       width: 24px;
       height: 24px;
       -webkit-transition: all 0.2s ease-in-out;
@@ -2081,7 +2081,7 @@ input[type=checkbox] {
   border-radius: 0;
   width: 16px;
   height: 16px;
-  background-image: url("/img/common/ico-checkbox.svg");
+  background-image: url("ico-checkbox.svg");
   background-repeat: no-repeat;
   background-position: 0 0;
   -webkit-background-size: 100% 100%;
@@ -2089,7 +2089,7 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:checked {
-  background-image: url("/img/common/ico-checkbox-checked.svg");
+  background-image: url("ico-checkbox-checked.svg");
 }
 
 input[type=checkbox]:focus {

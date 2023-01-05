@@ -140,7 +140,7 @@
           <li class="xans-record-"><a href="/collection-view.html?product_no=2917&amp;cate_no=89&amp;display_group=1"><span><span style="font-size:12px;color:#555555;">2022 Hot Summer</span></span></a></li>
           <li class="xans-record-"><a href="/collection-view.html?product_no=2916&amp;cate_no=89&amp;display_group=1"><span><span style="font-size:12px;color:#555555;">2022 S/S 3rd</span></span></a></li>
           <li class="xans-record-"><a href="/collection-view.html?product_no=2759&amp;cate_no=89&amp;display_group=1"><span><span style="font-size:12px;color:#555555;">2022 S/S 2nd</span></span></a></li>
-          <li class="xans-record-"><a href="/collection-view.html?product_no=3011&amp;cate_no=89&amp;display_group=1"><span><span style="font-size:12px;color:#555555;">2022 S/S Essential</span></span></a></li>
+          <li class="xans-record-"><a href="/collection-view.html?product_no=3011&amp;cate_no=89&amp;display_group=1"><span><span style="font-size:12px;color:#555555;">2022 S/S Essential</span></span></a></li>
           <li class="xans-record-"><a href="/collection-view.html?product_no=2564&amp;cate_no=89&amp;display_group=1"><span><span style="font-size:12px;color:#555555;">2022 S/S 1st</span></span></a></li>
         </ul>
       </div>

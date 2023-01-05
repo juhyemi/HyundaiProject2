@@ -36,21 +36,13 @@ public class CartRestController {
 	@PostMapping("/addCart")
 	public String addCart(Principal prc,@RequestParam("pro_name") String pro_name,@RequestParam("pro_opt_size") String pro_opt_size,@RequestParam("pro_id") String pro_id)throws Exception{
 		String mem_id= prc.getName();
-	    log.info("add cart");
+	    log.info("add cart start");
 	    log.info(pro_name);
-		/*
-		 * Authentication authentication =
-		 * SecurityContextHolder.getContext().getAuthentication(); User user =
-		 * (User)authentication.getPrincipal(); String mem_id=user.getUsername();
-		 */
-		/*
-		 * if(mem_id==null) { return "login"; }
-		 */
     	log.info("user id:"+mem_id);
 		log.info("get cart list");       
-		log.info(pro_name); 
-	    //product_opt_id 조회
-	   
+		 
+	    
+		//product_opt_id 조회	   
 		ProductOptionDTO product=new ProductOptionDTO(pro_id,pro_name,pro_opt_size);
 	    log.info(product);
  	    String opt_id=service.searchOptid(product); 
@@ -58,8 +50,7 @@ public class CartRestController {
  	    CartDTO cart=new CartDTO(mem_id,opt_id);
         log.info("opt_id:"+opt_id);
 	    log.info("cart:"+cart);   
-	    log.info("add cart 서비스 호출 전");
-	    
+	    log.info("add cart 서비스 호출 전"); 
 	    if(service.checkCart(cart)>0) {
 	    	service.increaseCount(cart);
 	    	log.info("장바구니 존재 o 수량 증가");
@@ -76,9 +67,11 @@ public class CartRestController {
 		
 	} 
 	// 장바구니 삭제
-	@Secured({"ROLE_MEMBER"})
-	@PostMapping("/delete")
-	public void deleteCart()throws Exception{
-	  	   
-	}
+	/*
+	 * @Secured({"ROLE_MEMBER"})
+	 * 
+	 * @PostMapping("/delete") public void deleteCart()throws Exception{
+	 * 
+	 * }
+	 */
 }
