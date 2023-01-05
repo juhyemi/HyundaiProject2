@@ -7,7 +7,7 @@
 	<select id="getTalksList" resultType="com.chysk5.domain.TalksDTO">
 	
 		SELECT talks_id, talks_title, talks_regdate FROM talks
-		ORDER BY talks_id DESC
+		ORDER BY talks_regdate DESC
 	
 	</select>
 	
@@ -20,8 +20,15 @@
 	
 	<delete id="delete">
 	   DELETE FROM talks
-	   WHERE talks_id = #{talks_id}
+	   WHERE talks_id = #{talks_id} AND member_mem_id = #{mem_id}
 	</delete> 
+	
+	<update id="register">
+	
+		INSERT INTO talks(talks_id,talks_title,talks_content, member_mem_id)
+    	VALUES(talks_id_seq.NEXTVAL, #{talks_title}, #{talks_content}, #{mem_id})
+	
+	</update>
 
 	
 </mapper>

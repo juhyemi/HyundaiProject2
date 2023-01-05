@@ -10,7 +10,9 @@ public interface TalksService {
 	
 	public TalksDTO getTalksContent(String talks_id);
 	
-	public int delete(String talks_id);
+	public int delete(String talks_id, String mem_id);
+	
+	public int register(String mem_id, String talks_title, String talks_content);
 	
 
 }
