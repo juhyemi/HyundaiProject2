@@ -3,6 +3,7 @@ package com.chysk5.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.ProductOptionDTO;
@@ -24,7 +25,7 @@ public interface CartMapper {
 	public void increaseCount(CartDTO Cart);
 	
 	// 장바구니 물품 삭제
-	public void delete(String mem_id,String pro_optId);
+	public void delete(@Param("mem_id")String mem_id,@Param("pro_opt_Id")String pro_optId);
 	
     
 }
