@@ -47,5 +47,18 @@
 	AND member_mem_id = #{mem_id}
 		
 	</delete>
-  
+	
+	<!-- 총 구매 금액 -->
+	<select id="totalOrderPrice" resultType="int">
+		SELECT NVL(SUM(pro_price*order_detail_amount), 0)
+		FROM 
+		    (SELECT pro_id, pro_opt_id, pro_price
+		    FROM product p, product_option po
+		    WHERE p.pro_id = po.product_pro_id) p, 
+		    (SELECT MEMBER_MEM_ID, PRODUCT_OPTION_PRO_OPT_ID AS opt_id, ORDER_TOTAL_ORDER_NO, order_detail_amount
+		    FROM order_total ot, order_detail od
+		    WHERE ot.order_no = od.order_total_order_no
+		    AND MEMBER_MEM_ID = #{mem_id}) m
+		WHERE p.pro_opt_id = m.opt_id
+	</select>
   </mapper>

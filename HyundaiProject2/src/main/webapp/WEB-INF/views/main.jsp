@@ -43,22 +43,6 @@
         </div>
         <!-- // PC -->
 
-        <!-- MOBILE -->
-        <div class="top-banner-block only-mobile">
-          <div class="top-banner-slider only-mobile" pandassi-banner-group="ready"
-            pandassi-banner-group-code="a736a88576465035514c">
-            <div class="item" pandassi-banner="ready"=""="">
-              <a href="#!" target="_self">
-                <div class="img" style="color: #fff;"><img
-                    src="https://matinkim.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/e31ea100684e9b2b62fd918d1375888a.jpg">
-                </div>
-                <div class="desc" style="color: #fff;"></div>
-              </a>
-            </div>
-
-          </div>
-        </div>
-        <!-- // MOBILE -->
 
         <script>
           document.addEventListener("DOMContentLoaded", function () {
@@ -136,29 +120,6 @@
           </div>
         </div>
         <!-- //flow-banner -->
-
-
-        <div class="only-mobile">
-          <div class="video-block" style="padding: 40px var(--wrap-padding-mobile) 0 var(--wrap-padding-mobile)"
-            pandassi-banner-group="ready" pandassi-banner-group-code="612efa9003bba8623348">
-            <div pandassi-banner="ready"=""="">
-              <div class="inner" onclick="videoPlay();" style="height: calc(100vw * 360 / 640);">
-                <a href="https://player.vimeo.com/video/758939820"></a>
-                <div class="background"></div>
-                <iframe id="js-video-mo" data-src="https://player.vimeo.com/video/758939820" frameborder="0"
-                  webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay"></iframe>
-                <div class="desc">
-                  <div class="desc-inner">
-                    <button type="button" class="btn-play"><span>play</span></button>
-                  </div>
-                </div>
-              </div>
-              <div class="title-block" style="margin-top: 16px; padding-bottom: 0px;">
-                <h2>Matin Kim 22 Winter Collection 'M'</h2>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- section1 -->
         <!-- PC -->
@@ -256,45 +217,7 @@
             </div>
           </div>
         </div>
-        <script src="https://player.vimeo.com/api/player.js"></script>
-
-        <script>
-          var player = null;
-          var isPlay = false;
-          document.addEventListener("DOMContentLoaded", function () {
-            // 모바일 여부에따라 다름
-            if ($('body').width() > 767) {
-              // PC
-              $('#js-video-pc').attr('src', $('#js-video-pc').attr('data-src') + '?background=1&autoplay=0&loop=1&byline=0&title=0&sidedock=0&controls=0');
-              var iframe = document.getElementById('js-video-pc');
-            } else {
-              // MOBILE
-              $('#js-video-mo').attr('src', $('#js-video-mo').attr('data-src') + '?background=1&autoplay=0&loop=1&byline=0&title=0&sidedock=0&controls=0');
-              var iframe = document.getElementById('js-video-mo');
-            }
-            player = new Vimeo.Player(iframe);
-          });
-
-          function videoPlay() {
-            console.log('videoPlay');
-            if (!isPlay) {
-              $('.video-block .background').addClass('hidden');
-              $('.video-block .desc').addClass('hidden');
-
-              if ($('body').width() > 767) {
-                $('#js-video-pc').addClass('active');
-              } else {
-                $('#js-video-mo').addClass('active');
-              }
-              isPlay = true;
-              player.play();
-            } else {
-              $('.video-block .desc').removeClass('hidden');
-              isPlay = false;
-              player.pause();
-            }
-          }
-        </script>
+      
         <!-- // video-block -->
 
 

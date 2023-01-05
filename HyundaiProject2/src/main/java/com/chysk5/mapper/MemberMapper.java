@@ -28,5 +28,10 @@ public interface MemberMapper {
 	
 	// 비밀번호 변경
 	
+	// 회원 탈퇴
+	public int deleteMember(String mem_id);
+	
+	// 쿠키 삭제
+	public int deleteCookie(String mem_id);
 	
 }

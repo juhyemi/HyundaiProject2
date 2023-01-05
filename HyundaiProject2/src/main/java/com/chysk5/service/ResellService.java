@@ -2,7 +2,6 @@ package com.chysk5.service;
 
 import java.util.List;
 
-import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
 import com.chysk5.domain.ResellPriceSearchDTO;
