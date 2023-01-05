@@ -4,8 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chysk5.mapper.OrderMapper">
 
-<!-- 주문양식 주문 물품 조회 -->
-<select id="orderFormList" resultType="com.chysk5.domain.CartDTO">
+	<!-- 주문양식 주문 물품 조회 -->
+	<select id="orderFormList"
+		resultType="com.chysk5.domain.CartDTO">
 <![CDATA[
 select c.*,p.pro_name,p.pro_price,po.pro_opt_size,po.pro_opt_stock,pi.pro_loc
 from cart c, product p, product_option po,(
@@ -20,7 +21,34 @@ where p.pro_id= pi.product_pro_id
    and po.pro_opt_id=c.product_option_pro_opt_id
    and c.cart_select='1'
   and c.member_mem_id =#{mem_id}
+order by c.cart_regdate desc  
 ]]>
-</select>
+	</select>
+	<!-- 주문테이블 -->
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="order.order_no" order="BEFORE"
+			resultType="String">
+			select order_total_seq.nextval from dual
+		</selectKey>
+		insert into
+		order_total(order_no,order_addr,order_post,order_date,order_resell_check,member_mem_id)
+		values
+		(#{order.order_no},#{order.order_addr},#{order.order_post},SYSDATE,0,#{mem_id})
+	</insert>
 
+	<!-- 주문 디테일 테이블 -->
+	<insert id="insertOrderDetail">
+		insert into
+		order_detail(order_detail_amount,order_detail_check,order_total_order_no,product_option_pro_opt_id)
+		values(#{cart.cart_amount},1,#{order_no},
+		#{cart.product_option_pro_opt_id})
+	</insert>
+
+	<delete id="cartOrderDelete">
+
+		delete
+		from cart
+		where member_mem_id = #{mem_id} 
+			and product_option_pro_opt_id=#{cart.product_option_pro_opt_id}
+	</delete>
 </mapper>
