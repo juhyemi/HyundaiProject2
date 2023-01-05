@@ -6,16 +6,34 @@
 <body>
 	<%@ include file="../include/header2.jsp"%>
 
-<script>
+	<script>
 $(document).ready(function(){
 	$("#sAgreeAllChecked").click(function(){
 		if($("#sAgreeAllChecked").is(":checked") == true){
 			$(".ec-base-chk").attr("checked", "checked");
 		}else{
 			$(".ec-base-chk").removeAttr("checked");
-		}
-		
+		}	
 	});
+	
+	// 이메일 인증하기
+	$('#mail-Check-Btn').click(function() {
+		const eamil = $('#email1').val(); // 이메일 주소값 얻어오기!
+		console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
+		const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+		
+		$.ajax({
+			type : 'get',
+			url : '<c:url value ="/user/mailCheck?email="/>'+eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+			success : function (data) {
+				console.log("data : " +  data);
+				checkInput.attr('disabled',false);
+				code =data;
+				alert('인증번호가 전송되었습니다.')
+			}			
+		}); // end ajax
+	}); // end send eamil
+	
 });
 
 
@@ -107,10 +125,9 @@ function frmSubmit(){
 									<div class="member-id-block">
 										<div class="form-block">
 											<label class="ePlaceholderEach required" title="아이디*">
-												<p class="form-title">아이디*</p> 
-												<input id="member_id" name="mem_id" class="inputTypeText" placeholder="아이디*" value="" type="text">
+												<p class="form-title">아이디*</p> <input id="member_id" name="mem_id" class="inputTypeText" placeholder="아이디*" value="" type="text">
 												<div class="err-msg-system" id="idMsg"></div>
-												
+
 											</label>
 										</div>
 										<button type="button" class="btn btn-sm btn-dark btn-id-check" id="id-check-btn" onclick="checkId();">
@@ -121,8 +138,7 @@ function frmSubmit(){
 									<div>
 										<div class="form-block">
 											<label class="ePlaceholderEach required" title="비밀번호*">
-												<p class="form-title">비밀번호*</p> 
-												<input id="passwd" name="mem_pwd" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호*">
+												<p class="form-title">비밀번호*</p> <input id="passwd" name="mem_pwd" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호*">
 												<div class="info-msg">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)</div>
 												<div class="err-msg">비밀번호 항목은 필수 입력값입니다.</div>
 											</label>
@@ -130,8 +146,7 @@ function frmSubmit(){
 
 										<div class="form-block">
 											<label class="ePlaceholderEach required" title="비밀번호 확인*">
-												<p class="form-title">비밀번호 확인*</p> 
-												<input id="user_passwd_confirm" name="user_passwd_confirm" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호 확인*">
+												<p class="form-title">비밀번호 확인*</p> <input id="user_passwd_confirm" name="user_passwd_confirm" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호 확인*">
 												<div class="err-msg">비밀번호 확인 항목은 필수 입력값입니다.</div>
 											</label>
 										</div>
@@ -175,8 +190,27 @@ function frmSubmit(){
 												<input id="email1" name="mem_email" value="" type="text" placeholder="이메일*">
 												<div class="err-msg-system" id="emailMsg"></div>
 												<div class="err-msg">이메일 항목은 필수 입력값입니다.</div>
+												<p class="" id="result_send_verify_mobile_fail" style="display: none;">유효하지 않은 휴대폰 번호입니다. 입력한 번호를 확인해 주세요.</p>
+												<ul class="" id="result_send_verify_mobile_success" style="display: none;">
+													<li>인증번호가 발송되었습니다.</li>
+													<li>인증번호를 받지 못하셨다면 휴대폰 번호를 확인해 주세요.</li>
+												</ul>
+												
 											</label>
-											<button type="button" id="btn_action_verify_mobile" class="btn btn-md btn-white btn-135">인증번호받기</button>
+											<button type="button" id="mail-Check-Btn" class="btn btn-md btn-white btn-135">인증번호받기</button>
+											
+											<button type="button" id="btn_action_verify_mobile" class="btn btn-md btn-white btn-135 " onclick="memberVerifyMobile.joinSendVerificationNumber(); return false;" style="display: none;">재전송</button>
+											
+										</div>
+										
+										<div class="" id="confirm_verify_mobile" style="display: none;">
+											<div class="form-block phone-verify-block flex-column-2">
+												<div class="phone-verify">
+													<input id="verify_sms_number" name="verify_sms_number" fw-filter="isMax[15]" fw-label="verify_sms_number" fw-msg="" class="inputTypeText" maxlength="15" value="" type="text" placeholder="">
+													<span class="time" id="expiryTime">2:43</span>
+												</div>
+												<button type="button" class="btn btn-md btn-white btn-135" id="btn_verify_mobile_confirm" onclick="memberVerifyMobile.joinVerifySmsNumberConfirm(); return false;">확인</button>
+											</div>
 										</div>
 									</div>
 
@@ -191,10 +225,6 @@ function frmSubmit(){
 													</label> <label title="일*" class="ePlaceholderEach">
 														<p class="form-title">일</p> <input id="birth_day" name="birth_day" class="inputTypeText" placeholder="일" maxlength="2" value="" type="text">
 													</label>
-												</div>
-												<div class="radio-block">
-													<span class=""> <input id="is_solar_calendar0" name="is_solar_calendar" value="T" type="radio" checked="checked" autocomplete="off"> <label>양력</label> <input id="is_solar_calendar1" name="is_solar_calendar" value="F" type="radio" autocomplete="off"> <label>음력</label>
-													</span>
 												</div>
 											</div>
 											<div class="form-err-msg birthday-msg">생년월일 항목은 필수 입력값입니다.</div>

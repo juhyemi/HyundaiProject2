@@ -20,4 +20,9 @@ public interface MemberService {
 	// 비밀번호 찾기
 	public MemberDTO findPwd(MemberDTO member);
 	
+	// 회원 탈퇴
+	public int delMember(String mem_id);
+	
+	// 쿠키 삭제
+	public int delCookie(String mem_id);
 }

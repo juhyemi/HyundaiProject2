@@ -24,5 +24,7 @@ public class HomeController {
 		return "main";
 	}
 	
+	@GetMapping("/black-main")
+	public void blackMain() {}
 
 }

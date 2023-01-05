@@ -6,8 +6,8 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insertMember">
-		INSERT INTO member(mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth)
-		VALUES (#{mem_id}, #{mem_pwd}, #{mem_name}, #{mem_phone}, #{mem_email}, #{mem_birth})
+		INSERT INTO member(mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth, mem_solar_cal)
+		VALUES (#{mem_id}, #{mem_pwd}, #{mem_name}, #{mem_phone}, #{mem_email}, #{mem_birth}, ${mem_solar_cal})
 	</insert>
 	
 	<insert id="insertAuth">
@@ -22,8 +22,14 @@
 		<result property="mem_pwd" column="mem_pwd" />
 		<result property="mem_name" column="mem_name" />
 		<result property="mem_phone" column="mem_phone" />
+		<result property="mobile1" column="mobile1" />
+		<result property="mobile2" column="mobile2" />
+		<result property="mobile3" column="mobile3" />		
 		<result property="mem_email" column="mem_email" />
 		<result property="mem_birth" column="mem_birth" />
+		<result property="birth_year" column="birth_year" />
+		<result property="birth_month" column="birth_month" />
+		<result property="birth_day" column="birth_day" />
 		<result property="mem_address" column="mem_address" />
 		<result property="mem_postno" column="mem_postno" />
 		<result property="mem_joindate" column="mem_joindate" />
@@ -37,7 +43,7 @@
 	</resultMap>
 	
 	<select id="read" resultMap="memberMap">
-		SELECT mem.mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth, mem_address, mem_postno, enabled, mem_joindate, updateDate, authority
+		SELECT mem.mem_id, mem_pwd, mem_name, mem_phone, SUBSTR(mem_phone,1,3) as mobile1, SUBSTR(mem_phone,4,4) as mobile2, SUBSTR(mem_phone,8,4) as mobile3, mem_email, mem_birth, extract (year from mem_birth) as birth_year, extract (month from mem_birth) as birth_month, extract (day from mem_birth) as birth_day, mem_address, mem_postno, enabled, mem_joindate, updateDate, authority
 		FROM member mem LEFT OUTER JOIN authorities auth ON mem.mem_id = auth.mem_id
 		WHERE mem.mem_id = #{mem_id}
 	</select>
@@ -63,5 +69,16 @@
 		WHERE mem_id = ${mem_id} AND mem_name = ${mem_name} AND mem_email = ${mem_email}
 	</select>
 
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMember">
+		DELETE FROM member
+		WHERE mem_id = #{mem_id}
+	</delete>
+	
+	<!-- 쿠키 삭제 -->
+	<delete id="deleteCookie">
+		DELETE FROM persistent_logins
+		WHERE username = #{mem_id}
+	</delete>
 
 </mapper>

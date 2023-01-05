@@ -53,4 +53,13 @@ public class MyPageServiceImpl implements MyPageService {
 		} else return 0;
 	}
 
+	// 총 구매 금액
+	@Override
+	public int totalOrderPrice(String mem_id) {
+		
+		log.info("total order price.... " + mem_id);
+		
+		return mapper.totalOrderPrice(mem_id);
+	}
+
 }

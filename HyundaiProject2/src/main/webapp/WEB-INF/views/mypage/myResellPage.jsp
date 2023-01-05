@@ -33,8 +33,8 @@
 								href="/board/consult/list.html?board_no=9">1:1 문의</a></li>
 							<li class="js-recent"><a
 								href="/product/recent_view_product.html">최근 본 상품</a></li>
-							<li class="js-modify"><a href="/member/modify.html">내 계정</a></li>
 							<li class="js-modify"><a href="/member/modify.html">나의 판매 목록</a></li>
+							<li class="js-modify"><a href="/member/modify.html">내 계정</a></li>
 							<li><a href="/exec/front/Member/logout/">로그아웃</a></li>
 						</ul>
 					</div>
