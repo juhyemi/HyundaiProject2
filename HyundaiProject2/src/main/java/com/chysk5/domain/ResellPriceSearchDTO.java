@@ -7,8 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ResellProductSizeDTO {
-	
-	private String pro_opt_size;
-	
+public class ResellPriceSearchDTO {
+	private String sizeVal;
+	private String proName;
 }
