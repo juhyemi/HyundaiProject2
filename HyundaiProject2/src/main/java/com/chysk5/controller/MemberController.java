@@ -1,5 +1,13 @@
 package com.chysk5.controller;
 
+import java.nio.charset.Charset;
+import java.security.Principal;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,7 +77,6 @@ public class MemberController {
 		}
 	}
 	
-	
 	// 아이디 찾기 페이지
 	@GetMapping("/findId")
 	public void findId() {}
@@ -116,8 +123,44 @@ public class MemberController {
 	public void pwdModifyAction(MemberDTO member) {
 		
 		log.info("modify password .... " + member);
-		
-	
 	}
+	
+	// 회원 탈퇴
+	@PostMapping("del")
+	public ResponseEntity<String> memDel(Principal prin) throws Exception{
+		
+		log.info("member delete ....");
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		
+		String mem_id = prin.getName();
+		
+		int cookieResult = service.delCookie(mem_id);
+		int result = service.delMember(mem_id);
+		
+		log.info("member delete result : " + result);
+		log.info("cookie delete result : " + cookieResult);
+		
+		try {
+			if(result > 0) {
+				SecurityContextHolder.clearContext();
+				
+				String msg = "<script>alert('회원 탈퇴되었습니다.'); location.href='/main'; </script>";
+				
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+				
+			}else {
+				throw new Exception();
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return entity;
+	} 
+	
 	
 }
