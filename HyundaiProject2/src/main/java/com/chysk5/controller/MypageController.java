@@ -1,5 +1,6 @@
 package com.chysk5.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.service.MyPageService;
+import com.chysk5.service.ResellService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -53,24 +56,30 @@ public class MypageController {
 	@GetMapping("/myResell")
 	public String getMyResellList(Model model) {
 		log.info("MyResell 페이지 이동");
-		
-		List<MyResellProductDTO> myResellList = new ArrayList<>();
-	
+			
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    User user = (User)authentication.getPrincipal();    
 	    String mem_id = user.getUsername();
 	    
-		myResellList = service.getMyResellList(mem_id);
+	    
+	    List<MyResellProductDTO> myResellList = service.getMyResellList(mem_id);
+		
 		model.addAttribute("myResellList", myResellList);
 		
 		return "mypage/myResellPage";
 	}
 	
-	@DeleteMapping(value="/{re_id}")
-	public int removeMyResellProduct(@PathVariable("re_id") String re_id) {
+	@ResponseBody
+	@DeleteMapping(value="/myResell/{pro_opt_id}")
+	public void removeMyResellProduct(@PathVariable("pro_opt_id") String pro_opt_id, Principal prc) {
+		log.info("확인: " + pro_opt_id);
+		 String mem_id=prc.getName();
+		/*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    User user = (User)authentication.getPrincipal();    
+	    String mem_id = user.getUsername();
+	    */
+		int result = service.removeMyResellProduct(pro_opt_id, mem_id);
 		
-		int result = service.removeMyResellProduct(re_id);
-		
-		return 0;
+		return;
 	}
 }

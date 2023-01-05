@@ -1,6 +1,5 @@
 package com.chysk5.mapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -15,7 +14,8 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
 public class MyPageMapperTests {
 
@@ -26,12 +26,11 @@ public class MyPageMapperTests {
 	@Test
 	public void testGetMyResellList() {
 		
-		List<MyResellProductDTO> getList = new ArrayList<>();
 		
-		mapper.getMyResellList("arsenal");
+		List<MyResellProductDTO> getList = mapper.getMyResellList("kb");
 		
 		for(MyResellProductDTO a : getList) {
-			log.info("등록한 리셀 상품: " + a.getPro_name());
+			log.info("등록한 리셀 상품: " + a);
 		}
 	}
 }
