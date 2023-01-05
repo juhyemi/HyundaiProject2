@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/mypage/mypage.css">
 
 <div id="wrap">
 	<div id="container">
@@ -41,33 +45,28 @@
 						<div class="title-block">
 							<h2>주문내역</h2>
 						</div>
-
+						
+					<nav id=tab-button-nav>
 						<div
 							class="xans-element- xans-myshop xans-myshop-orderhistorytab order-tab ">
 							<ul class="menu">
-								<li class="tab_class selected"><a
-									href="/myshop/order/list.html?history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">주문내역조회
+								<li class="tab_class selected"><a class="tab-button" data-tab-section="tab-section-1">주문내역조회
 										<sup>(<span id="xans_myshop_total_orders">1</span>)
 									</sup>
 								</a></li>
-								<li class="tab_class_cs"><a
+								<li class="tab_class_cs tab-button" ><a 
 									href="/myshop/order/list.html?mode=cs&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">취소/반품/교환
 										내역 <sup>(<span id="xans_myshop_total_orders_cs">0</span>)
 									</sup>
 								</a></li>
-								<li class="only-pc tab_class_past"><a
-									href="/myshop/order/list_past.html?history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">과거주문내역
+								<li class="only-pc tab_class_past tab-button"><a
+									class="tab-button" data-tab-section="tab-section-3">리셀주문내역
 										<sup>(<span id="xans_myshop_total_orders_past">0</span>)
-									</sup>
-								</a></li>
-								<li class="only-pc tab_class_old displaynone"><a
-									href="/myshop/order/list_old.html?mode=old&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">이전
-										주문내역 <sup>(<span id="xans_myshop_total_orders_old">0</span>)
 									</sup>
 								</a></li>
 							</ul>
 						</div>
-
+					</nav>
 						<div class="ul-desc dash text-grey mt30 only-pc">
 							<ul>
 								<li>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
@@ -113,6 +112,11 @@
 							<input id="mode" name="mode" value="" type="hidden"> <input
 								id="term" name="term" value="" type="hidden">
 						</form>
+						
+						
+						
+						
+						<section id="tab-section-1" class="tab-section">
 						<div
 							class="xans-element- xans-myshop xans-myshop-orderhistorylistitem order-list">
 							<!--
@@ -251,6 +255,154 @@
 									href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&gt;&gt;</a>
 							</div>
 						</div>
+						</section>
+						
+						
+						
+						
+						<section id="tab-section-3" class="tab-section" hidden>
+						<div
+							class="xans-element- xans-myshop xans-myshop-orderhistorylistitem order-list">
+							<!--
+                        $login_url = /member/login.html
+                        $count = 10
+                    -->
+                    
+                   		<c:forEach var="List" items="${buyResellList }" varStatus="count">
+							<div class="">
+								<div class="items-block xans-record-">
+									<div class="item-header ">
+										<ul class="info-block">
+											<li class="first">
+												<ul>
+													<li class="sub-title">주문일</li>
+													<li class="value">2022-12-29</li>
+													<li class="sub-title">주문번호</li>
+													<li class="value"><a
+														href="/myshop/order/detail.html?order_id=20221229-0003219&amp;page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29"
+														class="line">20221229-0003219</a></li>
+													<li class="sub-title">결제금액</li>
+													<li class="value only-pc">${List.pro_price }</li>
+												</ul>
+											</li>
+											<li class="last only-pc">
+												<ul>
+													<li class=""><a class="btn btn-sm btn-gray btn-pd16"
+														href="#none"
+														onclick="OrderHistory.orderCancel('20221229-0003219')"><span>주문취소</span></a>
+													</li>
+													<li class="displaynone"><a
+														class="btn btn-sm btn-gray btn-pd16"
+														href="/myshop/order/cancel.html?order_id=20221229-0003219"><span>취소신청</span></a>
+													</li>
+													<li class="displaynone"><a
+														class="btn btn-sm btn-gray btn-pd16"
+														href="/myshop/order/exchange.html?order_id=20221229-0003219"><span>교환신청</span></a>
+													</li>
+													<li class="displaynone"><a
+														class="btn btn-sm btn-gray btn-pd16"
+														href="/myshop/order/return.html?order_id=20221229-0003219"><span>반품신청</span></a>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</div>
+
+									<div class="item-prod">
+										<div class="block">
+											<div class="thumb">
+												<a
+													href="/product/detail.html?product_no=3363&amp;cate_no=26"><img
+													src="${List.pro_loc }"
+													onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"
+													alt=""></a>
+											</div>
+											<div class="item-desc">
+												<div class="detail">
+													<div class="name">
+														<a
+															href="/product/detail.html?product_no=3363&amp;cate_no=26">${List.pro_name }</a>
+													</div>
+													<div class="option ">[옵션: ${List.pro_opt_size }]</div>
+													<div class="quantity text-center">수량: ${List.order_detail_amount }</div>
+													<div class="order-price text-right">${List.pro_price }</div>
+													<div class="btn-block only-mobile">
+														<ul>
+															<li class=""><a class="btn btn-sm btn-gray btn-pd16"
+																href="#none"
+																onclick="OrderHistory.orderCancel('20221229-0003219')"><span>주문취소</span></a>
+															</li>
+															<li class="displaynone"><a
+																class="btn btn-sm btn-gray btn-pd16"
+																href="/myshop/order/cancel.html?order_id=20221229-0003219"><span>취소신청</span></a>
+															</li>
+															<li class="displaynone"><a
+																class="btn btn-sm btn-gray btn-pd16"
+																href="/myshop/order/exchange.html?order_id=20221229-0003219"><span>교환신청</span></a>
+															</li>
+															<li class="displaynone"><a
+																class="btn btn-sm btn-gray btn-pd16"
+																href="/myshop/order/return.html?order_id=20221229-0003219"><span>반품신청</span></a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="status">
+											입금전
+											<p class="displaynone">
+												<a href="#none" class="line" onclick="">[]</a>
+											</p>
+											<button type="button"
+												class="btn btn-sm btn-gray btn-pd16 displaynone"
+												onclick="OrderHistory.withdraw('C','20221229-0003219|3363|000B|495111','F', 'F', 'F', '' , '')">
+												<span>취소철회</span>
+											</button>
+											<button type="button"
+												class="btn btn-sm btn-gray btn-pd16 displaynone"
+												onclick="OrderHistory.withdraw('E','20221229-0003219|3363|000B|495111','F', 'F', 'F', '' , '')">
+												<span>교환철회</span>
+											</button>
+											<button type="button"
+												class="btn btn-sm btn-gray btn-pd16 displaynone"
+												onclick="OrderHistory.withdraw('R','20221229-0003219|3363|000B|495111','F', 'F', 'F', '' , '')">
+												<span>반품철회</span>
+											</button>
+											<button type="button"
+												class="btn btn-sm btn-gray btn-pd16 displaynone"
+												onclick="OrderHistory.getDetailInfo('?product_no=3363&amp;cate_no=26&amp;order_id=20221229-0003219&amp;ord_item_code=20221229-0003219-01');">
+												<span>상세정보</span>
+											</button>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							</c:forEach>
+							
+							<div class="empty-block mt40 displaynone">
+								<div class="empty-icon-block line">
+									<div class="inner">
+										<p>주문 내역이 없습니다.</p>
+									</div>
+								</div>
+							</div>
+							<div
+								class="xans-element- xans-myshop xans-myshop-orderhistorypaging paginate">
+								<a
+									href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&lt;&lt;</a>
+								<a
+									href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&lt;</a>
+								<a
+									href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021"
+									class="this xans-record-">1</a> <a
+									href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&gt;</a>
+								<a
+									href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&gt;&gt;</a>
+							</div>
+						</div>
+						</section>
 
 					</div>
 					<!-- // contents-block -->
@@ -260,5 +412,30 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	const $nav = document.querySelector('#tab-button-nav')
+	console.log("$nav의 값은 무엇이지? " + $nav);
+	const $sections = document.querySelectorAll('.tab-section');
+	
+	 $nav.addEventListener('click', (e) => {
+	      if (!e.target.classList.contains('tab-button')) {
+	    	  console.log("return!!");
+	        return;
+	      }
+	      
+	      const selectedTab = e.target.dataset.tabSection;
+	      console.log(selectedTab);
+	      
+	      $sections.forEach(($section) => {
+	          if ($section.id === selectedTab) {
+	            $section.removeAttribute('hidden');
+	          } else {
+	            $section.setAttribute('hidden', true);
+	          }
+	        });
+	      });
+
+</script>
 
 <%@ include file="../include/footer.jsp"%>

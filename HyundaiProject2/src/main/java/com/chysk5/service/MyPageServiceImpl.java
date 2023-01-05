@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
 import com.chysk5.mapper.MyPageMapper;
@@ -101,6 +102,24 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<MyResellProductDTO> getMyResellList(String mem_id) {
 		
 		return mapper.getMyResellList(mem_id);
+	}
+
+	@Override
+	public int modifyPrice(String re_id, int re_price) {
+	
+		log.info("가격 수정 Service 들어옴");
+		int result = mapper.modifyPrice(re_id, re_price);
+		if(result == 1)	log.info("수정 완료");
+		else log.info("수정 실패");
+		
+		return result;
+	}
+
+	@Override
+	public List<BuyProductDTO> getBuyProduct(String mem_id) {
+		
+		return mapper.getBuyProduct(mem_id);
+		
 	}
 
 

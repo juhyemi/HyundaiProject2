@@ -39,9 +39,9 @@
 							<li class="js-recent"><a
 								href="/product/recent_view_product.html">최근 본 상품</a></li>
 							<li class="js-modify"><a href="/member/modify.html">내 계정</a></li>
-							<li class="js-modify"><a href="/member/modify.html">나의
+							<li class="js-modify"><a href="/mypage/myResell">나의
 									판매 목록</a></li>
-							<li><a href="/exec/front/Member/logout/">로그아웃</a></li>
+							<li onclick="logoutSubmit();"><a href="#">로그아웃</a></li>
 						</ul>
 					</div>
 
@@ -61,20 +61,13 @@
 										내역 조회 <sup>(<span id="xans_myshop_total_orders">1</span>)
 									</sup>
 								</a></li>
-								<li class="tab_class_cs"><a
-									href="/myshop/order/list.html?mode=cs&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">취소/반품/교환
-										내역 <sup>(<span id="xans_myshop_total_orders_cs">0</span>)
-									</sup>
-								</a></li>
-
 							</ul>
 						</div>
 
 						<div class="ul-desc dash text-grey mt30 only-pc">
 							<ul>
-								<li>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
-								<li>주문번호를 클릭하시면 해당 주문에 대한 상세 내역을 확인하실 수 있습니다.</li>
-								<li>주문상태가 "배송준비중"이더라도 실제 상품이 출고된 경우 요청사항이 거부될 수 있습니다.</li>
+								<li>내가 판매한 상품의 대한 정보를 수정/삭제 할 수 있습니다.</li>
+								<li>이미 팔린 물품에 대해서는 확인이 불가능 합니다.</li>
 							</ul>
 						</div>
 
@@ -142,10 +135,9 @@
 														 -->
 
 														<li class="sub-title">판매 예정 금액</li>
-														
+														<fmt:formatNumber value="${List.my_price }" type="number"/>
 													</ul>
 												</li>
-												<li class="last only-pc">
 													<ul>
 														<li class=""><a
 															class="btn btn-sm btn-gray btn-pd16 cancelBtn"
@@ -172,9 +164,10 @@
 															<a
 																href="/product/detail.html?product_no=3363&amp;cate_no=26">${List.pro_name }</a>
 														</div>
-														<div class="option ">[옵션: "${List.pro_opt_size }" ]</div>
+														<div class="option ">[옵션: ${List.pro_opt_size } ]</div>
 														<div class="price text-center">
-															판매 가격:
+															판매 가격: <fmt:formatNumber value="${List.my_price }" type="number"/>
+															
 														</div>
 
 
@@ -184,7 +177,7 @@
 											<div class="status">
 
 												<button type="button" class="btn btn-sm btn-gray btn-pd16"
-													onclick="showModifyPrice();">
+													onclick="showModifyPrice(${count.index});">
 													<span>가격 수정</span>
 												</button>
 											</div>
@@ -193,16 +186,45 @@
 									
  
   							<!-- size modal창-->
-							<div class="background show" id="resellModal">
+							<div class="background show resellModal " id="resellModal${count.index }">
 								<div class="window">
 									<div class="popup">
+								
 										<table class="type06">
-
+										<caption>최저가 순위</caption>
+											<c:forEach var="rank" items="${List.priceRank}">
+											<tr>
+												<th scope="row">2022-12-10</th>
+												<td>${rank.re_price }</td>
+											</tr>
+											</c:forEach>
 										</table>
+											
+											<div class="productName">
+												<p>${List.pro_name } </p>
+											</div>
+											
+											<div class="myResellInfo">
+											<span> ${List.pro_opt_size } </span>
+											<span id="curPrice"><fmt:formatNumber value="${List.my_price }" type="number"/>
+											 </span>
+											</div>
+											
+											<div class="changePrice">
+											
+											
+											<input id="input${count.index }" type="text"
+												onkeyup="inputNumberFormat(this);" placeholder="가격을 입력하세용~"
+												maxlength="6" numberOnly />
+												
+												<input type ="button" class="btn-dark regBtn" value="등록하기" onclick="modifyPrice(${List.re_id}, ${count.index});">	
+											
+											</div>
+																						
 										<div id="closeModal">
 											<button type="button"
 												class="btn btn-order btn-dark btn-full close-resell-btn"
-												onclick="close_modal();">
+												onclick="close_modal(${count.index});">
 												<span id="closeModalPrice">창 닫기</span></button>
 										</div>
 									</div>
@@ -214,7 +236,12 @@
 
 							</div>
 
-
+<!-- 가격 수정 정보 전달 -->
+         <form action="/mypage/myResell" method="post" class="modify_price">
+            <input type="hidden" name="re_id" class="modify_re_id">
+            <input type="hidden" name="re_price" class="modify_re_price">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+         </form>
 
 
 							<!-- 등록한 상품 내역이 없을 경우 -->
@@ -264,7 +291,6 @@ function cancelResell(pro_opt_id, count) {
 	
 	   if(confirm('해당 상품을 삭제하시겠습니까?'))
 		{
-		   
 		   	$.ajax({
 		      type: "delete",
 		      url: "/mypage/myResell/" + pro_opt_id,
@@ -289,18 +315,31 @@ function cancelResell(pro_opt_id, count) {
 
 <script>
 
-function showModifyPrice() {
+function showModifyPrice(index) {
+	
+	console.log("hihoi");
+		let resellModal = document
+				.getElementById("resellModal"+index);
 		
-	console.log("hihoi")
-		const resellModal = document
-				.getElementById("resellModal")
 		resellModal.style.display = "flex"
+
 }
 
-function close_modal() {
-	const resellModal = document
-			.getElementById("resellModal")
+function close_modal(index) {
+	let resellModal = document
+			.getElementById("resellModal"+index)
 	resellModal.style.display = "none"
+}
+
+</script>
+
+<script>
+function modifyPrice(re_id, index) {
+	let re_price = document.getElementById("input"+index).value;
+	
+    $(".modify_re_id").val(re_id);
+  	$(".modify_re_price").val(re_price);
+  	$(".modify_price").submit();
 }
 
 </script>
