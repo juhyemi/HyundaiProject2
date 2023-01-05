@@ -18,9 +18,7 @@
 	<%@ include file="../include/header2.jsp"%>
 
 	<!-- container -->
-	<form id="frm_order_act" name="frm_order_act" action="" method="post"
-		target="_self" enctype="multipart/form-data">
-
+	<form id="frm_order_act" name="frm_order_act" action="/order/orderComplete" method="post">
 		<!-- orderfrom-wrap -->
 		<div class="orderfrom-wrap">
 			<!-- order-info-block -->
@@ -35,21 +33,22 @@
 
 						<fieldset>
 							<div class="form-block">
-								<label class="ePlaceholderEach required" title="이름*">
+								<!-- <label class="ePlaceholderEach required" title="이름*">
 									<p class="form-title">이름*</p> <input id="oname" name="oname"
 									fw-filter="isFill" fw-label="주문자 성명" fw-msg=""
 									class="inputTypeText" placeholder="이름*" size="15" value=""
 									type="text">
-									<div class="err-msg">이름 항목은 필수 입력값입니다.</div>
-								</label>
+									<div class="err-msg">이름 항목은 필수 입력값입니다.</div>	
+								</label> -->
+								<div><sec:authentication property="principal.member.mem_name"/></div>
 							</div>
-
+                       
 							<div class="ePlaceholderGroup" title="휴대전화*">
 								<div class="form-block phone-block">
 									<label class="ePlaceholder required">
 										<p class="form-title active">휴대전화*</p>
 										<div class="phone">
-											<select id="ophone2_1" name="ophone2_[]"
+										<!-- 	<select id="ophone2_1" name="ophone2_[]"
 												fw-filter="isNumber&amp;isFill" fw-label="주문자 핸드폰번호"
 												fw-alone="N" fw-msg="">
 												<option value="010">010</option>
@@ -63,18 +62,19 @@
 												fw-alone="N" fw-msg="" size="4" value="" type="text">-<input
 												id="ophone2_3" name="ophone2_[]" maxlength="4"
 												fw-filter="isNumber&amp;isFill" fw-label="주문자 핸드폰번호"
-												fw-alone="N" fw-msg="" size="4" value="" type="text">
+												fw-alone="N" fw-msg="" size="4" value="" type="text"> -->
+												<sec:authentication property="principal.member.mem_phone"/>
 										</div>
 									</label>
 								</div>
 							</div>
 
 							<div class="ePlaceholderGroup" title="이메일*">
-								<div class="form-block email-block flex">
+					<div class="form-block email-block flex">
 									<label class="ePlaceholder required">
 										<p class="form-title active">이메일*</p>
 										<div class="email">
-											<input id="oemail1" name="oemail1" fw-filter="isFill"
+											<!-- <input id="oemail1" name="oemail1" fw-filter="isFill"
 												fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailId"
 												value="" type="text">@<input id="oemail2"
 												name="oemail2" fw-filter="isFill" fw-label="주문자 이메일"
@@ -93,17 +93,18 @@
 												<option value="dreamwiz.com">dreamwiz.com</option>
 												<option value="gmail.com">gmail.com</option>
 												<option value="etc">직접입력</option>
-											</select>
+											</select> -->
+											<sec:authentication property="principal.member.mem_email"/>
 										</div>
 									</label>
-								</div>
+								</div>							   
 							</div>
 
 						</fieldset>
 					</div>
 				</section>
 				<!-- // 주문자 정보 -->
-				<!-- 배송지 정보 -->
+				<!-- 배송지 정보 -->			
 				<section class="order-form-block">
 					<div class="order-form-block-inner">
 						<div class="title">
@@ -142,15 +143,20 @@
 
 							<div class="form-block flex-column-2 post-block">
 								<label class="ePlaceholderEach">
-									<p class="form-title">주소*</p> <input id="rzipcode1"
-									name="rzipcode1" fw-filter="isFill" fw-label="수취자 우편번호1"
+									<p class="form-title">우편번호*</p> <input id="order_post"
+									name="order_post" fw-filter="isFill" fw-label="수취자 주소1" fw-msg=""
+									class="inputTypeText" placeholder="*우편번호" size="40"
+									value="" type="text">
+									
+									<!-- <input id="order_post"
+									name="order_post" fw-filter="isFill" fw-label="수취자 우편번호1"
 									fw-msg="" class="inputTypeText" placeholder="" size="6"
 									maxlength="6" readonly="1" value="" type="text">
-								</label>
-								<button type="button" class="btn btn-sm btn-gray-border btn-120"
+ -->								</label>
+								<!-- <button type="button" class="btn btn-sm btn-gray-border btn-120"
 									onclick="execDaumPostcode();">
 									<span>우편번호 찾기</span>
-								</button>
+								</button> -->
 							</div>
 
 
@@ -160,20 +166,20 @@
 
 							<div class="form-block form-submit-address">
 								<label class="ePlaceholderEach required" title="기본주소*">
-									<p class="form-title displaynone">기본주소*</p> <input id="raddr1"
-									name="raddr1" fw-filter="isFill" fw-label="수취자 주소1" fw-msg=""
+									<p class="form-title displaynone">기본주소*</p> <input id="order_addr"
+									name="order_addr" fw-filter="isFill" fw-label="수취자 주소1" fw-msg=""
 									class="inputTypeText" placeholder="기본주소*" size="40"
-									readonly="1" value="" type="text">
+								 value="" type="text">
 								</label>
 							</div>
-							<div class="form-block form-submit-address">
+							<!-- <div class="form-block form-submit-address">
 								<label class="ePlaceholderEach required" title="상세주소*">
 									<p class="form-title displaynone">상세주소*</p> <input id="raddr2"
 									name="raddr2" fw-filter="" fw-label="수취자 주소2" fw-msg=""
 									class="inputTypeText" placeholder="상세주소*" size="40" value=""
 									type="text">
 								</label>
-							</div>
+							</div> -->
 
 							<div class="displaynone ePlaceholderGroup" title="전화*">
 								<div class="form-block phone-block flex-column-2 mt40">
@@ -219,15 +225,10 @@
 										placeholder="배송메시지는 택배사에게 전달되는 메시지로, 배송메시지를 통해 배송일자를 지정하실 수 없습니다."></textarea>
 								</div>
 							</div>
-
-
-
-
-
-
 						</fieldset>
 					</div>
-				</section>
+				</section>				
+				<!-- 배송 정보 -->
 			</div>
 			<!-- // order-info-block -->
 
@@ -320,17 +321,22 @@
 						</div>
 					</div>
 					<!-- // total-price-block -->
-
+                     
 					<div class="order-btn-block">
-						<button type="button" class="btn btn-md btn-dark btn-full"
+					<!-- 	<button type="button" class="btn btn-md btn-dark btn-full"
+							id="btn_payment">
+							<span id="total_order_sale_price_view">356,400</span> &nbsp; <span>결제하기</span>
+						</button> -->
+						
+					 	<button type="submit" class="btn btn-md btn-dark btn-full"
 							id="btn_payment">
 							<span id="total_order_sale_price_view">356,400</span> &nbsp; <span>결제하기</span>
 						</button>
 					</div>
 				</div>
-
-
-
+            
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+ 
 			</div>
 			<!-- // products-block -->
 
