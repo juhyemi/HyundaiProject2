@@ -55,22 +55,25 @@ public class TalksController {
 	//talks 입력폼
 	@GetMapping("tform")
 	public void talksForm() {
-		log.info("call talksFrom controller.........");
+		log.info("call talksForm controller.........");
 		
 	}
 	
 	//talks 글 삭제
 	@PostMapping("delete")
-	public ResponseEntity<String> delete(@RequestParam() String talks_id) throws Exception {
+	public ResponseEntity<String> delete(@RequestParam() String talks_id, Principal prc) throws Exception {
 		log.info("call talksFrom controller.........");
 		
 		ResponseEntity<String> entity = null;
+		String mem_id= prc.getName();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 		
-		int result = service.delete(talks_id);
+		int result = service.delete(talks_id, mem_id);
 		
-		log.info(result);
+		
+		log.info("result : " + result );
+		log.info("mem_id : " + mem_id );
 		
 		try {
 			if(result > 0) {
@@ -83,7 +86,39 @@ public class TalksController {
 		}catch(Exception e) {
 			e.printStackTrace();
 			
-			String msg = "<script>alert('삭제를 실패했습니다.'); location.href='/talks/tlist';</script>";
+			String msg = "<script>alert('삭제를 실패했습니다. (권한이 없습니다)'); location.href='/talks/tlist';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+		
+	}
+	
+	// 글 작성
+	@PostMapping("register")
+	public ResponseEntity<String> register(@RequestParam String talks_title, @RequestParam String talks_content, Principal prc) throws Exception{
+		log.info("register controller...........");
+		ResponseEntity<String> entity = null;
+		String mem_id= prc.getName();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		
+		log.info(mem_id);
+		int result = service.register(mem_id, talks_title, talks_content);
+		
+		try {
+			if(result > 0) {
+				String msg = "<script>alert('작성이 완료되었습니다.'); location.href='/talks/tlist';</script>";
+				
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+			}else {
+				throw new Exception();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('작성이 실패되었습니다.'); location.href='/talks/tlist';</script>";
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
 		}

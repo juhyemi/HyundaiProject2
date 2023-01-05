@@ -45,11 +45,21 @@ public class TalksServiceimpl implements TalksService {
 	
 	//talks 게시판 글 삭제
 	@Override
-	public int delete(String talks_id) {
+	public int delete(String talks_id, String mem_id) {
 		log.info("deletetalks........." + talks_id);
+		log.info("deletetalks........." + mem_id);
 		
-		return mapper.delete(talks_id);
+		
+		return mapper.delete(talks_id, mem_id);
 	}
 	
+	//talks 게시판 글 등록
+	@Override
+	public int register(String mem_id, String talks_title, String talks_content) {
+		log.info("registerTalks.........." + talks_title);
+		log.info("registerTalks.........." + talks_content);
+		
+		return mapper.register(mem_id, talks_title, talks_content);
+	}
 
 }
