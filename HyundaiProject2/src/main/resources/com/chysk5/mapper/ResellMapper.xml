@@ -122,7 +122,7 @@
 			from sysdate_test_view stv left join (
 			    select round(avg(re_price),-3) avg_price, re_selldate
 			    from r_product 
-			    where re_available = '1'and product_option_pro_opt_id=#{proOptId}
+			    where re_available = '1'and product_option_pro_opt_id= #{proOptId}
 			    group by re_selldate
 			)t on stv.price_date = t.re_selldate
 			order by stv.price_date

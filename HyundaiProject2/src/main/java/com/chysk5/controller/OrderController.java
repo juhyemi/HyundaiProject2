@@ -45,6 +45,13 @@ public class OrderController {
 	     return "order/orderForm";
 	}
 	
+	@GetMapping("/resell")
+	public String resellOrderForm() {
+		
+		//이제 여기 코딩해야 합니다.
+		
+		return "order/orderForm"; 
+	}
 	
 	
 	@PostMapping("/orderComplete")

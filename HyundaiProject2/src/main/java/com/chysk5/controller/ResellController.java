@@ -89,7 +89,6 @@ public class ResellController {
 		return dto;
 	}
 	
-	
 
 	@GetMapping("/register")
 	public String getMyResellProduct(@RequestParam("pro_opt_id") String pro_opt_id, Model model){

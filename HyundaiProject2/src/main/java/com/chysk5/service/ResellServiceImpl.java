@@ -123,9 +123,13 @@ public class ResellServiceImpl implements ResellService {
 		ResellProductSearchIdDTO idDto = mapper.getResellProductSearchOptId(resellDto);
 		String proOptId = idDto.getPro_opt_id();
 		
+		log.info("###########################proOptId : " + proOptId);
+		
 		ResellProductDetailPriceDTO detailPriceDto = mapper.getResellProductDetailLowPrice(proOptId);
 		
 		List<ResellProductDetailPriceDateDTO> list = mapper.getResellProductDetailDatePrice(proOptId);
+		
+		log.info("################### avg_list: " + list);
 		
 		for (ResellProductDetailPriceDateDTO dto : list) {
 			String date = dto.getRe_selldate().substring(0,10);
