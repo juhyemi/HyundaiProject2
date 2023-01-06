@@ -142,7 +142,7 @@
 	<div class="menu-block depth2 search" cate-no="Search">
 		<div class="sub">
 			<div class="block">
-				<form id="searchForm" name="" action="/product/search.html" method="get" target="_self" enctype="multipart/form-data">
+				<form id="searchForm" name="" action="/product/search" method="get" target="_self" enctype="multipart/form-data">
 					<input id="view_type" name="view_type" value="" type="hidden">
 					<input id="supplier_code" name="supplier_code" value="" type="hidden">
 					<div class="xans-element- xans-search xans-search-form ">
@@ -165,8 +165,8 @@
 								<label class="ePlaceholderEach required" title="Search">
 									<p class="form-title">Search</p>
 									<div class="flex">
-										<input id="keyword" name="keyword" fw-filter="" fw-label="상품명/제조사" fw-msg="" class="inputTypeText" placeholder="Search" size="15" value="" type="text">
-										<button type="button" onclick="">
+										<input id="keyword" name="keyword" class="inputTypeText" placeholder="Search" size="15" value="" type="text">
+										<button id="btn_keyword" type="button" onclick="/product/search">
 											<span>ok</span>
 										</button>
 									</div>
@@ -181,7 +181,31 @@
 	</div>
 
 </div>
-
+<form id="searchForm" action="/product/search" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<input type="hidden" name="keyword" value= $(#keyword).val() />
+					</form>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	
+	
+	 $("#btn_keyword").click(function (){
+	  var keyword = $('#keyword').val();
+	  $('input[name=keyword]').attr('value',keyword);
+	  if(keyword == '' || keyword == null){
+		  alert("검색어를 입력해주세요");
+		  
+	  }else{
+	    
+		  $("#searchForm").submit();
+	  }
+	
+	    
+	 });
+	
+});
+ </script>
 <div class="gnb-dimmer"></div>
 
 <!-- // gnb -->

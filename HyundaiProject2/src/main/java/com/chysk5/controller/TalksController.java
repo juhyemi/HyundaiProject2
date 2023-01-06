@@ -43,12 +43,14 @@ public class TalksController {
 	
 	//talks글 내용
 	@GetMapping("tcontent/{talks_id}")
-	public String talksContent(@PathVariable("talks_id") String talks_id, Model model) {
+	public String talksContent(@PathVariable("talks_id") String talks_id, Principal prc, Model model) {
 		log.info("call talksContent..........");
-		
+		String loginUser = prc.getName();
 		TalksDTO talksContent = service.getTalksContent(talks_id);
 		log.info(talksContent);
+		log.info(loginUser);
 		model.addAttribute("talksContent", talksContent);
+		model.addAttribute("loginUser", loginUser);
 		return "talks/tcontent";
 	}
 	
