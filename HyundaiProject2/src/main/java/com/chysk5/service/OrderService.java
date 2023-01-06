@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.OrderDTO;
+import com.chysk5.domain.ReSellOrderFormDTO;
+import com.chysk5.domain.ResellPriceSearchDTO;
 
 
 
@@ -12,6 +14,8 @@ public interface OrderService {
 	 public List<CartDTO> orderFormList(String mem_id);
 	 public List<CartDTO>orderComplete(OrderDTO order,String mem_id,int order_resell_check); 
 	 public void orderDelete(String mem_id,CartDTO cart);
+	 
+	 public List<CartDTO> resellOrderFormList(ResellPriceSearchDTO dto);
   
 
 }  
