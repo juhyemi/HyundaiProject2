@@ -81,12 +81,10 @@ $(document).ready(function(){
 		    },
 			success : function(result) {
 				if(result=="update"){
-					console.log("수량증가");
-					alert("카트존재 수량 증가");
+					console.log("수량증가");				
 				}
 				else{
-					console.log("카트담기 성공");
-					alert("카트 담기 성공");
+					console.log("카트담기 성공");					
 				}
 				window.top.document.getElementById('basketIframe').contentWindow.location.replace('/cart/cartList');
 				$('.basket-wrap-iframe').addClass('active');
