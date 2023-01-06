@@ -118,12 +118,14 @@
 	
 	<select id="getResellProductDetailDatePrice" resultType="com.chysk5.domain.ResellProductDetailPriceDateDTO">
 		<![CDATA[ 
-			select round(avg(re_price),-3) avg_price, re_selldate
-			from r_product 
-			where re_available = '1'and product_option_pro_opt_id=#{proOptId}
-			        and sysdate-4 <=re_selldate and re_selldate<=sysdate 
-			group by re_selldate
-			order by re_selldate
+			select stv.price_date re_selldate, nvl(t.avg_price,0) avg_price
+			from sysdate_test_view stv left join (
+			    select round(avg(re_price),-3) avg_price, re_selldate
+			    from r_product 
+			    where re_available = '1'and product_option_pro_opt_id=#{proOptId}
+			    group by re_selldate
+			)t on stv.price_date = t.re_selldate
+			order by stv.price_date
 		]]>
 	</select>
 	
