@@ -114,6 +114,40 @@
 	
 	</select>
 	
+	<!-- 모든 구매내역 조회 -->
+	<select id="getAllList" resultType="com.chysk5.domain.AllBuyProductDTO">
+	SELECT A.order_date, A.pro_price, A.pro_name, A.pro_opt_size, A.order_detail_amount, A.order_no, A.pro_loc, A.pro_opt_id, B.re_price FROM 
+    (SELECT ot.order_date, p.pro_price, p.pro_name, po.pro_opt_size, od.order_detail_amount, ot.order_no, pi.pro_loc, po.pro_opt_id
+    FROM order_total ot
+    INNER JOIN order_detail od
+    ON od.order_total_order_no = ot.order_no
+    AND od.order_detail_check = '1' 
+    INNER JOIN product_option po
+    ON po.pro_opt_id = od.product_option_pro_opt_id
+    INNER JOIN product p
+    ON p.pro_id = po.product_pro_id
+    INNER JOIN pro_image pi
+    on pi.product_pro_id = p.pro_id
+	AND pi.pro_loc like('%medium%')
+    WHERE ot.member_mem_id = #{mem_id}) A
+    LEFT JOIN (SELECT ot.order_date, p.pro_price AS 정가, p.pro_name, po.pro_opt_size, od.order_detail_amount, re_price, ot.order_no
+    FROM order_total ot
+    INNER JOIN order_detail od
+    ON od.order_total_order_no = ot.order_no
+    AND od.order_detail_check = '1' 
+    AND ot.order_resell_check = '1'
+    INNER JOIN product_option po
+    ON po.pro_opt_id = od.product_option_pro_opt_id
+    INNER JOIN product p
+    ON p.pro_id = po.product_pro_id
+    INNER JOIN r_product r
+    ON r.product_option_pro_opt_id = od.product_option_pro_opt_id
+    AND r.re_available = '1' 
+    WHERE ot.member_mem_id =#{mem_id}) B
+    ON A.order_no = B.order_no
+    
+	</select>
+	
 	
   
 

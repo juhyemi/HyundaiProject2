@@ -129,6 +129,7 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
+                    <c:forEach var="List" items="${allList }" varStatus="count">
 							<div class="">
 								<div class="items-block xans-record-">
 									<div class="item-header ">
@@ -136,13 +137,23 @@
 											<li class="first">
 												<ul>
 													<li class="sub-title">주문일</li>
-													<li class="value">2022-12-29</li>
+													<li class="value">${List.order_date }</li>
 													<li class="sub-title">주문번호</li>
 													<li class="value"><a
 														href="/myshop/order/detail.html?order_id=20221229-0003219&amp;page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29"
 														class="line">20221229-0003219</a></li>
 													<li class="sub-title">결제금액</li>
-													<li class="value only-pc">198,000</li>
+													<c:if test="${List.re_price == null }">
+													<li class="value only-pc"><fmt:formatNumber
+																value="${List.pro_price }" type="number" />
+													</li>
+													</c:if>
+													<c:if test="${List.re_price != null}">
+													<li class="value only-pc"><fmt:formatNumber
+																value="${List.re_price }" type="number" />
+													</li>
+													<p> 리셀 상품 </p>
+													</c:if>
 												</ul>
 											</li>
 											<li class="last only-pc">
@@ -155,21 +166,28 @@
 										<div class="block">
 											<div class="thumb">
 												<a
-													href="/product/detail.html?product_no=3363&amp;cate_no=26"><img
-													src="//matinkim.com/web/product/medium/202210/cfffd3ceb36503e835b741758741e29d.jpg"
-													onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"
+													href="#"><img
+													src="${List.pro_loc }"
 													alt=""></a>
 											</div>
 											<div class="item-desc">
 												<div class="detail">
 													<div class="name">
 														<a
-															href="/product/detail.html?product_no=3363&amp;cate_no=26">MATIN
-															PADDING VEST JUMPER IN BLACK</a>
+															href="#">
+															${List.pro_name }</a>
 													</div>
-													<div class="option ">[옵션: S]</div>
-													<div class="quantity text-center">수량: 1</div>
-													<div class="order-price text-right">198,000</div>
+													<div class="option ">[옵션: ${List.pro_opt_size }]</div>
+													<div class="quantity text-center">수량: ${List.order_detail_amount }</div>
+													<c:if test="${List.re_price == null }">
+													<div class="order-price text-right"></div><fmt:formatNumber
+																value="${List.pro_price }" type="number" />
+																</c:if>
+													<c:if test="${List.re_price != null }">
+													<div class="order-price text-right"></div><fmt:formatNumber
+																value="${List.re_price }" type="number" />
+																</c:if>
+													
 													<div class="btn-block only-mobile">
 														<ul>
 															<li class=""><a class="btn btn-sm btn-gray btn-pd16"
@@ -197,7 +215,7 @@
 											
 											<button type="button"
 												class="btn btn-sm btn-gray btn-pd16"
-												onclick="">
+												onclick="regProduct(${List.pro_opt_id});">
 												<span>판매 등록</span>
 											</button>
 
@@ -212,6 +230,8 @@
 								</div>
 
 							</div>
+							
+							</c:forEach>
 							<div class="empty-block mt40 displaynone">
 								<div class="empty-icon-block line">
 									<div class="inner">
@@ -245,7 +265,7 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
-                    
+                    <!-- 
                    		<c:forEach var="List" items="${buyResellList }" varStatus="count">
 							<div class="">
 								<div class="items-block xans-record-">
@@ -364,6 +384,7 @@
 							</div>
 						</div>
 						</section>
+						 -->
 
 					</div>
 					<!-- // contents-block -->
@@ -373,6 +394,23 @@
 		</div>
 	</div>
 </div>
+
+	<form action="/resell/register" method="get" class="reg_product">
+		<input type="hidden" name="pro_opt_id" class="send_pro_opt_id"> 
+		<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+	</form>
+
+<script>
+function regProduct(pro_opt_id) {
+	
+	console.log("상품 id: " + pro_opt_id);
+	 
+	 $(".send_pro_opt_id").val(pro_opt_id);
+	 $(".reg_product").submit();
+}
+
+</script>
 
 <script>
 	const $nav = document.querySelector('#tab-button-nav')
@@ -398,5 +436,6 @@
 	      });
 
 </script>
+
 
 <%@ include file="../include/footer.jsp"%>

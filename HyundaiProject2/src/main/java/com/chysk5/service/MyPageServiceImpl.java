@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
@@ -153,6 +154,14 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<SoldOutProductDTO> getSoldOutList(String mem_id) {
 		
 		return mapper.getMySoldOutList(mem_id);
+	}
+
+	
+	// 내가 구매한 모든 상품 목록 보여주기
+	@Override
+	public List<AllBuyProductDTO> getAllBuyList(String mem_id) {
+		
+		return mapper.getAllList(mem_id);
 	}
 
 }
