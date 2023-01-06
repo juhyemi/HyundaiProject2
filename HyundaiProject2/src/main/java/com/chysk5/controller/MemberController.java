@@ -1,24 +1,30 @@
 package com.chysk5.controller;
 
+import java.net.http.HttpRequest;
 import java.nio.charset.Charset;
 import java.security.Principal;
+import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.MemberDTO;
 import com.chysk5.service.MemberService;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 /*
@@ -27,10 +33,14 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @RequestMapping("/member/*")
-@RequiredArgsConstructor
 public class MemberController {	
 	
-	private final MemberService service;
+	@Setter(onMethod_ = @Autowired)
+	private MemberService service;
+	
+	@Setter(onMethod_ = @Autowired)
+	@Qualifier("BCryptPasswordEncoder")
+    private PasswordEncoder encoder;
 	
 	// 회원가입 페이지로 이동
 	@GetMapping("/join")
@@ -38,14 +48,20 @@ public class MemberController {
 	
 	// 회원가입
 	@PostMapping("/join")
-	public String joinAction(MemberDTO member){
+	public String joinAction(MemberDTO member, RedirectAttributes rttr){
 		
 		log.info("join...." + member);
 		
 		service.join(member);
+		
+		rttr.addFlashAttribute("member", member);
 				
-		return "redirect:/member/login";
+		return "redirect:/member/joinResult";
 	}
+	
+	// 회원가입 완료
+	@GetMapping("/joinResult")
+	public void joinResult() {}
 	
 	// 아이디 중복 확인
 	@PostMapping("/checkId")
@@ -124,6 +140,47 @@ public class MemberController {
 		
 		log.info("modify password .... " + member);
 	}
+	
+	// 비밀번호 확인
+	@PostMapping("/pwCheck")
+	@ResponseBody
+	public String postPrevModify(String input_pwd, Principal prin) {
+		
+        log.info("input password check.... " + input_pwd);
+       
+        String mem_id = prin.getName();
+        String mem_pwd = service.selectMember(mem_id).getMem_pwd();
+           
+        log.info("user : " + mem_id + " mem_pwd : " + mem_pwd + " input_pwd :" + input_pwd);
+        
+        boolean result = encoder.matches(input_pwd, mem_pwd);
+        
+        log.info(result);
+        
+        if(result) {
+        	return "1";
+        }else {
+        	return "0";
+        }
+        
+    }
+	
+	// 회원 정보 수정
+	@PostMapping("/modify")
+	public String memberModifyAction(MemberDTO member, Principal prin){
+		
+		log.info("member info modify.... " + member);
+		
+		String mem_id = prin.getName();
+		
+		member.setMem_id(mem_id);
+		
+		service.updateMemeber(member);
+		
+		return "redirect:/mypage/modify";
+	}
+	
+	
 	
 	// 회원 탈퇴
 	@PostMapping("del")

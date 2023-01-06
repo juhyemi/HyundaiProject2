@@ -1,5 +1,7 @@
 package com.chysk5.service;
 
+import java.security.Principal;
+
 import com.chysk5.domain.AuthDTO;
 import com.chysk5.domain.MemberDTO;
 
@@ -7,6 +9,9 @@ import com.chysk5.domain.MemberDTO;
  * 신수진 작성
  * */
 public interface MemberService {
+	
+	// 회원정보 조회
+	public MemberDTO selectMember(String mem_id);
 	
 	// 회원가입
 	public void join(MemberDTO member);
@@ -25,4 +30,8 @@ public interface MemberService {
 	
 	// 쿠키 삭제
 	public int delCookie(String mem_id);
+
+	// 회원정보 변경
+	public void updateMemeber(MemberDTO member);
+	
 }

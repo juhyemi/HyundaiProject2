@@ -1,10 +1,13 @@
 package com.chysk5.service;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.chysk5.domain.AuthDTO;
+import com.chysk5.domain.CustomUser;
 import com.chysk5.domain.MemberDTO;
 import com.chysk5.mapper.MemberMapper;
 
@@ -22,7 +25,16 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Setter(onMethod_ = @Autowired)
 	private PasswordEncoder pwencoder;
-	
+
+	// 회원정보 조회
+	@Override
+	public MemberDTO selectMember(String mem_id) {
+		
+		log.info("select member...." + mem_id);
+		
+		return mapper.read(mem_id);
+	}
+
 	// 회원가입
 	@Override
 	public void join(MemberDTO member) {
@@ -45,6 +57,21 @@ public class MemberServiceImpl implements MemberService {
 		mapper.insertMember(member);
 		mapper.insertAuth(auth);
 	}
+	
+	// 회원정보 수정
+	@Override
+	public void updateMemeber(MemberDTO member) {
+		String phone = member.getMobile1() + member.getMobile2() + member.getMobile3();
+		member.setMem_phone(phone);
+		
+		String birth = member.getBirth_year() + "/" + member.getBirth_month() + "/" + member.getBirth_day();
+		member.setMem_birth(birth);
+		
+		log.info("***** update member " + member);
+		
+		mapper.updateMember(member);
+	}
+
 
 	// 아이디 중복 확인
 	@Override
@@ -82,6 +109,7 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.deleteMember(mem_id);
 	}
 
+	// 쿠키 삭제
 	@Override
 	public int delCookie(String mem_id) {
 		
@@ -89,8 +117,5 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.deleteCookie(mem_id);
 	}
-
-	
-
 
 }

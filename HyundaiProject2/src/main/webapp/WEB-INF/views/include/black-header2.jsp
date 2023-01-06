@@ -95,8 +95,6 @@
             <li class="space"></li>
             <li class=""><a href="/resell"><span>Resell</span></a></li>
             <li class=""><a href="/talks/tlist"><span>Fashion Talks</span></a></li>
-            <li class=" only-mobile"><a href="javascript:languageOpen();"><span>Language</span></a></li>
-           
 			 <li class="xans-element- xans-layout xans-layout-statelogoff ">
 				<!-- 로그인이 안되어 있을 경우 --> 
 				<sec:authorize access="isAnonymous()">

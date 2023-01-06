@@ -28,6 +28,9 @@ public interface MemberMapper {
 	
 	// 비밀번호 변경
 	
+	// 회원정보 변경
+	public void updateMember(MemberDTO member);
+	
 	// 회원 탈퇴
 	public int deleteMember(String mem_id);
 	

@@ -80,5 +80,16 @@
 		DELETE FROM persistent_logins
 		WHERE username = #{mem_id}
 	</delete>
-
+	
+	<!-- 회원정보 변경 -->
+	<update id="updateMember">
+		UPDATE member
+		SET 
+			mem_name = #{mem_name},
+			mem_phone = #{mem_phone},
+			mem_email  = #{mem_email},
+			mem_birth = #{mem_birth}
+		WHERE mem_id = #{mem_id}
+	</update>
+	
 </mapper>
