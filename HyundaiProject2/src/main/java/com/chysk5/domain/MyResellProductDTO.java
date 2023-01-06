@@ -15,6 +15,8 @@ public class MyResellProductDTO {
 	private String re_id;
 	private String pro_opt_id;
 	private int my_price;
+	private int my_rank;
 	
 	private List<ResellPriceDTO> priceRank;
+	
 }

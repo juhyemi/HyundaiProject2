@@ -1,9 +1,8 @@
 package com.chysk5.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
+import com.chysk5.domain.SoldOutProductDTO;
 import com.chysk5.mapper.MyPageMapper;
 import com.chysk5.mapper.ResellMapper;
 
@@ -83,7 +83,40 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public List<MyResellProductDTO> getMyResellList(String mem_id) {
 
-		return mapper.getMyResellList(mem_id);
+		List<MyResellProductDTO> resultList = mapper.getMyResellList(mem_id);
+//		List<Integer> rank = new ArrayList<Integer>();
+		
+		for(int i = 0; i<resultList.size(); i++) {
+			int index = 1;
+			for(ResellPriceDTO a : resultList.get(i).getPriceRank()) {
+					log.info("가격 :" + a.getRe_price());
+					if(resultList.get(i).getMy_price() == a.getRe_price()) {
+						log.info("내 가격: " + resultList.get(i).getMy_price());
+						log.info("순위 :"  + index);	
+						resultList.get(i).setMy_rank(index);
+					}
+					
+					/*
+					if(resultList.get(i).getMy_price() == a.getRe_price()) {
+						resultList.get(i).setMy_rank(i);
+					}
+					*/
+				index++;
+			}	
+			
+			log.info("==============================");
+		}
+		
+		/*
+		for(MyResellProductDTO a : resultList) {
+			int myRank = a.getPriceRank().indexOf(a.getMy_price());
+			log.info("순위 확인 : " + myRank);
+			a.setMy_rank(myRank);
+		}
+		*/
+		
+		
+		return resultList;
 	}
 
 
@@ -113,6 +146,13 @@ public class MyPageServiceImpl implements MyPageService {
 		log.info("total order price.... " + mem_id);
 
 		return mapper.totalOrderPrice(mem_id);
+	}
+
+	// 내가 판매 완료한 상품들 목록
+	@Override
+	public List<SoldOutProductDTO> getSoldOutList(String mem_id) {
+		
+		return mapper.getMySoldOutList(mem_id);
 	}
 
 }

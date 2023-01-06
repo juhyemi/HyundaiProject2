@@ -54,6 +54,7 @@
     		r.re_price
     FROM r_product r) B
     ON A.product_option_pro_opt_id = B.product_option_pro_opt_id
+    order by re_price asc
 	
 	</select>
 	
@@ -89,6 +90,31 @@
 	WHERE ot.order_resell_check = '1'
 	 
 	</select>
+	
+	<select id="getMySoldOutList" resultType="com.chysk5.domain.SoldOutProductDTO">
+	
+	 SELECT r.product_option_pro_opt_id, 
+    	r.re_price, 
+    	r.re_selldate, 
+    	po.pro_opt_size, 
+    	p.pro_name, 
+    		pi.pro_loc
+    FROM r_product r
+    INNER JOIN product_option po
+	ON r.product_option_pro_opt_id = po.pro_opt_id
+    INNER JOIN product p
+	ON p.pro_id = po.product_pro_id
+    INNER JOIN pro_image pi
+	on pi.product_pro_id = p.pro_id
+	AND pi.pro_loc like('%medium%')
+    INNER JOIN member m
+    ON m.mem_id = r.member_mem_id
+    WHERE m.mem_id = #{mem_id}
+    AND re_available = '1'
+	
+	</select>
+	
+	
   
 
 	<!-- 총 구매 금액 -->
