@@ -297,11 +297,16 @@ function selectDelete(){
 			<div class="xans-element- xans-order xans-order-totalsummary ">
 				<div
 					class="xans-element- xans-order xans-order-totalorder btn-block ">
-					<button type="button" id="orderform"
+				    <form name="ord_rsc" action="/order/orderForm" method="GET">
+				    <input type="hidden" class="cart_no" value="${cartlist.cart_no}">
+				    <input type="hidden" name="order_resell_check" value="0">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<button type="submit" id="orderform"
 						class="btn btn-md btn-white btn-full"
 						onclick=" window.open('/order/orderForm', '_parent')">
 						<span>선택상품 주문</span>
 					</button>
+			       </form>
 					<!-- 네이버 체크아웃 구매 버튼  -->
 					<div id="NaverChk_Button"></div>
 					<!--상품상세페이지에 추가되는 앱 관련 결제버튼 div-->

@@ -267,7 +267,7 @@
 											</div>
 											<div class="desc">
 												<p class="name">${orderformlist.pro_name}</p>
-												[옵션: ${cartlist.pro_opt_size}]
+												[옵션:${orderformlist.pro_opt_size}]											
 												<div class="price-block">
 													<strong><fmt:formatNumber value="${orderformlist.pro_price}" pattern="#,###" /></strong>
 												</div>
@@ -334,9 +334,10 @@
 						</button>
 					</div>
 				</div>
-            
+             
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
- 
+                <input type="hidden" name="order_resell_check" value="${orderReselCheck}" />
+               
 			</div>
 			<!-- // products-block -->
 
