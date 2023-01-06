@@ -25,5 +25,9 @@ public interface OrderMapper {
     public void cartOrderDelete(@Param("mem_id")String mem_id,@Param("cart") CartDTO cart);
     
 	/* public void updateResell(String r_id); */
+    
+    //resell 상품 주문서 조회
+    public List<CartDTO> resellOrderFormList(String proOptId);
+    
 }
 

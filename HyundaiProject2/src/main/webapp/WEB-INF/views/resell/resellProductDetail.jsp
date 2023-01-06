@@ -236,13 +236,12 @@ th, td{
 							
 							
 							
-							<div
-								class="xans-element- xans-product xans-product-action product-action-block">
+							<div class="xans-element- xans-product xans-product-action product-action-block">
 								<div class="buy-block ">
-									<button type="button" class="btn btn-order btn-dark btn-full">
-										<span id="btnBuy">즉시 구매</span>
+									<button type="button" class="btn btn-order btn-dark btn-full" onclick="resellOrder()">
+										 <span id="btnBuy">즉시 구매</span>
 									</button>
-
+								
 
 									<!-- size modal창-->
 									<div class="background show" id="resellModal">
@@ -400,8 +399,23 @@ th, td{
 			</div>
 		</div>
 
+<form id="resellInfo" action="/order/resell" >
+	<input type="hidden" value="" name="sizeVal" id="resellSize"></input>
+	<input type="hidden" value="${productDetail.pro_name}" name="proName"></input>
+</form>
+
 
 <script type="text/javascript">
+
+function resellOrder(){
+	alert("버튼 확인")
+	
+	var sizeVal = $(".pro_opt_size.ec-product-selected > a > span").text();
+	$("#resellSize").val(sizeVal);
+	$('#resellInfo').submit();
+	
+}
+
 
 
 

@@ -88,8 +88,7 @@ public class ResellServiceImpl implements ResellService {
 			String proId = dto.getPro_id();
 			
 			List<ResellProductImgDTO> listImgs = mapper.getResellProductListImg(proId);
-			log.info(">>>>>>>>>>>>>>>>>>>>>>>>> : ");
-			log.info(listImgs);
+			
 			
 			dto.setList(listImgs);
 			

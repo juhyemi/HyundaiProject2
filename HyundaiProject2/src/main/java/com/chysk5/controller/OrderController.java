@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.OrderDTO;
 import com.chysk5.domain.OrderReselCheckDTO;
+import com.chysk5.domain.ReSellOrderFormDTO;
+import com.chysk5.domain.ResellPriceSearchDTO;
 import com.chysk5.service.CartSerivce;
 import com.chysk5.service.OrderService;
 
@@ -24,10 +26,9 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @Log4j
 @AllArgsConstructor
-@RequestMapping("/order/")
+@RequestMapping("/order")
 public class OrderController {
 	
-
 	private OrderService service;
 	
 	//주문 결제창 이동
@@ -49,9 +50,18 @@ public class OrderController {
 	}
 	
 	@GetMapping("/resell")
-	public String resellOrderForm() {
+	@Secured({"ROLE_MEMBER"})
+	public String resellOrderForm(ResellPriceSearchDTO dto, Model model) {
 		
-		//이제 여기 코딩해야 합니다.
+		log.info("#########################resellOrderForm 컨트롤러 호출 ");
+		
+		log.info(dto);
+	
+		List<CartDTO>orderFormList = service.resellOrderFormList(dto);
+		String rck= "1";//리셀 상품인경우가 1이었나???? 뭐였지 ㅋㅋ
+		model.addAttribute("orderReselCheck",rck);
+		model.addAttribute("orderFormList",orderFormList);
+		
 		
 		return "order/orderForm"; 
 	}
