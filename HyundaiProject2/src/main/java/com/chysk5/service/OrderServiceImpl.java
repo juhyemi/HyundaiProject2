@@ -2,7 +2,7 @@ package com.chysk5.service;
 
 import java.util.List;
 
-
+import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,16 +35,31 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	@Transactional
-	 public List<CartDTO>orderComplete(OrderDTO order,String mem_id) {
+	 public List<CartDTO>orderComplete(OrderDTO order,String mem_id, int order_resell_check) {
 		 log.info("주문서비스 접속------!");		 
 		 List<CartDTO>orderFormList=mapper.orderFormList(mem_id);
 		 log.info(".............!");
-		 mapper.insertSelectKey(order,mem_id);
+		 log.info(order_resell_check);
+		 // 카트 일때
+		 if(order_resell_check== 0) { 
+	     log.info("카트 에서 주문 시작");
+		 mapper.insertSelectKey(order,mem_id,order_resell_check);//orderDTO 에 값저장 ORDER_NO 가져옴
 		 log.info("orderselectkey!");
+		
+		 }
+		 else {
+             order_resell_check=1;
+			 log.info("resell주문 시작");
+			 mapper.insertSelectKey(order,mem_id,order_resell_check);//orderDTO 에 값저장 ORDER_NO 가져옴
+			 log.info("orderselectkey!");
+				/*
+				 * mapper.updateResell(re_id); //reavailable 업데이트
+				 */		 
+			 }
 		 String order_no=order.getOrder_no();
 		 log.info(order);
 		 log.info("orderno:"+order_no);
-	     orderFormList.forEach(of->mapper.insertOrderDetail(order_no,of));	 
+		 orderFormList.forEach(of->mapper.insertOrderDetail(order_no,of));	 //ORDER_NO 받아서 주문 목록(선택된 카트 DTO)와 ORDER NO
 	    return orderFormList;
 	 } 
 	

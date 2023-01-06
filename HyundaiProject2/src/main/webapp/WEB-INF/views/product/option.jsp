@@ -24,7 +24,7 @@ $(document).ready(function(){
     	$(".pro_opt_size").on("click", function(){
     		
         	$(".pro_opt_size").removeClass("ec-product-selected");
-			$(this).addClass("ec-product-selected");	   
+			$(this).addClass("ec-product-selected");		     
     	}); 
     } 
 	 
@@ -59,13 +59,13 @@ $(document).ready(function(){
 
      var csrfHeadName="${_csrf.headerName}";
      var csrfTokenValue="${_csrf.token}";
-     
+   
+  
 	$('#btn_Buy').click(function() {
 		var proid =$('#pro_id').val();			
-	   var proname=$('#pro_name').val();		        
-	   // alert(proname);
-	   // alert(proid);
-		var pro_opt_size="S";	
+	    var proname=$('#pro_name').val();	
+	    var pro_opt_size=$('.ec-product-selected').attr('name');
+	  
 		var data = {
 		    pro_id : proid,
 		    pro_name : proname,
@@ -104,7 +104,7 @@ $(document).ready(function(){
 
 
  </script>
- 
+
 	<div id="wrap">
 		<div id="container">
 			<div id="contents">
@@ -255,7 +255,7 @@ $(document).ready(function(){
 											ec-dev-name="option1" ec-dev-class="ProductOption0"
 											class="ec-product-button" required="true">
 											<c:forEach var="sizeList" items="${sizeList }">
-												<li class="pro_opt_size" option_value="P0000FEI000A" title="${sizeList.pro_opt_size}"><a href="#none">
+												<li class="pro_opt_size" option_value="P0000FEI000A" name="${sizeList.pro_opt_size}"><a href="#none">
 														<span><c:out value="${sizeList.pro_opt_size }" /></span>
 												</a></li>
 											</c:forEach>

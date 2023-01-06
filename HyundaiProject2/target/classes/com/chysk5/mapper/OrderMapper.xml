@@ -33,7 +33,7 @@ order by c.cart_regdate desc
 		insert into
 		order_total(order_no,order_addr,order_post,order_date,order_resell_check,member_mem_id)
 		values
-		(#{order.order_no},#{order.order_addr},#{order.order_post},SYSDATE,0,#{mem_id})
+		(#{order.order_no},#{order.order_addr},#{order.order_post},SYSDATE,#{order_resell_check},#{mem_id})
 	</insert>
 
 	<!-- 주문 디테일 테이블 -->
@@ -43,7 +43,13 @@ order by c.cart_regdate desc
 		values(#{cart.cart_amount},1,#{order_no},
 		#{cart.product_option_pro_opt_id})
 	</insert>
-
+	
+<!--      <update id="updateResell">
+       update r_product 
+       set re_available ='1'
+       where r_id=#{r_id}  
+ </update> -->
+	
 	<delete id="cartOrderDelete">
 
 		delete

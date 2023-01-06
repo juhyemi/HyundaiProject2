@@ -8,11 +8,11 @@
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
 
 </head>
-<%@ include file="../include/header2.jsp"%>
+ <%@ include file="../include/header2.jsp"%>
 
 <body>
   <div id="gnb">
-    <!-- <div class="dimmer"></div> -->
+     <div class="dimmer"></div>
     <div class="menu-block depth1">
       <ul>
         <li><a href="/product/list.html?cate_no=45"><span>New In</span></a></li>

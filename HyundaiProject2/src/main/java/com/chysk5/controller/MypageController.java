@@ -1,6 +1,7 @@
 package com.chysk5.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.MemberDTO;
 import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.domain.SoldOutProductDTO;
 import com.chysk5.service.MemberService;
 import com.chysk5.service.MyPageService;
 
@@ -98,8 +100,14 @@ public class MypageController {
 	    String mem_id = user.getUsername();
 	    
 	    List<MyResellProductDTO> myResellList = service.getMyResellList(mem_id);
+	    List<SoldOutProductDTO> mySoldOutList = service.getSoldOutList(mem_id);
+	    
+	    for(SoldOutProductDTO a : mySoldOutList) {
+	    	log.info("@@@@@@@@@@" + a);
+	    }
 		
 		model.addAttribute("myResellList", myResellList);
+		model.addAttribute("mySoldOutList", mySoldOutList);
 		
 		return "mypage/myResellPage";
 	}
@@ -110,10 +118,6 @@ public class MypageController {
 	public void removeMyResellProduct(@PathVariable("pro_opt_id") String pro_opt_id, Principal prc) {
 		log.info("확인: " + pro_opt_id);
 		 String mem_id=prc.getName();
-		/*Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User)authentication.getPrincipal();    
-	    String mem_id = user.getUsername();
-	    */
 		int result = service.removeMyResellProduct(pro_opt_id, mem_id);
 		
 		return;

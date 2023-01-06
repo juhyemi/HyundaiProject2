@@ -16,12 +16,14 @@ public interface OrderMapper {
 	public List<CartDTO> orderFormList(String mem_id);
 	
 	//order_total 데이터 삽입 + select key (order_total_no)
-	public void insertSelectKey(@Param("order")OrderDTO order,@Param("mem_id")String mem_id);
+	public void insertSelectKey(@Param("order")OrderDTO order,@Param("mem_id")String mem_id,@Param("order_resell_check")int order_resell_check);
     	
 	// order_detail 데이터 삽입
 	public void insertOrderDetail(@Param("order_no") String order_no, @Param("cart")CartDTO cart);
 
 	
     public void cartOrderDelete(@Param("mem_id")String mem_id,@Param("cart") CartDTO cart);
+    
+	/* public void updateResell(String r_id); */
 }
 
