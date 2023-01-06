@@ -15,9 +15,16 @@ public interface CartSerivce {
 	// 장바구니 상품 존재 여부
 	public int checkCart(CartDTO cart);
 	
-    //장바구니 수량 증가
-	public void increaseCount(CartDTO cart);
+    //장바구니 물품존재시 수량 증가
+	public void increaseCount(CartDTO cart); 
 	
 	//장바구니 물품 삭제
      public void delete(String mem_id, String pro_optId);
+     //장바구니 수량 변경
+     public int updateCnt(String cart_no, int cart_amount);
+     //장바구니 체크박스
+     public void cartCheck(String cart_no,String cart_select);
+     
+     //장바구니 체크 여부 확인 후 선택 삭제
+     public void deleteCheck(String mem_id);
 }

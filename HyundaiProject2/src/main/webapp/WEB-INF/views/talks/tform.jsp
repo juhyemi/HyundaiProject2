@@ -15,6 +15,7 @@
 				var talks_content = $('#talks_content').val();
 				$('input[name=talks_title]').attr('value',talks_title);
 				$('input[name=talks_content]').attr('value',talks_content);
+				$('input[name=longUser]').attr('value',loginUser);
 				if (answer) {
 					$("#registerForm").submit();
 
@@ -400,6 +401,8 @@
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<input type="hidden" name="talks_title" value= $(#talks_title).val() />
 						<input type="hidden" name="talks_content" value= $(#talks_content).val() />
+						<input type="hidden" name="loginUser" value= ${loginUser} />
+						
 					</form>
 
 				</div>

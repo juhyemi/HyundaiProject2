@@ -52,18 +52,36 @@ public class CartServiceImpl implements CartSerivce {
 		log.info("서비스 checkCart.!");
 		return mapper.checkCart(cart);
 	}
-	
-	
+	// 수량 변경
 	@Override
-	public void increaseCount(CartDTO cart) {
-		log.info("서비스 increaseCount.!");
-		mapper.increaseCount(cart);
+	public int updateCnt(String cart_no, int cart_amount) {
+		log.info("수량 변경...!");		
+		return mapper.updateCnt(cart_no,cart_amount);
 	}
+	
+	// 장바구니 물품 존재시 count 증가
+	  @Override public void increaseCount(CartDTO cart) {
+	  log.info("서비스 increaseCount.!"); mapper.increaseCount(cart); 
+	  }
+	
 	
 	@Override
 	public void delete(String mem_id, String pro_optId) {
 		log.info("서비스 delete...!");
 		mapper.delete(mem_id, pro_optId);
+	}
+	
+	@Override
+   public void cartCheck(String cart_no,String cart_select) {
+		log.info("카트 체크..!");
+		mapper.Cartcheck(cart_no,cart_select);
+	}
+	
+	@Override
+	  public void deleteCheck(String mem_id) {
+	   	
+	    log.info("체크 상품 삭제");
+	    mapper.deleteCheck(mem_id);
 	}
 	
 	

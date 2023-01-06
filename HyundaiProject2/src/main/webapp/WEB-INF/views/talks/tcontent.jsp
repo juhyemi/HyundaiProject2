@@ -9,16 +9,26 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	var writer = $('input[name=writer]').val();
+	var loginUser = $('input[name=loginUser]').val();
+	
+	if(writer != loginUser){
+		 $("#btnDel").hide();
+		
+	}else{
+		 $("#btnDel").click(function (){
+			  var answer = confirm ('해당 글을 삭제하시겠습니까?');
+			  if(answer){
+				
+			    $("#deleteForm").submit();
+			
+			  }
+			 });
+		
+	}
 	
 	
-	 $("#btnDel").click(function (){
-	  var answer = confirm ('해당 글을 작성하시겠습니까?');
-	  if(answer){
-		  
-	    $("#deleteForm").submit();
-	
-	  }
-	 });
+	/* if(mem_id!=$("talksContent.member_mem_id"))) */
 	
 });
  </script>
@@ -33,6 +43,7 @@ $(document).ready(function(){
 							<div class="title-block">
 								<h2><a href="/talks/tlist">Fashion Talks</a></h2>
 							</div>
+							
 							
 								<div class="xans-element- xans-board xans-board-read-1 xans-board-read xans-board-1 ">
 									<div class="board-read-block">
@@ -55,6 +66,8 @@ $(document).ready(function(){
 											<form id="deleteForm" action="/talks/delete" method="post">
 												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 												<input type="hidden" name="talks_id" value="${talksContent.talks_id }" />
+												<input type="hidden" name="writer" value="${talksContent.member_mem_id }" />
+												<input type="hidden" name="loginUser" value= "${loginUser}" />
 											</form>
 
 											<a href="/talks/tlist" class="btn btn-sm btn-dark btn-pd32">

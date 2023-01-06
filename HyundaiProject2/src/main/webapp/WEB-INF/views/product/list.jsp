@@ -43,21 +43,50 @@
     </div>
     </div>
         <div class="only-pc">
-            <div class="xans-element- xans-product xans-product-normalpaging paginate"><a href="#none">&lt;&lt;</a>
-    <a href="#none">&lt;</a>
-    <a href="?cate_no=27&amp;page=1" class="this xans-record-">1</a>
-    <a href="?cate_no=27&amp;page=2" class="other xans-record-">2</a>
-    <a href="?cate_no=27&amp;page=3" class="other xans-record-">3</a>
-    <a href="?cate_no=27&amp;page=4" class="other xans-record-">4</a>
-    <a href="?cate_no=27&amp;page=5" class="other xans-record-">5</a>
-    <a href="?cate_no=27&amp;page=2">&gt;</a>
-    <a href="?cate_no=27&amp;page=5">&gt;&gt;</a>
+            <div class="xans-element- xans-product xans-product-normalpaging paginate">
+    <a href="#none">&lt;&lt;</a>
+    <c:if test="${pageMaker.prev }">
+    	<li class="Paginate_button previous">
+    		<a href="#none">&lt;</a>
+    	</li>
+    </c:if>
+    
+    <c:forEach var="num" begin= "${pageMaker.startPage }" end = "${pageMaker.endPage }">
+    	<li class="paginate_button">
+    		<a href="# class="this xans-record-">${num }</a>
+    	</li>
+    </c:forEach>
+    
+    <c:if test = "${pageMaker.next }">
+    <li class="paginate_button next">
+   	 <a href="#">&gt;</a>
+   	</li>
+   	</c:if>
+   	<a href="#">&gt;&gt;</a>
+    <form id="actionForm" action="/product/list" method="get">
+    	<input type = "hidden" name = "pageNum" value = "${pageMaker.cri.pageNum }">
+    	<input type = "hidden" name = "amount" value = "${pageMaker.cri.amount }">
+    	
+    </form>
     </div>
         </div>
     </div>  
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		var actionForm = $("#actionForm");
+    		
+    		$(".paginate_button a").on("click", function(e) {
+    			e.preventDefault();
+    			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+    			actionForm.submit();
+    		});
+    		
+    	});
+    
+    </script>
     <%@ include file="../include/footer.jsp"%>
 </body>
 </html>
