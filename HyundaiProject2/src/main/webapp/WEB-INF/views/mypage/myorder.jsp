@@ -146,24 +146,7 @@
 												</ul>
 											</li>
 											<li class="last only-pc">
-												<ul>
-													<li class=""><a class="btn btn-sm btn-gray btn-pd16"
-														href="#none"
-														onclick="OrderHistory.orderCancel('20221229-0003219')"><span>주문취소</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/cancel.html?order_id=20221229-0003219"><span>취소신청</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/exchange.html?order_id=20221229-0003219"><span>교환신청</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/return.html?order_id=20221229-0003219"><span>반품신청</span></a>
-													</li>
-												</ul>
+										
 											</li>
 										</ul>
 									</div>
@@ -211,25 +194,14 @@
 											</div>
 										</div>
 										<div class="status">
-											입금전
-											<p class="displaynone">
-												<a href="#none" class="line" onclick="">[]</a>
-											</p>
+											
 											<button type="button"
-												class="btn btn-sm btn-gray btn-pd16 displaynone"
-												onclick="OrderHistory.withdraw('C','20221229-0003219|3363|000B|495111','F', 'F', 'F', '' , '')">
-												<span>취소철회</span>
+												class="btn btn-sm btn-gray btn-pd16"
+												onclick="">
+												<span>판매 등록</span>
 											</button>
-											<button type="button"
-												class="btn btn-sm btn-gray btn-pd16 displaynone"
-												onclick="OrderHistory.withdraw('E','20221229-0003219|3363|000B|495111','F', 'F', 'F', '' , '')">
-												<span>교환철회</span>
-											</button>
-											<button type="button"
-												class="btn btn-sm btn-gray btn-pd16 displaynone"
-												onclick="OrderHistory.withdraw('R','20221229-0003219|3363|000B|495111','F', 'F', 'F', '' , '')">
-												<span>반품철회</span>
-											</button>
+
+
 											<button type="button"
 												class="btn btn-sm btn-gray btn-pd16 displaynone"
 												onclick="OrderHistory.getDetailInfo('?product_no=3363&amp;cate_no=26&amp;order_id=20221229-0003219&amp;ord_item_code=20221229-0003219-01');">
@@ -292,24 +264,7 @@
 												</ul>
 											</li>
 											<li class="last only-pc">
-												<ul>
-													<li class=""><a class="btn btn-sm btn-gray btn-pd16"
-														href="#none"
-														onclick="OrderHistory.orderCancel('20221229-0003219')"><span>주문취소</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/cancel.html?order_id=20221229-0003219"><span>취소신청</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/exchange.html?order_id=20221229-0003219"><span>교환신청</span></a>
-													</li>
-													<li class="displaynone"><a
-														class="btn btn-sm btn-gray btn-pd16"
-														href="/myshop/order/return.html?order_id=20221229-0003219"><span>반품신청</span></a>
-													</li>
-												</ul>
+
 											</li>
 										</ul>
 									</div>
