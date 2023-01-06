@@ -8,7 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.OrderDTO;
+import com.chysk5.domain.ReSellOrderFormDTO;
+import com.chysk5.domain.ResellPriceSearchDTO;
+import com.chysk5.domain.ResellProductSearchIdDTO;
 import com.chysk5.mapper.OrderMapper;
+import com.chysk5.mapper.ResellMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -17,10 +21,10 @@ import lombok.extern.log4j.Log4j;
 @Service
 @Log4j
 @AllArgsConstructor
-
 public class OrderServiceImpl implements OrderService {
     
 	private OrderMapper mapper;
+	private ResellMapper reSellMapper;
 	
 	
 	@Override
@@ -68,6 +72,27 @@ public class OrderServiceImpl implements OrderService {
 		log.info("주문 물품 카트 삭제");
 		mapper.cartOrderDelete(mem_id,cart);
 		
+	}
+	
+	
+	@Override
+	public List<CartDTO> resellOrderFormList(ResellPriceSearchDTO resellDto) {
+		ResellProductSearchIdDTO idDto = reSellMapper.getResellProductSearchOptId(resellDto);
+		String proOptId = idDto.getPro_opt_id();
+		
+		List<CartDTO> orderFormList = mapper.resellOrderFormList(proOptId);
+		
+		String proName = resellDto.getProName();
+		String proSize = resellDto.getSizeVal();
+		
+		orderFormList.get(0).setPro_name(proName);
+		orderFormList.get(0).setPro_opt_size(proSize);
+		orderFormList.get(0).setCart_amount(1);
+		
+		//임시
+		orderFormList.get(0).setPro_loc("https://matinkim.com/web/product/medium/202208/dce96a8aecca1308059adfcfa0a53875.jpg");
+		
+		return orderFormList;
 	}
 	
 	
