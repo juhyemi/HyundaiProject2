@@ -25,84 +25,67 @@ public class MyPageServiceImpl implements MyPageService {
 	private MyPageMapper mapper;
 	private ResellMapper rmapper;
 	private ResellService rservice;
-	
+
 	/*
-	@Override
-	public List<MyResellProductDTO> getMyResellList(String mem_id) {
-		log.info("MyPage Service 들어옴 !!");
-		List<MyResellProductDTO> myResellList = new ArrayList<>();
-		SimpleDateFormat newDtFormat = new SimpleDateFormat("yyyy-MM-dd");
-		myResellList = mapper.getMyResellList(mem_id);
-		
-		for(MyResellProductDTO a : myResellList) {
-			try {
-				SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
-				Date formatDate = dtFormat.parse(a.getRe_regdate());
-				String strNewDtFormat = newDtFormat.format(formatDate);
-				a.setRe_regdate(strNewDtFormat);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		return myResellList;
-	}
-	*/
-	
+	 * @Override public List<MyResellProductDTO> getMyResellList(String mem_id) {
+	 * log.info("MyPage Service 들어옴 !!"); List<MyResellProductDTO> myResellList =
+	 * new ArrayList<>(); SimpleDateFormat newDtFormat = new
+	 * SimpleDateFormat("yyyy-MM-dd"); myResellList =
+	 * mapper.getMyResellList(mem_id);
+	 * 
+	 * for(MyResellProductDTO a : myResellList) { try { SimpleDateFormat dtFormat =
+	 * new SimpleDateFormat("yyyyMMdd"); Date formatDate =
+	 * dtFormat.parse(a.getRe_regdate()); String strNewDtFormat =
+	 * newDtFormat.format(formatDate); a.setRe_regdate(strNewDtFormat); } catch
+	 * (ParseException e) { // TODO Auto-generated catch block e.printStackTrace();
+	 * }
+	 * 
+	 * } return myResellList; }
+	 */
+
 	/*
-	@Override
-	public List<MyResellProductDTO> getMyResellList(String mem_id) {
-		log.info("MyPage Service 들어옴 !!");
-		List<MyResellProductDTO> myResellList = new ArrayList<>();
-		SimpleDateFormat newDtFormat = new SimpleDateFormat("yyyy-MM-dd");
-		myResellList = mapper.getMyResellList(mem_id);
-		
-		List<ResellPriceDTO> priceRank = 
-		
-		for(MyResellProductDTO a : myResellList) {
-			try {
-				SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
-				Date formatDate = dtFormat.parse(a.getRe_regdate());
-				String strNewDtFormat = newDtFormat.format(formatDate);
-				a.setRe_regdate(strNewDtFormat);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-		}
-		
-		int idx = 0;
-		for(MyResellProductDTO a : myResellList) {
-			String re_id = a.getRe_id();
-			List<ResellPriceDTO> priceRank = rmapper.getPriceList(re_id);
-			log.info("상품별 리셀 사이즈: " + priceRank.get(idx).getRe_price());
-			log.info("상품별 리셀 가격: " + priceRank.get(idx).getPro_opt_size());
-			idx++;
-		}
-		
-		
-		return myResellList;
-	}
-	
-	*/
-	
+	 * @Override public List<MyResellProductDTO> getMyResellList(String mem_id) {
+	 * log.info("MyPage Service 들어옴 !!"); List<MyResellProductDTO> myResellList =
+	 * new ArrayList<>(); SimpleDateFormat newDtFormat = new
+	 * SimpleDateFormat("yyyy-MM-dd"); myResellList =
+	 * mapper.getMyResellList(mem_id);
+	 * 
+	 * List<ResellPriceDTO> priceRank =
+	 * 
+	 * for(MyResellProductDTO a : myResellList) { try { SimpleDateFormat dtFormat =
+	 * new SimpleDateFormat("yyyyMMdd"); Date formatDate =
+	 * dtFormat.parse(a.getRe_regdate()); String strNewDtFormat =
+	 * newDtFormat.format(formatDate); a.setRe_regdate(strNewDtFormat); } catch
+	 * (ParseException e) { // TODO Auto-generated catch block e.printStackTrace();
+	 * } }
+	 * 
+	 * int idx = 0; for(MyResellProductDTO a : myResellList) { String re_id =
+	 * a.getRe_id(); List<ResellPriceDTO> priceRank = rmapper.getPriceList(re_id);
+	 * log.info("상품별 리셀 사이즈: " + priceRank.get(idx).getRe_price());
+	 * log.info("상품별 리셀 가격: " + priceRank.get(idx).getPro_opt_size()); idx++; }
+	 * 
+	 * 
+	 * return myResellList; }
+	 * 
+	 */
 
 	@Override
 	public int removeMyResellProduct(String pro_opt_id, String mem_id) {
-		
+
 		int result = mapper.removeMyResellProduct(pro_opt_id, mem_id);
-		if(result == 1) {
+		if (result == 1) {
 			log.info("remove success !!");
 			return result;
-		} else return 0;
+		} else
+			return 0;
 	}
 
 	@Override
 	public List<MyResellProductDTO> getMyResellList(String mem_id) {
-		
+
 		return mapper.getMyResellList(mem_id);
 	}
+
 
 	@Override
 	public int modifyPrice(String re_id, int re_price) {
@@ -123,5 +106,13 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 
+	// 총 구매 금액
+	@Override
+	public int totalOrderPrice(String mem_id) {
+
+		log.info("total order price.... " + mem_id);
+
+		return mapper.totalOrderPrice(mem_id);
+	}
 
 }

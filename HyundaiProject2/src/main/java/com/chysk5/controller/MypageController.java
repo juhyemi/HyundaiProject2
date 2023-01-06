@@ -37,7 +37,14 @@ public class MypageController {
 
 	// 마이페이지 메인 화면으로 이동
 	@GetMapping("/index")
-	public void index() {}
+	public void index(Model model, Principal prin) {
+		String mem_id = prin.getName();
+		
+		int totalOrderPrice = service.totalOrderPrice(mem_id);
+		
+		model.addAttribute("totalOrderPrice", totalOrderPrice);
+		
+	}
 	
 	// 주문내역 페이지로 이동
 	@GetMapping("/myorder")

@@ -57,7 +57,7 @@
 						<label>
 						 <!--  <input type="checkbox" id="one" name="number" value="1"> 전체선택 -->
 						<input id="allCheck" type="checkbox"
-							onclick="Basket.setCheckBasketList('basket_product_normal_type_normal', this);"> -->
+							onclick="Basket.setCheckBasketList('basket_product_normal_type_normal', this);"> 
 							 &nbsp;<span>전체선택 <em
 								class="xans-element- xans-order xans-order-normtitle ">(2)
 							</em>

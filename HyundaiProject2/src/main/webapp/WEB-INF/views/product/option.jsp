@@ -52,6 +52,7 @@ function product_submit_action(a, b, c) {
     product_submit(a, b, c);
 }
 
+/* 장바구니 담기 ajax */
 $(document).ready(function(){
 
      var csrfHeadName="${_csrf.headerName}";
@@ -60,8 +61,8 @@ $(document).ready(function(){
 	$('#btn_Buy').click(function() {
 		var proid =$('#pro_id').val();			
 	   var proname=$('#pro_name').val();		        
-	    alert(proname);
-	    alert(proid);
+	   // alert(proname);
+	   // alert(proid);
 		var pro_opt_size="S";	
 		var data = {
 		    pro_id : proid,
@@ -80,10 +81,7 @@ $(document).ready(function(){
 				if(result=="update"){
 					console.log("수량증가");
 					alert("카트존재 수량 증가");
-				}/* else if(result=="login"){
-					alert("login 필요");
-					window.location.replace('/member/login');
-				} */
+				}
 				else{
 					console.log("카트담기 성공");
 					alert("카트 담기 성공");
@@ -275,6 +273,7 @@ $(document).ready(function(){
 									</div>
 								</div>
 							</div>
+							
 							<div
 								class="xans-element- xans-product xans-product-action product-action-block">
 								<div class="buy-block ">
@@ -472,58 +471,6 @@ $(document).ready(function(){
 
 
 </script>
-<script>
-
-		     var csrfHeadName="${_csrf.headerName}";
-		     var csrfTokenValue="${_csrf.token}";
-			$('#btn_Buy').click(function() {
-				var proid =$('#pro_id').val();			
-			   var proname=$('#pro_name').val();		        
-			    alert(proname);
-			    alert(proid);
-				var pro_opt_size="S";	
-				var data = {
-				    pro_id : proid,
-				    pro_name : proname,
-				    pro_opt_size : pro_opt_size
-				};			
-				
-				$.ajax({
-					url : "/cartAjax/addCart",
-					type : "post",
-					data : data,
-					beforeSend : function(xhr) {
-				        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
-				    },
-					success : function(result) {
-						if(result=="update"){
-							console.log("수량증가");
-							alert("카트존재 수량 증가");
-						}/* else if(result=="login"){
-							alert("login 필요");
-							window.location.replace('/member/login');
-						} */
-						else{
-							console.log("카트담기 성공");
-							alert("카트 담기 성공");
-						}
-						window.top.document.getElementById('basketIframe').contentWindow.location.replace('/cart/cartList');
-						$('.basket-wrap-iframe').addClass('active');
-						$('html').addClass('fixed');
-						$('body').addClass('fixed');
-					},
-					error : function() {
-						alert("카트 담기 실패");
-					}
-					
-					
-				 });
-				
-			    
-
-			});
-</script>
-
 
 	<%@ include file="../include/footer.jsp"%>
 </body>

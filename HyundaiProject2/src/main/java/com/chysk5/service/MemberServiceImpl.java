@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void join(MemberDTO member) {
 		
-		String phone = member.getMobile1() + "-" + member.getMobile2() + "-" + member.getMobile3();
+		String phone = member.getMobile1() + member.getMobile2() + member.getMobile3();
 		member.setMem_phone(phone);
 		
 		String birth = member.getBirth_year() + "/" + member.getBirth_month() + "/" + member.getBirth_day();
@@ -71,6 +71,23 @@ public class MemberServiceImpl implements MemberService {
 		log.info("***** find password : " + member);
 		
 		return mapper.findPwd(member);
+	}
+
+	// 회원 탈퇴
+	@Override
+	public int delMember(String mem_id) {
+		
+		log.info("***** delete member : " + mem_id);
+		
+		return mapper.deleteMember(mem_id);
+	}
+
+	@Override
+	public int delCookie(String mem_id) {
+		
+		log.info("***** delete cookie : " + mem_id);
+		
+		return mapper.deleteCookie(mem_id);
 	}
 
 	

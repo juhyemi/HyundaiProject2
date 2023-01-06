@@ -67,8 +67,18 @@
                href="javascript:void(0);"><span>Search</span><i></i></a></li>
             <li class="space"></li>
             <li class=""><a href="/resell"><span>Resell</span></a></li>
-            <li class=""><a href="/talks/tlist"><span>Fashion Talks</span></a></li>
-            <li class=" only-mobile"><a href="javascript:languageOpen();"><span>Language</span></a></li>
+            <li class="">
+            	<sec:authorize access="isAnonymous()">
+            		<a href="/member/login">
+            			<span>Fashion Talks</span>
+            		</a>
+            	</sec:authorize> 
+            	<sec:authorize access="isAuthenticated()">
+            		<a href="/talks/tlist">
+            			<span>Fashion Talks</span>
+            		</a>
+              </sec:authorize>
+            </li>
            <li class="xans-element- xans-layout xans-layout-statelogoff ">
 				<!-- 로그인이 안되어 있을 경우 --> 
 				<sec:authorize access="isAnonymous()">
@@ -171,6 +181,7 @@
 	</div>
 
 </div>
+
 <div class="gnb-dimmer"></div>
 
 <!-- // gnb -->

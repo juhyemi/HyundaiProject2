@@ -22,7 +22,7 @@
 				<div
 					class="xans-element- xans-myshop xans-myshop-asyncbenefit header ">
 					<h2>
-						Hello, <span><span class="xans-member-var-name">신수진</span></span>
+						Hello, <a href="/mypage/index"><span class="xans-member-var-name"><sec:authentication property="principal.member.mem_name"/></span></a>
 					</h2>
 				</div>
 
@@ -37,14 +37,14 @@
 					<!-- menu-block -->
 					<div class="menu-block">
 						<ul>
-							<li class="js-order"><a href="/myshop/order/list.html">주문내역</a></li>
+							<li class="js-order"><a href="/mypage/myorder">주문내역</a></li>
 
 							<li class="js-board"><a
 								href="/board/consult/list.html?board_no=9">1:1 문의</a></li>
 							<li class="js-recent"><a
 								href="/product/recent_view_product.html">최근 본 상품</a></li>
-							<li class="js-modify"><a href="/member/modify.html">내 계정</a></li>
 							<li><a href="/mypage/myResell">나의 판매 목록</a></li>
+							<li class="js-modify"><a href="/mypage/modify">내 계정</a></li>
 							<li onclick="logoutSubmit();"><a href="#">로그아웃</a></li>
 						</ul>
 						
@@ -62,7 +62,7 @@
 							<div class="account block">
 								<div class="title-block">
 									<h2>Account informations</h2>
-									<span><a href="/member/modify.html" class="text-grey">회원정보수정</a></span>
+									<span><a href="/mypage/modify" class="text-grey">회원정보수정</a></span>
 								</div>
 								<table class="table-simple">
 									<colgroup>
@@ -72,14 +72,14 @@
 									<tbody>
 										<tr>
 											<th>이름</th>
-											<td class="xans-element- xans-myshop xans-myshop-benefit "><span>신수진</span></td>
+											<td class="xans-element- xans-myshop xans-myshop-benefit "><span><sec:authentication property="principal.member.mem_name"/></span></td>
 										</tr>
 										<tr>
 										</tr>
 										<tr>
 											<th>총 구매 금액</th>
 											<td class="xans-element- xans-myshop xans-myshop-bankbook ">
-												0(0회) <span class="js-limit-price"></span>
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${totalOrderPrice}" /> (0회) <span class="js-limit-price"></span>
 											</td>
 
 										</tr>
@@ -94,7 +94,7 @@
 						<section class="my-order-block">
 							<div class="title-block">
 								<h2>My orders</h2>
-								<span><a href="/myshop/order/list.html" class="text-grey">전체주문조회</a></span>
+								<span><a href="/mypage/myorder" class="text-grey">전체주문조회</a></span>
 							</div>
 
 							<div
