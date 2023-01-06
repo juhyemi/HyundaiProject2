@@ -104,4 +104,13 @@
 		    AND MEMBER_MEM_ID = #{mem_id}) m
 		WHERE p.pro_opt_id = m.opt_id
 	</select>
+	
+	<!-- 주문 내역 조회 -->
+	<resultMap type="com.chysk5.domain.MyOrderDTO" id="myOrderMap">
+		<id property="mem_id" column="mem_id"/>
+		<result property="order_no" column="order_no"/>
+		<result property="order_date" column="order_date"/>
+		<result property="order_total_price" column="order_total_price"/>		
+	</resultMap>
+	
   </mapper>

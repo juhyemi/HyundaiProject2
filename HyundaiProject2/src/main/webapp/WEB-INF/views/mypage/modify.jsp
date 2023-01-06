@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/modify.css">
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
 </head>
-<body>    
+<body class="magiedumatin">    
 <%@ include file="../include/header2.jsp"%>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -17,9 +18,54 @@ $(document).ready(function(){
 			return;
 		}
 	});
+	
+	var msg = ${msg};
+	
+	if(msg != null){
+		alert(msg);
+	}
+	
 });
 
+</script>
 
+<script type="text/javascript">
+function memberEditAction(){
+	
+	var csrfHeadName="${_csrf.headerName}";
+    var csrfTokenValue="${_csrf.token}";
+	var input_pwd = $("#passwd").val();
+	
+	if(input_pwd == ''){
+		alert("비밀번호를 입력해주세요.");
+		$("#passwd").focus();
+	}
+	
+	$.ajax({
+		url : '/member/pwCheck',
+		type : 'post',
+		data : {
+			input_pwd : input_pwd
+		},
+		beforeSend : function(xhr) {	
+	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+	    },
+	    success : function(result){
+	    	if(result == '1'){
+	    		$("#editForm").submit();
+	    	}else{
+	    		alert("비밀번호를 다시 확인해주세요.");
+	    		$("#passwd").val('');
+	    		$("#passwd").focus();
+	    	}
+	    },
+	    error : function(error){
+	    	console.log(error);
+	    }
+		
+	});
+	
+}
 </script>
 
 <div id="wrap">
@@ -62,9 +108,8 @@ $(document).ready(function(){
 							<h2>내 계정</h2>
 						</div>
 
-						<form id="editForm" name="editForm"
-							action="/exec/front/Member/edit/" method="post" target="_self"
-							enctype="multipart/form-data">
+						<form id="editForm" name="editForm" action="/member/modify" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<div
 								class="xans-element- xans-member xans-member-edit modify-form-wrap">
 								<div class="layout-block">
@@ -92,49 +137,18 @@ $(document).ready(function(){
 										<div class="form-block">
 											<label class="ePlaceholderEach required" title="비밀번호*">
 												<p class="form-title">비밀번호*</p> 
-												<input id="passwd" name="passwd" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호*">
-												<div class="info-msg">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합,
-													10자~16자)</div>
+												<input id="passwd" name="password" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호*">
 												<div class="err-msg">비밀번호 항목은 필수 입력값입니다.</div>
 											</label>
-										</div>
-
-										<div class="form-block">
-											<label class="ePlaceholderEach required" title="비밀번호 확인*">
-												<p class="form-title">비밀번호 확인*</p> 
-												<input id="user_passwd_confirm" name="user_passwd_confirm" value="" type="password" placeholder="비밀번호 확인*">
-												<div class="err-msg">비밀번호 확인 항목은 필수 입력값입니다.</div>
-											</label>
-										</div>
+										</div> 
 
 										<div>
 											<div class="form-block">
 												<label class="ePlaceholderEach required">
 													<p class="form-title active">이름*</p> 
-													<input id="name" name="mem_name" class="ec-member-name" placeholder="" maxlength="30" value='<sec:authentication property="principal.member.mem_name"/>' type="text">
+													<input id="name" name="mem_name" class="ec-member-name" placeholder="" maxlength="30" value="${member.mem_name}" type="text">
 												</label>
 											</div>
-										</div>
-
-										<div class="form-block flex-column-2 post-block">
-											<label class="ePlaceholderEach required">
-												<p class="form-title active">우편번호</p> 
-												<input id="postcode1" name="mem_postno" readonly="readonly" maxlength="14" 
-												value="" type="text">
-											</label>
-											<button type="button"
-												class="btn btn-sm btn-gray-border btn-120"
-												onclick="sample6_execDaumPostcode();">
-												<span>우편번호 찾기</span>
-											</button>
-										</div>
-
-										<div class="form-block form-submit-address mt0">
-											<label class="ePlaceholderEach required">
-												<p class="form-title active">주소</p> 
-												<input id="addr1" name="addr1" class="inputTypeText" readonly="readonly" value="" type="text"> 
-												<input id="addr2" name="mem_address" class="inputTypeText" value="" type="text">
-											</label>
 										</div>
 
 										<div class=" ePlaceholderGroup mt40" title="휴대전화*"
@@ -144,13 +158,13 @@ $(document).ready(function(){
 													<p class="form-title active">휴대전화*</p>
 													<div class="phone">
 														<input id="mobile1" name="mobile1" maxlength="4"
-															value="<sec:authentication property="principal.member.mobile1"/>" type="text">
+															value="${member.mobile1}" type="text">
 														-
 														<input id="mobile2" name="mobile2" maxlength="4"
-															value="<sec:authentication property="principal.member.mobile2"/>" type="text">
+															value="${member.mobile2}" type="text">
 														-
 														<input id="mobile3" name="mobile3" maxlength="4"
-															value="<sec:authentication property="principal.member.mobile3"/>" type="text">
+															value="${member.mobile3}" type="text">
 													</div>
 												</label>
 
@@ -162,7 +176,7 @@ $(document).ready(function(){
 											<div class="form-block email-block">
 												<label class="ePlaceholderEach required">
 													<p class="form-title active">이메일*</p> 
-													<input id="email1" name="mem_email1" value="<sec:authentication property="principal.member.mem_email"/>" type="text">
+													<input id="email1" name="mem_email" value="${member.mem_email}" type="text">
 													<div class="err-msg-system" id="emailMsg"></div>
 													<div class="err-msg">이메일 항목은 필수 입력값입니다.</div>
 												</label>
@@ -175,17 +189,17 @@ $(document).ready(function(){
 													<div class="day">
 														<label data-required="displaynone" title="생년*" class="ePlaceholderEach">
 															<p class="form-title">생년</p> 
-															<input id="birth_year" name="mem_year" class="inputTypeText" placeholder="생년" maxlength="4" 
-															value="<sec:authentication property="principal.member.birth_year"/>" type="text">
+															<input id="birth_year" name="birth_year" class="inputTypeText" placeholder="생년" maxlength="4" 
+															value="${member.birth_year}" type="text">
 													
 														</label> 
 														<label data-required="displaynone" title="월*" class="ePlaceholderEach">
 															<p class="form-title">월</p> 
-															<input id="birth_month" name="birth_month" class="inputTypeText" placeholder="월" maxlength="2" value="<sec:authentication property="principal.member.birth_month"/>" type="text">
+															<input id="birth_month" name="birth_month" class="inputTypeText" placeholder="월" maxlength="2" value="${member.birth_month}" type="text">
 														</label> 
 														<label data-required="displaynone" title="일*" class="ePlaceholderEach">
 															<p class="form-title">일</p> 
-															<input id="birth_day" name="birth_day" class="inputTypeText" placeholder="일" maxlength="2" value="<sec:authentication property="principal.member.birth_day"/>" type="text">
+															<input id="birth_day" name="birth_day" class="inputTypeText" placeholder="일" maxlength="2" value="${member.birth_day}" type="text">
 														</label>
 													</div>
 												</div>
@@ -222,51 +236,5 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    function sample6_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
-                
-                } else {
-                    document.getElementById("sample6_extraAddress").value = '';
-                }
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
-            }
-        }).open();
-    }
-</script>
 
 <%@ include file="../include/footer.jsp"%>

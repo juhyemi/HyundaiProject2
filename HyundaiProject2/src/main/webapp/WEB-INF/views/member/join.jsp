@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/member/join1.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/member/join2.css">
 </head>
-<body>
-	<%@ include file="../include/header2.jsp"%>
+<body class="magiedumatin">
+<%@ include file="../include/header2.jsp"%>
 
-	<script>
+<script>
 $(document).ready(function(){
 	$("#sAgreeAllChecked").click(function(){
 		if($("#sAgreeAllChecked").is(":checked") == true){
@@ -24,7 +26,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type : 'get',
-			url : '<c:url value ="/user/mailCheck?email="/>'+eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+			url : '/member/mailCheck?email=' + eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
 			success : function (data) {
 				console.log("data : " +  data);
 				checkInput.attr('disabled',false);
@@ -111,8 +113,8 @@ function frmSubmit(){
 			<div id="contents">
 				<div class="join-wrap">
 					<div class="header-title-block">
-						<h1>Welcome at Matin Kim</h1>
-						<p>마뗑킴에 오신 것을 환영합니다.</p>
+						<h1>Welcome at CHYSK 5</h1>
+						<p>CHYSK 5에 오신 것을 환영합니다.</p>
 					</div>
 					<form id="joinForm" name="joinForm" action="/member/join" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -203,10 +205,10 @@ function frmSubmit(){
 											
 										</div>
 										
-										<div class="" id="confirm_verify_mobile" style="display: none;">
+										<div class="" id="confirm_verify_mobile" style="">
 											<div class="form-block phone-verify-block flex-column-2">
 												<div class="phone-verify">
-													<input id="verify_sms_number" name="verify_sms_number" fw-filter="isMax[15]" fw-label="verify_sms_number" fw-msg="" class="inputTypeText" maxlength="15" value="" type="text" placeholder="">
+													<input id="verify_sms_number" class="inputTypeText" type="text" placeholder="인증번호 6자리를 입력해주세요" disabled="disabled" maxlength="6">
 													<span class="time" id="expiryTime">2:43</span>
 												</div>
 												<button type="button" class="btn btn-md btn-white btn-135" id="btn_verify_mobile_confirm" onclick="memberVerifyMobile.joinVerifySmsNumberConfirm(); return false;">확인</button>

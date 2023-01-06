@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/mypage.css">
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
 </head>
-<body>    
+<body class="magiedumatin">    
 <%@ include file="../include/header2.jsp"%>
 
 <div id="wrap">
