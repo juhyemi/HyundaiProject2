@@ -3,22 +3,22 @@ package com.chysk5.controller;
 
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chysk5.domain.CartCheckDTO;
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.ProductOptionDTO;
 import com.chysk5.service.CartSerivce;
+import com.chysk5.service.OrderService;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -28,8 +28,8 @@ import lombok.extern.log4j.Log4j;
 
 public class CartRestController {
    
-	private CartSerivce service;
-	
+	private CartSerivce cartservice;
+	private OrderService orderservice;
 	
 	// 장바구니 담기 -- session 으로 mem_id 받아와야 한다
 	@Secured({"ROLE_MEMBER"})
@@ -45,27 +45,63 @@ public class CartRestController {
 		//product_opt_id 조회	   
 		ProductOptionDTO product=new ProductOptionDTO(pro_id,pro_name,pro_opt_size);
 	    log.info(product);
- 	    String opt_id=service.searchOptid(product); 
+ 	    String opt_id=cartservice.searchOptid(product); 
      	// cart 삽입(존재여부 체크 )
  	    CartDTO cart=new CartDTO(mem_id,opt_id);
         log.info("opt_id:"+opt_id);
 	    log.info("cart:"+cart);   
 	    log.info("add cart 서비스 호출 전"); 
-	    if(service.checkCart(cart)>0) {
-	    	service.increaseCount(cart);
+	    if(cartservice.checkCart(cart)>0) {
+	    	cartservice.increaseCount(cart);
 	    	log.info("장바구니 존재 o 수량 증가");
 	    	return "update";
 	    }
 	    else {
-	    	 service.addCart(cart);
+	    	cartservice.addCart(cart);
 	    	 log.info("장바구니 존재 x 장바구니 등록");
-	    	 return "insert";
-	    
+	    	 return "insert";	    
 	    }
-	    
-	   
+	   	   
 		
 	} 
+	
+	//수량 변경
+	@Secured({"ROLE_MEMBER"})
+	@PostMapping("/updateCnt")
+	public int updateCnt(@RequestParam("cart_no") String cart_no, @RequestParam("cart_amount") int cart_amount) {
+	   log.info("cart_no:"+cart_no);	  
+	   log.info("cart_amount:"+cart_amount);	  
+	   cartservice.updateCnt(cart_no,cart_amount);	    
+	   return cart_amount;
+	   
+	}
+	
+	// 장바구니 check
+	@Secured({"ROLE_MEMBER"})
+	@PostMapping("/cartCheck")
+	public String checkCart(@RequestParam("cart_no") String cart_no,@RequestParam("cart_select") String cart_select) {
+	   log.info("cart_no:"+cart_no);
+	   log.info("cart_select:"+cart_select);
+	   cartservice.cartCheck(cart_no,cart_select);	    
+	   return cart_select;
+	   
+	}
+	
+	//체크된 상품 삭제
+	@Secured({"ROLE_MEMBER"})
+	@PostMapping("/deleteCheck")
+	public void deleteCheck(Principal prc,Model model) {
+	   String mem_id=prc.getName();
+		log.info("mem_id:"+mem_id);
+	   //log.info("cart_select:"+cart_select);
+	  List<CartDTO>orderFormList = orderservice.orderFormList(mem_id);	     
+	  model.addAttribute(orderFormList);	    
+	  cartservice.deleteCheck(mem_id);	    
+	   
+	}
+	
+	
+	
 	// 장바구니 삭제
 	/*
 	 * @Secured({"ROLE_MEMBER"})

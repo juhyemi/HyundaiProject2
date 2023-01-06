@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko" xmlns="//www.w3.org/1999/xhtml" xml:lang="ko">
 <head>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,12 +23,117 @@
 <title>Document</title>
 <meta name="referrer" content="unsafe-url">
 </head>
-<body id="popup" class="iframe-layout">
+<script>
+window.onload=function(){
+	
+		$("input:checkbox[name='1']").prop("checked",true);
+		
+		$("input:checkbox[name='0']").prop("checked",false);
 
+	}
+
+</script>
+<script type="text/javascript">
+<!--상품 가격-->		
+
+/*전체선택*/
+function allCheck(){
+            if($("#allCk").prop("checked")) {
+                $("input[type=checkbox]").prop("checked",true);
+
+            } else {
+                $("input[type=checkbox]").prop("checked",false); 
+            }
+        }
+/* 부분체크박스 */		
+function cartCheck(obj, cartNo){
+		
+	var csrfHeadName="${_csrf.headerName}";
+	var csrfTokenValue="${_csrf.token}";
+	var select = obj.checked;
+	var cartCheck="0";
+	var cartno = cartNo;		
+	if(select){
+		  cartcheck="1";
+	}
+	else{
+		cartcheck="0";
+		
+	}
+	
+	 var data = {
+			    cart_no : cartno,
+			    cart_select : cartcheck
+			};
+	 $.ajax({
+		    url : "/cartAjax/cartCheck",
+			type :"post",
+			data : data,
+			beforeSend : function(xhr) {
+		        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+		    }, 
+			success : function(result) {
+				if(result=="1"){
+					alert(result);				
+				}else{
+					alert(result);		
+				}
+				alert("체크박스 성공");	
+				
+			},
+			error : function() {
+				alert("체크박스 실패");
+			}
+				 
+	 });		
+	 
+}
+
+//선택 제품 삭제
+function selectDelete(){
+	
+	var csrfHeadName="${_csrf.headerName}";
+	var csrfTokenValue="${_csrf.token}";
+	$.ajax({
+	    url : "/cartAjax/deleteCheck",
+		type :"post",
+		beforeSend : function(xhr) {
+	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+	    }, 
+		success : function() {
+		   alert("체크 삭제 성공");		 
+		   console.log(".............")	;
+		   $("input:checkbox[id='basket_chk_id_0']:checked").each(function(){
+               console.log(".............");
+			   
+          /*     console.log(li_value);
+             var li=$("li[data-li_value='1']"); 
+             console.log(li); */
+              this.closest("li").remove(); 
+              console.log("될까");
+           });
+		},
+		error : function() {
+			alert("체크 삭제 실패");
+		}
+			 
+ });
+
+
+}
+
+//수량 업데이트
+/* function updateCnt(){
+
+	
+	
+	} */
+</script>
+<body id="popup" class="iframe-layout">
 	<div
 		class="xans-element- xans-order xans-order-basketpackage basket-wrap ">
 		<div class="section">
-		
+
 			<div class="title">
 				<h1>Shopping Bag</h1>
 				<button type="button" class="btn-close"
@@ -54,148 +160,99 @@
 
 				<div class="header">
 					<div class="select-all">
-						<label>
-						 <!--  <input type="checkbox" id="one" name="number" value="1"> 전체선택 -->
-						<input id="allCheck" type="checkbox"
-							onclick="Basket.setCheckBasketList('basket_product_normal_type_normal', this);"> 
-							 &nbsp;<span>전체선택 <em
+						<label> <!--  <input type="checkbox" id="one" name="number" value="1"> 전체선택 -->
+							<input id="allCk" type="checkbox"
+							onclick="allCheck();">
+							&nbsp;<span>전체선택 <em
 								class="xans-element- xans-order xans-order-normtitle ">(2)
 							</em>
 						</span></label>
 					</div>
+					<!-- 체크박스 선택 삭제 -->
 					<div
 						class="xans-element- xans-order xans-order-selectorder select-del ">
-						<a href="javascript:void(0);" onclick="Basket.deleteBasket()"
+						<a href="javascript:void(0);" onclick="selectDelete();"
 							target="_top">선택삭제</a>
 					</div>
 				</div>
 
 				<ul class="xans-element- xans-order xans-order-list items-block">
-				
-			<!-- 	c태그 변수명 cartlist -->
-				     <c:forEach items="${cartList}" var="cartlist">
-					<li class="xans-record-">
-						<div class="block">
-							<div class="check">
-								<input type="checkbox" id="basket_chk_id_0"
-									name="basket_product_normal_type_normal">
-							</div>
-							<div class="thumb">
-								<a href="/product/detail.html?product_no=3341&amp;cate_no=86"
-									target="_top"><img
-									src='<c:url value='${cartlist.pro_loc}'></c:url>'
-									alt="MATIN KIM LOGO COATING JUMPER IN BEIGE"></a>
-							</div>
-							<div class="desc">
-								<p class="name">
-									<a
-										href="/product/matin-kim-logo-coating-jumper-in-beige/3341/category/86/"
-										class="ec-product-name" target="_top">${cartlist.pro_name}</a>
-								</p>
-							<!-- 	<ul class="xans-element- xans-order xans-order-optionall option">
+
+					<!-- 	c태그 변수명 cartlist -->
+					<c:forEach items="${cartList}" var="cartlist">
+						
+							<input type="hidden" class="cart_no" value="${cartlist.cart_no}">
+							<%-- 	<input type="hidden" class="cart_check" value="${cartlist.cart_check}">  --%>
+							<input type="hidden" class="indiviual_pro_price"
+								value="${cartlist.pro_price}">
+							<input type="hidden" class="cart_check"
+								value="${cartlist.cart_select}">
+							<input type="hidden" class="indiviual_cart_amount"
+								value="${cartlist.cart_amount}">
+							<li class="xans-record-" id="${cartlist.cart_no}" data-li_value="off">
+								<div class="block">
+									<!-- 상품체크 -->
+									<div class="check">
+										<input type="checkbox" id="basket_chk_id_0"
+											name="${cartlist.cart_select}"
+											onclick="cartCheck(this, ${cartlist.cart_no});">
+									</div>
+									<div class="thumb">
+										<a href="/product/detail.html?product_no=3341&amp;cate_no=86"
+											target="_top"><img
+											src='<c:url value='${cartlist.pro_loc}'></c:url>'
+											alt="MATIN KIM LOGO COATING JUMPER IN BEIGE"></a>
+									</div>
+									<div class="desc">
+										<p class="name">
+											<a
+												href="/product/matin-kim-logo-coating-jumper-in-beige/3341/category/86/"
+												class="ec-product-name" target="_top">${cartlist.pro_name}</a>
+										</p>
+										<!-- 	<ul class="xans-element- xans-order xans-order-optionall option">
 									<li class="xans-record-"><strong class="displaynone">MATIN
 											KIM LOGO COATING JUMPER IN BEIGE</strong>[옵션: FREE] <span
 										class="displaynone">(1개)</span><br></li>
 								</ul> -->
-								<ul class="xans-element- xans-order xans-order-optionall option">
-									<li class="xans-record-"><strong class="displaynone"></strong>[옵션:${cartlist.pro_opt_size}] <span
-										class="displaynone">(1개)</span><br></li>
-								</ul>
-								<!-- 숨김처리 -->
-								<div id="" class="price-block displaynone">
-									<strong>143,000</strong>
-									<p class="displaynone"></p>
-								</div>
-								<!-- // 숨김처리 -->
+										<ul
+											class="xans-element- xans-order xans-order-optionall option">
+											<li class="xans-record-"><strong class="displaynone"></strong>[옵션:${cartlist.pro_opt_size}]
+												<span class="displaynone">(1개)</span><br></li>
+										</ul>
+										<!-- 숨김처리 -->
+										<div id="" class="price-block displaynone">
+											<strong>143,000</strong>
+											<p class="displaynone"></p>
+										</div>
+										<!-- // 숨김처리 -->
+										<!--수량 변경-->
+										<div class="quantity-block">
+											<button type="button" class="btn btn-minus">
+												<span>DOWN</span>
+											</button>
+											<input id="quantity_id_0" name="quantity_name_0" size="2"
+												value="${cartlist.cart_amount}" type="text">
+											<button type="button" class="btn btn-plus">
+												<span>UP</span>
+											</button>
+										</div>
 
-								<div class="quantity-block">
-									<button type="button"
-										onclick="Basket.outQuantityShortcut('quantity_id_0', 0);"
-										class="btn btn-minus">
-										<span>DOWN</span>
-									</button>
-									<input id="quantity_id_0" name="quantity_name_0" size="2"
-										value="${cartlist.cart_amount}" type="text">
-									<button type="button"
-										onclick="Basket.addQuantityShortcut('quantity_id_0', 0);"
-										class="btn btn-plus">
-										<span>UP</span>
-									</button>
-								</div>
+										<div class="price-block">
 
-								<div class="price-block">
-								
-									<strong><fmt:formatNumber value="${cartlist.pro_price}" pattern="#,###" /><!-- 143,000 --></strong>
-								</div>
+											<strong><fmt:formatNumber
+													value="${cartlist.pro_price}" pattern="#,###" /> <!-- 143,000 --></strong>
+										</div>
 
-								<div class="del">
-									<a href="javascript:void(0);"
-										onclick="Basket.deleteBasketItem(0);" target="_top"><span>Remove</span></a>
-								</div>
+										<div class="del">
+											<a href="javascript:void(0);"
+												onclick="Basket.deleteBasketItem(0);" target="_top"><span>Remove</span></a>
+										</div>
 
-							</div>
-						</div>
-					</li>
+									</div>
+								</div>
+							</li>
+						
 					</c:forEach>
-					<!-- 두번째 물품 -->
-					<!-- <li class="xans-record-">
-						<div class="block">
-							<div class="check">
-								<input type="checkbox" id="basket_chk_id_1"
-									name="basket_product_normal_type_normal">
-							</div>
-							<div class="thumb">
-								<a href="/product/detail.html?product_no=3513&amp;cate_no=45"
-									target="_top"><img
-									src="//matinkim.com/web/product/tiny/202212/060f45a50cab2f9533a1b895a71ba320.jpg"
-									onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"
-									alt="BIG BUCKLE BAG IN NAVY"></a>
-							</div>
-							<div class="desc">
-								<p class="name">
-									<a href="/product/big-buckle-bag-in-navy/3513/category/45/"
-										class="ec-product-name" target="_top">BIG BUCKLE BAG IN
-										NAVY</a>
-								</p>
-								<ul class="xans-element- xans-order xans-order-optionall option">
-									<li class="xans-record-"><strong class="displaynone">BIG
-											BUCKLE BAG IN NAVY</strong>[옵션: FREE] <span class="displaynone">(1개)</span><br>
-									</li>
-								</ul>
-								숨김처리
-								<div id="" class="price-block displaynone">
-									<strong>118,000</strong>
-									<p class="displaynone"></p>
-								</div>
-								// 숨김처리
-
-								<div class="quantity-block">
-									<button type="button"
-										onclick="Basket.outQuantityShortcut('quantity_id_1', 1);"
-										class="btn btn-minus">
-										<span>DOWN</span>
-									</button>
-									<input id="quantity_id_1" name="quantity_name_1" size="2"
-										value="1" type="text">
-									<button type="button"
-										onclick="Basket.addQuantityShortcut('quantity_id_1', 1);"
-										class="btn btn-plus">
-										<span>UP</span>
-									</button>
-								</div>
-
-								<div class="price-block">
-									<strong>106,200</strong>
-								</div>
-
-								<div class="del">
-									<a href="javascript:void(0);"
-										onclick="Basket.deleteBasketItem(1);" target="_top"><span>Remove</span></a>
-								</div>
-
-							</div>
-						</div>
-					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -209,7 +266,8 @@
 						<ul>
 							<li class="price-title">상품 금액</li>
 							<li class="price"><strong><span><span
-										class="total_product_price_display_front">261,000</span></span></strong></li>
+										class="total_product_price_display_front"> <!-- 261,000 -->
+									</span></span></strong></li>
 						</ul>
 						<ul class="">
 							<li class="price-title">할인금액</li>
@@ -220,7 +278,8 @@
 							<li class="price-title">배송비</li>
 							<li class="price"><strong><span
 									id="total_delv_price_front"><span
-										class="total_delv_price_front">0</span></span></strong></li>
+										class="total_delv_price_front"> <!-- 0 -->
+									</span></span></strong></li>
 						</ul>
 					</div>
 
@@ -228,8 +287,8 @@
 						<ul>
 							<li class="price-title">전체합계</li>
 							<li class="price"><strong><span
-									id="total_order_price_front">249,200</span></strong> <span
-								class="txt14 displaynone"><span
+									id="total_order_price_front"> <!-- 249,200 -->
+								</span></strong> <span class="txt14 displaynone"><span
 									id="total_order_price_back"></span></span></li>
 						</ul>
 					</div>
@@ -238,7 +297,8 @@
 			<div class="xans-element- xans-order xans-order-totalsummary ">
 				<div
 					class="xans-element- xans-order xans-order-totalorder btn-block ">
-					<button type="button" id="orderform" class="btn btn-md btn-white btn-full"
+					<button type="button" id="orderform"
+						class="btn btn-md btn-white btn-full"
 						onclick=" window.open('/order/orderForm', '_parent')">
 						<span>선택상품 주문</span>
 					</button>
@@ -253,16 +313,7 @@
 		</div>
 	</div>
 	<div id="criteo-tags-div" style="display: none;"></div>
-	<!-- <script>
-	$("input:checkbox[id='one']").prop("checked", true);
-	$("input:checkbox[id='one']").prop("checked", false);
-	
-	</script> -->
-	<script>
-/* 	$('#orderform').click(){
-		  window.location.href ='/order/orderForm';
-	}; */
-	</script> 
+
 </body>
 
 
