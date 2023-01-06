@@ -14,10 +14,10 @@ $(document).ready(function(){
 	var writer = $('input[name=writer]').val();
 	var loginUser = $('input[name=loginUser]').val();
 	
-	if(writer != loginUser){
+	/* if(writer != loginUser){
 		 $("#btnDel").hide();
 		
-	}else{
+	}else{ */
 		 $("#btnDel").click(function (){
 			  var answer = confirm ('해당 글을 삭제하시겠습니까?');
 			  if(answer){
@@ -27,7 +27,7 @@ $(document).ready(function(){
 			  }
 			 });
 		
-	}
+/* 	} */
 	
 	
 	/* if(mem_id!=$("talksContent.member_mem_id"))) */
@@ -54,7 +54,7 @@ $(document).ready(function(){
 										</ul>
 										<div class="detail">
 											<div class="fr-view fr-view-article">
-
+												
 												<p>
 													<strong><span style="font-size: 14px;">${talksContent.talks_content}</span></strong>
 												</p>
@@ -62,9 +62,11 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="btn-group-center mt40">
-											<a id="btnDel" href="#" class= "btn btn-sm btn-white btn-pd32 displaynone">
-												<span>Delete</span>
-											</a>
+											<c:if test="${loginUser eq talksContent.member_mem_id}">
+												<a id="btnDel" href="#" class= "btn btn-sm btn-white btn-pd32">
+													<span>Delete</span>
+												</a>											
+											</c:if>
 											<form id="deleteForm" action="/talks/delete" method="post">
 												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 												<input type="hidden" name="talks_id" value="${talksContent.talks_id }" />

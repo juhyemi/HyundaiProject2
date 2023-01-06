@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="./include/black-header1.jsp"%>
+<%@ include file="./include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2-before.css">
 <link rel="stylesheet" type="text/css" href="/js/slick/black-slick.css" crossorigin="anonymous">
 </head>
 <body class="magiedumatin main header-transparent">
-	<%@ include file="./include/black-header2.jsp"%>
+	<%@ include file="./include/header2.jsp"%>
 
 	<div id="wrap">
 		<div id="container">
