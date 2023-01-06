@@ -38,11 +38,12 @@ public class OrderController {
 		 // 유저 id
 		 String mem_id=prc.getName();
 	     log.info("mem_id:"+mem_id);
-	     String rck= dto.getOrder_resell_check();
-	     log.info("리셀 체크여부 0-cart:"+ rck);
+	     String order_resell_check= dto.getOrder_resell_check();
+	     log.info("리셀 체크여부 0-cart:"+ order_resell_check);
 	     List<CartDTO>orderFormList = service.orderFormList(mem_id);	     
 	     log.info(orderFormList);
-	     model.addAttribute("orderReselCheck",rck); // 리셀 체크 여부
+	     log.info("반복 될까요?");
+	     model.addAttribute("order_resell_check", order_resell_check); // 리셀 체크 여부
 	     model.addAttribute("orderFormList",orderFormList);
 	     return "order/orderForm";
 	}
@@ -66,9 +67,11 @@ public class OrderController {
        	 // 주문완료
          List<CartDTO>cart=service.orderComplete(order,mem_id,order_resell_check);
          log.info("주문 완료 서비스 완료");
+         //장바구니 상품만 삭제
+         if(order_resell_check==0) {
          cart.forEach(of->service.orderDelete(mem_id,of));	 
          log.info("주문시 장바구니 삭제 완료");
-         
+         }
 		return "redirect:/order/orderCompleteForm";
 	}
 	

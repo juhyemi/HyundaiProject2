@@ -40,8 +40,7 @@ order by c.cart_regdate desc
 	<insert id="insertOrderDetail">
 		insert into
 		order_detail(order_detail_amount,order_detail_check,order_total_order_no,product_option_pro_opt_id)
-		values(#{cart.cart_amount},1,#{order_no},
-		#{cart.product_option_pro_opt_id})
+		values(#{cart.cart_amount},1,#{order_no},#{cart.product_option_pro_opt_id})
 	</insert>
 	
 <!--      <update id="updateResell">

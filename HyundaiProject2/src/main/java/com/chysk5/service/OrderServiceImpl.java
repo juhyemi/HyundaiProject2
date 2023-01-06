@@ -44,23 +44,22 @@ public class OrderServiceImpl implements OrderService {
 		 if(order_resell_check== 0) { 
 	     log.info("카트 에서 주문 시작");
 		 mapper.insertSelectKey(order,mem_id,order_resell_check);//orderDTO 에 값저장 ORDER_NO 가져옴
-		 log.info("orderselectkey!");
+		 log.info("order_total 추가 완료");
 		
 		 }
 		 else {
              order_resell_check=1;
 			 log.info("resell주문 시작");
 			 mapper.insertSelectKey(order,mem_id,order_resell_check);//orderDTO 에 값저장 ORDER_NO 가져옴
-			 log.info("orderselectkey!");
+			 log.info("리셀 order_total 추가 완료");
 				/*
 				 * mapper.updateResell(re_id); //reavailable 업데이트
-				 */		 
+				 */					 
 			 }
 		 String order_no=order.getOrder_no();
-		 log.info(order);
-		 log.info("orderno:"+order_no);
 		 orderFormList.forEach(of->mapper.insertOrderDetail(order_no,of));	 //ORDER_NO 받아서 주문 목록(선택된 카트 DTO)와 ORDER NO
-	    return orderFormList;
+		 log.info("order detail 추가 완료");		 
+		 return orderFormList;
 	 } 
 	
 	@ Override

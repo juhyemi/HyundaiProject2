@@ -109,7 +109,9 @@ function selectDelete(){
           /*     console.log(li_value);
              var li=$("li[data-li_value='1']"); 
              console.log(li); */
-              this.closest("li").remove(); 
+            this.closest("li").remove(); 
+   
+         
               console.log("될까");
            });
 		},
@@ -297,13 +299,13 @@ function selectDelete(){
 			<div class="xans-element- xans-order xans-order-totalsummary ">
 				<div
 					class="xans-element- xans-order xans-order-totalorder btn-block ">
-				    <form name="ord_rsc" action="/order/orderForm" method="GET">
+				    <form name="content_form" action="/order/orderForm" method="GET">
 				    <input type="hidden" class="cart_no" value="${cartlist.cart_no}">
 				    <input type="hidden" name="order_resell_check" value="0">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<button type="submit" id="orderform"
 						class="btn btn-md btn-white btn-full"
-						onclick=" window.open('/order/orderForm', '_parent')">
+						onclick="checkForm()" onsubmit="return true;">
 						<span>선택상품 주문</span>
 					</button>
 			       </form>
@@ -320,7 +322,17 @@ function selectDelete(){
 	<div id="criteo-tags-div" style="display: none;"></div>
 
 </body>
+<script>
+// iframe parent window 
 
+function checkForm(){ 
+
+    document.content_form.target="_parent"; 
+
+    document.content_form.submit(); 
+
+} 
+</script>
 
 </html>
 </html>
