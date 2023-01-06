@@ -167,9 +167,10 @@
 														<div class="option ">[옵션: ${List.pro_opt_size } ]</div>
 														<div class="price text-center">
 															판매 가격: <fmt:formatNumber value="${List.my_price }" type="number"/>
+														</div>
+														<div>
 															
 														</div>
-
 
 													</div>
 												</div>
