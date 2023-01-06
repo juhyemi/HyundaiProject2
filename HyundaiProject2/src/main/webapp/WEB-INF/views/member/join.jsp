@@ -18,26 +18,71 @@ $(document).ready(function(){
 		}	
 	});
 	
+	
 	// 이메일 인증하기
 	$('#mail-Check-Btn').click(function() {
-		const eamil = $('#email1').val(); // 이메일 주소값 얻어오기!
-		console.log('완성된 이메일 : ' + eamil); // 이메일 오는지 확인
-		const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+		const email = $('#email1').val(); // 이메일 주소값 얻어오기!
+		const checkInput = $('#verify_sms_number'); // 인증번호 입력하는곳 
 		
-		$.ajax({
-			type : 'get',
-			url : '/member/mailCheck?email=' + eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
-			success : function (data) {
-				console.log("data : " +  data);
-				checkInput.attr('disabled',false);
-				code =data;
-				alert('인증번호가 전송되었습니다.')
-			}			
-		}); // end ajax
+		if(email == ''){
+			alert("이메일을 입력해주세요");
+		}else{
+			$("#result_send_verify_mobile_success").css("display", "block");
+			
+			$.ajax({
+				type : 'get',
+				url : '/member/mailCheck?email=' + email, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+				success : function (data) {
+					console.log("data : " +  data);
+					checkInput.attr('disabled',false);
+					code = data;
+					
+					var time = 180;
+				    var min = "";
+				    var sec = "";
+
+				    var x = setInterval(function(){
+				      min = parseInt(time/60);
+				      sec = time%60;
+
+				      document.getElementById("expiryTime").innerHTML = ('00' + min).slice(-2) + ":" + ('00' + sec).slice(-2);
+				      time--;
+
+				      if(time < 0){
+				        clearInterval(x);
+				        document.getElementById("expiryTime").innerHTML = "시간초과";
+				      }
+
+				    }, 1000);
+				    
+				    alert('인증번호가 전송되었습니다.');
+					checkInput.focus();
+					
+				}			
+			}); // end ajax
+		}
+		
+		
 	}); // end send eamil
 	
+	// 인증번호 비교 
+	$('#btn_verify_mobile_confirm').click(function () {
+		const inputCode = $("#verify_sms_number").val();
+		const $resultMsg = $('#mail-check-warn');
+		
+		if(inputCode === code){
+			$resultMsg.html('인증번호가 일치합니다.');
+			$resultMsg.css('color','green');
+			$('#mail-Check-Btn').attr('disabled',true);
+			$('#email').attr('readonly',true);
+			$("#expiryTime").css("color", "white");
+		}else{
+			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+			$resultMsg.css('color','red');
+		}
+	});
+	
 });
-
 
 var idPass = false;
 
@@ -158,7 +203,6 @@ function frmSubmit(){
 										<div class="form-block">
 											<label class="ePlaceholderEach required" title="이름*">
 												<p class="form-title">이름*</p> <input id="name" name="mem_name" placeholder="이름*" maxlength="30" value="" type="text">
-												<div class="info-msg displaynone" id="under14Msg">14세 미만 사용자는 법정대리인 동의가 필요합니다.</div>
 												<div class="err-msg">이름 항목은 필수 입력값입니다.</div>
 											</label>
 										</div>
@@ -192,14 +236,13 @@ function frmSubmit(){
 												<input id="email1" name="mem_email" value="" type="text" placeholder="이메일*">
 												<div class="err-msg-system" id="emailMsg"></div>
 												<div class="err-msg">이메일 항목은 필수 입력값입니다.</div>
-												<p class="" id="result_send_verify_mobile_fail" style="display: none;">유효하지 않은 휴대폰 번호입니다. 입력한 번호를 확인해 주세요.</p>
-												<ul class="" id="result_send_verify_mobile_success" style="display: none;">
+												<ul class="err-msg" id="result_send_verify_mobile_success" style="display: none;">
 													<li>인증번호가 발송되었습니다.</li>
-													<li>인증번호를 받지 못하셨다면 휴대폰 번호를 확인해 주세요.</li>
 												</ul>
 												
 											</label>
 											<button type="button" id="mail-Check-Btn" class="btn btn-md btn-white btn-135">인증번호받기</button>
+											
 											
 											<button type="button" id="btn_action_verify_mobile" class="btn btn-md btn-white btn-135 " onclick="memberVerifyMobile.joinSendVerificationNumber(); return false;" style="display: none;">재전송</button>
 											
@@ -209,11 +252,15 @@ function frmSubmit(){
 											<div class="form-block phone-verify-block flex-column-2">
 												<div class="phone-verify">
 													<input id="verify_sms_number" class="inputTypeText" type="text" placeholder="인증번호 6자리를 입력해주세요" disabled="disabled" maxlength="6">
-													<span class="time" id="expiryTime">2:43</span>
+													<span class="time" id="expiryTime"></span>
 												</div>
-												<button type="button" class="btn btn-md btn-white btn-135" id="btn_verify_mobile_confirm" onclick="memberVerifyMobile.joinVerifySmsNumberConfirm(); return false;">확인</button>
+												<button type="button" class="btn btn-md btn-white btn-135" id="btn_verify_mobile_confirm">확인</button>
+												
 											</div>
 										</div>
+										<ul class="" id="result_send_verify_mobile_success" style="display: block;">
+													<li><span id="mail-check-warn"></span></li>
+												</ul>
 									</div>
 
 									<div class="">
