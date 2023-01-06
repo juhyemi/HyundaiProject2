@@ -23,18 +23,17 @@ public class ProductMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
 	
-	@Test
-	public void selectList() {
-		
-		log.info("selectList.....");
-		
-		String category = "Tops";
-		
-		List<ProductDTO> list = mapper.getPList(category);
-		
-		log.info(list);
-	}
-	
+	/*
+	 * @Test public void selectList() {
+	 * 
+	 * log.info("selectList.....");
+	 * 
+	 * String category = "Tops";
+	 * 
+	 * List<ProductDTO> list = mapper.getPList(category);
+	 * 
+	 * log.info(list); }
+	 */
 	@Test
 	public void selectOption() {
 		log.info("selectOption..........");
@@ -64,4 +63,6 @@ public class ProductMapperTests {
 		List<ProductImgDTO> list = mapper.getProductImg(pro_id);
 		log.info(list);
 	}
+	
+
 }
