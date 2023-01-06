@@ -101,12 +101,15 @@ public class TalksController {
 	@PostMapping("register")
 	public ResponseEntity<String> register(@RequestParam String talks_title, @RequestParam String talks_content, Principal prc) throws Exception{
 		log.info("register controller...........");
+		
 		ResponseEntity<String> entity = null;
-		String mem_id= prc.getName();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 		
-		log.info(mem_id);
+		String mem_id= prc.getName();
+		
+		log.info(mem_id + " " + talks_title + " " + talks_content);
+		
 		int result = service.register(mem_id, talks_title, talks_content);
 		
 		try {

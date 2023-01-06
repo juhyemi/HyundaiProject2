@@ -9,7 +9,7 @@ import com.chysk5.domain.ProductSizeDTO;
 
 public interface ProductService {
 	
-	public List<ProductDTO> getPListDB(String category, Criteria cri);
+	public List<ProductDTO> getPListDB(String category);
 	
 	public ProductDTO getProductOption(String pro_id);
 	

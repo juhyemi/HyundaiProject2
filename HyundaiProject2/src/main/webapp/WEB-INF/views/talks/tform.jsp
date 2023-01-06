@@ -4,11 +4,7 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/talks/talksForm.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/product/c1.css">
-
-</head>
-<body class="magiedumatin">
-	<%@ include file="../include/header2.jsp"%>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function() {
 
 			$("#registerbtn").on("click", function() {
@@ -17,7 +13,6 @@
 				var talks_content = $('#talks_content').val();
 				$('input[name=talks_title]').attr('value',talks_title);
 				$('input[name=talks_content]').attr('value',talks_content);
-				$('input[name=longUser]').attr('value',loginUser);
 				if (answer) {
 					$("#registerForm").submit();
 
@@ -41,6 +36,10 @@
 
 		});
 	</script>
+</head>
+<body class="magiedumatin">
+	<%@ include file="../include/header2.jsp"%>
+	
 	<div id="wrap">
 
 		<div id="container">
@@ -387,7 +386,7 @@
 									<button type="button" class="btn btn-md btn-white btn-pd32" onclick="location.href='/talks/tlist'">
 										<span>취소</span>
 									</button>
-									<button type="button" id="registerbtn" onclick = "location.href='/talks/register'" class="btn btn-md btn-dark btn-pd32">
+									<button type="button" id="registerbtn" class="btn btn-md btn-dark btn-pd32">
 										<span>확인</span>
 									</button>
 								</div>
@@ -399,14 +398,21 @@
 						</div>
 					</form>
 
-					<form id="registerForm" action="/talks/register" method="post">
+				<%-- 	<form id="registerForm" action="/talks/register" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<input type="hidden" name="talks_title" value= $(#talks_title).val() />
 						<input type="hidden" name="talks_content" value= $(#talks_content).val() />
 						<input type="hidden" name="loginUser" value= ${loginUser} />
 						
+					</form> --%>
+					
+					<form id="registerForm" action="/talks/register" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<input type="hidden" name="talks_title" value= "" />
+						<input type="hidden" name="talks_content" value= "" />
 					</form>
 
+	
 				</div>
 
 

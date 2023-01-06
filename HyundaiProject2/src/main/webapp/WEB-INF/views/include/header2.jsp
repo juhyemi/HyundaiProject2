@@ -23,19 +23,16 @@
 		<ul class="util">
 			<li>
 				<div class="util-search-block">
-					<form id="searchBarForm" name="" action="/product/search.html" method="get" target="_self" enctype="multipart/form-data">
-						<input id="banner_action" name="banner_action" value="" type="hidden">
+					
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<div class="xans-element- xans-layout xans-layout-searchheader ">
-							<!--
-                            $product_page=/product/detail.html
-                            $category_page=/product/list.html
-                        -->
+							
 							<fieldset>
 								<span class="displaynone"></span>
 								<div class="form-block">
 									<div class="flex">
-										<input id="keyword" name="keyword" fw-filter="" fw-label="검색어" fw-msg="" class="inputTypeText" placeholder="" onmousedown="SEARCH_BANNER.clickSearchForm(this)" value="" type="text">
-										<button type="button" onclick="SEARCH_BANNER.submitSearchBanner(this); return false;">
+										<input id="keyword_banner" class="inputTypeText" placeholder="Search"  value="" type="text">
+										<button id="btn_keyword" type="button" onclick="searchSubmit('keyword_banner');">
 											<span>search</span>
 										</button>
 									</div>
@@ -49,7 +46,7 @@
                             });
                         </script>
 						</div>
-					</form>
+				
 				</div>
 			</li>
 			<li><a href="javascript:languageOpen();" class="language">
@@ -97,9 +94,18 @@
 			<li class=""><a href="/resell">
 					<span>Resell</span>
 				</a></li>
-			<li class=""><a href="/talks/tlist">
-					<span>Fashion Talks</span>
-				</a></li>
+			<li class="">
+			 	<sec:authorize access="isAnonymous()">
+            		<a href="/member/login">
+            			<span>Fashion Talks</span>
+            		</a>
+            	</sec:authorize> 
+            	<sec:authorize access="isAuthenticated()">
+            		<a href="/talks/tlist">
+            			<span>Fashion Talks</span>
+            		</a>
+              </sec:authorize>
+			</li>
 			<li class=" only-mobile"><a href="javascript:languageOpen();">
 					<span>Language</span>
 				</a></li>
@@ -182,9 +188,8 @@
 	<div class="menu-block depth2 search" cate-no="Search">
 		<div class="sub">
 			<div class="block">
-				<form id="searchForm" name="" action="/product/search" method="get" target="_self" enctype="multipart/form-data">
-					<input id="view_type" name="view_type" value="" type="hidden">
-					<input id="supplier_code" name="supplier_code" value="" type="hidden">
+				
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<div class="xans-element- xans-search xans-search-form ">
 						<fieldset>
 							<span class="displaynone"></span>
@@ -192,51 +197,44 @@
 								<label class="ePlaceholderEach required" title="Search">
 									<p class="form-title">Search</p>
 									<div class="flex">
-										<input id="keyword" name="keyword" class="inputTypeText" placeholder="Search" size="15" value="" type="text">
-										<button id="btn_keyword" type="button" onclick="/product/search">
+										<input id="keyword_side" class="inputTypeText" placeholder="Search" size="15" value="" type="text">
+										<button id="btn_keyword" type="button" onclick="searchSubmit('keyword_side');" >
 											<span>ok</span>
+										</button>
+									</div>
+								</label>
+							</div>
 						</fieldset>
-						<script>
-                        // 검색 허용 카테고리
-                        document.addEventListener("DOMContentLoaded", function () {
-                            var $ = window.jQuery1_12_4;
-                            $('.gnb-search-block select[name=category_no] option[value=87]').attr('selected', 'selected');
-
-                            // beauty_search
-                            // $('#searchForm').attr('action','/product/beauty_search.html');
-                        });
-                    </script>
+		
 					</div>
-				</form>
+				
 			</div>
 		</div>
 	</div>
 
 </div>
 <form id="searchForm" action="/product/search" method="post">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						<input type="hidden" name="keyword" value= $(#keyword).val() />
-					</form>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input type="hidden" name="keyword" value="" />
+</form>
 <script type="text/javascript">
 $(document).ready(function(){
-	
-	
-	
-	 $("#btn_keyword").click(function (){
-	  var keyword = $('#keyword').val();
-	  $('input[name=keyword]').attr('value',keyword);
-	  if(keyword == '' || keyword == null){
-		  alert("검색어를 입력해주세요");
-		  
-	  }else{
-	    
-		  $("#searchForm").submit();
-	  }
-	
-	    
-	 });
-	
+		
 });
+
+function searchSubmit(inputId){
+		var keyword = $('#'+inputId).val();
+		$('input[name=keyword]').val(keyword);
+		$('input[name=keyword]').attr('value',keyword);
+		if(keyword == '' || keyword == null){
+			alert("검색어를 입력해주세요");
+		}else{
+			$("#searchForm").submit();		  
+			}
+			
+			    
+			 
+}
  </script>
 <div class="gnb-dimmer"></div>
 <!-- // gnb -->

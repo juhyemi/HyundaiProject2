@@ -6,24 +6,11 @@
 
 	<select id="getPList" resultType="com.chysk5.domain.ProductDTO">
 
-<!-- 		SELECT p.pro_id, p.pro_name, p.pro_category, p.pro_price, i1.loc1, i2.loc2
+		SELECT p.pro_id, p.pro_name, p.pro_category, p.pro_price, i1.loc1, i2.loc2
 		FROM product p, product_list_img1 i1, product_list_img2 i2
 		WHERE i1.product_pro_id = i2.product_pro_id AND p.pro_id = i1.product_pro_id AND p.pro_category = #{category}
-		ORDER BY p.pro_name -->
+		ORDER BY p.pro_name
 		
-		<![CDATA[
-			SELECT pro_id, pro_name, pro_category, pro_price, i1.loc1, i2 loc2
-			FROM product p, product_list_img1 i1, product_list_img2 i2,
-   				 (SELECT rownum rn, pro_id, pro_name, pro_category, pro_price
-  				  FROM product
-  				  WHERE rownum <= #{pageNum} * #{amount}
-				 ) pn
-		 	WHERE i1.product_pro_id = i2.product_pro_id 
-		 	AND p.pro_id = i1.product_pro_id 
-		 	AND p.pro_category = #{category} 
-		 	AND pn.rn > (#{pageNum} - 1) * #{amount}
-		 	ORDER BY p.pro_name
-		]]>
 
 	</select>
 
@@ -72,7 +59,7 @@
 		FROM product p, product_list_img1 i1, product_list_img2 i2
 		WHERE i1.product_pro_id = i2.product_pro_id 
 		AND p.pro_id = i1.product_pro_id 
-		AND pro_name like '%'||#{keyword}||'%'
+		AND pro_name like upper('%'||#{keyword}||'%')
 		ORDER BY p.pro_name
 
 	</select>
@@ -88,7 +75,19 @@
 				 )
 		 	WHERE rn > (#{pageNum} - 1) * #{amount}
 		]]>
-
+		<![CDATA[
+			SELECT pro_id, pro_name, pro_category, pro_price, i1.loc1, i2 loc2
+			FROM product p, product_list_img1 i1, product_list_img2 i2,
+   				 (SELECT rownum rn, pro_id, pro_name, pro_category, pro_price
+  				  FROM product
+  				  WHERE rownum <= #{pageNum} * #{amount}
+				 ) pn
+		 	WHERE i1.product_pro_id = i2.product_pro_id 
+		 	AND p.pro_id = i1.product_pro_id 
+		 	AND p.pro_category = #{category} 
+		 	AND pn.rn > (#{pageNum} - 1) * #{amount}
+		 	ORDER BY p.pro_name
+		]]> 
 	
 	</select> -->
 	

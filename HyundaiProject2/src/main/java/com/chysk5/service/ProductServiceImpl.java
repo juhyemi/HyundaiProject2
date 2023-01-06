@@ -22,17 +22,16 @@ public class ProductServiceImpl implements ProductService {
 
 	// 상품 목록 select 메소드
 	@Override
-	public List<ProductDTO> getPListDB(String category, Criteria cri) {
+	public List<ProductDTO> getPListDB(String category) {
 		log.info("call productService...........");
 
 		log.info(category);
-		log.info(cri);
 
-		List<ProductDTO> list = mapper.getPList(category, cri);
+		List<ProductDTO> list = mapper.getPList(category);
 
 		log.info(list);
 
-		return mapper.getPList(category, cri);
+		return mapper.getPList(category);
 
 	} 
 

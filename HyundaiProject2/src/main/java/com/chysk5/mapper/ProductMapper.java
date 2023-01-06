@@ -11,7 +11,7 @@ import com.chysk5.domain.ProductSizeDTO;
 
 public interface ProductMapper {
 	
-	public List<ProductDTO> getPList(@Param("category") String category, @Param("cri") Criteria cri);
+	public List<ProductDTO> getPList(String category);
 	
 	public ProductDTO getProductOption(String pro_id);
 	

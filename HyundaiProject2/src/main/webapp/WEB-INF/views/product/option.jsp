@@ -164,13 +164,7 @@ $(document).ready(function(){
 											style="font-size: 12px; color: #555555;">포근하고 부드러운 촉감의
 												입체감이 있는 텍스처, 후드와 배색이 포인트인 투웨이 후드 가디건</span></span>
 									</p>
-									<p class="prd_price_sale_css xans-record-">
-										<span class="title"><span
-											style="font-size: 14px; color: #000000; font-weight: bold;">할인판매가</span></span>
-										<span class="value"><span><span
-												style="font-size: 14px; color: #000000; font-weight: bold;"><span
-													id="span_product_price_sale">169,200 </span></span></span></span>
-									</p>
+									
 									<ul class="discountMember">
 										<li><a href="#"> <img
 												class="ec-front-product-show-benefit-icon" product-no="3492"
@@ -182,7 +176,7 @@ $(document).ready(function(){
 									<p></p>
 									<p class="product_price_css xans-record-">
 										<span class="title"><span style="font-size: 14px; color: #000000;">판매가</span></span> 
-                    <span class="value"><span style="font-size: 14px; color: #000000;"><strong id="span_product_price_text" style="text-decoration: line-through;">
+                    <span class="value"><span style="font-size: 14px; color: #000000;"><strong id="span_product_price_text" ;">
                     <fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pro_price}" /></strong> 
                     <input id="product_price" name="product_price" value="" type="hidden"></span></span>
 									</p>
