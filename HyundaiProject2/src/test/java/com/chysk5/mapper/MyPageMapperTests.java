@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
 
 import lombok.Setter;
@@ -31,6 +32,22 @@ public class MyPageMapperTests {
 		
 		for(MyResellProductDTO a : getList) {
 			log.info("등록한 리셀 상품: " + a);
+		}
+	}
+	
+	@Test
+	public void testModifyPrice() {
+		
+		mapper.modifyPrice("34", 90000);
+		
+	}
+	
+	@Test
+	public void testGetBuyProduct() {
+		List<BuyProductDTO> list = mapper.getBuyProduct("kb");
+		
+		for(BuyProductDTO a : list) {
+			log.info(a);
 		}
 	}
 }

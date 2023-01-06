@@ -601,8 +601,6 @@ function getMyRank() {
 			re_price: document.getElementById("input1").value
 	}
 	
-	
-	
 	let og_price = document.getElementById("input1").value;
 	og_price = og_price.replace(",", "");
 	
