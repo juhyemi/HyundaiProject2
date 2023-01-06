@@ -1,9 +1,7 @@
 package com.chysk5.controller;
 
-import java.net.http.HttpRequest;
 import java.nio.charset.Charset;
 import java.security.Principal;
-import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.MemberDTO;
+import com.chysk5.service.MailSendService;
 import com.chysk5.service.MemberService;
 
 import lombok.Setter;
@@ -41,6 +40,9 @@ public class MemberController {
 	@Setter(onMethod_ = @Autowired)
 	@Qualifier("BCryptPasswordEncoder")
     private PasswordEncoder encoder;
+	
+	@Autowired
+	private MailSendService mailService;
 	
 	// 회원가입 페이지로 이동
 	@GetMapping("/join")
@@ -75,6 +77,16 @@ public class MemberController {
 		log.info("check id result : " + result);
 		
 		return result;
+	}
+	
+	// 이메일 인증
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(String email) {
+		log.info("이메일 인증 요청이 들어옴!");
+		log.info("이메일 인증 이메일 : " + email);
+		
+		return mailService.joinEmail(email);
 	}
 	
 	// 로그인 페이지로 이동
@@ -179,8 +191,6 @@ public class MemberController {
 		
 		return "redirect:/mypage/modify";
 	}
-	
-	
 	
 	// 회원 탈퇴
 	@PostMapping("del")
