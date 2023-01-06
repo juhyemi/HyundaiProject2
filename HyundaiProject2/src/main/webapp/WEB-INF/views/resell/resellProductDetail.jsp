@@ -7,6 +7,18 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/product/c2.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/product/productDetail.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/resell/resellProdcut.css">
+<style>
+th, td{
+	text-align: center;
+}
+
+#showDetail:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+
+</style>
 
 </head>
 
@@ -95,7 +107,7 @@
 											class="value"><span
 											style="font-size: 14px; color: #000000;"><strong
 												id="span_product_price_text"
-												style="text-decoration: line-through;">188,000</strong><input
+												style="text-decoration: line-through;"></strong><input
 												id="product_price" name="product_price" value=""
 												type="hidden"></span></span>
 									</p>
@@ -142,7 +154,7 @@
 														class="QuantityDown" alt="수량감소"></span></span></span></span>
 									</p>
 								</div>
-
+								
 								<!-- TODO: 일단 숨김처리. 문제없으면 오픈시 삭제 -->
 								<div class="displaynone">
 									<h2>LINE POINTED HOODY ZIP CARDIGAN IN BLACK</h2>
@@ -159,7 +171,7 @@
 							</div>
 
 							<div class="js-option-color-block active">
-								<div class="option-title">발매가</div>
+								<div class="option-title">발매정가</div>
 								<div class="option-color-block">
 									<div id="self-option" class="displaynone"></div>
 									<div
@@ -300,29 +312,10 @@
 							</div>
 
 
-							<table class="type06" id="priceTable">
-								<tr>
-									<th scope="row" colspan="2">최근 5일 평균 거래가</th>
-									<!-- <td>135,000원</td> -->
-								</tr>
-								<tr>
-									<th scope="row" class="even">최근 날짜 2</th>
-									<td class="even">거래가 2</td>
-								</tr>
-								<tr>
-									<th scope="row">최근 날짜 3</th>
-									<td>거래가 3</td>
-								</tr>
-								<tr>
-									<th scope="row" class="even">최근 날짜 4</th>
-									<td class="even">거래가 4</td>
-								</tr>
-								<tr>
-									<th scope="row">최근 날짜 5</th>
-									<td>거래가 5</td>
-								</tr>
-							</table>
-
+							
+							<!-- <div id="lineChart" style="width: 900px; height: 500px"></div> -->
+							<table class="type06" id="priceTable"></table>
+							<div id="lineChart" ></div>
 
 
 							<div
@@ -405,6 +398,7 @@
 			</div>
 		</div>
 
+
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -435,19 +429,20 @@ $(document).ready(function(){
 				var tag = "";
 				var price = parseInt(result.re_low_price);
 				price = price.toLocaleString('ko-KR');
-				//var obj = JSON.parse(result)
-				alert("ajax 성공");
-				alert(price.toLocaleString('ko-KR'));
 				
-				tag+=`<span id="span_product_price_sale">\${price}</span>`
+				tag+=`<span id="span_product_price_sale">판매가 : \${price}</span>`
 				
 				$("#span_product_price_sale").html(tag);
 				var tabletag = "";
 				tabletag=`<tr>
-							  <th scope="row" colspan="2">최근 5일 평균 거래가</th>
+							  <th class="date" scope="row" style="width: 40%; text-align: center">최근 5일 평균 거래가</th>
+							  <td style="text-align: right; font-size: 10px; vertical-align: bottom;"><span id="showDetail">자세히 살펴보기</span></td>
 						  </tr>`
-				/* 
-				 */
+		
+			
+						  
+				
+						  
 				for(var i=0; i<result.datePriceList.length;i++){
 					
 					/* 여기부터 하면 됩니다. 0,1,2,3,4 */
@@ -458,25 +453,124 @@ $(document).ready(function(){
 					avgprice = avgprice.toLocaleString('ko-KR');
 					
 					if(i%2==0){
-						tabletag+=`
+						if(avgprice==0){
+							tabletag+=`
+								<tr>
+									<th scope="row" class="even">\${result.datePriceList[i].re_selldate}</th>
+									<td class="even"> - </td>
+								</tr>
+							   	`
+						}else{
+							tabletag+=`
 								<tr>
 									<th scope="row" class="even">\${result.datePriceList[i].re_selldate}</th>
 									<td class="even">\${avgprice}원</td>
 								</tr>
 							   	`
+						}
+						
+						
 					}else {
-						tabletag+=`
+						if(avgprice==0){
+							tabletag+=`
 								<tr>
-								<th scope="row">\${result.datePriceList[i].re_selldate}</th>
-								<td>\${avgprice}원</td>
+									<th scope="row">\${result.datePriceList[i].re_selldate}</th>
+									<td> - </td>
 								</tr>
-								`
+							   	`
+						}else{
+							tabletag+=`
+								<tr>
+									<th scope="row">\${result.datePriceList[i].re_selldate}</th>
+									<td>\${avgprice}원</td>
+								</tr>
+							   	`
+						}
 					}
-					
- 
+
 				}
 				
 				$("#priceTable").html(tabletag);
+				
+				
+				
+				var arrTotalPoint = new Array();
+				
+				for(var i=0; i<5;i++){
+					var arrOnePoint = new Array();
+					var avgPrice = parseInt(result.datePriceList[i].avg_price);
+					avgprice = avgprice.toLocaleString('ko-KR');
+					var date = result.datePriceList[i].re_selldate;
+					var monthDate = date.substr(8);
+					arrOnePoint.push(monthDate)
+					/* let date = new Date(result.datePriceList[i].re_selldate); */
+					
+					/* arrOnePoint.push(date) */
+					arrOnePoint.push(avgPrice)
+					arrTotalPoint.push(arrOnePoint)
+				}
+				
+				
+				/*Google api차트  */
+				google.charts.load('current', {'packages':['line']});
+			    google.charts.setOnLoadCallback(drawChart);
+
+			    function drawChart() {
+
+			      var data = new google.visualization.DataTable();
+			      data.addColumn('string', 'Date(일)');
+			      data.addColumn('number', '평균 가격');
+			      /*
+			      data.addColumn('number', '');
+			      data.addColumn('number', 'The Avengers');
+			      data.addColumn('number', 'Transformers: Age of Extinction'); 
+			      */
+
+			      /* data.addRows([
+			        [1, 30],
+			        [2, 32],
+			        [3, 15],
+			        [4, 19],
+			        [5, 12],
+
+			      ]); */
+			      data.addRows(arrTotalPoint);
+
+			      var options = {
+			        chart: {
+			          title: '일자별 평균 가격' 
+			          /* subtitle: 'in millions of dollars (USD)' */
+			        },
+			        width: 450,
+			        height: 350,
+			        axes: {
+			          x: {
+			            0: {side: 'bottom'}
+			          }
+			        },
+			        legend: {
+			            position: 'none'
+			        },
+			        series: {
+		      
+		                0: { color: 'black' }
+		            },
+		            vAxis: {
+		            	  viewWindowMode: "explicit",   
+		            	  viewWindow: {min: 0}, 
+		            	  baseline:{
+		            	    color: '#F6F6F6'
+		            	  }
+		            	}
+
+			      };
+
+			      var chart = new google.charts.Line(document.getElementById('lineChart'));
+					
+
+			      chart.draw(data, google.charts.Line.convertOptions(options));
+			    }
+				
 				
 				
 			},
@@ -497,15 +591,15 @@ $(document).ready(function(){
 		
 	});
 	 
-
-
-	
 });
 
+</script>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
 
 
 </script>
 
 
-		<%@ include file="../include/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>
