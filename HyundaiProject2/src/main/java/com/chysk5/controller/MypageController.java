@@ -1,7 +1,6 @@
 package com.chysk5.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -16,9 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.chysk5.domain.MemberDTO;
 import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.service.MemberService;
 import com.chysk5.service.MyPageService;
-import com.chysk5.service.ResellService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -32,6 +32,8 @@ import lombok.extern.log4j.Log4j;
 public class MypageController {
 	
 	private MyPageService service;
+	
+	private MemberService mService;
 
 	// 마이페이지 메인 화면으로 이동
 	@GetMapping("/index")
@@ -58,7 +60,16 @@ public class MypageController {
 	
 	// 회원 정보 수정 페이지로 이동
 	@GetMapping("/modify")
-	public void modify() {}
+	public void modify(Model model, Principal prin) {
+		
+		String mem_id = prin.getName();
+		
+		MemberDTO member = mService.selectMember(mem_id);
+		
+		log.info("modify get ..... " + member);
+		
+		model.addAttribute("member", member);
+	}
 	
 	@GetMapping("/myResell")
 	public String getMyResellList(Model model) {

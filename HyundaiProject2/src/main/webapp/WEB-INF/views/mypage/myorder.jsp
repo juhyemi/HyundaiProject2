@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/mypage.css">
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
 </head>
-<body>    
+<body class="magiedumatin ">    
 <%@ include file="../include/header2.jsp"%>
 
 <div id="wrap">
@@ -61,17 +62,7 @@
 									href="/myshop/order/list.html?mode=cs&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">취소/반품/교환
 										내역 <sup>(<span id="xans_myshop_total_orders_cs">0</span>)
 									</sup>
-								</a></li>
-								<li class="only-pc tab_class_past"><a
-									href="/myshop/order/list_past.html?history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">과거주문내역
-										<sup>(<span id="xans_myshop_total_orders_past">0</span>)
-									</sup>
-								</a></li>
-								<li class="only-pc tab_class_old displaynone"><a
-									href="/myshop/order/list_old.html?mode=old&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">이전
-										주문내역 <sup>(<span id="xans_myshop_total_orders_old">0</span>)
-									</sup>
-								</a></li>
+								</a></li>		
 							</ul>
 						</div>
 

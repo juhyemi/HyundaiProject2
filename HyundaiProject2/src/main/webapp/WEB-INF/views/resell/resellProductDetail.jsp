@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../include/header.jsp"%>
-
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/product/c1.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/product/c2.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/product/productDetail.css">
@@ -10,7 +11,7 @@
 
 </head>
 
-<body class="product-detail">
+<body class="product-detail magiedumatin">
 
 	<%@ include file="../include/header2.jsp"%>
 
