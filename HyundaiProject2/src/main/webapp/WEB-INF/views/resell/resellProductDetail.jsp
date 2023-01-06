@@ -239,7 +239,7 @@ th, td{
 							<div
 								class="xans-element- xans-product xans-product-action product-action-block">
 								<div class="buy-block ">
-									<button type="button" class="btn btn-order btn-dark btn-full ">
+									<button type="button" class="btn btn-order btn-dark btn-full">
 										<span id="btnBuy">즉시 구매</span>
 									</button>
 
@@ -316,6 +316,7 @@ th, td{
 							
 							<!-- <div id="lineChart" style="width: 900px; height: 500px"></div> -->
 							<table class="type06" id="priceTable"></table>
+							<br>
 							<div id="lineChart" ></div>
 
 
@@ -402,6 +403,8 @@ th, td{
 
 <script type="text/javascript">
 
+
+
 $(document).ready(function(){
 	
 	$(".pro_opt_size ").on("click", function(){
@@ -411,7 +414,7 @@ $(document).ready(function(){
 		let searchOBJ = {
 				"sizeVal" : sizeVal,
 				"proName" : proName
-			}
+		}
 		
 		var csrfHeadName="${_csrf.headerName}";
 	    var csrfTokenValue="${_csrf.token}";
@@ -437,14 +440,10 @@ $(document).ready(function(){
 				var tabletag = "";
 				tabletag=`<tr>
 							  <th class="date" scope="row" style="width: 40%; text-align: center">최근 5일 평균 거래가</th>
-							  <td style="text-align: right; font-size: 10px; vertical-align: bottom;"><span id="showDetail">자세히 살펴보기</span></td>
+							  <td style="text-align: right; font-size: 10px; vertical-align: bottom;"><span id="showDetail" onclick="showChart();">자세히 살펴보기</span></td>
 						  </tr>`
-		
-			
-						  
-				
-						  
-				for(var i=0; i<result.datePriceList.length;i++){
+			  
+				for(var i=9; i<14;i++){
 					
 					/* 여기부터 하면 됩니다. 0,1,2,3,4 */
 					console.log(result.datePriceList[i].re_selldate)
@@ -495,82 +494,7 @@ $(document).ready(function(){
 				
 				
 				
-				var arrTotalPoint = new Array();
 				
-				for(var i=0; i<5;i++){
-					var arrOnePoint = new Array();
-					var avgPrice = parseInt(result.datePriceList[i].avg_price);
-					avgprice = avgprice.toLocaleString('ko-KR');
-					var date = result.datePriceList[i].re_selldate;
-					var monthDate = date.substr(8);
-					arrOnePoint.push(monthDate)
-					/* let date = new Date(result.datePriceList[i].re_selldate); */
-					
-					/* arrOnePoint.push(date) */
-					arrOnePoint.push(avgPrice)
-					arrTotalPoint.push(arrOnePoint)
-				}
-				
-				
-				/*Google api차트  */
-				google.charts.load('current', {'packages':['line']});
-			    google.charts.setOnLoadCallback(drawChart);
-
-			    function drawChart() {
-
-			      var data = new google.visualization.DataTable();
-			      data.addColumn('string', 'Date(일)');
-			      data.addColumn('number', '평균 가격');
-			      /*
-			      data.addColumn('number', '');
-			      data.addColumn('number', 'The Avengers');
-			      data.addColumn('number', 'Transformers: Age of Extinction'); 
-			      */
-
-			      /* data.addRows([
-			        [1, 30],
-			        [2, 32],
-			        [3, 15],
-			        [4, 19],
-			        [5, 12],
-
-			      ]); */
-			      data.addRows(arrTotalPoint);
-
-			      var options = {
-			        chart: {
-			          title: '일자별 평균 가격' 
-			          /* subtitle: 'in millions of dollars (USD)' */
-			        },
-			        width: 450,
-			        height: 350,
-			        axes: {
-			          x: {
-			            0: {side: 'bottom'}
-			          }
-			        },
-			        legend: {
-			            position: 'none'
-			        },
-			        series: {
-		      
-		                0: { color: 'black' }
-		            },
-		            vAxis: {
-		            	  viewWindowMode: "explicit",   
-		            	  viewWindow: {min: 0}, 
-		            	  baseline:{
-		            	    color: '#F6F6F6'
-		            	  }
-		            	}
-
-			      };
-
-			      var chart = new google.charts.Line(document.getElementById('lineChart'));
-					
-
-			      chart.draw(data, google.charts.Line.convertOptions(options));
-			    }
 				
 				
 				
@@ -582,17 +506,115 @@ $(document).ready(function(){
 		})
 		
 			
-		
-		
-		
-		
     	$(".pro_opt_size").removeClass("ec-product-selected");
 		$(this).addClass("ec-product-selected");
 		
+		$("#lineChart").empty();
 		
 	});
-	 
+		 
 });
+
+function showChart(){
+	
+	var sizeVal = $(".pro_opt_size.ec-product-selected > a > span").text();
+	var proName = '<c:out value="${productDetail.pro_name}"/>'
+	
+	let searchOBJ = {
+			"sizeVal" : sizeVal,
+			"proName" : proName
+		}
+	
+	var csrfHeadName="${_csrf.headerName}";
+    var csrfTokenValue="${_csrf.token}";
+	
+	
+	$.ajax({
+		type: 'post',
+		url : '/resell/price',
+		data : JSON.stringify(searchOBJ),
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		beforeSend : function(xhr) {
+              xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+        },
+		success:function(result){
+			
+			var arrTotalPoint = new Array();
+			
+			for(var i=0; i<result.datePriceList.length;i++){
+				var arrOnePoint = new Array();
+				var avgPrice = parseInt(result.datePriceList[i].avg_price);
+				
+				var date = result.datePriceList[i].re_selldate;
+				var monthDate = date.substr(8);
+				arrOnePoint.push(monthDate)
+
+				arrOnePoint.push(avgPrice)
+				arrTotalPoint.push(arrOnePoint)
+			}
+			
+		
+			
+			/*Google api차트  */
+			google.charts.load('current', {'packages':['line']});
+		    google.charts.setOnLoadCallback(drawChart);
+
+		    function drawChart() {
+
+		      var data = new google.visualization.DataTable();
+		      data.addColumn('string', 'Date(일)');
+		      data.addColumn('number', '평균 판매가');
+		     
+		      data.addRows(arrTotalPoint);
+
+		      var options = {
+		        chart: {
+		          title: '최근 2주 평균 가격' 
+		          
+		        },
+		        width: 450,
+		        height: 350,
+		        axes: {
+		          x: {
+		            0: {side: 'bottom'}
+		          }
+		        },
+		        legend: {
+		            position: 'none'
+		        },
+		        series: {
+	      
+	                0: { color: 'black' }
+	            },
+	            vAxis: {
+	            	  viewWindowMode: "explicit",   
+	            	  viewWindow: {min: 0}, 
+	            	  baseline:{
+	            	    color: '#F6F6F6'
+	            	  },
+	            	  format:'#,###원'
+       	  
+	            	}
+
+		      };
+
+		      var chart = new google.charts.Line(document.getElementById('lineChart'));
+				
+
+		      chart.draw(data, google.charts.Line.convertOptions(options));
+		    }
+			
+			
+			
+		},
+		error:function(result){
+			alert("ajax 실패")
+		}
+		
+	});
+	
+}
 
 </script>
 
