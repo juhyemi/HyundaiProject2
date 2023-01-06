@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
 
@@ -49,5 +50,15 @@ public class MyPageMapperTests {
 		for(BuyProductDTO a : list) {
 			log.info(a);
 		}
+	}
+	
+	@Test
+	public void testAllList() {
+		List<AllBuyProductDTO> list = mapper.getAllList("kb");
+		
+		for(AllBuyProductDTO a : list) {
+			log.info(a);
+		}
+		
 	}
 }

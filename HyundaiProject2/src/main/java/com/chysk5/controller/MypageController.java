@@ -1,7 +1,6 @@
 package com.chysk5.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.chysk5.domain.BuyProductDTO;
+import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.MemberDTO;
 import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.domain.SoldOutProductDTO;
@@ -56,12 +55,22 @@ public class MypageController {
 	public String myorder(Principal prc, Model model) {
 		
 		 String mem_id=prc.getName();
+		 
+		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id);
+		 
+		 model.addAttribute("allList", allList);
+		 
+		 for(AllBuyProductDTO a : allList) {
+			 log.info(a);
+		 }
+		 /*
 		 List<BuyProductDTO> buyResellList = service.getBuyProduct(mem_id);
 		 model.addAttribute("buyResellList", buyResellList);
 		 
 		 for(BuyProductDTO a : buyResellList) {
 			 log.info(a);
 		 }
+		*/
 		 
 		 return "mypage/myorder";
 	}
