@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.chysk5.domain.Criteria;
 import com.chysk5.domain.ProductDTO;
 import com.chysk5.domain.ProductImgDTO;
 import com.chysk5.domain.ProductSizeDTO;
@@ -16,24 +17,15 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ProductMapperTests {
 
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
 	
-	/*
-	 * @Test public void selectList() {
-	 * 
-	 * log.info("selectList.....");
-	 * 
-	 * String category = "Tops";
-	 * 
-	 * List<ProductDTO> list = mapper.getPList(category);
-	 * 
-	 * log.info(list); }
-	 */
+
 	@Test
 	public void selectOption() {
 		log.info("selectOption..........");
@@ -63,6 +55,8 @@ public class ProductMapperTests {
 		List<ProductImgDTO> list = mapper.getProductImg(pro_id);
 		log.info(list);
 	}
+	
+
 	
 
 }

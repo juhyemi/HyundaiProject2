@@ -21,7 +21,7 @@ public interface ProductMapper {
 	
 	public List<ProductDTO> getProductSearch(String keyword);
 	
-	//public List<ProductDTO> getPageList(Criteria cri);
+	public List<ProductDTO> getListWithPaging(Criteria cri);
 	
 	public int getTotalCount(Criteria cri);
 }

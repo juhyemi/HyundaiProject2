@@ -64,32 +64,21 @@
 
 	</select>
 	
-<!-- 	<select id= "getPageList" resultType="org.chysk5.domain.ProductDTO">
+ 	<select id= "getListWithPaging" resultType="com.chysk5.domain.ProductDTO">
 	
+		
 		<![CDATA[
-			SELECT pro_id, pro_name, pro_category, pro_price, i1.loc1, i2 loc2
-			FROM product p, product_list_img1 i1, product_list_img2 i2,
-   				 (SELECT rownum rn, pro_id, pro_name, pro_category, pro_price
-  				  FROM product
-  				  WHERE rownum <= #{pageNum} * #{amount}
-				 )
-		 	WHERE rn > (#{pageNum} - 1) * #{amount}
-		]]>
-		<![CDATA[
-			SELECT pro_id, pro_name, pro_category, pro_price, i1.loc1, i2 loc2
-			FROM product p, product_list_img1 i1, product_list_img2 i2,
-   				 (SELECT rownum rn, pro_id, pro_name, pro_category, pro_price
-  				  FROM product
-  				  WHERE rownum <= #{pageNum} * #{amount}
-				 ) pn
-		 	WHERE i1.product_pro_id = i2.product_pro_id 
-		 	AND p.pro_id = i1.product_pro_id 
-		 	AND p.pro_category = #{category} 
-		 	AND pn.rn > (#{pageNum} - 1) * #{amount}
-		 	ORDER BY p.pro_name
+			SELECT pro_id, pro_name, pro_category, pro_price, loc1, loc2
+			FROM 
+				(SELECT /*+INDEX_DESC(tbl_product pk_product) */
+					rownum rn, pro_id, pro_name, pro_category, pro_price, loc1, loc2
+				FROM productList
+				WHERE rownum <=20
+				)
+				WHERE  rn > 10
 		]]> 
 	
-	</select> -->
+	</select> 
 	
 	<select id="getTotalCount" resultType="int">
 		SELECT count(*)

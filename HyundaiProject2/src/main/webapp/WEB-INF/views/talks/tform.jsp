@@ -5,41 +5,41 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/talks/talksForm.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/product/c1.css">
 <script type="text/javascript">
-		$(document).ready(function() {
+	$(document).ready(function() {
 
-			$("#registerbtn").on("click", function() {
-				var answer = confirm('해당 글을 작성하시겠습니까?');
-				var talks_title = $('#talks_title').val();
-				var talks_content = $('#talks_content').val();
-				$('input[name=talks_title]').attr('value',talks_title);
-				$('input[name=talks_content]').attr('value',talks_content);
-				if (answer) {
-					$("#registerForm").submit();
+		$("#registerbtn").on("click", function() {
+			var answer = confirm('해당 글을 작성하시겠습니까?');
+			var talks_title = $('#talks_title').val();
+			var talks_content = $('#talks_content').val();
+			$('input[name=talks_title]').attr('value', talks_title);
+			$('input[name=talks_content]').attr('value', talks_content);
+			if (answer) {
+				$("#registerForm").submit();
 
-				}
-			});
+			}
+		});
 
-			$('#talks_content').on('keyup', function() {
-				$('#content_cnt').html("(" + $(this).val().length + " / 500)");
+		$('#talks_content').on('keyup', function() {
+			$('#content_cnt').html("(" + $(this).val().length + " / 500)");
 
-				if ($(this).val().length > 500) {
-					$(this).val($(this).val().substring(0, 100));
-					$('#content_cnt').html("(500 / 500)");
-				}
-
-			});
-
-			/*   $('#talks_content').on("click", function() {
-			  	  $(this).addClass
-			  	
-			  }); */
+			if ($(this).val().length > 500) {
+				$(this).val($(this).val().substring(0, 100));
+				$('#content_cnt').html("(500 / 500)");
+			}
 
 		});
-	</script>
+
+		/*   $('#talks_content').on("click", function() {
+		  	  $(this).addClass
+		  	
+		  }); */
+
+	});
+</script>
 </head>
 <body class="magiedumatin">
 	<%@ include file="../include/header2.jsp"%>
-	
+
 	<div id="wrap">
 
 		<div id="container">
@@ -48,7 +48,7 @@
 					<div class="header">
 						<h2>Talks</h2>
 					</div>
-					<form id="boardWriteForm" name="" action="/exec/front/Board/write/9" method="post" target="_self" enctype="multipart/form-data">
+					
 						<div class="xans-element- xans-board xans-board-write-9 xans-board-write xans-board-9 cscenter-layout ">
 							<div class="contents-block">
 								<div class="cscenter-base-block">
@@ -68,19 +68,17 @@
 											</div>
 
 											<div class="attach-block ">
+											<form action="uploadFormAction" method="post" enctype="multipart/form-data">
 												<ul>
 													<li class="title">파일첨부</li>
-													<li><input name="attach_file[]" type="file"> <input name="attach_file[]" type="file"></li>
-													<li>
+													<li><input name='uploadFile' type="file" multiple> </li>
+													<li><button>Submit</button></li>
 												</ul>
+											</form>
 											</div>
+												
 
-											<div class="password-block ">
-												<ul>
-													<li class="title">비밀번호</li>
-													<li><input id="password" name="password" fw-filter="" fw-label="비밀번호" fw-msg="" value="" type="password"></li>
-												</ul>
-											</div>
+
 
 											<div class="ul-desc">
 												<ul>
@@ -396,23 +394,19 @@
 							</div>
 
 						</div>
-					</form>
-
-				<%-- 	<form id="registerForm" action="/talks/register" method="post">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						<input type="hidden" name="talks_title" value= $(#talks_title).val() />
-						<input type="hidden" name="talks_content" value= $(#talks_content).val() />
-						<input type="hidden" name="loginUser" value= ${loginUser} />
-						
-					</form> --%>
 					
+
+
+
+
 					<form id="registerForm" action="/talks/register" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						<input type="hidden" name="talks_title" value= "" />
-						<input type="hidden" name="talks_content" value= "" />
+						<input type="hidden" name="talks_title" value="" />
+						<input type="hidden" name="talks_content" value="" />
 					</form>
 
-	
+
+
 				</div>
 
 
