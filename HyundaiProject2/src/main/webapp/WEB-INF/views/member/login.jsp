@@ -3,6 +3,16 @@
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
+<script>
+$(document).ready(function(){
+    $('#member_passwd').keydown(function(e) {
+	    if (e.keyCode == 13) {
+	        $('#loginFrm').submit();
+	    }
+	});
+	
+});
+</script>
 </head>
 <body class="magiedumatin">
 	<%@ include file="../include/header2.jsp"%>

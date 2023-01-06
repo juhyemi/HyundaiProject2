@@ -51,16 +51,15 @@ div {
     padding: 60px var(--wrap-padding-md) 0 var(--wrap-padding-md);
 } */
 .cscenter-wrap {
-  padding: 60px var(--wrap-padding-md) 0 var(--wrap-padding-md);
+ padding: 60px 380px;
 }
 .cscenter-wrap .header {
-  padding-bottom: 32px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #E5E5E5;
 }
 .cscenter-wrap .cscenter-layout {
-  margin-top: 48px;
+  margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(12,minmax(10px,1fr));
   gap: 30px;
 }
 .cscenter-wrap .cscenter-layout .contents-block {

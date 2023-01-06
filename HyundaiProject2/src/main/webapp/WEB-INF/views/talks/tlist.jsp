@@ -12,7 +12,7 @@
    <div id="wrap">
         <div id="container">
             <div id="contents">
-    <div class="cscenter-wrap" style="max-width: 1280px">
+    <div class="cscenter-wrap" style="">
         <div class="header">
             <h2>Fashion Talks</h2>
         </div>    
@@ -22,7 +22,7 @@
                     <button type="button" class="btn btn-sm btn-dark btn-write" onclick="location.href='/talks/tform'"><span>WRITE</span></button>
                 </div>
     <div class="board-list-block">
-                    <ul class="xans-element- xans-board xans-board-notice-1 xans-board-notice xans-board-1">
+                    <ul class="xans-element- xans-board xans-board-notice-1 xans-board-notice xans-board-1" style="margin-top: 0px;">
                         <li class="notice xans-record-">
                             <a href="/talks/tcontent/0">Fashion Talks 안내사항</a>
                             <span>2022-11-22</span>

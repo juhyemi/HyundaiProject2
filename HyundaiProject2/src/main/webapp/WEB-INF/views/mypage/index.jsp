@@ -41,7 +41,7 @@
 							<li class="js-order"><a href="/mypage/myorder">주문내역</a></li>
 
 							<li class="js-board"><a
-								href="/board/consult/list.html?board_no=9">1:1 문의</a></li>
+								href="/mypage/myarticle">내가 쓴 글</a></li>
 							<li class="js-recent"><a
 								href="/product/recent_view_product.html">최근 본 상품</a></li>
 							<li><a href="/mypage/myResell">나의 판매 목록</a></li>

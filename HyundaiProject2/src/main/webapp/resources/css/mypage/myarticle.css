@@ -89,7 +89,7 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  padding-bottom: 16px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #1E1E1E;
 }
 
@@ -326,7 +326,8 @@
 }
 
 .myshop-wrap .myshop-layout .contents-block .order-tab {
-  margin-top: 24px;
+  margin-top: 18px;
+  margin-bottom: 23px;
 }
 
 .myshop-wrap .myshop-layout .contents-block .order-tab .menu {
@@ -342,6 +343,7 @@
   line-height: 1.1;
   color: #9A9A9A;
   position: relative;
+  font-size: 14px;
 }
 
 .myshop-wrap .myshop-layout .contents-block .order-tab .menu li a sup {
@@ -352,6 +354,7 @@
 
 .myshop-wrap .myshop-layout .contents-block .order-tab .menu li.selected a {
   color: #1E1E1E;
+  font-size: 14px;
 }
 
 .myshop-wrap .myshop-layout .contents-block .order-search-block {
@@ -795,7 +798,7 @@ table.table-base {
 
 table.table-base thead th {
   background-color: #F9F9F9;
-  padding: 16px 0;
+  padding: 5px 0;
   font-weight: 400;
   font-size: 12px;
   letter-spacing: -0.05em;
@@ -811,7 +814,7 @@ table.table-base th,table.table-base td {
 }
 
 table th.left,table td.left {
-  text-align: left;
+  text-align: center;
 }
 
 table th.center,table td.center {
@@ -1498,7 +1501,7 @@ body {
   position: relative;
   overflow: hidden auto;
   font-size: 13px;
-  line-height: 1.66667;
+  line-height: 3;
   width: 100%;
 }
 
