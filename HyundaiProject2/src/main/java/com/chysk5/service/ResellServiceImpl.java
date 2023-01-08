@@ -17,6 +17,7 @@ import com.chysk5.domain.ResellProductInfoDTO;
 import com.chysk5.domain.ResellProductListDTO;
 import com.chysk5.domain.ResellProductSearchIdDTO;
 import com.chysk5.domain.ResellProductSizeDTO;
+import com.chysk5.domain.UpdateProductDTO;
 import com.chysk5.mapper.ResellMapper;
 
 import lombok.AllArgsConstructor;
@@ -38,13 +39,37 @@ public class ResellServiceImpl implements ResellService {
       resellInfo.setResellPrice(getPrice(pro_opt_id));
       resellInfo.setResellProductDTO(mapper.getMyResellProduct(pro_opt_id));
       resellInfo.getResellProductDTO().setPro_opt_id(pro_opt_id);
+      
        return resellInfo;
    }
 
+//   @Transactional
    @Override
-   public int register(RegResellProductDTO regResellProductDTO) {
+   public int register(RegResellProductDTO regResellProductDTO, String order_no                                                                                                                                        ) {
       log.info("reselldata go!!!!");
-      return mapper.register(regResellProductDTO);
+      int result1 = mapper.register(regResellProductDTO); //상품 등록
+ //     int result2 = updateRegStatus(regResellProductDTO.getProduct_option_pro_opt_id(), order_no);
+      
+      String pro_opt_id = regResellProductDTO.getProduct_option_pro_opt_id();
+      log.info(pro_opt_id);
+      log.info(order_no);
+      
+      
+      log.info("******************"+order_no+"**************");
+      
+      int result2 = mapper.updateRegStatus(pro_opt_id, order_no);
+      
+
+      
+      log.info(result2);
+      
+      if(result1 == 1 && result2 == 1) {
+    	  log.info("정상 업데이트 완료");
+    	  return 1;
+      } else {
+    	  log.info("업데이트중 오류 발생");
+    	  return 0;
+      }
    }
 
    @Override
@@ -69,6 +94,26 @@ public class ResellServiceImpl implements ResellService {
       
       return rank + 1;
    }
+   
+   /*
+	@Override
+	public int updateRegStatus(String pro_opt_id, String order_no) {
+
+		log.info("등록못하도록 상태 업데이트!!!");
+		log.info("주문 번호 : " + order_no);
+		log.info("상품 번호 : " + pro_opt_id);		
+		UpdateProductDTO dto = new UpdateProductDTO();
+		
+		dto.setOrder_no(order_no);
+		dto.setPro_opt_id(pro_opt_id);
+		log.info(dto);
+		int a = mapper.updateRegStatus(dto);
+		log.info(a);
+		
+		return 0;
+
+	}
+	*/
    
    
    
@@ -139,6 +184,8 @@ public class ResellServiceImpl implements ResellService {
 			
 		return detailPriceDto;
 	}
+
+
 	
 	
 	

@@ -82,3 +82,7 @@ table.type06 .even {
   height: 35px;
   text-align: center;
 }
+
+a:hover{
+	color:red;
+}

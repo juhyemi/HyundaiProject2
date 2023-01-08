@@ -12,11 +12,12 @@
 	href="/resources/css/resell/register1.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/resell/register2.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/resell/register3.css">
+
 	<link rel="stylesheet" type="text/css" href="/resources/css/resell/register4.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/main2.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/resell/register3.css">
 
 <link id="smartPopup" rel="stylesheet" type="text/css"
 	href="https://app4you.cafe24.com/SmartPopup/assets/css/front.css?vs=202103191120"
@@ -328,7 +329,7 @@
 									<!--	<input id="input2" type="submit" />   -->
 									<!-- <input id="input3" type="submit"
 										value="최저가 순위보기" />  -->
-									<a href="#none" class="input2" onclick="getMyRank();"><span>순위 확인</span></a> <a
+									<a href="#none" id="getRank" class="input2" onclick="getMyRank();"><span>순위 확인</span></a> <a
 										href="#none" class="input3" onclick="show_resell_modal();"><span>최저가
 											순위보기</span></a>
 								</form>
@@ -541,14 +542,14 @@
 
 
 
-
 	<form action="/resell/register" method="post" class="reg_product">
 		<input type="hidden" name="member_mem_id" class="send_member_id">
-		<input type="hidden" name="re_id" class="send_re_id"> <input
-			type="hidden" name="re_price" class="send_re_price"> <input
-			type="hidden" name="product_option_pro_opt_id"
-			class="send_pro_opt_id"> <input type="hidden"
-			name="re_available" class="send_re_available">
+		<input type="hidden" name="re_id" class="send_re_id"> 
+		<input type="hidden" name="re_price" class="send_re_price"> 
+		<input type="hidden" name="product_option_pro_opt_id" class="send_pro_opt_id"> 
+		<input type="hidden" name="re_available" class="send_re_available">
+		<input type="hidden" name="order_no" value="${requestScope.order_no}">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	</form>
 
 
@@ -570,21 +571,19 @@ function close_modal() {
 /* resell product register  */
 //$("#btn_buyNow").on("click", function() {
 	function regResell(){
- //let member_id = $(this).data("member_id"); 추후에 변경할 내용
- let member_mem_id = "chung";
- let re_id = "10"; // 추후 변경
+// let member_mem_id = "chung"; 여기서 회원 정보 안보냄
+// let re_id = "10"; // 시퀀스 사용
  let re_price = document.getElementById("input1").value;
  let pro_opt_id = $("#btn_buyNow").data("prooptid");
- let re_available = "0"; //추후 변경
+ let re_available = "0"; 
  
- console.log(member_mem_id);
- console.log(re_id);
+ re_price = re_price.replace(',','');
+ 
  console.log(re_price);
  console.log(pro_opt_id);
  console.log(re_available);
  
- $(".send_member_id").val(member_mem_id);
- $(".send_re_id").val(re_id);
+
  $(".send_re_price").val(re_price);
  $(".send_pro_opt_id").val(pro_opt_id);
  $(".send_re_available").val(re_available);
@@ -593,7 +592,7 @@ function close_modal() {
 
 </script>
 
-	<script>
+<script>
 function getMyRank() {
 	
 	let productInfo={
@@ -611,7 +610,7 @@ function getMyRank() {
 	with_tax = with_tax.toLocaleString("ko-KR");
 	
 	console.log(og_price, og_comma,with_tax, tmpPrice); 
-	
+	     
 	$.ajax({
 		type: "get",
 		url: "/resell/register/myRank",
@@ -676,13 +675,14 @@ $('#money').text(money2);
 
 </script>
 
-	<script>
+<script>
 
 	let price = ${product.resellProductDTO.pro_price};
 	let commaPrice = price.toLocaleString("ko-KR");
 	
 	console.log("가격은: " + commaPrice);
 	$("#originalPrice").text(commaPrice);
+
 </script>
 
 

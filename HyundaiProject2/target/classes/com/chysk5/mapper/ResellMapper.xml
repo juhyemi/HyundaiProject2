@@ -6,18 +6,18 @@
 
    <select id="getMyResellProduct"
       resultType="com.chysk5.domain.ResellProductDTO">
-      SELECT r.pro_name, r.pro_opt_size, r.pro_price, r.pro_loc
+      SELECT r.pro_name, r.pro_opt_size, r.pro_price, r.pro_id, r.pro_loc
       FROM(
-      SELECT pro_name, pro_opt_size, pro_price, pro_loc
+      SELECT pro_name, pro_opt_size, pro_price, pro_id, pro_loc
       FROM product p
       INNER
       JOIN product_option po
       ON p.pro_id = po.product_pro_id
-        INNER JOIN pro_image pi on pi.product_pro_id = po.pro_opt_id
-      WHERE pro_opt_id
-      = #{pro_opt_id}
-        ORDER BY PRO_LOC ASC) r
-        WHERE ROWNUM = 1
+      and po.pro_opt_id = #{pro_opt_id}
+      INNER JOIN pro_image pi
+      ON pi.product_pro_id = p.pro_id
+      AND pi.pro_loc LIKE ('%medium%')
+      )r
    </select>
 
    <select id="getPriceList" resultType="com.chysk5.domain.ResellPriceDTO">
@@ -34,20 +34,20 @@
       ]]>
    </select>
 
-
    <insert id="register">
       INSERT INTO r_product (re_id, re_price, re_regdate, re_update, re_available,
       member_mem_id, product_option_pro_opt_id)
-      VALUES (#{re_id},
+      VALUES (REG_RESELL_SEQ.nextval,
       #{re_price}, sysdate, sysdate, #{re_available}, #{member_mem_id},
       #{product_option_pro_opt_id})
    </insert>
+
    
    <select id="getMyRank" resultType="int">
    <![CDATA[
       SELECT R.RANK
       FROM(
-      SELECT re_id, RANK() OVER (ORDER BY re_price ASC) AS RANK
+      SELECT re_id, RANK() OVER (ORDER BY re_price ASC) AS RANK 
       FROM r_product
       WHERE r_product.product_option_pro_opt_id = #{pro_opt_id}
       AND re_price < #{re_price}
@@ -62,8 +62,16 @@
       FROM r_product
       WHERE r_product.product_option_pro_opt_id = #{pro_opt_id}
       AND re_price < #{re_price}
-      ]]>
+      ]]>    
    </select>
+   
+   
+   
+   <update id="updateRegStatus">
+	   UPDATE order_detail SET ORDER_REG_RESELL_CHECK = '1'
+	   WHERE order_total_order_no = #{order_no}
+	   AND product_option_pro_opt_id = #{pro_opt_id}
+   </update>
 	
 	
 	<!--함세강 작성  -->

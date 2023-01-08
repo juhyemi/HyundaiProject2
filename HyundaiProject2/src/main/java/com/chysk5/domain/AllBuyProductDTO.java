@@ -14,4 +14,5 @@ public class AllBuyProductDTO {
 	private String re_price;
 	private String pro_loc;
 	private String pro_opt_id;
+	private String order_reg_resell_check;
 }

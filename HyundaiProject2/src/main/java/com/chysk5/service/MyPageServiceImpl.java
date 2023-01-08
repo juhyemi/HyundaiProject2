@@ -1,10 +1,11 @@
 package com.chysk5.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import com.chysk5.domain.AllBuyProductDTO;
@@ -82,63 +83,60 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<MyResellProductDTO> getMyResellList(String mem_id) {
+	public List<MyResellProductDTO> getMyResellList(String mem_id, @Nullable String start_date, @Nullable String end_date) {
 
-		List<MyResellProductDTO> resultList = mapper.getMyResellList(mem_id);
-//		List<Integer> rank = new ArrayList<Integer>();
-		
-		for(int i = 0; i<resultList.size(); i++) {
+		List<MyResellProductDTO> resultList = mapper.getMyResellList(mem_id, start_date, end_date);
+
+		for (int i = 0; i < resultList.size(); i++) {
 			int index = 1;
-			for(ResellPriceDTO a : resultList.get(i).getPriceRank()) {
-					log.info("가격 :" + a.getRe_price());
-					if(resultList.get(i).getMy_price() == a.getRe_price()) {
-						log.info("내 가격: " + resultList.get(i).getMy_price());
-						log.info("순위 :"  + index);	
-						resultList.get(i).setMy_rank(index);
-					}
-					
-					/*
-					if(resultList.get(i).getMy_price() == a.getRe_price()) {
-						resultList.get(i).setMy_rank(i);
-					}
-					*/
+			for (ResellPriceDTO a : resultList.get(i).getPriceRank()) {
+				log.info("가격 :" + a.getRe_price());
+				if (resultList.get(i).getMy_price() == a.getRe_price()) {
+					log.info("내 가격: " + resultList.get(i).getMy_price());
+					log.info("순위 :" + index);
+					resultList.get(i).setMy_rank(index);
+				}
+
+				
 				index++;
-			}	
-			
+			}
+
 			log.info("==============================");
 		}
 		
-		/*
-		for(MyResellProductDTO a : resultList) {
-			int myRank = a.getPriceRank().indexOf(a.getMy_price());
-			log.info("순위 확인 : " + myRank);
-			a.setMy_rank(myRank);
+		for (MyResellProductDTO a : resultList) {
+			String date = a.getRe_regdate().substring(0,10);
+			a.setRe_regdate(date);
 		}
-		*/
-		
-		
+
+		/*
+		 * for(MyResellProductDTO a : resultList) { int myRank =
+		 * a.getPriceRank().indexOf(a.getMy_price()); log.info("순위 확인 : " + myRank);
+		 * a.setMy_rank(myRank); }
+		 */
+
 		return resultList;
 	}
 
-
 	@Override
 	public int modifyPrice(String re_id, int re_price) {
-	
+
 		log.info("가격 수정 Service 들어옴");
 		int result = mapper.modifyPrice(re_id, re_price);
-		if(result == 1)	log.info("수정 완료");
-		else log.info("수정 실패");
-		
+		if (result == 1)
+			log.info("수정 완료");
+		else
+			log.info("수정 실패");
+
 		return result;
 	}
 
 	@Override
 	public List<BuyProductDTO> getBuyProduct(String mem_id) {
-		
-		return mapper.getBuyProduct(mem_id);
-		
-	}
 
+		return mapper.getBuyProduct(mem_id);
+
+	}
 
 	// 총 구매 금액
 	@Override
@@ -151,17 +149,28 @@ public class MyPageServiceImpl implements MyPageService {
 
 	// 내가 판매 완료한 상품들 목록
 	@Override
-	public List<SoldOutProductDTO> getSoldOutList(String mem_id) {
+	public List<SoldOutProductDTO> getSoldOutList(String mem_id, @Nullable String start_date, @Nullable String end_date) {
+
+		List<SoldOutProductDTO> allList = mapper.getMySoldOutList(mem_id, start_date, end_date);
+
+		for (SoldOutProductDTO a : allList) {
+			String date = a.getRe_selldate().substring(0,10);
+			a.setRe_selldate(date);
+		}
 		
-		return mapper.getMySoldOutList(mem_id);
+		return allList;
 	}
 
-	
 	// 내가 구매한 모든 상품 목록 보여주기
 	@Override
-	public List<AllBuyProductDTO> getAllBuyList(String mem_id) {
-		
-		return mapper.getAllList(mem_id);
-	}
+	public List<AllBuyProductDTO> getAllBuyList(String mem_id, @Nullable String start_date, @Nullable String end_date) {
 
+		List<AllBuyProductDTO> allList = mapper.getAllList(mem_id, start_date, end_date);
+		for (AllBuyProductDTO a : allList) {
+			String date = a.getOrder_date().substring(0,10);
+			a.setOrder_date(date);
+		}
+		
+		return allList;
+	}
 }

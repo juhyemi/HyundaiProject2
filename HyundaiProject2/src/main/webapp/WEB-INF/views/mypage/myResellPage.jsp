@@ -85,16 +85,16 @@
 							<div
 								class="xans-element- xans-myshop xans-myshop-orderhistoryhead order-search-block ">
 								<ul class="period-rage">
-									<li><a href="javascript:void(0);" days="00">오늘</a></li>
-									<li><a href="javascript:void(0);" days="07">1주일</a></li>
-									<li><a href="javascript:void(0);" days="30">1개월</a></li>
-									<li><a href="javascript:void(0);" days="90">3개월</a></li>
-									<li><a href="javascript:void(0);" days="180">6개월</a></li>
+									<li><a href="#" onclick="dateCal('1');" days="00">오늘</a></li>
+									<li><a href="#" onclick="dateCal('2');" days="07">1주일</a></li>
+									<li><a href="#" onclick="dateCal('3');"days="30">1개월</a></li>
+									<li><a href="#" onclick="dateCal('4');" days="90">3개월</a></li>
+									<li><a href="#" onclick="dateCal('5');" days="180">6개월</a></li>
 								</ul>
 								<ul class="period-search">
 									<li><input id="history_start_date"
 										name="history_start_date" class="fText hasDatepicker"
-										readonly="readonly" size="10" value="2022-09-30" type="text">
+										readonly="readonly" size="10" value="" type="text">
 										<button type="button" class="ui-datepicker-trigger">
 											<img
 												src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif"
@@ -103,14 +103,14 @@
 									<li>~</li>
 									<li><input id="history_end_date" name="history_end_date"
 										class="fText hasDatepicker" readonly="readonly" size="10"
-										value="2022-12-29" type="text">
+										value="" type="text">
 										<button type="button" class="ui-datepicker-trigger">
 											<img
 												src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif"
 												alt="..." title="...">
 										</button></li>
-									<li><button type="submit" id="order_search_btn"
-											class="btn btn-dark">
+									<li><button type="button" id="order_search_btn"
+											class="btn btn-dark" onclick="searchPeriod();">
 											<span>SEARCH</span>
 										</button></li>
 								</ul>
@@ -120,7 +120,12 @@
 						</form>
 
 
-
+				<form action="/mypage/myResell" method="get" class="search_product">
+					<input type="hidden" name="member_mem_id" class="send_member_id">
+					<input type="hidden" name="start_date" class="start_date">
+					<input type="hidden" name="end_date" class="end_date">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				</form>
 
 
 
@@ -304,7 +309,7 @@
 
 				<!-- 판매완료 상품들 -->
 
-						<section id="tab-section-2" class="tab-section">
+						<section id="tab-section-2" class="tab-section" hidden>
 
 							<div
 								class="xans-element- xans-myshop xans-myshop-orderhistorylistitem order-list">
@@ -338,11 +343,7 @@
 														</ul>
 													</li>
 													<ul>
-														<li class=""><a
-															class="btn btn-sm btn-gray btn-pd16 cancelBtn"
-															href="#none"
-															onclick="cancelResell(${SList.product_option_pro_opt_id }, ${count.index })"><span>등록
-																	취소</span></a></li>
+										
 													</ul>
 													</li>
 												</ul>
@@ -517,6 +518,155 @@ function modifyPrice(re_id, index) {
 	          }
 	        });
 	      });
+
+</script>
+
+<script>
+function dateCal(val){
+	
+	console.log("들어오니?");
+	
+	dateFormatter = function(newDay, today) {
+		let year = newDay.getFullYear();
+		let month = newDay.getMonth()+1;
+		let date = newDay.getDate();
+		
+		if(today) {
+			
+			let todayDate = today.getDate();
+			
+			if(date != todayDate) {
+				if(month == 0)	year-=1
+				month = (month + 11) % 12;
+				date = new Date(year, month, 0).getDate();
+			}
+		}
+		
+		month = ("0"+month).slice(-2);
+		date = ("0"+date).slice(-2);
+		
+		return year+"-"+month+"-"+date;
+	}
+
+	let newDate = new Date();
+	let nowDate = new Date();
+	
+	/*
+	switch(this.val) {
+	case '1':
+		console.log("당일");
+		let calNewDate = newDate.getDate();
+		newDate.setDate(calNewDate);
+		newDate = dateFormatter(newDate);
+		
+		console.log("변환 됫엇나? " + newDate);
+		break;
+	case '2':
+		console.log("일주일");
+		let calNewDate = newDate.getDate()-7;
+		newDate.setDate(calNewDate);
+		newDate = dateFormatter(newDate);
+		
+		console.log("변환 됫엇나? " + newDate);
+		break;
+	}
+	*/
+	
+	if(val == 1) {
+		console.log("당일");
+		let calNewDate = newDate.getDate();
+		newDate.setDate(calNewDate);
+		newDate = dateFormatter(newDate);
+		
+		console.log("변환 됫엇나? " + newDate);
+		
+		$('#history_start_date').val(newDate);
+		$('#history_end_date').val(newDate);
+		
+	} else if(val == 2) {
+	console.log("일주일");
+	let calNewDate = newDate.getDate()-7;
+	let calNowDate = nowDate.getDate();
+	
+	nowDate.setDate(calNowDate);
+	newDate.setDate(calNewDate);
+	
+	newDate = dateFormatter(newDate);
+	nowDate = dateFormatter(nowDate);
+	
+	console.log("변환 됫엇나? " + newDate);
+	$('#history_start_date').val(newDate);
+	$('#history_end_date').val(nowDate);
+	
+	} else if(val == 3) {
+		console.log("한달");	
+		
+		let calNewDate = newDate.getMonth()-1;
+		let calNowDate = nowDate.getDate();
+		
+		newDate.setMonth(calNewDate);
+		nowDate.setDate(calNowDate);
+
+		newDate = dateFormatter(newDate);
+		nowDate = dateFormatter(nowDate);
+		
+		console.log("변환 됫엇나? " + newDate);
+	
+		$('#history_start_date').val(newDate);
+		$('#history_end_date').val(nowDate);
+	} else if(val == 4) {
+		console.log("3달");
+		
+		let calNowDate = nowDate.getDate();
+		let calNewDate = newDate.getMonth()-3;
+		
+		newDate.setMonth(calNewDate);
+		nowDate.setDate(calNowDate);
+
+		newDate = dateFormatter(newDate);
+		nowDate = dateFormatter(nowDate);
+		
+		console.log("변환 됫엇나? " + newDate);
+		
+		$('#history_start_date').val(newDate);
+		$('#history_end_date').val(nowDate);
+	} else if(val == 5) {
+		console.log("6달");
+				
+		let calNewDate = newDate.getMonth()-6;
+		let calNowDate = nowDate.getDate();
+
+		newDate.setMonth(calNewDate);
+		nowDate.setDate(calNowDate);
+
+		newDate = dateFormatter(newDate);
+		nowDate = dateFormatter(nowDate);
+		
+		console.log("변환 됫엇나? " + newDate);
+		
+		$('#history_start_date').val(newDate);
+		$('#history_end_date').val(nowDate);
+	}
+}
+
+</script>
+
+
+<script>
+
+function searchPeriod() {
+	
+	let startDate=$('#history_start_date').val();
+	let endDate=$('#history_end_date').val();
+	
+	console.log(startDate);
+	console.log(endDate);
+	
+	 $(".start_date").val(startDate);
+	 $(".end_date").val(endDate);
+	 $(".search_product").submit();
+
+}
 
 </script>
 

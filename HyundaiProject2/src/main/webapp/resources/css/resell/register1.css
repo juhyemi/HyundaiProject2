@@ -1535,7 +1535,7 @@ table {
 	border-spacing: 0;
 }
 
-a, a:hover, a:active, a:focus, a:visited, input, button, select {
+a, a:active, a:focus, a:visited, input, button, select {
 	text-decoration: none;
 	outline: none !important;
 }
@@ -15002,7 +15002,6 @@ body.display #body[data-viewport='desktop'] .productDetail.wrapper .productImgTy
 	{
 	line-height: 0;
 	position: relative;
-	overflow: hidden;
 }
 
 .productDetail.wrapper .content.mainImg .sub.img {
@@ -17991,4 +17990,8 @@ span.ui-spinner a.ui-spinner-button:nth-child(3):before {
 
 #tax {
 	margin-top: 20px;
+}
+
+a:hover{
+	color:red;
 }

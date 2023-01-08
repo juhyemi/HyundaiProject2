@@ -3,6 +3,7 @@ package com.chysk5.controller;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.lang.Nullable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -52,11 +53,15 @@ public class MypageController {
 	
 	// 주문내역 페이지로 이동
 	@GetMapping("/myorder")
-	public String myorder(Principal prc, Model model) {
+	public String myorder(Principal prc, Model model, @Nullable String start_date, @Nullable  String end_date) {
 		
 		 String mem_id=prc.getName();
 		 
-		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id);
+		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id, start_date, end_date);
+		 
+		 log.info("startDate 들어왔나? " + start_date);
+		 log.info("endDate 들어왔나? " + end_date);
+		 
 		 
 		 model.addAttribute("allList", allList);
 		 
@@ -101,15 +106,15 @@ public class MypageController {
 	
 	// 내가 등록한 상품 페이지 이동
 	@GetMapping("/myResell")
-	public String getMyResellList(Model model) {
+	public String getMyResellList(Model model, @Nullable String start_date, @Nullable  String end_date) {
 		log.info("MyResell 페이지 이동");
 			
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    User user = (User)authentication.getPrincipal();    
 	    String mem_id = user.getUsername();
 	    
-	    List<MyResellProductDTO> myResellList = service.getMyResellList(mem_id);
-	    List<SoldOutProductDTO> mySoldOutList = service.getSoldOutList(mem_id);
+	    List<MyResellProductDTO> myResellList = service.getMyResellList(mem_id, start_date, end_date);
+	    List<SoldOutProductDTO> mySoldOutList = service.getSoldOutList(mem_id, start_date, end_date);
 	    
 	    for(SoldOutProductDTO a : mySoldOutList) {
 	    	log.info("@@@@@@@@@@" + a);

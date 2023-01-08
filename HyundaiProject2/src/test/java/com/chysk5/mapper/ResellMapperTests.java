@@ -17,7 +17,8 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
 public class ResellMapperTests {
 
@@ -75,5 +76,13 @@ public class ResellMapperTests {
 		
 		log.info(rank + "번째 순위입니다!");
 	}
+	@Test
+	public void testUpdate() {
+		log.info("@@@@@@@@@ 업데이트 확인");
+		
+		int result = mapper.updateRegStatus("148", "6");
+		log.info(result);
+	}
+	
 	
 }
