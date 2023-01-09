@@ -237,9 +237,10 @@
 
 														<input id="input${count.index }" type="text"
 															onkeyup="inputNumberFormat(this);"
-															placeholder="가격을 입력하세용~" maxlength="7" numberOnly /> <input
+															placeholder="가격을 입력하세용~" maxlength="7" numberOnly 
+															style="width: 305px; height: 50px; font-size: 16px; padding-left: 5px;"/> <input
 															type="button" class="btn-dark regBtn" value="등록하기"
-															onclick="modifyPrice(${List.re_id}, ${count.index});">
+															onclick="modifyPrice(${List.re_id}, ${count.index});" >
 
 													</div>
 

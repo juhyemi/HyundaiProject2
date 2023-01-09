@@ -297,7 +297,7 @@
 
 
 							<br>
-							<div style="margin-top: 45px; margin-bottom: 60px;">
+							<div style="margin-top: 45px;">
 								<form action="" method="post">
 
 									<input id="input1" type="text"
@@ -317,7 +317,7 @@
 							<div class="background show" id="resellModal">
 								<div class="window">
 									<div class="popup">
-										<p>데이터 없음 </p>
+										<p style="height: 192px;">데이터 없음 </p>
 										<div id="closeModal">
 											<button type="button"
 												class="btn btn-order btn-dark btn-full close-resell-btn"
@@ -335,14 +335,12 @@
 								<div class="window">
 									<div class="popup">
 										<table class="type06">
-											<c:forEach var="resellPrice" items="${product.resellPrice}">
-											
-											
-												<tr style="border-bottom: 0.5px solid #222;">
+											<c:forEach var="resellPrice" items="${product.resellPrice}" varStatus="status">
+												<tr style="border-bottom: 0.5px solid #e2e2e2; height: 20px;">
+													<th scope="row" style="width: 50px;">${status.index+1}</th>
 													<th scope="row">${resellPrice.pro_opt_size}</th>
 													<td><fmt:formatNumber value="${resellPrice.re_price }" type="number"/></td>
 												</tr>
-											
 											</c:forEach>
 										</table>
 										<div id="closeModal">

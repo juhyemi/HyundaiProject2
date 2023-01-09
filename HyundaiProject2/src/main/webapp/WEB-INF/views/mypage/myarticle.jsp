@@ -67,6 +67,7 @@ $(document).ready(function(){
 
 							<!-- 내가 쓴 글 -->
 							<div id="myTalks" class="only-pc" style="margin-top: -1px;">
+								<c:if test="${fn:length(tList) > 0}">
 								<table class="table-base">
 									<colgroup class="xans-element- xans-board xans-board-listheader-9 xans-board-listheader xans-board-9 ">
 										<col style="width: 200px;">
@@ -88,15 +89,19 @@ $(document).ready(function(){
 										</c:forEach>
 									</thead>
 								</table>
-								<div class="xans-element- xans-board xans-board-empty-9 xans-board-empty xans-board-9 empty-icon-block line-bottom" style="display: none;">
-									<div class="inner"> 
-										<p>검색결과가 없습니다.</p>
+								</c:if>
+								<c:if test="${fn:length(tList) == 0}">
+									<div class="xans-element- xans-board xans-board-empty-9 xans-board-empty xans-board-9 empty-icon-block line-bottom">
+										<div class="inner"> 
+											<p>검색결과가 없습니다.</p>
+										</div>
 									</div>
-								</div>
+								</c:if>
 							</div>
 							
 							<!-- 내가 쓴 댓글 -->
 							<div id="myReply" class="only-pc" style="margin-top: -1px; display: none">
+								<c:if test="${fn:length(rList) > 0}">
 								<table class="table-base">
 									<colgroup class="xans-element- xans-board xans-board-listheader-9 xans-board-listheader xans-board-9 ">
 										<col style="width: 200px;">
@@ -121,11 +126,14 @@ $(document).ready(function(){
 										</c:forEach>
 									</thead>
 								</table>
-								<div class="xans-element- xans-board xans-board-empty-9 xans-board-empty xans-board-9 empty-icon-block line-bottom" style="display: none;">
-									<div class="inner"> 
-										<p>검색결과가 없습니다.</p>
+								</c:if>
+								<c:if test="${fn:length(rList) == 0}">
+									<div class="xans-element- xans-board xans-board-empty-9 xans-board-empty xans-board-9 empty-icon-block line-bottom">
+										<div class="inner"> 
+											<p>검색결과가 없습니다.</p>
+										</div>
 									</div>
-								</div>
+								</c:if>
 							</div>
 
 

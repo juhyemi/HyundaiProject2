@@ -34,4 +34,7 @@ public interface CartSerivce {
      
      // 장바구니 전체 삭제
      public void deleteAll(String mem_id);
+     
+     // 장바구니에 담겨있는 상품 수량
+     public int selectCartCnt(String mem_id);
 }
