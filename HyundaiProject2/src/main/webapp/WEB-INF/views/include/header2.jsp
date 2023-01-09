@@ -236,18 +236,11 @@ function searchSubmit(inputId){
 			alert("검색어를 입력해주세요");
 		}else{
 			$("#searchForm").submit();		  
-			}		 
+		}		 
 }
 
-function cartCnt(){
-	var csrfHeadName="${_csrf.headerName}";
-    var csrfTokenValue="${_csrf.token}";
-    
-    $.ajax({
-    	url : ,
-    	
-    });
-}
+
+
  </script>
 <div class="gnb-dimmer"></div>
 <!-- // gnb -->

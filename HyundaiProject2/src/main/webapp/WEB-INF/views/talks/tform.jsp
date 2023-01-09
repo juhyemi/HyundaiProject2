@@ -9,37 +9,52 @@
 	$(document).ready(function(e) {
 
 		//첨부파일
-		var formObj = $("form[role='form']");
+		var formObj = $("#registerForm");
+		
+		// 등록하기 버튼을 누르면,
+		$("#registerbtn").on("click", function() {
+			/* e.preventDefault(); */
 
-		$("#registerbtn").on("click", function(e) {
-			e.preventDefault();
-
-			console.log("submit clicked");
+			// 메세지 확인
+			var answer = confirm('해당 글을 작성하시겠습니까?');
 			
+			var talks_title = $('#talks_title').val();
+			var talks_content = $('#talks_content').val();
 			
+			$('input[name=talks_title]').attr('value',talks_title);
+			$('input[name=talks_content]').attr('value',talks_content);
+			
+			/* if (answer) {
+				$("#registerForm").submit();
+			} */
+		
 			var str="";
 			
 			$(".uploadResult ul li").each(function(i, obj){
 			      
 			      var jobj = $(obj);
 			      
-			      console.dir(jobj);
-			      console.log("-------------------------");
+			      console.log(jobj);
+			      console.log("------------------");
 			      console.log(jobj.data("filename"));
 			      
 			      
-			      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-			      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
 			      str += "<input type='hidden' name='attachList["+i+"].talks_loc' value='"+jobj.data("path")+"'>";
-			      str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+			      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+			      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+			      var fileCallPathName = jobj.data("path")+jobj.data("uuid")+jobj.data("filename");
 			      
 			    });
+			
+		    console.log("submit 버튼 누르면 나와야한다!");
 		    console.log(str);
 		    
 		    formObj.append(str).submit();
 			
 		});
-
+		
+		
+		// 파일 용량 확인하는 함수
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 		var maxSize = 5242880; // 5MB
 
@@ -56,6 +71,8 @@
 			}
 			return true;
 		}
+		
+		// 파일 선택할 시 이미지 섬네일 뿌려주는 함수
 		$("input[type='file']").change(function(e) {
 			
 
@@ -64,13 +81,20 @@
 			var formData = new FormData();
 			var inputFile = $("input[name='uploadFile']");
 			var files = inputFile[0].files;
+			
+			console.log("file change");
 			console.log(files);
+			
 			for (var i = 0; i < files.length; i++) {
 				if (!checkExtension(files[i].name, files[i].size)) {
 					return false;
 				}
 				formData.append("uploadFile", files[i]);
 			}
+			
+			console.log("form data");
+			console.log(formData);
+			
 			$.ajax({
 				url : '/uploadAjaxAction',
 				processData : false,
@@ -81,7 +105,6 @@
 				beforeSend : function(xhr) {
 					if (csrfHeaderName && csrfTokenValue) {
 						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-
 					}
 				},
 				success : function(result) {
@@ -93,7 +116,9 @@
 			}); //ajax
 		});
 
-	});
+	}); // document.ready
+	
+	
 	function showUploadResult(uploadResultArr) {
 		if (!uploadResultArr || uploadResultArr.length == 0) {
 			return;
@@ -137,31 +162,39 @@
 						});
 		uploadUL.append(str);
 	}
-$(".uploadResult").on("click", "span", function(e){
-    
-    var targetFile = $(this).data("file");
-    var type = $(this).data("type");
-    console.log(targetFile);
-    
-    
-    $.ajax({
-      url: '/deleteFile',
-      data: {fileName: targetFile, type:type},
-      dataType:'text',
-      type: 'POST',
-      beforeSend : function(xhr) {
-			if (csrfHeaderName && csrfTokenValue) {
-				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	
 
-			}
-		},
-        success: function(result){
-           alert(result);
-           
-           targetLi.remove();
-         }
-    }); //$.ajax
+ $(".uploadResult").on("click", "button", function(e){
+	console.log("delete file");
+    
+	var targetFile = $(this).data("file");
+    var type = $(this).data("type");
+    
+    var targetLi = $(this).closest("li");
+    
+	if(obj.image){
+		var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_"+obj.uuid+"_"+obj.fileName);
+		str += "<li><div>";
+		str += "<span>" + obj.fileName+"</span>";
+		str += "<button type='button' data-file=\'"+fileCallPath+"\'data-type='image' class='btn btn-warning btn-circle'><i calss='fa fa-times'></i></button><br>";
+		str += "<img src='/display?fileName="+fileCallPath+"'>";
+		str += "</div>";
+		str +"</li>";
+	}else{
+		var fileCallPath = encodeURIComponent(obj.talks_loc+"/"+obj.uuid+"_"+obj.fileName);
+		var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+		
+		str += "<li><div>";
+		str += "<span>" + obj.fileName+"</span>";
+		str += "<button type='button' data-file=\'"+fileCallPath+"\'data-type='file' class= 'btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+		str += "<img src='/resources/img/attach.png'></a>";
+		str += "</div>";
+		str +"</li>";
+		
+	}
 });
+ 
+
 function showUploadedFile(uploadResultarr){
 	var str = "";
 	$(uploadResultArr).each(function(i, obj){
@@ -170,13 +203,13 @@ function showUploadedFile(uploadResultarr){
 			var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 			
 			str+= "<li><div><a href='/download?fileName="+fileCallPath+"'>"+"<img src='/resources/img/attach.png'>" + obj.fileName+"</a>"+
-					"<span data-file=\'"+fileCallPath+"\' data-type='file'> x </span>" + "<div></li>" }
+					"<span data-file=\'"+fileCallPath+"\' data-type='file'> x </span>" + "<div></li>";
 		}else{
 			var fileCallPath = encodeURIComponent(obj.talks_loc + "/s_" + obj.uuid + "_" + obj.fileName);
 			var originPath = obj.talks_loc + "\\" + obj.uuid + "_" + obj.fileName;
 			originPath = originPath.replace(new RegExp(/\\/g), "/");
 			
-			str += "<li><a href=/"javascript:showImage(\'"+originPath+"\')\">" + "<img src='display?fileName="+fileCallPath+"'></a>" + "<span data-file=\'"+fileCallPath+"\' data-type='image'> x </span>"+ "<li>";
+			//str += "<li><a href=/"javascript:showImage(\'"+originPath+"\')\">" + "<img src='display?fileName="+fileCallPath+"'></a>" + "<span data-file=\'"+fileCallPath+"\' data-type='image'> x </span>"+ "<li>";
 		
 			
 		}
@@ -545,7 +578,7 @@ function showUploadedFile(uploadResultarr){
 								<button type="button" class="btn btn-md btn-white btn-pd32" onclick="location.href='/talks/tlist'">
 									<span>취소</span>
 								</button>
-								<button type="submit" id="registerbtn" class="btn btn-md btn-dark btn-pd32">
+								<button type="button" id="registerbtn" class="btn btn-md btn-dark btn-pd32">
 									<span>확인</span>
 								</button>
 							</div>
