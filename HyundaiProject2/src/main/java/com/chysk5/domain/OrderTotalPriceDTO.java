@@ -5,8 +5,8 @@ import lombok.Data;
 //리셀 오더 체크
 
 @Data
-public class OrderReselCheckDTO {
+public class OrderTotalPriceDTO {
 
-	 String order_resell_check;
-	 String re_id;
+	 String order_total_price;
+	
 }

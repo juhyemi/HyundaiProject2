@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.chysk5.domain.CartCntUpdateDTO;
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.ProductOptionDTO;
 
@@ -37,8 +38,9 @@ public interface CartMapper {
 	public void deleteCheck(@Param("mem_id")String mem_id);
 	
 	//장바구니 수량 update
-	public int updateCnt(@Param("cart_no") String cart_no,@Param("cart_amount") int cart_amount);
+	public int updateCnt(CartCntUpdateDTO cntDTO);
 	
+	public String totalPrice(String mem_id);
 	
 }
 

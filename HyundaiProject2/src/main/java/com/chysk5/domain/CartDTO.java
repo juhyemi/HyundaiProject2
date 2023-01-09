@@ -42,7 +42,7 @@ public class CartDTO {
 	
 	private String pro_loc;
 	
-	
+	private String re_id;
 	
 	  public CartDTO(String member_mem_id, String product_option_pro_opt_id) {
 	  

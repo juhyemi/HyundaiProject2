@@ -33,18 +33,9 @@ public class CartController {
 	@GetMapping("/cartList")
 	public 	void cartlist(Principal prc,Model model) {   
     	String mem_id= prc.getName();
-    	log.info("prinid:"+mem_id);
-		/*
-		 * Authentication authentication =
-		 * SecurityContextHolder.getContext().getAuthentication(); User user =
-		 * (User)authentication.getPrincipal(); log.info("user id:"+user);
-		 * log.info("get cart list"); String mem_id=user.getUsername();
-		 */
-		log.info(mem_id);
 		List<CartDTO> cartList=service.cartList(mem_id);
 		log.info(cartList);
 		model.addAttribute("cartList",cartList);
-		//return "cart/cartList";
 	}
     
     //장바구니 담기 테스트 코드

@@ -7,13 +7,17 @@ import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chysk5.domain.CartCheckDTO;
+import com.chysk5.domain.CartCntUpdateDTO;
 import com.chysk5.domain.CartDTO;
+import com.chysk5.domain.CartTotalPriceDTO;
 import com.chysk5.domain.ProductOptionDTO;
 import com.chysk5.service.CartSerivce;
 import com.chysk5.service.OrderService;
@@ -31,7 +35,7 @@ public class CartRestController {
 	private CartSerivce cartservice;
 	private OrderService orderservice;
 	
-	// 장바구니 담기 -- session 으로 mem_id 받아와야 한다
+	// 장바구니 담기
 	@Secured({"ROLE_MEMBER"})
 	@PostMapping("/addCart")
 	public String addCart(Principal prc,@RequestParam("pro_name") String pro_name,@RequestParam("pro_opt_size") String pro_opt_size,@RequestParam("pro_id") String pro_id)throws Exception{
@@ -40,9 +44,7 @@ public class CartRestController {
 	    log.info(pro_name);
     	log.info("user id:"+mem_id);
 		log.info("get cart list");       
-		 
-	    
-		//product_opt_id 조회	   
+		 		//product_opt_id 조회	   
 		ProductOptionDTO product=new ProductOptionDTO(pro_id,pro_name,pro_opt_size);
 	    log.info(product);
  	    String opt_id=cartservice.searchOptid(product); 
@@ -67,12 +69,13 @@ public class CartRestController {
 	
 	//수량 변경
 	@Secured({"ROLE_MEMBER"})
-	@PostMapping("/updateCnt")
-	public int updateCnt(@RequestParam("cart_no") String cart_no, @RequestParam("cart_amount") int cart_amount) {
-	   log.info("cart_no:"+cart_no);	  
-	   log.info("cart_amount:"+cart_amount);	  
-	   cartservice.updateCnt(cart_no,cart_amount);	    
-	   return cart_amount;
+	@PostMapping("/updateCnt")	
+	public void updateCnt(@RequestBody CartCntUpdateDTO cntDTO) {
+	   log.info("cart_no:"+cntDTO.getCart_no());	  
+	   log.info("cart_no:"+cntDTO.getCart_amount());	  
+		  
+	   cartservice.updateCnt(cntDTO);	    
+	   log.info("업데이트 성공");	
 	   
 	}
 	
@@ -101,6 +104,19 @@ public class CartRestController {
 	}
 	
 	
+	//장바구니 총 주문가격
+	@Secured({"ROLE_MEMBER"})
+	@PostMapping("/totalPrice")
+	public String totalPrice(Principal prc,Model model) {
+	     String mem_id=prc.getName();
+		 log.info("mem_id:"+mem_id);	   
+	     String totalprice= cartservice.totalPrice(mem_id);	
+	     if(totalprice==null) {
+	        totalprice="0";
+	     }
+	     model.addAttribute("totalprice", totalprice); 
+	     return totalprice;
+	}
 	
 	// 장바구니 삭제
 	/*

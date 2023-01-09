@@ -26,7 +26,7 @@ order by c.cart_regdate desc
 <!-- 카트 담기 -->
 <insert id="addCart">
 insert into cart(cart_no,cart_regdate,cart_select,member_mem_id,product_option_pro_opt_id,cart_amount)
-values(cart_seq.nextval,SYSDATE,0,#{member_mem_id},#{product_option_pro_opt_id},1)
+values(cart_seq.nextval,SYSDATE,1,#{member_mem_id},#{product_option_pro_opt_id},1)
 </insert>
 
 <!--option id 조회 -->
@@ -80,5 +80,18 @@ where a.product_pro_id= #{product_pro_id}
      set cart_amount=#{cart_amount}
      where cart_no=#{cart_no}
 </update>
+
+<!-- 장바구니 전체금액 -->
+<select id="totalPrice" resultType="String">
+select sum(c.cart_amount*p.pro_price) as totalprice
+from cart c, product p, product_option po
+where p.pro_id= po.product_pro_id
+  and po.pro_opt_id=c.product_option_pro_opt_id
+  and c.cart_select='1'
+  and c.member_mem_id =#{mem_id}
+
+
+</select>
+
 
 </mapper>
