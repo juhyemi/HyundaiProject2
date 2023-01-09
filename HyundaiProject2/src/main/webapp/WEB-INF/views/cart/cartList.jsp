@@ -214,8 +214,6 @@ function selectDelete(){
 		}
 			 
  });
-
-
 }
 
 // 수량 변경
@@ -278,10 +276,6 @@ function modifyCnt(type,cartNo){
 	 	});
 	 }
 }
-
-
-
-
 </script>
 <body id="popup" class="iframe-layout">
 	<div

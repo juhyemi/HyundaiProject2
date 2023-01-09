@@ -5,6 +5,19 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/mypage.css">
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".tab_class_cs").on("click", function(){
+		$(".tab_class").removeClass("selected");
+		$(this).addClass("selected");
+	});
+	
+	$(".tab_class").on("click", function(){
+		$(".tab_class_cs").removeClass("selected");
+		$(this).addClass("selected");
+	});
+});
+</script>
 </head>
 <body class="magiedumatin ">    
 <%@ include file="../include/header2.jsp"%>
@@ -53,7 +66,7 @@
 								<li class="tab_class selected"><a class="tab-button" data-tab-section="tab-section-1">주문내역조회
 										
 								</a></li>
-								<li class="tab_class_cs tab-button selected" ><a class="tab-button"
+								<li class="tab_class_cs tab-button" ><a class="tab-button"
 									data-tab-section="tab-section-2">취소내역 
 								</a></li>		
 							</ul>
@@ -158,7 +171,7 @@
 											<li class="first">
 												<ul>
 												<c:if test="${List.re_price != null}">
-													<span style="color:red; border:1px solid red;"> 리셀 상품 </span>
+													<span style="color:#E00000; border:1px solid #E00000; padding: 0 3px;"> RESELL </span>
 													</c:if>
 												
 													<li class="sub-title">주문일</li>

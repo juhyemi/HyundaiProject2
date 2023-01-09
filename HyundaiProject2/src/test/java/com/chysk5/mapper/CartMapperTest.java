@@ -52,4 +52,14 @@ public class CartMapperTest {
 		String optid= mapper.searchOptid(product);	 
 	    log.info(optid);
 	}
+	
+	// 장바구니에 담겨있는 수량 select
+	@Test
+	public void TestSelectCartCnt() {
+		String mem_id = "jinjin";
+		
+		int result = mapper.selectCartCnt(mem_id);
+		
+		log.info("select cart cnt result : " + result);
+	}
 }
