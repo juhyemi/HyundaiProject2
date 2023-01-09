@@ -136,6 +136,7 @@
                         $count = 10
                     -->
 								<div class="">
+		<c:if test="${fn:length(myResellList) > 0}">	
 
 									<c:forEach var="List" items="${myResellList }"
 										varStatus="count">
@@ -260,7 +261,7 @@
 
 
 									</c:forEach>
-
+</c:if>
 								</div>
 
 								<!-- 가격 수정 정보 전달 -->
@@ -272,16 +273,17 @@
 										value="${_csrf.token}" />
 								</form>
 
-
+			<c:if test="${fn:length(myResellList) == 0}">	
+	
 								<!-- 등록한 상품 내역이 없을 경우 -->
-								<div class="empty-block mt40 displaynone">
+								<div class="empty-block mt40">
 									<div class="empty-icon-block line">
 										<div class="inner">
-											<p>주문 내역이 없습니다.</p>
+											<p>등록 내역이 없습니다.</p>
 										</div>
 									</div>
 								</div>
-
+</c:if>
 							</div>
 						</section>
 
@@ -298,6 +300,8 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
+                    								<c:if test="${fn:length(mySoldOutList) > 0}">	
+                    
 								<div class="">
 
 									<c:forEach var="SList" items="${mySoldOutList }"
@@ -370,19 +374,21 @@
 									</c:forEach>
 
 								</div>
+								</c:if>
 
 							
 
+								<c:if test="${fn:length(allList) == 0}">	
 
 								<!-- 등록한 상품 내역이 없을 경우 -->
-								<div class="empty-block mt40 displaynone">
+								<div class="empty-block mt40">
 									<div class="empty-icon-block line">
 										<div class="inner">
-											<p>주문 내역이 없습니다.</p>
+											<p>판매 내역이 없습니다.</p>
 										</div>
 									</div>
 								</div>
-
+</c:if>
 
 						
 							</div>

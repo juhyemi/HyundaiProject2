@@ -53,9 +53,15 @@ public class MypageController {
 		
 		List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id, null, null);
 		
+		for(AllBuyProductDTO a : allList) {
+			log.info(a);
+		}
+		
 		model.addAttribute("totalOrderPrice", totalOrderPrice);
 		model.addAttribute("totalOrderCount", totalOrderCount);	
 		model.addAttribute("allList", allList);
+		
+		
 	}
 	
 	// 주문내역 페이지로 이동

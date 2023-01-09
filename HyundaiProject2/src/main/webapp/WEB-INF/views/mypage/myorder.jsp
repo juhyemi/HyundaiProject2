@@ -153,6 +153,8 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
+                   <c:if test="${fn:length(allList) > 0}">	
+                    
                     <c:forEach var="List" items="${allList }" varStatus="count">
 							<div class="">
 								<div class="items-block xans-record- itemlist">
@@ -257,13 +259,18 @@
 							</div>
 							
 							</c:forEach>
-							<div class="empty-block mt40 displaynone">
+							</c:if>
+							
+							<c:if test="${fn:length(allList) == 0}">	
+							
+							<div class="empty-block mt40">
 								<div class="empty-icon-block line">
 									<div class="inner">
 										<p>주문 내역이 없습니다.</p>
 									</div>
 								</div>
 							</div>
+							</c:if>
 							
 							<!-- 
 							<div
@@ -291,6 +298,9 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
+                    
+                    		<c:if test="${fn:length(cancelList) > 0}">	
+                    
                     <c:forEach var="List" items="${cancelList }" varStatus="count">
 							<div class="">
 								<div class="items-block xans-record- itemlist">
@@ -370,13 +380,18 @@
 							</div>
 							
 							</c:forEach>
-							<div class="empty-block mt40 displaynone">
+							</c:if>
+							
+								<c:if test="${fn:length(cancelList) == 0}">	
+							
+							<div class="empty-block mt40">
 								<div class="empty-icon-block line">
 									<div class="inner">
-										<p>주문 내역이 없습니다.</p>
+										<p>취소 내역이 없습니다.</p>
 									</div>
 								</div>
 							</div>
+							</c:if>
 						
 						</div>
 						</section>
