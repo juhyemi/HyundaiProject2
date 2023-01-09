@@ -56,14 +56,10 @@
 								class="xans-element- xans-myshop xans-myshop-orderhistorytab order-tab ">
 								<ul class="menu">
 									<li class="tab_class selected"><a class="tab-button"
-										data-tab-section="tab-section-1">판매 중인 상품 <sup>(<span
-												id="xans_myshop_total_orders">1</span>)
-										</sup>
+										data-tab-section="tab-section-1">판매 중인 상품 
 									</a></li>
 									<li class="tab_class selected"><a class="tab-button"
-										data-tab-section="tab-section-2">판매 완료 상품 <sup>(<span
-												id="xans_myshop_total_orders">1</span>)
-										</sup>
+										data-tab-section="tab-section-2">판매 완료 상품 
 									</a></li>
 								</ul>
 							</div>
@@ -135,6 +131,7 @@
                         $count = 10
                     -->
 								<div class="">
+		<c:if test="${fn:length(myResellList) > 0}">	
 
 									<c:forEach var="List" items="${myResellList }"
 										varStatus="count">
@@ -193,7 +190,7 @@
 																	type="number" />
 															</div>
 															<div>
-																<p class="myRank">${List.my_rank }번째순위 입니다!</p>
+																<p class="myRank">${List.my_rank }번째로 판매예정입니다.</p>
 															</div>
 
 														</div>
@@ -259,7 +256,7 @@
 
 
 									</c:forEach>
-
+</c:if>
 								</div>
 
 								<!-- 가격 수정 정보 전달 -->
@@ -271,16 +268,17 @@
 										value="${_csrf.token}" />
 								</form>
 
-
+			<c:if test="${fn:length(myResellList) == 0}">	
+	
 								<!-- 등록한 상품 내역이 없을 경우 -->
-								<div class="empty-block mt40 displaynone">
+								<div class="empty-block mt40">
 									<div class="empty-icon-block line">
 										<div class="inner">
-											<p>주문 내역이 없습니다.</p>
+											<p>등록 내역이 없습니다.</p>
 										</div>
 									</div>
 								</div>
-
+</c:if>
 							</div>
 						</section>
 
@@ -297,6 +295,8 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
+                    								<c:if test="${fn:length(mySoldOutList) > 0}">	
+                    
 								<div class="">
 
 									<c:forEach var="SList" items="${mySoldOutList }"
@@ -369,19 +369,21 @@
 									</c:forEach>
 
 								</div>
+								</c:if>
 
 							
 
+								<c:if test="${fn:length(allList) == 0}">	
 
 								<!-- 등록한 상품 내역이 없을 경우 -->
-								<div class="empty-block mt40 displaynone">
+								<div class="empty-block mt40">
 									<div class="empty-icon-block line">
 										<div class="inner">
-											<p>주문 내역이 없습니다.</p>
+											<p>판매 내역이 없습니다.</p>
 										</div>
 									</div>
 								</div>
-
+</c:if>
 
 						
 							</div>
