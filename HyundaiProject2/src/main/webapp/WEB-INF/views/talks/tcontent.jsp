@@ -288,6 +288,23 @@ function replyDel(rno){
 											</div>
 										</div>
 									</div>
+									<div class="btn-group-center mt40">
+											<c:if test="${loginUser eq talksContent.member_mem_id}">
+												<a id="btnDel" href="#" class= "btn btn-sm btn-white btn-pd32">
+													<span>Delete</span>
+												</a>											
+											</c:if>
+											<form id="deleteForm" action="/talks/delete" method="post">
+												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+												<input type="hidden" name="talks_id" value="${talksContent.talks_id }" />
+												<input type="hidden" name="writer" value="${talksContent.member_mem_id }" />
+												<input type="hidden" name="loginUser" value= "${loginUser}" />
+											</form>
+
+											<a href="/talks/tlist" class="btn btn-sm btn-dark btn-pd32">
+												<span>Back to List</span>
+											</a>
+									</div>
 									
 
 								</div>
