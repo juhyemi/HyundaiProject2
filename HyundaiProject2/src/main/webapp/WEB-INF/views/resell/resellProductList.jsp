@@ -50,6 +50,7 @@
                 </ul>
     </div>
     </div>
+    <!-- 
         <div class="only-pc">
             <div class="xans-element- xans-product xans-product-normalpaging paginate"><a href="#none">&lt;&lt;</a>
     <a href="#none">&lt;</a>
@@ -62,6 +63,7 @@
     <a href="?cate_no=27&amp;page=5">&gt;&gt;</a>
     </div>
         </div>
+         -->
     </div>  
             </div>
         </div>
