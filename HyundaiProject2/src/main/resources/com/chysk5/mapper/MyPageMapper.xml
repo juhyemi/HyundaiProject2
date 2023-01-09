@@ -5,9 +5,9 @@
   <mapper namespace="com.chysk5.mapper.MyPageMapper">
   
   <resultMap type="com.chysk5.domain.MyResellProductDTO" id="myResellMap">
-  	<id property="pro_opt_id" column="product_option_pro_opt_id" />
+  	<id property="re_id" column="re_id" />  	
   	<result property="re_regdate" column="re_regdate" />
-  	<result property="re_id" column="re_id" />
+  	<result property="pro_opt_id" column="product_option_pro_opt_id" />
   	<result property="pro_name" column="pro_name" />
   	<result property="pro_loc" column="pro_loc" />
   	<result property="pro_opt_size" column="pro_opt_size" />

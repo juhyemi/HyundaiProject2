@@ -215,14 +215,24 @@
 
 													<table class="type06">
 														<caption>최저가 순위</caption>
+														
+										<c:if test="${fn:length(List.priceRank) > 0}">	
+														
 														<c:forEach var="rank" items="${List.priceRank}">
 															<tr>
 																<th scope="row">2022-12-10</th>
-																<td>${rank.re_price }</td>
+																<td><fmt:formatNumber value="${rank.re_price }"
+																	type="number" /></td>
+																
 															</tr>
 														</c:forEach>
+														</c:if>
 													</table>
-
+													
+													<c:if test="${fn:length(List.priceRank) == 0}">	
+													<h1>등록된 상품이 없습니다.</h1>
+													</c:if>
+							
 													<div class="productName">
 														<p>${List.pro_name }</p>
 													</div>
@@ -295,7 +305,7 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
-                    								<c:if test="${fn:length(mySoldOutList) > 0}">	
+              <c:if test="${fn:length(mySoldOutList) > 0}">	
                     
 								<div class="">
 
@@ -373,7 +383,7 @@
 
 							
 
-								<c:if test="${fn:length(allList) == 0}">	
+								<c:if test="${fn:length(mySoldOutList) == 0}">	
 
 								<!-- 등록한 상품 내역이 없을 경우 -->
 								<div class="empty-block mt40">
@@ -383,7 +393,7 @@
 										</div>
 									</div>
 								</div>
-</c:if>
+								</c:if>
 
 						
 							</div>

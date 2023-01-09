@@ -226,6 +226,7 @@
 											</button>
 											
 											
+											
 											<li class=""><a class="btn btn-sm btn-gray btn-pd16"
 																href="#none"
 																onclick="cancelOrder(${List.pro_opt_id}, ${List.order_no })"><span>주문취소</span></a>
