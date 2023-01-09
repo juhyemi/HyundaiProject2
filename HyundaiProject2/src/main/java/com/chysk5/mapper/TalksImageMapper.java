@@ -10,6 +10,6 @@ public interface TalksImageMapper {
 	
 	public void delete(String uuid);
 	
-	public List<TalksImageDTO> findBytalksId(String talks_talks_id);
+	public List<TalksImageDTO> findBytalkstalksId(String talks_talks_id);
 
 }

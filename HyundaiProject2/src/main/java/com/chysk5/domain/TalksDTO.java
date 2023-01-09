@@ -21,6 +21,4 @@ public class TalksDTO {
 	
 	private List<TalksImageDTO> attachList;
 
-	private String talks_loc;
-	private String talks_talks_id;
 }

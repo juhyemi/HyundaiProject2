@@ -126,7 +126,7 @@
 				<!-- PC -->
 				<div class="section section1 gray only-pc">
 					<ul pandassi-banner-group="ready" pandassi-banner-group-code="61fdebb0156b385cdee9">
-						<li pandassi-banner="ready"=""=""><a href="/product/list.html?cate_no=45" target="_self">
+						<li pandassi-banner="ready"=""=""><a href="/product/newIn" target="_self">
 								<div class="img">
 									<img src="https://matinkim.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/ef1b01a598c5e9cfa9609422e28a4bee.jpg">
 								</div>
@@ -143,13 +143,13 @@
 									<h2>Tops</h2>
 								</div>
 							</a></li>
-						<li pandassi-banner="ready"=""=""><a href="/product/list.html?cate_no=86" target="_self">
+						<li pandassi-banner="ready"=""=""><a href="/resell" target="_self">
 								<div class="img">
 									<img src="https://matinkim.com/web/upload/appfiles/0zdpAngaKBFnlCcCqpCU4A/df75ab2bf4e8aeb0621e4dc2a2c644c6.jpg">
 								</div>
 								<div class="desc">
-									<h2>Must Have</h2>
-									<p>Best Item</p>
+									<h2>Resell</h2>
+									<p>Resell Item</p>
 								</div>
 							</a></li>
 					</ul>

@@ -183,9 +183,9 @@ function replyDel(rno){
 								var talks_id = '<c:out value="${talks.talks_id}"/>';
 								$
 										.getJSON(
-												"/board/getAttachList",
+												"/talks/getAttachList",
 												{
-													bno : bno
+													talks_talks_id : talks_talks_id
 												},
 												function(arr) {
 
@@ -196,7 +196,7 @@ function replyDel(rno){
 													$(arr)
 															.each(
 																	function(i,
-																			attach) {
+																			talks) {
 
 																		//image type
 																		if (attach.fileType) {
@@ -217,7 +217,7 @@ function replyDel(rno){
 
 																			str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 																			str += "<span> "
-																					+ attach.fileName
+																					+ attach.talks_loc
 																					+ "</span><br/>";
 																			str += "<img src='/resources/img/attach.png'></a>";
 																			str += "</div>";
@@ -288,23 +288,7 @@ function replyDel(rno){
 											</div>
 										</div>
 									</div>
-									<div class="btn-group-center mt40">
-										<c:if test="${loginUser eq talksContent.member_mem_id}">
-											<a id="btnDel" href="#" class="btn btn-sm btn-white btn-pd32">
-												<span>Delete</span>
-											</a>
-											<form id="deleteForm" action="/talks/delete" method="post">
-												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-												<input type="hidden" name="talks_id" value="${talksContent.talks_id }" />
-												<input type="hidden" name="writer" value="${talksContent.member_mem_id }" />
-												<input type="hidden" name="loginUser" value="${loginUser}" />
-											</form>
-										</c:if>
-
-										<a href="/talks/tlist" class="btn btn-sm btn-dark btn-pd32">
-											<span>Back to List</span>
-										</a>
-									</div>
+									
 
 
 									<div class="row">
@@ -355,3 +339,5 @@ function replyDel(rno){
 		</div>
 	</div>
 	<%@ include file="../include/footer.jsp"%>
+</body>
+</html>

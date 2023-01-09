@@ -146,7 +146,7 @@ public class TalksController {
 		
 		return entity;
 	}
-
+/*
 	//첨부파일 업로드
 	@PostMapping("/imageRegister")
 	public String imageRegister(TalksDTO talks, RedirectAttributes rttr) {
@@ -170,6 +170,6 @@ public class TalksController {
 		log.info("getAttachList" + talks_talks_id);
 		return new ResponseEntity<>(service.getAttachList(talks_talks_id), HttpStatus.OK);
 	}
-	
+	*/
 	
 }
