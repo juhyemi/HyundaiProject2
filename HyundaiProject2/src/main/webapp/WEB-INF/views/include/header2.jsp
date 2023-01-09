@@ -236,7 +236,7 @@ function searchSubmit(inputId){
 			alert("검색어를 입력해주세요");
 		}else{
 			$("#searchForm").submit();		  
-			}		 
+		}		 
 }
 
 function cartCnt(){
@@ -259,6 +259,7 @@ function cartCnt(){
 	    }
     });
 }
+
  </script>
 <div class="gnb-dimmer"></div>
 <!-- // gnb -->
