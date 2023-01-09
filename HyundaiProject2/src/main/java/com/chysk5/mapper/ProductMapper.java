@@ -2,7 +2,8 @@ package com.chysk5.mapper;
 
 import java.util.List;
 
-import com.chysk5.domain.Criteria;
+import org.apache.ibatis.annotations.Param;
+
 import com.chysk5.domain.ProductCriteria;
 import com.chysk5.domain.ProductDTO;
 import com.chysk5.domain.ProductImgDTO;
