@@ -188,7 +188,7 @@
             </div>
             <div class="msg-block">
               <div class="title-block">
-                <h2>고객님의 주문이 완료되었습니다.</h2>
+                <h2><sec:authentication property="principal.member.mem_name" />님의 주문이 완료되었습니다.</h2>
               </div>
               <p class="desc-block">주문내역 및 배송에 관한 안내는 <a href="/myshop/order/list.html" class="line">주문내역</a>을 통하여
                 가능합니다.</p>
@@ -201,12 +201,12 @@
                 </li>
                 <li>
                   <label>결제금액</label>
-                  <span>143,000</span>
+                  <span>${order_total_price}</span>
                 </li>
               </ul>
             </div>
             <div class="btn-group">
-              <a href="/myshop/order/list.html" class="btn btn-lg btn-dark"><span>주문내역 조회</span></a>
+              <a href="/mypage/myorder" class="btn btn-lg btn-dark"><span>주문내역 조회</span></a>
               <a href="/" class="btn btn-lg btn-white"><span>쇼핑계속하기</span></a>
             </div>
           </div>

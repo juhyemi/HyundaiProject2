@@ -29,7 +29,9 @@ window.onload=function(){
 		$("input:checkbox[name='1']").prop("checked",true);
 		
 		$("input:checkbox[name='0']").prop("checked",false);
-
+		
+		 reCal();
+		 getCheckedCnt();
 	}
 
 </script>
@@ -40,11 +42,42 @@ window.onload=function(){
 function allCheck(){
             if($("#allCk").prop("checked")) {
                 $("input[type=checkbox]").prop("checked",true);
+                $("input:checkbox[id='basket_chk_id_0']:checked").each(function(){
+          /*       	console.log(this.closet(".cart_no").val());
+                	cartCheck(this,this.closet(".cart_no").attr("value")); */
+                	console.log("성공");
+                });
+                console.log("전체 체크");   
+                console.log("전체 체크완료");
+                getCheckedCnt();
 
             } else {
                 $("input[type=checkbox]").prop("checked",false); 
+                console.log("전체 체크"); 
+                $("input:checkbox[id='basket_chk_id_0']:checked").each(function(){
+             /*    	cartCheck(this,$(this).closet(".cart_no").attr("value"));*/
+                	console.log("성공"); 
+                    }); 
+                console.log("전체 체크해제완료");
+                getCheckedCnt();
             }
         }
+        
+/*체크 박스 개수*/        
+function getCheckedCnt()  {
+	  // 선택된 목록 가져오기
+	  const query = 'input[type=checkbox]:checked';
+	  const selectedElements = 
+	      document.querySelectorAll(query);
+	  console.log("체크개수");
+	  // 선택된 목록의 갯수 세기
+	  const selectedElementsCnt =
+	        selectedElements.length;
+	  
+	  // 출력
+	  document.getElementById('result_check').innerText
+	    = "( "+selectedElementsCnt+" )";
+	}
 /* 부분체크박스 */		
 function cartCheck(obj, cartNo){
 		
@@ -74,11 +107,13 @@ function cartCheck(obj, cartNo){
 		    }, 
 			success : function(result) {
 				if(result=="1"){
-					alert(result);				
+					//alert(result);				
 				}else{
-					alert(result);		
+					//alert(result);		
 				}
-				alert("체크박스 성공");	
+				//alert("체크박스 성공");	
+				reCal();
+				getCheckedCnt();
 				
 			},
 			error : function() {
@@ -89,6 +124,39 @@ function cartCheck(obj, cartNo){
 	 
 }
 
+function reCal(){
+	var csrfHeadName="${_csrf.headerName}";
+	var csrfTokenValue="${_csrf.token}";
+		 $.ajax({
+			    url : "/cartAjax/totalPrice",
+				type :"post",
+				beforeSend : function(xhr) {
+			        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+			    }, 
+				success : function(result) {
+				    console.log(result);				    
+					var totalprice=result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+					console.log(result);
+					console.log("==========");
+					console.log(totalprice);
+					var tag="";
+					var tag1="";
+					tag+=`<span
+						class="total_product_price_display_front">\${totalprice}
+						</span>`	
+				    $(".total_product_price_display_front").html(tag);
+					tag1+=`<span
+						id="total_order_price_front">\${totalprice}
+						</span>`	    
+				    $("#total_order_price_front").html(tag1); 
+					
+				},
+				error : function() {
+					
+				}		
+			});		
+}
+ 
 //선택 제품 삭제
 function selectDelete(){
 	
@@ -101,18 +169,13 @@ function selectDelete(){
 	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
 	    }, 
 		success : function() {
-		   alert("체크 삭제 성공");		 
+		   //alert("체크 삭제 성공");		 
 		   console.log(".............")	;
 		   $("input:checkbox[id='basket_chk_id_0']:checked").each(function(){
-               console.log(".............");
-			   
-          /*     console.log(li_value);
-             var li=$("li[data-li_value='1']"); 
-             console.log(li); */
-            this.closest("li").remove(); 
-   
-         
-              console.log("될까");
+           console.log(".............");			      
+           this.closest("li").remove(); 
+           console.log("선택제품 삭제 완료");
+           reCal();
            });
 		},
 		error : function() {
@@ -124,12 +187,70 @@ function selectDelete(){
 
 }
 
-//수량 업데이트
-/* function updateCnt(){
+// 수량 변경
+function modifyCnt(type,cartNo){
+	var cartno=cartNo;
+	var type=type;
+	var csrfHeadName="${_csrf.headerName}";
+    var csrfTokenValue="${_csrf.token}";
+	console.log("수량증가");
+	console.log(cartno);
+	console.log(type);
+	/* let quantity = $(this).parent("div").find("input").val(); */
+	var quantity=$("#quantity_id_"+cartno).val();	
+	console.log(quantity);		
+		if(type =='p'){
+		$("#quantity_id_"+cartno).val(++quantity);	
+		}
+		else{
+		quantity=quantity-1;	
+			if(quantity<1){
+		  	 alert("최소 1개 구매");	
+			}else{	
+			$("#quantity_id_"+cartno).val(quantity);	
+			}
+		}
+	 console.log(quantity);
+	 if(quantity>=1){ // 수량이 1이상일 경우만 ajax통신
+	 let cntData = {
+			    cart_no : cartno,
+			    cart_amount : quantity
+			};
+		$.ajax({
+		    url : "/cartAjax/updateCnt",
+			type :"post",
+			data: JSON.stringify(cntData),
+			async:false,
+			contentType : "application/json; charset=utf-8",
+			beforeSend : function(xhr) {
+		        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+		    }, 
+			success : function() {
+			 	console.log("성공");				        
+				//var procnt=parseInt(quantity);							
+				//var proprice=parseInt($("#pro-price_"+cartno).text().replace(/,/g , ''));				
+				//var proprice=parseInt($("#pro-price_"+cartno).val());
+				var proprice=$("#pro-price_"+cartno).attr("value");
+			    var prototalprice=(quantity*proprice).toLocaleString('ko-KR');			
+				var tag="";
+				tag +=`<strong id="pro-price"_cartno>\${prototalprice}</strong>`				
+				
+				$("#pro-price_"+cartno).html(tag);
+				//alert("카운트 업데이트 성공"); 
+				reCal();
+			},
+			error : function() {
+				console.log("실패");
+				//alert("카운트 업데이트 실패");
+			}
+				 
+	 	});
+	 }
+}
 
-	
-	
-	} */
+
+
+
 </script>
 <body id="popup" class="iframe-layout">
 	<div
@@ -166,7 +287,7 @@ function selectDelete(){
 							<input id="allCk" type="checkbox"
 							onclick="allCheck();">
 							&nbsp;<span>전체선택 <em
-								class="xans-element- xans-order xans-order-normtitle ">(2)
+								class="xans-element- xans-order xans-order-normtitle " id="result_check">(2)
 							</em>
 						</span></label>
 					</div>
@@ -180,7 +301,7 @@ function selectDelete(){
 
 				<ul class="xans-element- xans-order xans-order-list items-block">
 
-					<!-- 	c태그 변수명 cartlist -->
+					<!-- 	c태그 변수명 cartlist 목록 시작  -->
 					<c:forEach items="${cartList}" var="cartlist">
 						
 							<input type="hidden" class="cart_no" value="${cartlist.cart_no}">
@@ -227,22 +348,20 @@ function selectDelete(){
 											<p class="displaynone"></p>
 										</div>
 										<!-- // 숨김처리 -->
-										<!--수량 변경-->
+										<!--수량 변경 시작-->
 										<div class="quantity-block">
-											<button type="button" class="btn btn-minus">
+											<button type="button" class="btn btn-minus" onclick="modifyCnt('m',${cartlist.cart_no});">
 												<span>DOWN</span>
 											</button>
-											<input id="quantity_id_0" name="quantity_name_0" size="2"
+											<input id="quantity_id_${cartlist.cart_no}" name="quantity_name" size="2"
 												value="${cartlist.cart_amount}" type="text">
-											<button type="button" class="btn btn-plus">
+											<button type="button" class="btn btn-plus" onclick="modifyCnt('p',${cartlist.cart_no});">
 												<span>UP</span>
 											</button>
 										</div>
-
+                                        <!--수량 변경 끝-->
 										<div class="price-block">
-
-											<strong><fmt:formatNumber
-													value="${cartlist.pro_price}" pattern="#,###" /> <!-- 143,000 --></strong>
+											<strong id="pro-price_${cartlist.cart_no}" value="${cartlist.pro_price}"><fmt:formatNumber value="${cartlist.pro_price*cartlist.cart_amount}" pattern="#,###" /> <!-- 143,000 --></strong>
 										</div>
 
 										<div class="del">
@@ -258,7 +377,7 @@ function selectDelete(){
 				</ul>
 			</div>
 		</div>
-		<!-- // basket-list -->
+		<!-- 	c태그 변수명 cartlist 목록 끝  -->
 		<div class="section">
 			<!-- 총 주문금액 : 국내배송상품 -->
 			<div
@@ -268,7 +387,7 @@ function selectDelete(){
 						<ul>
 							<li class="price-title">상품 금액</li>
 							<li class="price"><strong><span><span
-										class="total_product_price_display_front"> <!-- 261,000 -->
+										class="total_product_price_display_front">0 <!-- 261,000 -->
 									</span></span></strong></li>
 						</ul>
 						<ul class="">
@@ -280,7 +399,7 @@ function selectDelete(){
 							<li class="price-title">배송비</li>
 							<li class="price"><strong><span
 									id="total_delv_price_front"><span
-										class="total_delv_price_front"> <!-- 0 -->
+										class="total_delv_price_front"> 0
 									</span></span></strong></li>
 						</ul>
 					</div>
@@ -289,7 +408,7 @@ function selectDelete(){
 						<ul>
 							<li class="price-title">전체합계</li>
 							<li class="price"><strong><span
-									id="total_order_price_front"> <!-- 249,200 -->
+									id="total_order_price_front"> 0<!-- 249,200 -->
 								</span></strong> <span class="txt14 displaynone"><span
 									id="total_order_price_back"></span></span></li>
 						</ul>

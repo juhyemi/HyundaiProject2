@@ -2,15 +2,14 @@ package com.chysk5.service;
 
 import java.util.List;
 
-import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.OrderDTO;
-import com.chysk5.domain.ReSellOrderFormDTO;
 import com.chysk5.domain.ResellPriceSearchDTO;
 import com.chysk5.domain.ResellProductSearchIdDTO;
+import com.chysk5.domain.productImageDTO;
 import com.chysk5.mapper.OrderMapper;
 import com.chysk5.mapper.ResellMapper;
 
@@ -39,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	@Transactional
-	 public List<CartDTO>orderComplete(OrderDTO order,String mem_id, int order_resell_check) {
+	 public List<CartDTO>orderComplete(OrderDTO order,String mem_id, int order_resell_check, String re_id) {
 		 log.info("주문서비스 접속------!");		 
 		 List<CartDTO>orderFormList=mapper.orderFormList(mem_id);
 		 log.info(".............!");
@@ -52,13 +51,10 @@ public class OrderServiceImpl implements OrderService {
 		
 		 }
 		 else {
-             order_resell_check=1;
 			 log.info("resell주문 시작");
 			 mapper.insertSelectKey(order,mem_id,order_resell_check);//orderDTO 에 값저장 ORDER_NO 가져옴
-			 log.info("리셀 order_total 추가 완료");
-				/*
-				 * mapper.updateResell(re_id); //reavailable 업데이트
-				 */					 
+			 log.info("리셀 order_total 추가 완료");			
+		     mapper.updateResell(re_id); //reavailable 업데이트							 
 			 }
 		 String order_no=order.getOrder_no();
 		 orderFormList.forEach(of->mapper.insertOrderDetail(order_no,of));	 //ORDER_NO 받아서 주문 목록(선택된 카트 DTO)와 ORDER NO
@@ -78,7 +74,8 @@ public class OrderServiceImpl implements OrderService {
 	public List<CartDTO> resellOrderFormList(ResellPriceSearchDTO resellDto) {
 		ResellProductSearchIdDTO idDto = reSellMapper.getResellProductSearchOptId(resellDto);
 		String proOptId = idDto.getPro_opt_id();
-		
+		productImageDTO imDto=mapper.getProductImage(resellDto);
+		String pro_loc=imDto.getPro_loc();
 		List<CartDTO> orderFormList = mapper.resellOrderFormList(proOptId);
 		
 		String proName = resellDto.getProName();
@@ -89,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
 		orderFormList.get(0).setCart_amount(1);
 		
 		//임시
-		orderFormList.get(0).setPro_loc("https://matinkim.com/web/product/medium/202208/dce96a8aecca1308059adfcfa0a53875.jpg");
+		orderFormList.get(0).setPro_loc(pro_loc);
 		
 		return orderFormList;
 	}

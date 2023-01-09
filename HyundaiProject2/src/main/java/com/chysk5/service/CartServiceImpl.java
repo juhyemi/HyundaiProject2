@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chysk5.domain.CartCntUpdateDTO;
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.ProductOptionDTO;
 import com.chysk5.mapper.CartMapper;
@@ -54,9 +55,9 @@ public class CartServiceImpl implements CartSerivce {
 	}
 	// 수량 변경
 	@Override
-	public int updateCnt(String cart_no, int cart_amount) {
+	 public void updateCnt(CartCntUpdateDTO cntDTO) {
 		log.info("수량 변경...!");		
-		return mapper.updateCnt(cart_no,cart_amount);
+		 mapper.updateCnt(cntDTO);
 	}
 	
 	// 장바구니 물품 존재시 count 증가
@@ -82,6 +83,15 @@ public class CartServiceImpl implements CartSerivce {
 	   	
 	    log.info("체크 상품 삭제");
 	    mapper.deleteCheck(mem_id);
+	}
+	
+	
+	@Override
+	public String totalPrice(String mem_id) {
+		
+		log.info("전체가격 계산");
+		return mapper.totalPrice(mem_id);
+		
 	}
 	
 	

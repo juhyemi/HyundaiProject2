@@ -12,13 +12,51 @@
 	crossorigin="anonymous">
 
 </head>
+<script> 
+ window.onload=function(){
+	var totalprice=0;
+	$(".each_price_class").each(function(index,item){	 
+	 var price1=parseInt($(this).val()); 
+	 totalprice+=price1;
+    });
+	totalprice=totalprice.toLocaleString('ko-KR'); 	
+	var tag="";
+	tag+=`<div class="products-block-order"><div class="total-price-block"><div class="block summary"><ul>
+	<li class="price-title">상품 금액</li><li class="pro-price-total"><strong>\${totalprice}</strong></li>
+	</ul><ul class="displaynone"><li class="price-title">부가세</li><li class="price"><strong></strong></li>
+	</ul><ul><li class="price-title">할인금액</li><li class="price"><strong>-</strong><strong id="total_sale_price_view">0</strong></li>
+	</ul><ul><li class="price-title">배송비</li><li class="price"><strong>0</strong></li></ul>
+	</div><div class="block total"><ul><li class="price-title">전체합계</li><li class="price"><strong>\${totalprice}</strong></li>
+	</ul></div></div><!-- // total-price-block --><div class="order-btn-block"><button type="submit" class="btn btn-md btn-dark btn-full" id="btn_payment">
+	<input type="hidden" name="order_total_price" value=\${totalprice} >
+	<span id="total_order_sale_price_view">\${totalprice}</span> &nbsp; <span>결제하기</span></button>
+	</div></div>`
+    $(".products-block-order").html(tag);
+	//.리셀 주문 확인
+    resell_order();
+ }  
+
+ 
+ function resell_order(){
+	 var resellcheck=$('input[name=order_resell_check]').val();
+	 console.log("리셀체크:"+resellcheck);	 
+	 if(resellcheck=='1'){
+		$("#resellchk").text("Resell");	 
+		$("#title_resell").text("RESELL 주문상품")
+		 
+	 }
+	 
+ }
+</script>
+
 
 <body id="userStyle" class="orderform">
 
 	<%@ include file="../include/header2.jsp"%>
 
 	<!-- container -->
-	<form id="frm_order_act" name="frm_order_act" action="/order/orderComplete" method="post">
+	<form id="frm_order_act" name="frm_order_act"
+		action="/order/orderComplete" method="post">
 		<!-- orderfrom-wrap -->
 		<div class="orderfrom-wrap">
 			<!-- order-info-block -->
@@ -32,79 +70,42 @@
 						</div>
 
 						<fieldset>
-							<div class="form-block">
-								<!-- <label class="ePlaceholderEach required" title="이름*">
-									<p class="form-title">이름*</p> <input id="oname" name="oname"
-									fw-filter="isFill" fw-label="주문자 성명" fw-msg=""
-									class="inputTypeText" placeholder="이름*" size="15" value=""
-									type="text">
-									<div class="err-msg">이름 항목은 필수 입력값입니다.</div>	
-								</label> -->
-								<div><sec:authentication property="principal.member.mem_name"/></div>
-							</div>
-                       
-							<div class="ePlaceholderGroup" title="휴대전화*">
-								<div class="form-block phone-block">
+							<div class="ePlaceholderGroup" title="이름">
+								<div class="form-block email-block flex">
 									<label class="ePlaceholder required">
-										<p class="form-title active">휴대전화*</p>
-										<div class="phone">
-										<!-- 	<select id="ophone2_1" name="ophone2_[]"
-												fw-filter="isNumber&amp;isFill" fw-label="주문자 핸드폰번호"
-												fw-alone="N" fw-msg="">
-												<option value="010">010</option>
-												<option value="011">011</option>
-												<option value="016">016</option>
-												<option value="017">017</option>
-												<option value="018">018</option>
-												<option value="019">019</option>
-											</select>-<input id="ophone2_2" name="ophone2_[]" maxlength="4"
-												fw-filter="isNumber&amp;isFill" fw-label="주문자 핸드폰번호"
-												fw-alone="N" fw-msg="" size="4" value="" type="text">-<input
-												id="ophone2_3" name="ophone2_[]" maxlength="4"
-												fw-filter="isNumber&amp;isFill" fw-label="주문자 핸드폰번호"
-												fw-alone="N" fw-msg="" size="4" value="" type="text"> -->
-												<sec:authentication property="principal.member.mem_phone"/>
+										<p class="form-title active" style="margin-bottom: 10px;">이름</p>
+										<div style="font: italic 1.4em/1.0em 돋움체;">
+											<sec:authentication property="principal.member.mem_name" />
 										</div>
 									</label>
 								</div>
 							</div>
-
-							<div class="ePlaceholderGroup" title="이메일*">
-					<div class="form-block email-block flex">
+							<div class="ePlaceholderGroup" title="휴대전화">
+								<div class="form-block email-block flex">
 									<label class="ePlaceholder required">
-										<p class="form-title active">이메일*</p>
-										<div class="email">
-											<!-- <input id="oemail1" name="oemail1" fw-filter="isFill"
-												fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailId"
-												value="" type="text">@<input id="oemail2"
-												name="oemail2" fw-filter="isFill" fw-label="주문자 이메일"
-												fw-alone="N" fw-msg="" class="mailAddress"
-												readonly="readonly" value="" type="text"><select
-												id="oemail3" fw-filter="isFill" fw-label="주문자 이메일"
-												fw-alone="N" fw-msg="">
-												<option value="" selected="selected">- 이메일 선택 -</option>
-												<option value="naver.com">naver.com</option>
-												<option value="daum.net">daum.net</option>
-												<option value="nate.com">nate.com</option>
-												<option value="hotmail.com">hotmail.com</option>
-												<option value="yahoo.com">yahoo.com</option>
-												<option value="empas.com">empas.com</option>
-												<option value="korea.com">korea.com</option>
-												<option value="dreamwiz.com">dreamwiz.com</option>
-												<option value="gmail.com">gmail.com</option>
-												<option value="etc">직접입력</option>
-											</select> -->
-											<sec:authentication property="principal.member.mem_email"/>
+										<p class="form-title active" style="margin-bottom: 10px;">휴대전화</p>
+										<div class="phone" style="font: italic 1.4em/1.0em 돋움체;">
+											<sec:authentication property="principal.member.mem_phone" />
 										</div>
 									</label>
-								</div>							   
+								</div>
+							</div>
+							<div class="ePlaceholderGroup" title="이메일">
+								<div class="form-block email-block flex">
+									<label class="ePlaceholder required">
+										<p class="form-title active" style="margin-bottom: 10px;">이메일</p>
+										<div class="email" style="font: italic 1.4em/1.0em 돋움체;">
+											<sec:authentication property="principal.member.mem_email" />
+										</div>
+									</label>
+								</div>
 							</div>
 
 						</fieldset>
 					</div>
 				</section>
 				<!-- // 주문자 정보 -->
-				<!-- 배송지 정보 -->			
+				<!-- 배송지 정보 -->
 				<section class="order-form-block">
 					<div class="order-form-block-inner">
 						<div class="title">
@@ -134,21 +135,18 @@
 
 							<div class="form-block mt20 mb10">
 								<label class="ePlaceholderEach required" title="받는사람*">
-
 									<input id="rname" name="rname" fw-filter="isFill"
 									fw-label="수취자 성명" fw-msg="" class="inputTypeText"
-									placeholder="받는사람*" size="15" value="" type="text">
+									placeholder="받는사람*" size="15" style="width:80px;" value="" type="text">
 								</label>
 							</div>
 
 							<div class="form-block flex-column-2 post-block">
 								<label class="ePlaceholderEach">
 									<p class="form-title">우편번호*</p> <input id="order_post"
-									name="order_post" fw-filter="isFill" fw-label="수취자 주소1" fw-msg=""
-									class="inputTypeText" placeholder="*우편번호" size="40"
-									value="" type="text">
-									
-									<!-- <input id="order_post"
+									name="order_post" fw-filter="isFill" fw-label="수취자 주소1"
+									fw-msg="" class="inputTypeText" placeholder="우편번호*" size="40"
+									value="" type="text"> <!-- <input id="order_post"
 									name="order_post" fw-filter="isFill" fw-label="수취자 우편번호1"
 									fw-msg="" class="inputTypeText" placeholder="" size="6"
 									maxlength="6" readonly="1" value="" type="text"> 							
@@ -157,22 +155,16 @@
 									onclick="execDaumPostcode();">
 									<span>우편번호 찾기</span>
 								</button> 
-							</div>
+							</div>-->
 
-
-
-
-
-
-							<div class="form-block form-submit-address">
-								<label class="ePlaceholderEach required" title="기본주소*">
-									<p class="form-title displaynone">기본주소*</p> <input id="order_addr"
-									name="order_addr" fw-filter="isFill" fw-label="수취자 주소1" fw-msg=""
-									class="inputTypeText" placeholder="기본주소*" size="40"
-								 value="" type="text">
-								</label>
-							</div>
-							<!-- <div class="form-block form-submit-address">
+									<div class="form-block form-submit-address">
+										<label class="ePlaceholderEach required" title="기본주소*">
+											<p class="form-title displaynone">기본주소*</p> <input
+											id="order_addr" name="order_addr" fw-filter="isFill"
+											fw-label="수취자 주소1" fw-msg="" class="inputTypeText"
+											placeholder="기본주소*" size="40" style="width:300px;" value="" type="text">
+										</label>
+									</div> <!-- <div class="form-block form-submit-address">
 								<label class="ePlaceholderEach required" title="상세주소*">
 									<p class="form-title displaynone">상세주소*</p> <input id="raddr2"
 									name="raddr2" fw-filter="" fw-label="수취자 주소2" fw-msg=""
@@ -181,53 +173,53 @@
 								</label>
 							</div> -->
 
-							<div class="displaynone ePlaceholderGroup" title="전화*">
-								<div class="form-block phone-block flex-column-2 mt40">
-									<label class="ePlaceholder required">
-										<p class="form-title active">전화*</p>
-										<div class="phone"></div>
-									</label>
-								</div>
-							</div>
-
-							<div class=" ePlaceholderGroup" title="휴대전화*">
-								<div class="form-block phone-block flex-column-2 mt40">
-									<label class="ePlaceholder required">
-										<p class="form-title active">휴대전화*</p>
-										<div class="phone">
-											<select id="rphone2_1" name="rphone2_[]"
-												fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호"
-												fw-alone="N" fw-msg="">
-												<option value="010">010</option>
-												<option value="011">011</option>
-												<option value="016">016</option>
-												<option value="017">017</option>
-												<option value="018">018</option>
-												<option value="019">019</option>
-											</select>-<input id="rphone2_2" name="rphone2_[]" maxlength="4"
-												fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호"
-												fw-alone="N" fw-msg="" size="4" value="" type="text">-<input
-												id="rphone2_3" name="rphone2_[]" maxlength="4"
-												fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호"
-												fw-alone="N" fw-msg="" size="4" value="" type="text">
+									<div class="displaynone ePlaceholderGroup" title="전화*">
+										<div class="form-block phone-block flex-column-2 mt40">
+											<label class="ePlaceholder required">
+												<p class="form-title active">전화*</p>
+												<div class="phone"></div>
+											</label>
 										</div>
-									</label>
-								</div>
-							</div>
+									</div>
 
-							<div class="select-block mt40">
+									<div class=" ePlaceholderGroup" title="휴대전화*">
+										<div class="form-block phone-block flex-column-2 mt40">
+											<label class="ePlaceholder required">
+												<p class="form-title active">휴대전화*</p>
+												<div class="phone">
+													<select id="rphone2_1" name="rphone2_[]"
+														fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호"
+														fw-alone="N" fw-msg="">
+														<option value="010">010</option>
+														<option value="011">011</option>
+														<option value="016">016</option>
+														<option value="017">017</option>
+														<option value="018">018</option>
+														<option value="019">019</option>
+													</select>-<input id="rphone2_2" name="rphone2_[]" maxlength="4"
+														fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호"
+														fw-alone="N" fw-msg="" size="4" value="" type="text">-<input
+														id="rphone2_3" name="rphone2_[]" maxlength="4"
+														fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호"
+														fw-alone="N" fw-msg="" size="4" value="" type="text">
+												</div>
+											</label>
+										</div>
+									</div>
 
-								<div class="select-block-inner">
+									<div class="select-block mt40">
+
+										<div class="select-block-inner">
 
 
-									<textarea id="omessage" name="omessage" fw-filter=""
-										fw-label="배송 메세지" fw-msg="" maxlength="255" cols="70"
-										placeholder="배송메시지는 택배사에게 전달되는 메시지로, 배송메시지를 통해 배송일자를 지정하실 수 없습니다."></textarea>
-								</div>
-							</div>
+											<textarea id="omessage" name="omessage" fw-filter=""
+												fw-label="배송 메세지" fw-msg="" maxlength="255" cols="70"
+												placeholder="배송메시지는 택배사에게 전달되는 메시지로, 배송메시지를 통해 배송일자를 지정하실 수 없습니다."></textarea>
+										</div>
+									</div>
 						</fieldset>
 					</div>
-				</section>				
+				</section>
 				<!-- 배송 정보 -->
 			</div>
 			<!-- // order-info-block -->
@@ -236,7 +228,7 @@
 			<div class="products-block">
 				<div class="products-block-products">
 					<div class="title-block only-pc">
-						<h2>주문상품</h2>
+						<h2 id="title_resell">주문상품</h2>
 					</div>
 
 					<div class="title-block-mobile only-mobile">
@@ -254,22 +246,28 @@
 					<!--   주문서 주문 목록 뿌리기 -->
 					<div class="products-list-block">
 						<!-- products-list -->
-						
-							<div class="products-list ">
-								<ul class="xans-element- xans-order xans-order-normallist items-block">
-									<c:forEach var="orderformlist" items="${orderFormList}">
+
+						<div class="products-list ">
+							<ul
+								class="xans-element- xans-order xans-order-normallist items-block">
+								<c:forEach var="orderformlist" items="${orderFormList}">
+									<input type="hidden" class="each_price_class" name="each_price"
+										value="${orderformlist.pro_price*orderformlist.cart_amount}">
+									<!-- 리셀 id -->
+									<input type="hidden" name="re_id"
+										value="${orderformlist.re_id}" />
 									<li class="xans-record-">
 										<div class="block">
 											<div class="thumb">
-												<img
-													src='${orderformlist.pro_loc}'
-													class="thumb-img">
+												<img src='${orderformlist.pro_loc}' class="thumb-img">
 											</div>
 											<div class="desc">
+											    <ul id="resellchk" style="  padding-bottom: 10px; border-bottom-width: 20px; font-family: 'Nabla', cursive; font-size: 16px; color : #e2703a;"> </ul>
 												<p class="name">${orderformlist.pro_name}</p>
 												[옵션: ${orderformlist.pro_opt_size}]
 												<div class="price-block">
-													<strong><fmt:formatNumber value="${orderformlist.pro_price}" pattern="#,###" /></strong>
+													<strong><fmt:formatNumber
+															value="${orderformlist.pro_price}" pattern="#,###" /></strong>
 												</div>
 												<div class="quantity-block">
 													<span>수량: ${orderformlist.cart_amount}</span>
@@ -277,10 +275,10 @@
 											</div>
 										</div>
 									</li>
-									</c:forEach>
-								</ul>
-							</div>
-					
+								</c:forEach>
+							</ul>
+						</div>
+
 						<!-- // products-list -->
 					</div>
 
@@ -292,7 +290,7 @@
 						<div class="block summary">
 							<ul>
 								<li class="price-title">상품 금액</li>
-								<li class="price"><strong>20002</strong></li>
+								<li class="pro-price-total"><strong>0</strong></li>
 							</ul>
 							<ul class="displaynone">
 								<li class="price-title">부가세</li>
@@ -312,85 +310,31 @@
 						<div class="block total">
 							<ul>
 								<li class="price-title">전체합계</li>
-								<li class="price"><strong><input id="total_price"
-										name="total_price" fw-filter="isFill" fw-label="결제금액"
-										fw-msg="" class="inputTypeText" placeholder=""
-										style="text-align: right; ime-mode: disabled; clear: none; border: 0px; float: none;"
-										size="10" readonly="1" value="356400" type="text"></strong></li>
+								<li class="price"><strong>0</strong></li>
 							</ul>
 						</div>
 					</div>
 					<!-- // total-price-block -->
-                     
+
 					<div class="order-btn-block">
-					<!-- 	<button type="button" class="btn btn-md btn-dark btn-full"
+						<button type="submit" class="btn btn-md btn-dark btn-full"
 							id="btn_payment">
-							<span id="total_order_sale_price_view">356,400</span> &nbsp; <span>결제하기</span>
-						</button> -->
-						
-					 	<button type="submit" class="btn btn-md btn-dark btn-full"
-							id="btn_payment">
-							<span id="total_order_sale_price_view">356,400</span> &nbsp; <span>결제하기</span>
+						<input type="hidden" name="order_total_price" value="" />
+							<span id="total_order_sale_price_view">0</span> &nbsp; <span>결제하기</span>
 						</button>
 					</div>
 				</div>
-             
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                <input type="hidden" name="order_resell_check" value="${order_resell_check}" />
-               
+
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden"
+					name="order_resell_check" value="${orderReselCheck}" />
+
+
 			</div>
 			<!-- // products-block -->
 
 		</div>
 
 	</form>
-<script>
-   /*  function sample6_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
-
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
-                
-                } else {
-                    document.getElementById("sample6_extraAddress").value = '';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
-            }
-        }).open();
-    } */
-</script>
 	<%@ include file="../include/footer.jsp"%>

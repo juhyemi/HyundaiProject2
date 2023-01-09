@@ -42,33 +42,47 @@ order by c.cart_regdate desc
 		order_detail(order_detail_amount,order_detail_check,order_total_order_no,product_option_pro_opt_id)
 		values(#{cart.cart_amount},1,#{order_no},#{cart.product_option_pro_opt_id})
 	</insert>
-	
-<!--      <update id="updateResell">
-       update r_product 
-       set re_available ='1'
-       where r_id=#{r_id}  
- </update> -->
-	
+
+	<update id="updateResell">
+		update r_product
+		set (re_available,re_selldate) =(
+		select '1',SYSDATE FROM DUAL
+		)
+		where re_id=#{re_id}
+	</update>
+
 	<delete id="cartOrderDelete">
 
 		delete
 		from cart
-		where member_mem_id = #{mem_id} 
-			and product_option_pro_opt_id=#{cart.product_option_pro_opt_id}
+		where member_mem_id = #{mem_id}
+		and product_option_pro_opt_id=#{cart.product_option_pro_opt_id}
 	</delete>
-	
-	
-	<select id="resellOrderFormList" resultType="com.chysk5.domain.CartDTO">
-		select re_price pro_price, product_option_pro_opt_id
+
+
+	<select id="resellOrderFormList"
+		resultType="com.chysk5.domain.CartDTO">
+		select re_price pro_price, product_option_pro_opt_id,re_id
 		from(
-		    select * 
-		    from r_product
-		    where product_option_pro_opt_id = #{proOptId} and re_available = '0'
-		    order by re_price,re_update
+		select *
+		from r_product
+		where product_option_pro_opt_id = #{proOptId} and re_available = '0'
+		order by re_price,re_update
 		)
 		where rownum=1
 	</select>
-	
-	
-	
+
+<!-- 상품이미지 출력 -->
+	<select id="getProductImage" resultType= "com.chysk5.domain.productImageDTO">
+
+		select pro_loc from product a, pro_image b
+		where a.pro_name=#{proName}
+		and b.product_pro_id=a.pro_id
+		and rownum=1
+		order by pro_Loc
+
+
+	</select>
+
+
 </mapper>
