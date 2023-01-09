@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/mypage.css">
@@ -28,14 +27,10 @@
 					<div class="menu-block">
 						<ul>
 							<li class="js-order active"><a href="/mypage/myorder">주문내역</a></li>
-
-							<li class="js-board"><a
-								href="/board/consult/list.html?board_no=9">1:1 문의</a></li>
-							<li class="js-recent"><a
-								href="/product/recent_view_product.html">최근 본 상품</a></li>
-							<li><a href="#">나의 판매 목록</a></li>
+							<li><a href="/mypage/myResell">나의 판매 목록</a></li>
+							<li class="js-board"><a href="/mypage/myarticle">내가 쓴 글</a></li>
 							<li class="js-modify"><a href="/mypage/modify">내 계정</a></li>
-							<li onclick="logoutSubmit();"><a href="#">로그아웃</a></li>
+							<li onclick="logoutSubmit();"><a href="javascript:void(0)">로그아웃</a></li>
 						</ul>
 						
 						<form id="logoutFrm" action="/member/logout" method="post">
@@ -56,12 +51,10 @@
 							class="xans-element- xans-myshop xans-myshop-orderhistorytab order-tab ">
 							<ul class="menu">
 								<li class="tab_class selected"><a class="tab-button" data-tab-section="tab-section-1">주문내역조회
-										<sup>(<span id="xans_myshop_total_orders">1</span>)
-									</sup>
+										
 								</a></li>
 								<li class="tab_class_cs tab-button selected" ><a class="tab-button"
-									data-tab-section="tab-section-2">취소내역 <sup>(<span id="xans_myshop_total_orders_cs">0</span>)
-									</sup>
+									data-tab-section="tab-section-2">취소내역 
 								</a></li>		
 							</ul>
 						</div>
@@ -155,6 +148,8 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
+                   <c:if test="${fn:length(allList) > 0}">	
+                    
                     <c:forEach var="List" items="${allList }" varStatus="count">
 							<div class="">
 								<div class="items-block xans-record- itemlist">
@@ -259,13 +254,18 @@
 							</div>
 							
 							</c:forEach>
-							<div class="empty-block mt40 displaynone">
+							</c:if>
+							
+							<c:if test="${fn:length(allList) == 0}">	
+							
+							<div class="empty-block mt40">
 								<div class="empty-icon-block line">
 									<div class="inner">
 										<p>주문 내역이 없습니다.</p>
 									</div>
 								</div>
 							</div>
+							</c:if>
 							
 							<!-- 
 							<div
@@ -293,6 +293,9 @@
                         $login_url = /member/login.html
                         $count = 10
                     -->
+                    
+                    		<c:if test="${fn:length(cancelList) > 0}">	
+                    
                     <c:forEach var="List" items="${cancelList }" varStatus="count">
 							<div class="">
 								<div class="items-block xans-record- itemlist">
@@ -372,13 +375,18 @@
 							</div>
 							
 							</c:forEach>
-							<div class="empty-block mt40 displaynone">
+							</c:if>
+							
+								<c:if test="${fn:length(cancelList) == 0}">	
+							
+							<div class="empty-block mt40">
 								<div class="empty-icon-block line">
 									<div class="inner">
-										<p>주문 내역이 없습니다.</p>
+										<p>취소 내역이 없습니다.</p>
 									</div>
 								</div>
 							</div>
+							</c:if>
 						
 						</div>
 						</section>

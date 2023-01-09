@@ -2375,7 +2375,7 @@ a {
 
 .orderform .orderfrom-wrap .products-block .products-list {
     overflow-y: auto;
-    max-height: calc(100vh - 460px);
+    max-height: calc(100vh - 400px);
 }
 
 .orderform .orderfrom-wrap .products-block .products-list .items-block {
@@ -2542,9 +2542,6 @@ a {
     grid-column: auto/span 6;
 }
 
-.order-form-block .order-form-block-inner .title {
-    padding-bottom: 24px;
-}
 
 .order-form-block .order-form-block-inner .title h3 {
     font-weight: 400;

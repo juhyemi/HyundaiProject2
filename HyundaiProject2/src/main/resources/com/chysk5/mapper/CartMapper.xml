@@ -93,5 +93,8 @@ where p.pro_id= po.product_pro_id
 
 </select>
 
+<delete id="deleteAll">
+delete from cart where member_mem_id=#{mem_id}
+</delete>
 
 </mapper>

@@ -87,17 +87,14 @@
 				success : function(result) {
 					console.log(result);
 					showUploadResult(result); // 업로드 결과 처리 함수
-					alert("ajax success");
 				},
 				error:function(result){
-					alert("ajax fail");
 				}
 			}); //ajax
 		});
 
 	});
 	function showUploadResult(uploadResultArr) {
-		alert("aaaa");
 		if (!uploadResultArr || uploadResultArr.length == 0) {
 			return;
 		}
@@ -120,7 +117,7 @@
 								str += "<span> "+ obj.fileName+"</span>";
 								str += "<button type='button' data-file=\'"+fileCallPath+"\' "
 								str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-								str += "<img src='?fileName="+fileCallPath+"'>";
+								str += "<img src='/display?fileName="+fileCallPath+"'>";
 								str += "</div>";
 								str +"</li>";
 							}else{
@@ -140,26 +137,24 @@
 						});
 		uploadUL.append(str);
 	}
-$(".uploadResult").on("click", "button", function(e){
-    console.log("delete file");
+$(".uploadResult").on("click", "span", function(e){
     
     var targetFile = $(this).data("file");
     var type = $(this).data("type");
+    console.log(targetFile);
     
-    var targetLi = $(this).closest("li");
     
     $.ajax({
       url: '/deleteFile',
       data: {fileName: targetFile, type:type},
+      dataType:'text',
+      type: 'POST',
       beforeSend : function(xhr) {
 			if (csrfHeaderName && csrfTokenValue) {
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 
 			}
 		},
-
-      dataType:'text',
-      type: 'POST',
         success: function(result){
            alert(result);
            
@@ -167,6 +162,27 @@ $(".uploadResult").on("click", "button", function(e){
          }
     }); //$.ajax
 });
+function showUploadedFile(uploadResultarr){
+	var str = "";
+	$(uploadResultArr).each(function(i, obj){
+		if(!obj.image){
+			var fileCallPath = encodeURIComponent(obj.talks_loc+"/"+obj.uuid+"_"+obj.fileName);
+			var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
+			
+			str+= "<li><div><a href='/download?fileName="+fileCallPath+"'>"+"<img src='/resources/img/attach.png'>" + obj.fileName+"</a>"+
+					"<span data-file=\'"+fileCallPath+"\' data-type='file'> x </span>" + "<div></li>" }
+		}else{
+			var fileCallPath = encodeURIComponent(obj.talks_loc + "/s_" + obj.uuid + "_" + obj.fileName);
+			var originPath = obj.talks_loc + "\\" + obj.uuid + "_" + obj.fileName;
+			originPath = originPath.replace(new RegExp(/\\/g), "/");
+			
+			str += "<li><a href=/"javascript:showImage(\'"+originPath+"\')\">" + "<img src='display?fileName="+fileCallPath+"'></a>" + "<span data-file=\'"+fileCallPath+"\' data-type='image'> x </span>"+ "<li>";
+		
+			
+		}
+	});
+	uploadResult.append(str);
+}
 </script>
 
 </head>
@@ -200,24 +216,6 @@ $(".uploadResult").on("click", "button", function(e){
 
 										</div>
 
-										<!-- <div class="panel-heading">File Attach</div>
-											<div class="panel-body">
-												<div class="form-group upladDiv">
-												
-													<input type=file" name='uploadFile' multiple>
-												</div>
-											
-											</div> -->
-
-
-										<!-- 	<div class="attach-block ">
-												<ul>
-													<li class="title">파일첨부</li>
-													<li><input name="attach_file[]" type="file"> <input name="attach_file[]" type="file"></li>
-													<li>
-												</ul> -->
-
-
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="panel panel-default">
@@ -232,12 +230,6 @@ $(".uploadResult").on("click", "button", function(e){
 
 															</ul>
 														</div>
-														<!-- <form action="uploadFormAction" method="post" enctype="multipart/form-data">
-												<ul>
-													<li class="title">파일첨부</li>
-													<li> </li>
-												</ul>
-											</form> -->
 													</div>
 
 												</div>

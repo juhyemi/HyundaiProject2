@@ -60,7 +60,8 @@
 					<a href="/member/login" class="basket">
 						<span class="hidden">Bag</span><em><span class="EC-Layout-Basket-count">0</span></em>
 					</a>
-				</sec:authorize> <!-- 로그인이 되어있을 때 --> <sec:authorize access="isAuthenticated()">
+				</sec:authorize> 
+				<!-- 로그인이 되어있을 때 --> <sec:authorize access="isAuthenticated()">
 					<a href="javascript:basketOpen();" class="basket">
 						<span class="hidden">Bag</span><em><span class="EC-Layout-Basket-count">0</span></em>
 					</a>
@@ -201,7 +202,8 @@
 							<label class="ePlaceholderEach required" title="Search">
 								<p class="form-title">Search</p>
 								<div class="flex">
-									<input id="keyword_side" class="inputTypeText" placeholder="Search" size="15" value="" type="text">
+									<input id="keyword_side" class="inputTypeText" placeholder="Search" size="15" value="" type="text"
+									style="background-color: #191919; border-bottom: 1px solid #e5e5e5; color: #fff;">
 									<button id="btn_keyword" type="button" onclick="searchSubmit('keyword_side');">
 										<span>ok</span>
 									</button>
@@ -234,10 +236,17 @@ function searchSubmit(inputId){
 			alert("검색어를 입력해주세요");
 		}else{
 			$("#searchForm").submit();		  
-			}
-			
-			    
-			 
+			}		 
+}
+
+function cartCnt(){
+	var csrfHeadName="${_csrf.headerName}";
+    var csrfTokenValue="${_csrf.token}";
+    
+    $.ajax({
+    	url : ,
+    	
+    });
 }
  </script>
 <div class="gnb-dimmer"></div>

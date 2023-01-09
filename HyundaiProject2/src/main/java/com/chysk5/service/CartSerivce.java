@@ -31,4 +31,7 @@ public interface CartSerivce {
      
      // 장바구니 전체 가격
      public String totalPrice(String mem_id);
+     
+     // 장바구니 전체 삭제
+     public void deleteAll(String mem_id);
 }

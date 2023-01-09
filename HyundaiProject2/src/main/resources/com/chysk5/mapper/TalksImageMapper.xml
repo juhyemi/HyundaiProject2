@@ -13,7 +13,7 @@
 	DELETE FROM talks_image WHERE uuid = #{uuid}
 </delete>
 
-<select id="findBytalksId" resultType = "com.chysk5.domain.TalksImageDTO">
+<select id="findBytalkstalksId" resultType = "com.chysk5.domain.TalksImageDTO">
 	SELECT * FROM talks_image WHERE talks_talks_id = #{talks_talks_id}
 </select>
 
