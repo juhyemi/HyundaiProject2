@@ -61,14 +61,10 @@
 								class="xans-element- xans-myshop xans-myshop-orderhistorytab order-tab ">
 								<ul class="menu">
 									<li class="tab_class selected"><a class="tab-button"
-										data-tab-section="tab-section-1">판매 중인 상품 <sup>(<span
-												id="xans_myshop_total_orders">1</span>)
-										</sup>
+										data-tab-section="tab-section-1">판매 중인 상품 
 									</a></li>
 									<li class="tab_class selected"><a class="tab-button"
-										data-tab-section="tab-section-2">판매 완료 상품 <sup>(<span
-												id="xans_myshop_total_orders">1</span>)
-										</sup>
+										data-tab-section="tab-section-2">판매 완료 상품 
 									</a></li>
 								</ul>
 							</div>
@@ -198,7 +194,7 @@
 																	type="number" />
 															</div>
 															<div>
-																<p class="myRank">${List.my_rank }번째순위 입니다!</p>
+																<p class="myRank">${List.my_rank }번째로 판매예정입니다.</p>
 															</div>
 
 														</div>

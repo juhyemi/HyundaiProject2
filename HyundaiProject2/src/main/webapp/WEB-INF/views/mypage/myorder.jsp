@@ -33,7 +33,7 @@
 								href="/board/consult/list.html?board_no=9">1:1 문의</a></li>
 							<li class="js-recent"><a
 								href="/product/recent_view_product.html">최근 본 상품</a></li>
-							<li><a href="#">나의 판매 목록</a></li>
+							<li><a href="/mypage/myResell">나의 판매 목록</a></li>
 							<li class="js-modify"><a href="/mypage/modify">내 계정</a></li>
 							<li onclick="logoutSubmit();"><a href="#">로그아웃</a></li>
 						</ul>
@@ -56,12 +56,10 @@
 							class="xans-element- xans-myshop xans-myshop-orderhistorytab order-tab ">
 							<ul class="menu">
 								<li class="tab_class selected"><a class="tab-button" data-tab-section="tab-section-1">주문내역조회
-										<sup>(<span id="xans_myshop_total_orders">1</span>)
-									</sup>
+										
 								</a></li>
 								<li class="tab_class_cs tab-button selected" ><a class="tab-button"
-									data-tab-section="tab-section-2">취소내역 <sup>(<span id="xans_myshop_total_orders_cs">0</span>)
-									</sup>
+									data-tab-section="tab-section-2">취소내역 
 								</a></li>		
 							</ul>
 						</div>

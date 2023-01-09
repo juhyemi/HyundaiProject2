@@ -104,19 +104,27 @@
 			$login_url = /member/login.html
 			$count = 2
 		-->
+		
+		                    <c:forEach var="List" items="${allList }" varStatus="count">
 								<div class="displaynone">
 									<div class="items-block ">
 										<div class="item-header displaynone">
 											<ul class="info-block">
 												<li class="first">
 													<ul>
-														<li class="sub-title">주문일</li>
+														<li class="sub-title">${List.order_date }</li>
 														<li class="value"></li>
-														<li class="sub-title">주문번호</li>
-														<li class="value"><a href="/myshop/order/detail.html"
-															class="line"></a></li>
 														<li class="sub-title">결제금액</li>
-														<li class="value"></li>
+													<c:if test="${List.re_price == null }">
+													<li class="value only-pc"><fmt:formatNumber
+																value="${List.pro_price }" type="number" />
+													</li>
+													</c:if>
+													<c:if test="${List.re_price != null}">
+													<li class="value only-pc"><fmt:formatNumber
+																value="${List.re_price }" type="number" />
+													</li>
+													</c:if>
 													</ul>
 												</li>
 												<li class="last">
@@ -140,44 +148,34 @@
 
 										<div class="item-prod">
 											<div class="thumb">
-												<a href="/product/detail.html"><img
-													src="//img.echosting.cafe24.com/thumb/img_product_small.gif"
-													onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"
+												<a
+													href="#"><img
+													src="${List.pro_loc }"
 													alt=""></a>
 											</div>
 											<div class="item-desc">
 												<div class="detail">
 													<div class="name">
-														<a href="/product/detail.html"></a>
+														<a
+															href="#">
+															${List.pro_name }</a>
 													</div>
-													<div class="option displaynone"></div>
-													<div class="quantity text-center">수량:</div>
-													<div class="order-price text-right"></div>
+													<div class="option displaynone">[옵션: ${List.pro_opt_size }]</div>
+													<div class="quantity text-center">수량: ${List.order_detail_amount }</div>
+													<c:if test="${List.re_price == null }">
+													<div class="order-price text-right"></div><fmt:formatNumber
+																value="${List.pro_price }" type="number" />
+																</c:if>
+													<c:if test="${List.re_price != null }">
+													<div class="order-price text-right"></div><fmt:formatNumber
+																value="${List.re_price }" type="number" />
+																</c:if>
 												</div>
 												<div class="status">
 													<p class="displaynone">
 														<a href="#none" class="line" onclick="">[]</a>
 													</p>
-													<button type="button"
-														class="btn btn-sm btn-gray btn-pd16 displaynone"
-														onclick="">
-														<span>취소철회</span>
-													</button>
-													<button type="button"
-														class="btn btn-sm btn-gray btn-pd16 displaynone"
-														onclick="">
-														<span>교환철회</span>
-													</button>
-													<button type="button"
-														class="btn btn-sm btn-gray btn-pd16 displaynone"
-														onclick="">
-														<span>반품철회</span>
-													</button>
-													<button type="button"
-														class="btn btn-sm btn-gray btn-pd16 displaynone"
-														onclick="">
-														<span>상세정보</span>
-													</button>
+													
 												</div>
 											</div>
 										</div>
@@ -261,6 +259,8 @@
 										</div>
 									</div>
 								</div>
+								</c:forEach>
+								
 								<div class="empty-block mt40 ">
 									<div class="empty-icon-block">
 										<div class="inner">

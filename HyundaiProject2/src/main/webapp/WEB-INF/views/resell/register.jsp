@@ -334,17 +334,38 @@
 											순위보기</span></a>
 								</form>
 							</div>
-
+   						
+   						  <c:if test="${fn:length(product.resellPrice) == 0}">
+							<!-- size modal창-->
+							<div class="background show" id="resellModal">
+								<div class="window">
+									<div class="popup">
+										<p>데이터 없음 </p>
+										<div id="closeModal">
+											<button type="button"
+												class="btn btn-order btn-dark btn-full close-resell-btn"
+												onclick="close_modal();">
+												<span id="closeModalPrice">창 닫기</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							</c:if>
+							
+							 <c:if test="${fn:length(product.resellPrice) > 0}">
 							<!-- size modal창-->
 							<div class="background show" id="resellModal">
 								<div class="window">
 									<div class="popup">
 										<table class="type06">
 											<c:forEach var="resellPrice" items="${product.resellPrice}">
+											
+											
 												<tr style="border-bottom: 0.5px solid #222;">
 													<th scope="row">${resellPrice.pro_opt_size}</th>
 													<td><fmt:formatNumber value="${resellPrice.re_price }" type="number"/></td>
 												</tr>
+											
 											</c:forEach>
 										</table>
 										<div id="closeModal">
@@ -356,6 +377,7 @@
 									</div>
 								</div>
 							</div>
+							</c:if>
 
 
 							<div id="showPriceRank"></div>
@@ -622,7 +644,7 @@ function getMyRank() {
 					$("#product-order-total-quantity").text(og_comma);
 					$("#product-order-total-price").text(with_tax);
 				} else {
-					$("#showPriceRank").text(data + "번째 순위 입니다!");
+					$("#showPriceRank").text(data + "번째로 판매 예정입니다.");
 					$("#product-order-total-quantity").text(og_comma);
 					$("#product-order-total-price").text(with_tax);
 					}

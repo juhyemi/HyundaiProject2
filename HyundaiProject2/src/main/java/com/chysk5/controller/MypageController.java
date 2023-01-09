@@ -51,8 +51,11 @@ public class MypageController {
 		int totalOrderPrice = service.totalOrderPrice(mem_id);
 		int totalOrderCount = service.totalOrderCount(mem_id);
 		
+		List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id, null, null);
+		
 		model.addAttribute("totalOrderPrice", totalOrderPrice);
-		model.addAttribute("totalOrderCount", totalOrderCount);		
+		model.addAttribute("totalOrderCount", totalOrderCount);	
+		model.addAttribute("allList", allList);
 	}
 	
 	// 주문내역 페이지로 이동
