@@ -39,12 +39,12 @@ window.onload=function(){
 <!--상품 가격-->		
 
 /*전체선택*/
-function allCheck(){
+/* function allCheck(){
             if($("#allCk").prop("checked")) {
                 $("input[type=checkbox]").prop("checked",true);
                 $("input:checkbox[id='basket_chk_id_0']:checked").each(function(){
-          /*       	console.log(this.closet(".cart_no").val());
-                	cartCheck(this,this.closet(".cart_no").attr("value")); */
+             //     console.log(this.closet(".cart_no").val());
+             //   	cartCheck(this,this.closet(".cart_no").attr("value")); 
                 	console.log("성공");
                 });
                 console.log("전체 체크");   
@@ -55,14 +55,44 @@ function allCheck(){
                 $("input[type=checkbox]").prop("checked",false); 
                 console.log("전체 체크"); 
                 $("input:checkbox[id='basket_chk_id_0']:checked").each(function(){
-             /*    	cartCheck(this,$(this).closet(".cart_no").attr("value"));*/
+            //  	cartCheck(this,$(this).closet(".cart_no").attr("value"));
                 	console.log("성공"); 
                     }); 
                 console.log("전체 체크해제완료");
                 getCheckedCnt();
             }
-        }
-        
+        } */
+       
+ 
+/*  전체삭제 */
+ function allDelete(){
+        	var csrfHeadName="${_csrf.headerName}";
+        	var csrfTokenValue="${_csrf.token}";
+        	$.ajax({
+        	    url : "/cartAjax/deleteAll",
+        		type :"post",
+        		beforeSend : function(xhr) {
+        	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+        	    }, 
+        		success : function() {
+        		   console.log("전체삭제");
+        		   $("input:checkbox[id='basket_chk_id_0']").each(function(){
+        	           console.log(".............");			      
+        	           this.closest("li").remove(); 
+        	           console.log("전체제품 삭제 완료");
+        	           reCal();
+        	           getCheckedCnt();
+        	           });
+        		                  
+        		},
+        		error : function() {
+        			alert("체크 삭제 실패");
+        		}
+        			 
+         });
+	       	
+    }
+ 
 /*체크 박스 개수*/        
 function getCheckedCnt()  {
 	  // 선택된 목록 가져오기
@@ -76,7 +106,7 @@ function getCheckedCnt()  {
 	  
 	  // 출력
 	  document.getElementById('result_check').innerText
-	    = "( "+selectedElementsCnt+" )";
+	    = "("+selectedElementsCnt+")";
 	}
 /* 부분체크박스 */		
 function cartCheck(obj, cartNo){
@@ -176,6 +206,7 @@ function selectDelete(){
            this.closest("li").remove(); 
            console.log("선택제품 삭제 완료");
            reCal();
+           getCheckedCnt();
            });
 		},
 		error : function() {
@@ -282,20 +313,17 @@ function modifyCnt(type,cartNo){
 			<div class="section">
 
 				<div class="header">
-					<div class="select-all">
-						<label> <!--  <input type="checkbox" id="one" name="number" value="1"> 전체선택 -->
-							<input id="allCk" type="checkbox"
-							onclick="allCheck();">
-							&nbsp;<span>전체선택 <em
-								class="xans-element- xans-order xans-order-normtitle " id="result_check">(2)
-							</em>
-						</span></label>
+					<div class="xans-element- xans-order xans-order-selectorder select-del ">
+						<a href="javascript:void(0);" onclick="allDelete();"
+							target="_top">전체삭제</a>
 					</div>
 					<!-- 체크박스 선택 삭제 -->
 					<div
 						class="xans-element- xans-order xans-order-selectorder select-del ">
 						<a href="javascript:void(0);" onclick="selectDelete();"
-							target="_top">선택삭제</a>
+							target="_top">선택삭제&nbsp;<em
+								class="xans-element- xans-order xans-order-normtitle " id="result_check">(0)
+							</em></a>
 					</div>
 				</div>
 
@@ -390,11 +418,11 @@ function modifyCnt(type,cartNo){
 										class="total_product_price_display_front">0 <!-- 261,000 -->
 									</span></span></strong></li>
 						</ul>
-						<ul class="">
+						<!-- <ul class="">
 							<li class="price-title">할인금액</li>
 							<li class="price" id="total_benefit_price_area"><strong>-</strong><strong><span
 									id="total_product_discount_price_front">0</span></strong></li>
-						</ul>
+						</ul> -->
 						<ul>
 							<li class="price-title">배송비</li>
 							<li class="price"><strong><span

@@ -46,7 +46,7 @@ function updateView(tno){
                     <button type="button" class="btn btn-sm btn-dark btn-write" onclick="location.href='/talks/tform'"><span>WRITE</span></button>
                 </div>
     <div class="board-list-block">
-                    <ul class="xans-element- xans-board xans-board-notice-1 xans-board-notice xans-board-1" style="margin-top: 0px;">
+                    <ul class="xans-element- xans-board xans-board-notice-1 xans-board-notice xans-board-1" style="margin-top: 0px; margin-bottom: 0px;">
                 		
                         <li class="notice xans-record-">
                             	<span style="width: 10%;">No</span>
@@ -56,7 +56,7 @@ function updateView(tno){
 								<span style="width: 10%; text-align: center;">Views</span>
     </ul>
     
-    <ul class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1">
+    <ul class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1" style="margin-top: 0px;">
    					
                 								
     <c:forEach var="tList" items="${talksList}">

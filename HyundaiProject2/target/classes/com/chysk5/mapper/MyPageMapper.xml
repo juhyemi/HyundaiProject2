@@ -31,7 +31,7 @@
 	 		A.pro_loc,
 	 		A.re_id,
 	 		B.re_price FROM
-    (SELECT r.product_option_pro_opt_id, 
+(SELECT r.product_option_pro_opt_id, 
     		r.re_price as my_price, 
     		r.re_regdate, 
     		po.pro_opt_size, 
@@ -48,18 +48,22 @@
 	AND pi.pro_loc like('%medium%')
     INNER JOIN member m
     ON m.mem_id = r.member_mem_id
-    where m.mem_id = #{mem_id}) A
+    where m.mem_id = #{mem_id}
+    AND re_available = '0') A
     INNER JOIN 
     (SELECT r.product_option_pro_opt_id, 
-    		r.re_price
+    		r.re_price, re_available
     FROM r_product r) B
     ON A.product_option_pro_opt_id = B.product_option_pro_opt_id
-     <if test="start_date != null">
-    	<if test="end_date != null">
-		 WHERE A.re_regDate BETWEEN #{start_date} AND #{end_date}		 
-    	</if>
-  	</if>
+    AND B.re_available = '0'
+    <if test="start_date != null">
+       <if test="end_date != null">
+       AND A.re_regDate BETWEEN TO_DATE(#{start_date}, 'YYYY-MM-DD') AND TO_DATE(#{end_date}, 'YYYY-MM-DD')+1    
+       </if>
+     </if>
+    
     order by A.re_regdate DESC, re_price ASC
+
 	
 	</select>
 	
@@ -117,7 +121,7 @@
     WHERE m.mem_id = #{mem_id}
      <if test="start_date != null">
     	<if test="end_date != null">
-		 AND re_selldate BETWEEN #{start_date} AND #{end_date}
+		 AND re_selldate BETWEEN TO_DATE(#{start_date}, 'YYYY-MM-DD') AND TO_DATE(#{end_date}, 'YYYY-MM-DD')+1
     	</if>
   	</if>
     AND re_available = '1'
@@ -157,7 +161,7 @@
     ON A.order_no = B.order_no
     <if test="start_date != null">
     	<if test="end_date != null">
-		 WHERE A.order_date BETWEEN #{start_date} AND #{end_date}
+		 WHERE A.order_date BETWEEN TO_DATE(#{start_date}, 'YYYY-MM-DD') AND TO_DATE(#{end_date}, 'YYYY-MM-DD')+1
     	</if>
   	</if>
     
@@ -231,7 +235,7 @@
     WHERE ot.member_mem_id = #{mem_id}
     <if test="start_date != null">
     	<if test="end_date != null">
-		 AND ot.order_date BETWEEN #{start_date} AND #{end_date}
+		 AND ot.order_date BETWEEN TO_DATE(#{start_date}, 'YYYY-MM-DD') AND TO_DATE(#{end_date}, 'YYYY-MM-DD')+1
     	</if>
   	</if>
 	

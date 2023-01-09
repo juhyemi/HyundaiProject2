@@ -93,6 +93,12 @@ public class CartServiceImpl implements CartSerivce {
 		return mapper.totalPrice(mem_id);
 		
 	}
+	@Override
+	 public void deleteAll(String mem_id) {
+		log.info("카트 전체 삭제");
+		mapper.deleteAll (mem_id);
+		
+	}
 	
 	
 }
