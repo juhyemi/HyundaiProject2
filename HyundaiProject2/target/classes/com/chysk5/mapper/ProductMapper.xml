@@ -5,11 +5,21 @@
 <mapper namespace="com.chysk5.mapper.ProductMapper">
 
 	<select id="getPList" resultType="com.chysk5.domain.ProductDTO">
-
-		SELECT p.pro_id, p.pro_name, p.pro_category, p.pro_price, i1.loc1, i2.loc2
-		FROM product p, product_list_img1 i1, product_list_img2 i2
-		WHERE i1.product_pro_id = i2.product_pro_id AND p.pro_id = i1.product_pro_id AND p.pro_category = #{category}
-		ORDER BY p.pro_name
+		<![CDATA[
+		select t.pro_id, t.pro_name, t.pro_category, t.pro_price, t.loc1, t.loc2
+		from
+		(
+		    SELECT rownum rn, p.pro_id, p.pro_name, p.pro_category, p.pro_price, i1.loc1, i2.loc2
+		    FROM product p, product_list_img1 i1, product_list_img2 i2
+		    WHERE i1.product_pro_id = i2.product_pro_id 
+		        AND p.pro_id = i1.product_pro_id 
+		        AND p.pro_category = #{category}
+		        AND rownum <= #{criteria.pageNum} * #{criteria.amount}
+		    ORDER BY p.pro_name
+		) t
+		WHERE rn > (#{criteria.pageNum}-1) * #{criteria.amount}
+		]]> 
+		
 		
 
 	</select>
@@ -64,18 +74,11 @@
 
 	</select>
 	
- 	<select id= "getListWithPaging" resultType="com.chysk5.domain.ProductDTO">
+ 	<select id= "getProductListWithPaging" resultType="com.chysk5.domain.ProductDTO">
 	
 		
 		<![CDATA[
-			SELECT pro_id, pro_name, pro_category, pro_price, loc1, loc2
-			FROM 
-				(SELECT /*+INDEX_DESC(tbl_product pk_product) */
-					rownum rn, pro_id, pro_name, pro_category, pro_price, loc1, loc2
-				FROM productList
-				WHERE rownum <=20
-				)
-				WHERE  rn > 10
+
 		]]> 
 	
 	</select> 

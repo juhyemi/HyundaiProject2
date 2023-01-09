@@ -1479,6 +1479,10 @@ sup {
 
 .paginate a.this {
     color: #1e1e1e;
+    /* text-decoration: underline; */
+}
+
+#contents > div > div.only-pc > div > li.paginate_button.active {
     text-decoration: underline;
 }
 

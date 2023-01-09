@@ -78,12 +78,13 @@ public class ResellController {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public ResellProductDetailPriceDTO getResellProductPrice(@RequestBody ResellPriceSearchDTO searchDTO) {
+		log.info(searchDTO);
 		ResellProductDetailPriceDTO dto = service.getResellProductPriceDetail(searchDTO);
 		
 		
 		log.info("getResellProductPrice 호출");
-		
 		log.info(searchDTO);
+		
 		log.info(dto);
 		
 		return dto;

@@ -59,7 +59,7 @@ order by c.cart_regdate desc
 	
 	
 	<select id="resellOrderFormList" resultType="com.chysk5.domain.CartDTO">
-		select re_price pro_price, product_option_pro_opt_id
+		select re_price pro_price, product_option_pro_opt_id,re_id
 		from(
 		    select * 
 		    from r_product

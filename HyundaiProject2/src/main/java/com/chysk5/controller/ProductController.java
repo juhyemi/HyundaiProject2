@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chysk5.domain.Criteria;
 import com.chysk5.domain.PageDTO;
+import com.chysk5.domain.ProductCriteria;
 import com.chysk5.domain.ProductDTO;
 import com.chysk5.domain.ProductImgDTO;
+import com.chysk5.domain.ProductPageDTO;
 import com.chysk5.domain.ProductSizeDTO;
 import com.chysk5.service.ProductService;
 
@@ -30,16 +32,20 @@ public class ProductController {
 	
 	//상품 리스트
 	@GetMapping("list/{category}")
-	public String productList(@PathVariable("category") String category, Model model) {
+	public String productList(@PathVariable("category") String category, Model model, ProductCriteria criteria) {
 
 		log.info("call productController........");
 
 		log.info(category);
 
-		List<ProductDTO> list = service.getPListDB(category);
+		List<ProductDTO> list = service.getPListDB(category,criteria);
 		log.info(list);
 		model.addAttribute("list", list);
 		model.addAttribute("category", category);
+		
+		int total = service.getTotal(category);
+		
+		model.addAttribute("pageMaker",new ProductPageDTO(criteria, total));
 		
 		
 		return "product/list";
