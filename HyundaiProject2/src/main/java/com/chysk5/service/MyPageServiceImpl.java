@@ -1,8 +1,5 @@
 package com.chysk5.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.lang.Nullable;
@@ -10,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
+import com.chysk5.domain.CancelProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
 import com.chysk5.domain.SoldOutProductDTO;
@@ -173,4 +171,28 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		return allList;
 	}
+
+	// 주문 취소하기
+	@Override
+	public int cancelOrder(String pro_opt_id, String order_no) {
+
+		return mapper.cancelOrder(pro_opt_id, order_no);
+
+	}
+
+	// 주문 취소 목록 보여주기
+	@Override
+	public List<CancelProductDTO> getCancelList(String mem_id, @Nullable String start_date,  @Nullable String end_date) {
+		
+		List<CancelProductDTO> cancelList = mapper.getCancelList(mem_id, start_date, end_date);
+		
+		for (CancelProductDTO a : cancelList) {
+			String date = a.getOrder_date().substring(0,10);
+			a.setOrder_date(date);
+		}
+		
+		return cancelList;
+	}
+	
+	
 }

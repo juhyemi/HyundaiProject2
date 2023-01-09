@@ -18,6 +18,7 @@ import com.chysk5.domain.ResellProductListDTO;
 import com.chysk5.domain.ResellProductSearchIdDTO;
 import com.chysk5.domain.ResellProductSizeDTO;
 import com.chysk5.domain.UpdateProductDTO;
+import com.chysk5.mapper.MyPageMapper;
 import com.chysk5.mapper.ResellMapper;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ import lombok.extern.log4j.Log4j;
 public class ResellServiceImpl implements ResellService {
 
    private final ResellMapper mapper;
+   private final MyPageMapper mpMapper;
    
    @Transactional
    @Override
@@ -48,8 +50,7 @@ public class ResellServiceImpl implements ResellService {
    public int register(RegResellProductDTO regResellProductDTO, String order_no                                                                                                                                        ) {
       log.info("reselldata go!!!!");
       int result1 = mapper.register(regResellProductDTO); //상품 등록
- //     int result2 = updateRegStatus(regResellProductDTO.getProduct_option_pro_opt_id(), order_no);
-      
+ //     int result2 = updateRegStatus(regResellProductDTO.getProduct_option_pro_opt_id(), order_no);      
       String pro_opt_id = regResellProductDTO.getProduct_option_pro_opt_id();
       log.info(pro_opt_id);
       log.info(order_no);
@@ -58,8 +59,7 @@ public class ResellServiceImpl implements ResellService {
       log.info("******************"+order_no+"**************");
       
       int result2 = mapper.updateRegStatus(pro_opt_id, order_no);
-      
-
+//      int result3 = mpMapper.cancelOrder(pro_opt_id, order_no);
       
       log.info(result2);
       

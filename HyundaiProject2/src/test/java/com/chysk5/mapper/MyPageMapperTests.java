@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
-import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.domain.CancelProductDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -65,4 +64,15 @@ public class MyPageMapperTests {
 		
 	}
 	*/
+	
+	@Test
+	public void testCancelList() {
+		
+		List<CancelProductDTO> list = mapper.getCancelList("kb", null, null);
+		for(CancelProductDTO a : list) {
+			log.info(a);
+		}
+		
+		
+	}
 }

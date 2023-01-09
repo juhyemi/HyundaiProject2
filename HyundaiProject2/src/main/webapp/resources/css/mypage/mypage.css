@@ -5420,4 +5420,10 @@ body.product-detail footer {
   .fText{
   	background-color:white;
   }
+  
+  .showResell {
+  	border: 1px;
+  	solid: red;
+  	color: red;
+  }
 }

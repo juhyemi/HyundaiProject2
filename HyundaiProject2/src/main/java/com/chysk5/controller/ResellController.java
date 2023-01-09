@@ -111,6 +111,7 @@ public class ResellController {
 		return "resell/register";
 	}
 	
+	/* 개인 상품 등록 */
 	@PostMapping("/register")
 	public String regMyResellProduct(RegResellProductDTO regResellProductDTO, RedirectAttributes rttr, Principal prin, @RequestParam("order_no") String order_no) {
 		

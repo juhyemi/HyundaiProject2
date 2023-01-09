@@ -245,7 +245,7 @@
 
 														<input id="input${count.index }" type="text"
 															onkeyup="inputNumberFormat(this);"
-															placeholder="가격을 입력하세용~" maxlength="6" numberOnly /> <input
+															placeholder="가격을 입력하세용~" maxlength="7" numberOnly /> <input
 															type="button" class="btn-dark regBtn" value="등록하기"
 															onclick="modifyPrice(${List.re_id}, ${count.index});">
 
@@ -286,21 +286,6 @@
 									</div>
 								</div>
 
-
-								<!-- 페이징 처리 -->
-								<div
-									class="xans-element- xans-myshop xans-myshop-orderhistorypaging paginate">
-									<a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&lt;&lt;</a>
-									<a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&lt;</a>
-									<a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021"
-										class="this xans-record-">1</a> <a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&gt;</a>
-									<a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&gt;&gt;</a>
-								</div>
 							</div>
 						</section>
 
@@ -403,20 +388,7 @@
 								</div>
 
 
-								<!-- 페이징 처리 -->
-								<div
-									class="xans-element- xans-myshop xans-myshop-orderhistorypaging paginate">
-									<a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&lt;&lt;</a>
-									<a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&lt;</a>
-									<a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021"
-										class="this xans-record-">1</a> <a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&gt;</a>
-									<a
-										href="?page=1&amp;history_start_date=2022-09-30&amp;history_end_date=2022-12-29&amp;past_year=2021">&gt;&gt;</a>
-								</div>
+						
 							</div>
 						</section>
 
@@ -487,10 +459,16 @@ function close_modal(index) {
 
 <script>
 function modifyPrice(re_id, index) {
-	let re_price = document.getElementById("input"+index).value;
+//	let re_price = document.getElementById("input"+index).value;
+	
+	let og_price = document.getElementById("input"+index).value;
+	console.log(og_price);
+	
+	og_price = og_price.replace(",", "");
+	console.log(og_price);
 	
     $(".modify_re_id").val(re_id);
-  	$(".modify_re_price").val(re_price);
+  	$(".modify_re_price").val(og_price);
   	$(".modify_price").submit();
 }
 
@@ -669,5 +647,51 @@ function searchPeriod() {
 }
 
 </script>
+
+
+	<script>
+
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
+} 
+
+function inputNumberFormat(obj) {
+    obj.value = comma(uncomma(obj.value));
+}
+
+function inputOnlyNumberFormat(obj) {
+    obj.value = onlynumber(uncomma(obj.value));
+}
+
+function onlynumber(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+}
+
+/* 영역 안 가격 */
+
+
+var money = $('#money').text();
+var money2 = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+$('#money').text(money2);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
 
 <%@ include file="../include/footer.jsp"%>

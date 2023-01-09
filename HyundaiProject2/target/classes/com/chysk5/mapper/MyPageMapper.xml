@@ -165,6 +165,14 @@
     
 	</select>
 	
+	<update id="cancelOrder">
+		
+	UPDATE order_detail SET order_detail_check = '0'
+    WHERE order_total_order_no = #{order_no}
+    AND product_option_pro_opt_id = #{pro_opt_id}
+    
+	</update>
+	
 	
   
 
@@ -190,4 +198,28 @@
 		<result property="order_total_price" column="order_total_price"/>		
 	</resultMap>
 	
+	<!-- 취소 내역 조회 -->
+
+	<select id="getCancelList" resultType="com.chysk5.domain.CancelProductDTO">
+	SELECT ot.order_date, p.pro_price, p.pro_name, po.pro_opt_size, 
+	od.order_detail_amount, ot.order_no, pi.pro_loc, po.pro_opt_id
+    FROM order_total ot
+    INNER JOIN order_detail od
+    ON od.order_total_order_no = ot.order_no
+    AND od.order_detail_check = '0' 
+    INNER JOIN product_option po
+    ON po.pro_opt_id = od.product_option_pro_opt_id
+    INNER JOIN product p
+    ON p.pro_id = po.product_pro_id
+    INNER JOIN pro_image pi
+    on pi.product_pro_id = p.pro_id
+	AND pi.pro_loc like('%medium%')
+    WHERE ot.member_mem_id = #{mem_id}
+    <if test="start_date != null">
+    	<if test="end_date != null">
+		 AND ot.order_date BETWEEN #{start_date} AND #{end_date}
+    	</if>
+  	</if>
+	
+	</select>
   </mapper>
