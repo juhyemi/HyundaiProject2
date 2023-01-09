@@ -178,4 +178,4 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="./include/black-footer.jsp"%>
+	<%@ include file="./include/footer.jsp"%>

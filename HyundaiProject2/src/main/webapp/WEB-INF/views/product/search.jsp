@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet"  type="text/css"  href="${contextPath}/resources/css/product/c1.css">
-<link rel="stylesheet"  type="text/css"  href="${contextPath}/resources/css/product/c2.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/product/c1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/product/c2.css">
 </head>
-<body>
+<body class="magiedumatin">
 <%@ include file="../include/header2.jsp"%>
 
    <div id="wrap">

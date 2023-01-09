@@ -99,6 +99,17 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.findPwd(member);
 	}
+	
+	// 비밀번호 변경
+	@Override
+	public int modifyPwd(MemberDTO member) {
+		
+		log.info("***** modify password : " + member);
+		
+		member.setMem_pwd(pwencoder.encode(member.getMem_pwd()));
+		
+		return mapper.modifyPwd(member);
+	}
 
 	// 회원 탈퇴
 	@Override

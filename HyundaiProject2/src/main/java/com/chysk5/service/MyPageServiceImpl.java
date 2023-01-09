@@ -9,8 +9,10 @@ import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.CancelProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.domain.ReplyDTO;
 import com.chysk5.domain.ResellPriceDTO;
 import com.chysk5.domain.SoldOutProductDTO;
+import com.chysk5.domain.TalksDTO;
 import com.chysk5.mapper.MyPageMapper;
 import com.chysk5.mapper.ResellMapper;
 
@@ -144,7 +146,16 @@ public class MyPageServiceImpl implements MyPageService {
 
 		return mapper.totalOrderPrice(mem_id);
 	}
+	
+	// 총 구매 횟수
+	@Override
+	public int totalOrderCount(String mem_id) {
 
+		log.info("total order count...." + mem_id);
+		
+		return mapper.totalOrderCount(mem_id);
+	}
+	
 	// 내가 판매 완료한 상품들 목록
 	@Override
 	public List<SoldOutProductDTO> getSoldOutList(String mem_id, @Nullable String start_date, @Nullable String end_date) {
@@ -194,5 +205,22 @@ public class MyPageServiceImpl implements MyPageService {
 		return cancelList;
 	}
 	
-	
+	// 내가 쓴 글
+	@Override
+	public List<TalksDTO> getMyTalks(String mem_id) {
+		
+		log.info("getMyTalks service...." + mem_id);
+		
+		return mapper.selectMyTalks(mem_id);
+	}
+
+	// 내가 쓴 댓글
+	@Override
+	public List<ReplyDTO> getMyReply(String mem_id) {
+		
+		log.info("getMyReply service....." + mem_id);
+		
+		return mapper.selectMyReply(mem_id);
+	}
+
 }

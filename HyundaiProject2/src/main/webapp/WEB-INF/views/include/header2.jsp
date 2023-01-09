@@ -23,30 +23,30 @@
 		<ul class="util">
 			<li>
 				<div class="util-search-block">
-					
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						<div class="xans-element- xans-layout xans-layout-searchheader ">
-							
-							<fieldset>
-								<span class="displaynone"></span>
-								<div class="form-block">
-									<div class="flex">
-										<input id="keyword_banner" class="inputTypeText" placeholder="Search"  value="" type="text">
-										<button id="btn_keyword" type="button" onclick="searchSubmit('keyword_banner');">
-											<span>search</span>
-										</button>
-									</div>
+
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<div class="xans-element- xans-layout xans-layout-searchheader ">
+
+						<fieldset>
+							<span class="displaynone"></span>
+							<div class="form-block">
+								<div class="flex">
+									<input id="keyword_banner" class="inputTypeText" placeholder="Search" value="" type="text">
+									<button id="btn_keyword" type="button" onclick="searchSubmit('keyword_banner');">
+										<span>search</span>
+									</button>
 								</div>
-							</fieldset>
-							<script>
+							</div>
+						</fieldset>
+						<script>
                             // 검색 허용 카테고리
                             document.addEventListener("DOMContentLoaded", function () {
                                 var $ = window.jQuery1_12_4;
                                 $('.util-search-block select[name=category_no] option[value=87]').attr('selected', 'selected');
                             });
                         </script>
-						</div>
-				
+					</div>
+
 				</div>
 			</li>
 			<li><a href="javascript:languageOpen();" class="language">
@@ -94,36 +94,40 @@
 			<li class=""><a href="/resell">
 					<span>Resell</span>
 				</a></li>
-			<li class="">
-			 	<sec:authorize access="isAnonymous()">
-            		<a href="/member/login">
-            			<span>Fashion Talks</span>
-            		</a>
-            	</sec:authorize> 
-            	<sec:authorize access="isAuthenticated()">
-            		<a href="/talks/tlist">
-            			<span>Fashion Talks</span>
-            		</a>
-              </sec:authorize>
-			</li>
+			<li class=""><sec:authorize access="isAnonymous()">
+					<a href="/member/login">
+						<span>Fashion Talks</span>
+					</a>
+				</sec:authorize> <sec:authorize access="isAuthenticated()">
+					<a href="/talks/tlist">
+						<span>Fashion Talks</span>
+					</a>
+				</sec:authorize></li>
 			<li class=" only-mobile"><a href="javascript:languageOpen();">
 					<span>Language</span>
 				</a></li>
 
-			<li class="xans-element- xans-layout xans-layout-statelogoff ">
-				<!-- 로그인이 안되어 있을 경우 --> <sec:authorize access="isAnonymous()">
-					<a href="/member/login">
+			<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/mypage/index">
+					<span>My page</span>
+				</a></li>
+			<!-- 로그인이 안되어 있을 경우 -->
+			<sec:authorize access="isAnonymous()">
+				<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/login">
 						<span>Login</span>
-					</a>
-				</sec:authorize> <!-- 로그인이 되어있을 경우 --> <sec:authorize access="isAuthenticated()">
-					<a href="#" onclick="logoutSubmit();">
+					</a></li>
+			</sec:authorize>
+			<!-- 로그인이 되어있을 경우 -->
+			<sec:authorize access="isAuthenticated()">
+
+				<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="#" onclick="logoutSubmit();">
 						<span>Logout</span>
 					</a>
 					<form id="logoutFrm" action="/member/logout" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					</form>
-				</sec:authorize>
-			</li>
+					</form></li>
+
+			</sec:authorize>
+
 		</ul>
 
 		<!--
@@ -188,34 +192,34 @@
 	<div class="menu-block depth2 search" cate-no="Search">
 		<div class="sub">
 			<div class="block">
-				
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<div class="xans-element- xans-search xans-search-form ">
-						<fieldset>
-							<span class="displaynone"></span>
-							<div class="form-block">
-								<label class="ePlaceholderEach required" title="Search">
-									<p class="form-title">Search</p>
-									<div class="flex">
-										<input id="keyword_side" class="inputTypeText" placeholder="Search" size="15" value="" type="text">
-										<button id="btn_keyword" type="button" onclick="searchSubmit('keyword_side');" >
-											<span>ok</span>
-										</button>
-									</div>
-								</label>
-							</div>
-						</fieldset>
-		
-					</div>
-				
+
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<div class="xans-element- xans-search xans-search-form ">
+					<fieldset>
+						<span class="displaynone"></span>
+						<div class="form-block">
+							<label class="ePlaceholderEach required" title="Search">
+								<p class="form-title">Search</p>
+								<div class="flex">
+									<input id="keyword_side" class="inputTypeText" placeholder="Search" size="15" value="" type="text">
+									<button id="btn_keyword" type="button" onclick="searchSubmit('keyword_side');">
+										<span>ok</span>
+									</button>
+								</div>
+							</label>
+						</div>
+					</fieldset>
+
+				</div>
+
 			</div>
 		</div>
 	</div>
 
 </div>
 <form id="searchForm" action="/product/search" method="post">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<input type="hidden" name="keyword" value="" />
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<input type="hidden" name="keyword" value="" />
 </form>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -240,10 +244,9 @@ function searchSubmit(inputId){
 <!-- // gnb -->
 
 <!-- 장바구니 -->
-  <div class="basket-block">
-      <div class="basket-wrap-iframe">
-         <iframe class="basket-iframe" id="basketIframe" name="basketIframe"
-            frameborder="0" scrolling="no" src='/cart/cartList'></iframe>
+<div class="basket-block">
+	<div class="basket-wrap-iframe">
+		<iframe class="basket-iframe" id="basketIframe" name="basketIframe" frameborder="0" scrolling="no" src='/cart/cartList'></iframe>
 	</div>
 </div>
 

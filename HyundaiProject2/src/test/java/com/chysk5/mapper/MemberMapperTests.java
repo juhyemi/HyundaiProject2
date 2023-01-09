@@ -21,7 +21,8 @@ import lombok.extern.log4j.Log4j;
  * */
 @RunWith(SpringJUnit4ClassRunner.class)
 @Log4j
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", 
+					"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @WebAppConfiguration
 public class MemberMapperTests {
 	
@@ -30,7 +31,6 @@ public class MemberMapperTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
-	
 	
 	// 회원가입
 	@Test
@@ -61,6 +61,7 @@ public class MemberMapperTests {
 		dto.getAuthList().forEach(authDTO -> log.info(authDTO));
 	}
 	
+	// 아이디 중복 확인
 	@Test
 	public void testCheckId() {
 		
@@ -72,5 +73,37 @@ public class MemberMapperTests {
 		
 		log.info(result);
 	}
-
+	
+	// 비밀번호 찾기
+	@Test
+	public void testFindPwd() {
+		
+		log.info("test find password.....");
+		
+		MemberDTO member = new MemberDTO();
+		
+		member.setMem_name("신수진");
+		member.setMem_email("jinjin@naver.com");
+		member.setMem_id("jinjin");
+		
+		MemberDTO result = mapper.findPwd(member);
+		
+		log.info("test find password result : " + result);
+	}
+	
+	// 비밀번호 변경
+	@Test
+	public void testModifyPwd() {
+		
+		log.info("test modify password.....");
+		
+		MemberDTO member = new MemberDTO();
+		
+		member.setMem_id("kkk");
+		member.setMem_pwd("a1234");
+		
+		int result = mapper.modifyPwd(member);
+		
+		log.info("result : " + result);
+	}
 }

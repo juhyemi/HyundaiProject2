@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,11 +50,24 @@ public class TalksController {
 		log.info("call talksContent..........");
 		String loginUser = prc.getName();
 		TalksDTO talksContent = service.getTalksContent(talks_id);
+		
 		log.info(talksContent);
 		log.info(loginUser);
 		model.addAttribute("talksContent", talksContent);
 		model.addAttribute("loginUser", loginUser);
 		return "talks/tcontent";
+	}
+	
+	// 조회수 증가
+	@PostMapping("/updateView")
+	@ResponseBody
+	public String updateViewAction(String talks_id) {
+		
+		log.info("update view action.... " + talks_id);
+		
+		service.updateViews(talks_id);
+		
+		return "success";
 	}
 	
 	//talks 입력폼
@@ -133,9 +145,8 @@ public class TalksController {
 		}
 		
 		return entity;
-		
 	}
-	
+
 	//첨부파일 업로드
 	@PostMapping("/imageRegister")
 	public String imageRegister(TalksDTO talks, RedirectAttributes rttr) {
@@ -161,5 +172,4 @@ public class TalksController {
 	}
 	
 	
-
 }
