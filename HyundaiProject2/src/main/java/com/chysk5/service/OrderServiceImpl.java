@@ -41,24 +41,33 @@ public class OrderServiceImpl implements OrderService {
 	 public List<CartDTO>orderComplete(OrderDTO order,String mem_id, int order_resell_check, String re_id) {
 		 log.info("주문서비스 접속------!");		 
 		 List<CartDTO>orderFormList=mapper.orderFormList(mem_id);
+			 
 		 log.info(".............!");
 		 log.info(order_resell_check);
 		 // 카트 일때
 		 if(order_resell_check== 0) { 
+			 
 	     log.info("카트 에서 주문 시작");
 		 mapper.insertSelectKey(order,mem_id,order_resell_check);//orderDTO 에 값저장 ORDER_NO 가져옴
+		 String order_no=order.getOrder_no();
 		 log.info("order_total 추가 완료");
+		 orderFormList.forEach(of->mapper.insertOrderDetail(order_no,of));	 //ORDER_NO 받아서 주문 목록(선택된 카트 DTO)와 ORDER NO
+		 log.info("order detail 추가 완료");	
 		
 		 }
-		 else {
+		 else {		 
 			 log.info("resell주문 시작");
+			 // 리셀 상품 opt_id
+			 String pro_opt_id=mapper.getReproductOptId(re_id);
+			 log.info(pro_opt_id);
 			 mapper.insertSelectKey(order,mem_id,order_resell_check);//orderDTO 에 값저장 ORDER_NO 가져옴
+			 String order_no=order.getOrder_no();
 			 log.info("리셀 order_total 추가 완료");			
-		     mapper.updateResell(re_id); //reavailable 업데이트							 
+		     mapper.updateResell(re_id); //reavailable 업데이트	
+		     mapper.insertresellOrderDetail(order_no,pro_opt_id);
+		     log.info("리셀 order_detail 추가 완료");	
 			 }
-		 String order_no=order.getOrder_no();
-		 orderFormList.forEach(of->mapper.insertOrderDetail(order_no,of));	 //ORDER_NO 받아서 주문 목록(선택된 카트 DTO)와 ORDER NO
-		 log.info("order detail 추가 완료");		 
+		 		 	 
 		 return orderFormList;
 	 } 
 	

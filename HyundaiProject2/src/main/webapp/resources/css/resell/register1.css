@@ -15558,7 +15558,7 @@ body.display #body[data-viewport='desktop'] .productDetail.wrapper .productImgTy
 
 .resellProductCaption {
 	font-size: 25px;
-	font-weight: bold;
+	font-weight: 500;
 }
 
 div>span>.size {
@@ -15805,8 +15805,7 @@ div.naverPay_storebtn_bx {
 .productDetail.wrapper .productActionButtonDiv .normalButton .btn-wrapper
 	{
 	display: inline-block;
-	width: calc(50% - 10px);
-	max-width: 160px;
+	width: 100%;
 }
 
 .productDetail.wrapper .productActionButtonDiv .btn-wrapper.cartButton {
@@ -17000,7 +16999,7 @@ body.display #body.header-style-effect-type-fixedAtTop.shopProductDetail-loaded.
 }
 
 .productDetail.wrapper {
-	padding: 60px 20px 70px;
+	padding: 0px 20px 70px;
 }
 
 #body.systemPage-productDetail-width-type-narrow .productDetail.wrapper
@@ -17030,7 +17029,7 @@ body.display #body.header-style-effect-type-fixedAtTop.shopProductDetail-loaded.
 		max-width: 1800px;
 	}
 	#body.systemPage-productDetail-width-type-wide .productDetail.wrapper {
-		padding: 60px 90px 70px;
+		padding: 0px 90px 70px;
 		width: 100%;
 		max-width: 1800px;
 	}
@@ -17951,21 +17950,22 @@ span.ui-spinner a.ui-spinner-button:nth-child(3):before {
 }
 
 #input1 {
-	width: 200px;
+	width: 53%;
 	height: 50px;
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	border-bottom: 3px solid black;
+	border-bottom: 1.5px solid black;
 	font-size: 12pt;
 	color: grey;
+	margin-right: 10px;
 }
 
 .input2 {
 	color: #ffffff !important;
     background-color: #222222 !important;
     border-color: #222222 !important;
-	padding: 15px 25px;
+	padding: 15px 42px;
 	text-align: center;
 	text-decoration: none;
 	font-size: 10pt;
@@ -17989,7 +17989,7 @@ span.ui-spinner a.ui-spinner-button:nth-child(3):before {
 }
 
 #tax {
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 a:hover{

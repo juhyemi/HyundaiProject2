@@ -118,12 +118,15 @@ public class CartRestController {
 	     return totalprice;
 	}
 	
-	// 장바구니 삭제
-	/*
-	 * @Secured({"ROLE_MEMBER"})
-	 * 
-	 * @PostMapping("/delete") public void deleteCart()throws Exception{
-	 * 
-	 * }
-	 */
+	// 장바구니 전체삭제
+	  @Secured({"ROLE_MEMBER"})
+      @PostMapping("/deleteAll") 
+	  public void deleteAll(Principal prc){
+		  String mem_id=prc.getName();
+		  log.info(mem_id);
+		  cartservice.deleteAll(mem_id);
+		  
+	  }
+	 
+	
 }

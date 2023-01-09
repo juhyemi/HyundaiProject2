@@ -1102,15 +1102,15 @@ body.display #body.desktop.header-style-type-use-mobile-header div.document-back
 
 .shopProductDetail.wrapper #productDetail .top-info .content.info {
     width: 45%;
-    margin-left: 15%;
+    margin-left: 10%;
     margin-right: 0;
     text-align: left;
-    margin-top: 10%;
+    margin-top: 8%;
     padding-top: 0px;
 }
 
 .shopProductDetail.wrapper #productDetail .content.info .row {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .shopProductDetail.wrapper #productDetail .content.info .row.selectOptions {
@@ -2035,6 +2035,7 @@ span.ui-spinner a.ui-spinner-button {
     color: #ffffff !important;
     background-color: #222222 !important;
     border-color: #222222 !important;
+    width: 100%;
 }
 
 #body.button-type-normal .designSettingElement.button.outline {
