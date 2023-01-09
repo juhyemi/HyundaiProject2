@@ -408,7 +408,6 @@ th, td{
 <script type="text/javascript">
 
 function resellOrder(){
-	alert("버튼 확인")
 	
 	var sizeVal = $(".pro_opt_size.ec-product-selected > a > span").text();
 	$("#resellSize").val(sizeVal);
@@ -423,7 +422,10 @@ $(document).ready(function(){
 	
 	$(".pro_opt_size ").on("click", function(){
 		var sizeVal = $(this).find('span').text();
-		var proName = '<c:out value="${productDetail.pro_name}"/>'
+		//var proName = '<c:out value="${productDetail.pro_name}"/>'
+		var proName = `<c:out value="${productDetail.pro_name}" escapeXml="false" />`
+		//var proName = ${productDetail.pro_name};
+		
 		
 		let searchOBJ = {
 				"sizeVal" : sizeVal,
@@ -532,7 +534,8 @@ $(document).ready(function(){
 function showChart(){
 	
 	var sizeVal = $(".pro_opt_size.ec-product-selected > a > span").text();
-	var proName = '<c:out value="${productDetail.pro_name}"/>'
+	var proName = `<c:out value="${productDetail.pro_name}" escapeXml="false" />`
+	 //var proName = '<c:out value="${productDetail.pro_name}" />'
 	
 	let searchOBJ = {
 			"sizeVal" : sizeVal,
