@@ -385,49 +385,33 @@ function searchSubmit(inputId){
                         <label class="ePlaceholderEach required" title="받는사람*">
                            <input id="rname" name="rname" fw-filter="isFill"
                            fw-label="수취자 성명" fw-msg="" class="inputTypeText"
-                           placeholder="받는사람*" size="15" style="width:100px;" value="" type="text">
+                           placeholder="받는사람*" size="15" style="width:100px;" value="" type="text" required>
+                           <div class="err-msg">받는 사람 필수 입력값입니다.</div>
                         </label>
                      </div>
+                     
                        <!-------------------- 주문 ---->
-                      <div class="form-block flex-column-2 post-block">
+                           <div class="form-block flex-column-2 post-block">
 
 								<label class="ePlaceholderEach">
 									<p class="form-title">우편번호*</p> <input type="text"
-									id="sample6_postcode" name="order_post" placeholder="우편번호"> <!-- <input id="order_post" name="order_post" fw-filter="isFill" fw-label="수취자 주소1"
-									fw-msg="" class="inputTypeText" placeholder="우편번호*" size="40"
-									value="" type="text"> --> <!-- <input id="order_post"
-									name="order_post" fw-filter="isFill" fw-label="수취자 우편번호1"
-									fw-msg="" class="inputTypeText" placeholder="" size="6"
-									maxlength="6" readonly="1" value="" type="text"> 							
-									</label>
-								 <button type="button" class="btn btn-sm btn-gray-border btn-120"
-									onclick="execDaumPostcode();">
-									<span>우편번호 찾기</span>
-								</button>-->
+									id="sample6_postcode" name="order_post" placeholder="우편번호*"> 
 								</label>
 								 <input type="button" class="btn btn-sm btn-gray-border btn-120" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-							</div>
+					       </div>
 
+                                        
 							<div class="form-block form-submit-address">
 								<label class="ePlaceholderEach required" title="기본주소*">
 									<p class="form-title displaynone">기본주소*</p> <input type="text"
-									id="sample6_address" name="order_addr" placeholder="주소"><!-- <br>  --><input
-									type="text" id="sample6_extraAddress" placeholder="참고항목">
-									<!-- <input
-											id="order_addr" name="order_addr" fw-filter="isFill"
-											fw-label="수취자 주소1" fw-msg="" class="inputTypeText"
-											placeholder="기본주소*" size="40" style="width:300px;" value="" type="text"> -->
+									id="sample6_address" name="order_addr" placeholder="주소">						
 								</label>
 							</div>
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-							<!-- <div class="form-block form-submit-address">
-								<label class="ePlaceholderEach required" title="상세주소*">
-									<p class="form-title displaynone">상세주소*</p> <input id="raddr2"
-									name="raddr2" fw-filter="" fw-label="수취자 주소2" fw-msg=""
-									class="inputTypeText" placeholder="상세주소*" size="40" value=""
-									type="text">
-								</label>
-							</div> -->
+							
+							
+						
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소*" size="50" >
+						
                             <!-------------------- 주문 ---->
                            <div class=" ePlaceholderGroup" title="휴대전화*">
                               <div class="form-block phone-block flex-column-2 mt40">
@@ -445,10 +429,10 @@ function searchSubmit(inputId){
                                           <option value="019">019</option>
                                        </select>-<input id="rphone2_2" name="rphone2_[]" maxlength="4"
                                           fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호"
-                                          fw-alone="N" fw-msg="" size="4" value="" type="text">-<input
+                                          fw-alone="N" fw-msg="" size="4" value="" type="text" autocomplete="off">-<input
                                           id="rphone2_3" name="rphone2_[]" maxlength="4"
                                           fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호"
-                                          fw-alone="N" fw-msg="" size="4" value="" type="text">
+                                          fw-alone="N" fw-msg="" size="4" value="" type="text" autocomplete="off"> 
                                     </div>
                                  </label>
                               </div>
@@ -614,10 +598,10 @@ function searchSubmit(inputId){
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                   // document.getElementById("sample6_extraAddress").value = extraAddr;
                 
                 } else {
-                    document.getElementById("sample6_extraAddress").value = '';
+                    //document.getElementById("sample6_extraAddress").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
