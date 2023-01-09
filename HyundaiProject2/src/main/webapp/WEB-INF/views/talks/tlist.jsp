@@ -3,8 +3,6 @@
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
-<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet"  type="text/css"  href="${contextPath}/resources/css/talks/talksList.css">
 </head>
 <body class="magiedumatin">
@@ -23,16 +21,26 @@
                 </div>
     <div class="board-list-block">
                     <ul class="xans-element- xans-board xans-board-notice-1 xans-board-notice xans-board-1" style="margin-top: 0px;">
+                		
                         <li class="notice xans-record-">
-                            <a href="/talks/tcontent/0">Fashion Talks 안내사항</a>
-                            <span>2022-11-22</span>
+                            	<span style="width: 10%;">No</span>
+	                            <span style="width: 60%; text-align: center;">Title</span>
+	                            <span style="width: 10%; text-align: center;">Writer</span>
+	                            <span style="width: 10%; text-align: center;">Date</span>
+								<span style="width: 10%; text-align: center;">Views</span>
     </ul>
+    
     <ul class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1">
+   					
+                								
     <c:forEach var="tList" items="${talksList}">
 	    <li class="xans-record-">
-	                            <a href="/talks/tcontent/${tList.talks_id}"><c:out value="${tList.talks_title}" /></a>
-	                            <span><fmt:formatDate value="${tList.talks_regdate}" pattern="yyyy-MM-dd"/></span>
-	                        </li>
+	    						<span style="width: 10%;"><c:out value="${tList.talks_id }" /></span>
+	                            <span style="width: 60%; "><a href="/talks/tcontent/${tList.talks_id}"><c:out value="${tList.talks_title}" /></a></span>
+	                            <span style="width: 10%; text-align: center;"><c:out value="${tList.member_mem_id}" /></span>
+	                            <span style="width: 10%; text-align: center;"><fmt:formatDate value="${tList.talks_regdate}" pattern="yyyy-MM-dd"/></span>
+								<span style="width: 10%; text-align: center;"><c:out value="${tList.views}" /></span>
+	     </li>
     </c:forEach>
     </ul>
     </div>
@@ -45,23 +53,8 @@
     <form id="boardSearchForm" name="" action="/board/free/list.html" method="get" target="_top" enctype="multipart/form-data">
     <input id="board_no" name="board_no" value="1" type="hidden">
     <input id="page" name="page" value="1" type="hidden">
-    <input id="board_sort" name="board_sort" value="" type="hidden"><div class="xans-element- xans-board xans-board-search-1 xans-board-search xans-board-1 board-search-block "><ul>
-    <li class="search-date"><select id="search_date" name="search_date" fw-filter="" fw-label="" fw-msg="">
-    <option value="week">일주일</option>
-    <option value="month">한달</option>
-    <option value="month3">세달</option>
-    <option value="all">전체</option>
-    </select></li>
-                        <li class="search-key"><select id="search_key" name="search_key" fw-filter="" fw-label="" fw-msg="">
-    <option value="subject">제목</option>
-    <option value="content">내용</option>
-    <option value="writer_name">글쓴이</option>
-    <option value="member_id">아이디</option>
-    </select></li>
-                        <li class="search"><input id="search" name="search" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text"></li>
-                        <li class="search-btn"><button type="button" class="btn btn-sm btn-dark btn-full" onclick="BOARD.form_submit('boardSearchForm');"><span>SEARCH</span></button></li>
-                    </ul>
-    </div>
+    <input id="board_sort" name="board_sort" value="" type="hidden">
+
     </form></div>         
         </div> 
     </div>

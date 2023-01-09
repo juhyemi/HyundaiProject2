@@ -2,8 +2,6 @@ package com.chysk5.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.chysk5.domain.Criteria;
 import com.chysk5.domain.ProductDTO;
 import com.chysk5.domain.ProductImgDTO;
@@ -24,4 +22,6 @@ public interface ProductMapper {
 	public List<ProductDTO> getListWithPaging(Criteria cri);
 	
 	public int getTotalCount(Criteria cri);
+	
+	public List<ProductDTO> getNewIn();
 }

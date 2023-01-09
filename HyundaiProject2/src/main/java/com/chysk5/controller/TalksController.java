@@ -13,10 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.TalksDTO;
+import com.chysk5.domain.TalksImageDTO;
 import com.chysk5.service.TalksService;
 
 import lombok.RequiredArgsConstructor;
@@ -111,7 +115,7 @@ public class TalksController {
 		log.info(mem_id + " " + talks_title + " " + talks_content);
 		
 		int result = service.register(mem_id, talks_title, talks_content);
-		
+	
 		try {
 			if(result > 0) {
 				String msg = "<script>alert('작성이 완료되었습니다.'); location.href='/talks/tlist';</script>";
@@ -131,6 +135,31 @@ public class TalksController {
 		return entity;
 		
 	}
+	
+	//첨부파일 업로드
+	@PostMapping("/imageRegister")
+	public String imageRegister(TalksDTO talks, RedirectAttributes rttr) {
+		log.info("imageRegister: " + talks);
+		
+		if(talks.getAttachList() != null) {
+			talks.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
+		log.info("==================");
+		
+		service.imageRegister(talks);
+		rttr.addFlashAttribute("result", talks.getTalks_id());
+		return "redirect:/talks/list";
+	}
+	
+	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<TalksImageDTO>> getAttachList(String talks_talks_id) {
+		
+		log.info("getAttachList" + talks_talks_id);
+		return new ResponseEntity<>(service.getAttachList(talks_talks_id), HttpStatus.OK);
+	}
+	
 	
 
 }

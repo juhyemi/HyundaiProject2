@@ -6,8 +6,9 @@
 
 	<select id="getTalksList" resultType="com.chysk5.domain.TalksDTO">
 	
-		SELECT talks_id, talks_title, talks_regdate FROM talks
-		ORDER BY talks_regdate DESC
+		SELECT talks_id, talks_title, talks_regdate, member_mem_id, views
+		FROM talks
+		ORDER BY to_number(talks_id) DESC
 	
 	</select>
 	

@@ -18,10 +18,9 @@ public interface ProductService {
 	public List<ProductImgDTO> getProductImg(String pro_id);
 	
 	public List<ProductDTO> getProductSearch(String keyword);
-	
-	//public List<ProductDTO> getPageList(Criteria cri);
-	
+		
 	public int getTotal(Criteria cri);
 	
+	public List<ProductDTO> getNewIn();
 
 }
