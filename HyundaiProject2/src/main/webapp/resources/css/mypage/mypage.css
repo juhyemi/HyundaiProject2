@@ -422,6 +422,10 @@ table tr.vertical-middle th,table tr.vertical-middle td {
   position: relative;
 }
 
+.myshop-wrap .myshop-layout .contents-block .order-tab .menu li a:hover{
+	cursor: pointer;
+}
+
 .myshop-wrap .myshop-layout .contents-block .order-tab .menu li a sup {
   position: relative;
   top: 0;
@@ -430,6 +434,10 @@ table tr.vertical-middle th,table tr.vertical-middle td {
 
 .myshop-wrap .myshop-layout .contents-block .order-tab .menu li.selected a {
   color: #1E1E1E;
+}
+
+.myshop-wrap .myshop-layout .contents-block .order-tab .menu li.selected a:hover{
+	cursor: pointer;
 }
 
 .myshop-wrap .myshop-layout .contents-block .order-search-block {

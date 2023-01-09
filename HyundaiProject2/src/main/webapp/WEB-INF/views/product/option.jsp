@@ -90,6 +90,7 @@ $(document).ready(function(){
 				$('.basket-wrap-iframe').addClass('active');
 				$('html').addClass('fixed');
 				$('body').addClass('fixed');
+				cartCnt();
 			},
 			error : function() {
 				alert("카트 담기 실패");
@@ -99,7 +100,26 @@ $(document).ready(function(){
 	});
 });
 
-
+function cartCnt(){
+	var csrfHeadName="${_csrf.headerName}";
+    var csrfTokenValue="${_csrf.token}";
+    
+    $.ajax({
+    	url : '/cart/selCartCnt',
+    	type : 'post',
+    	beforeSend : function(xhr) {
+	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+	    },
+	    success : function(result){
+	    	$(".EC-Layout-Basket-count").text(result);
+	    	console.log("수량 ajax : " + result);
+	    },
+	    error : function(error){
+	    	console.log("수량 에러 : ");
+	    	console.log(error);
+	    }
+    });
+}
 
  </script>
 

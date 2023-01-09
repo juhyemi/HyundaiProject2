@@ -41,5 +41,8 @@ public interface CartMapper {
 	public String totalPrice(String mem_id);
 	
 	public void deleteAll(String mem_id);
+	
+	// 장바구니에 담겨있는 수량 select
+	public int selectCartCnt(String mem_id);
 }
 

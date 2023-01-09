@@ -2,7 +2,7 @@ table.type06 {
     border-collapse: collapse;
     text-align: left;
     line-height: 1.5;
-    margin: 20px 50px;
+    margin: 30px 20px 20px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,10 +99,11 @@ table.type06 .even {
 }
 
 .productName {
-	margin-top: 1%;
+	margin-top: 25px;
     margin-left: 50%;
     font-size: 25px;
     font-weight: bold;
+    margin-right: 40px;
 }
 
 .myResellInfo {
@@ -120,11 +121,11 @@ table {
 }
 
 #curPrice {
- margin-left:20%;
+ margin-left:10%;
 }
 
 .changePrice {
-	margin-top: 3%;
+	margin-top: 70px;
 	margin-left: 50%;
 }
 
@@ -149,7 +150,7 @@ caption {
 .regBtn{
 	color: white;
     margin-left: 3%;
-    height: 50px;
+    height: 45px;
     width: 120px;
 }
 

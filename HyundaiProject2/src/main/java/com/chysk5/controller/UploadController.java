@@ -84,48 +84,7 @@ public class UploadController {
 		return result;
 	}
 	
-	/*@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	@ResponseBody
-	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName) {
-		log.info("download file: " + fileName);
-		
-		FileSystemResource resource = new FileSystemResource("C:\\upload\\" + fileName);
-		
-		log.info("resource:  " + resource);
-		
-		if(resource.exists() == false) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-		String resourceName = resource.getFilename();
-		
-		String resourceOriginalName = resourceName.substring(resourceName.indexOf("_") + 1);
-		
-		HttpHeaders headers = new HttpHeaders();
-		try {
-			String downloadName = null;
-			if(userAgent.contains("Trident")) {
-				log.info("IE browser");
-				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8").replaceAll("\\+", " ");
-				log.info("Edge name: " + downloadName);
-			}else if(userAgent.contains("Edge")) {
-				log.info("Edge browser");
-				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8");
-			
-			}else {
-				log.info("Chrome brownser");
-				downloadName = new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1");
-			}
-			log.info("downloadName: " + downloadName);
-			
-			headers.add("Content-Disposition", "attachment; filename=" + downloadName);
-			
-		}catch(UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
-	}*/
-	
+
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type) {
@@ -154,7 +113,7 @@ public class UploadController {
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
-		log.info(uploadFile);
+//		log.info(uploadFile);
 		
 		List<AttachFileDTO> list = new ArrayList<>();
 		String uploadFolder = "C:\\upload";
@@ -168,16 +127,17 @@ public class UploadController {
 		}
 		
 		for(MultipartFile multipartFile : uploadFile) {
-			log.info("Upload File Name" + multipartFile.getOriginalFilename());
-			log.info("Upload File Size" + multipartFile.getSize());
-			
+//			log.info("Upload File Name" + multipartFile.getOriginalFilename());
+//			log.info("Upload File Size" + multipartFile.getSize());
+//			
 			AttachFileDTO attachDTO = new AttachFileDTO();
 			
 			String uploadFileName = multipartFile.getOriginalFilename();
 			
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") +1);
-			log.info("only file name: " + uploadFileName);
-			attachDTO.setFileName(uploadFileName);
+			/*
+			 * log.info("only file name: " + uploadFileName);
+			 */			attachDTO.setFileName(uploadFileName);
 			
 			UUID uuid = UUID.randomUUID();
 			
@@ -208,5 +168,6 @@ public class UploadController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	
 	}
+
 
 }

@@ -115,37 +115,46 @@ public class TalksController {
 	
 	// 글 작성
 	@PostMapping("register")
-	public ResponseEntity<String> register(@RequestParam String talks_title, @RequestParam String talks_content, Principal prc) throws Exception{
+	public ResponseEntity<String> register(TalksDTO talks, Principal prc) throws Exception{
 		log.info("register controller...........");
+		
+		String mem_id= prc.getName();
+		talks.setMember_mem_id(mem_id);
+		
+		log.info(talks);
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 		
-		String mem_id= prc.getName();
 		
-		log.info(mem_id + " " + talks_title + " " + talks_content);
+		//log.info(mem_id + " " + talks_title + " " + talks_content);
+	//	log.info("#########################################################################################");
+	//	log.info(talks);
 		
-		int result = service.register(mem_id, talks_title, talks_content);
+		//int result = service.register(mem_id, talks_title, talks_content);
 	
-		try {
-			if(result > 0) {
-				String msg = "<script>alert('작성이 완료되었습니다.'); location.href='/talks/tlist';</script>";
-				
-				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
-			}else {
-				throw new Exception();
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			
-			String msg = "<script>alert('작성이 실패되었습니다.'); location.href='/talks/tlist';</script>";
-			
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
-		}
+		/*
+		 * try { if(result > 0) { // if(talks.getAttachList() != null) { //
+		 * talks.getAttachList().forEach(attach -> log.info(attach)); //return
+		 * service.imageRegister(talks); // String msg =
+		 * "<script>alert('작성이 완료되었습니다.'); location.href='/talks/tlist';</script>"; //
+		 * entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK); // }else {
+		 * String msg =
+		 * "<script>alert('작성이 완료되었습니다.'); location.href='/talks/tlist';</script>";
+		 * entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK); // }
+		 * 
+		 * }else { throw new Exception(); } }catch(Exception e) { e.printStackTrace();
+		 * 
+		 * String msg =
+		 * "<script>alert('작성이 실패되었습니다.'); location.href='/talks/tlist';</script>";
+		 * 
+		 * entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST); }
+		 */
 		
 		return entity;
 	}
+
 /*
 	//첨부파일 업로드
 	@PostMapping("/imageRegister")

@@ -225,7 +225,7 @@
 </form>
 <script type="text/javascript">
 $(document).ready(function(){
-		
+	cartCnt();
 });
 
 function searchSubmit(inputId){
@@ -236,7 +236,7 @@ function searchSubmit(inputId){
 			alert("검색어를 입력해주세요");
 		}else{
 			$("#searchForm").submit();		  
-			}		 
+		}		 
 }
 
 function cartCnt(){
@@ -244,10 +244,22 @@ function cartCnt(){
     var csrfTokenValue="${_csrf.token}";
     
     $.ajax({
-    	url : ,
-    	
+    	url : '/cart/selCartCnt',
+    	type : 'post',
+    	beforeSend : function(xhr) {
+	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+	    },
+	    success : function(result){
+	    	$(".EC-Layout-Basket-count").text(result);
+	    	console.log("수량 ajax : " + result);
+	    },
+	    error : function(error){
+	    	console.log("수량 에러 : ");
+	    	console.log(error);
+	    }
     });
 }
+
  </script>
 <div class="gnb-dimmer"></div>
 <!-- // gnb -->

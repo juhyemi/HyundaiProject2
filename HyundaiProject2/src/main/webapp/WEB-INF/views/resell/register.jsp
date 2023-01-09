@@ -297,7 +297,7 @@
 
 
 							<br>
-							<div style="margin-top: 45px; margin-bottom: 60px;">
+							<div style="margin-top: 45px;">
 								<form action="" method="post">
 
 									<input id="input1" type="text"
@@ -312,20 +312,17 @@
 								</form>
 							</div>
    						
-							 
 							<!-- size modal창-->
 							<div class="background show" id="resellModal">
 								<div class="window">
 									<div class="popup">
 										<table class="type06">
-											<c:forEach var="resellPrice" items="${product.resellPrice}">
-											
-											
-												<tr style="border-bottom: 0.5px solid #222;">
+											<c:forEach var="resellPrice" items="${product.resellPrice}" varStatus="status">
+												<tr style="border-bottom: 0.5px solid #e2e2e2; height: 20px;">
+													<th scope="row" style="width: 50px;">${status.index+1}</th>
 													<th scope="row">${resellPrice.pro_opt_size}</th>
 													<td><fmt:formatNumber value="${resellPrice.re_price }" type="number"/></td>
 												</tr>
-											
 											</c:forEach>
 										</table>
 										<div id="closeModal">

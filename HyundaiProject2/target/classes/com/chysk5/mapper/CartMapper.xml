@@ -97,4 +97,11 @@ where p.pro_id= po.product_pro_id
 delete from cart where member_mem_id=#{mem_id}
 </delete>
 
+<!-- 장바구니에 담겨있는 수량 select -->
+<select id="selectCartCnt" resultType="int">
+	SELECT COUNT(*)
+	FROM cart
+	WHERE member_mem_id = #{mem_id}
+</select>
+
 </mapper>

@@ -84,7 +84,7 @@ public class TalksServiceimpl implements TalksService {
 	public List<TalksImageDTO> getAttachList(String talks_talks_id){
 		log.info("get Attach list by talks_id" + talks_talks_id);
 		
-		return attachMapper.findBytalksId(talks_talks_id);
+		return attachMapper.findBytalkstalksId(talks_talks_id);
 	}
 
 	// 조회수 증가
