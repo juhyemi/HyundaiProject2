@@ -33,7 +33,7 @@ th, td{
 				<div class="product-detail-wrap">
 					<div
 						class="xans-element- xans-product xans-product-detail detail-block">
-						<div class="product-imagees">
+						<div class="product-imagees" style=" margin-bottom: 20px;">
 							<div class="xans-element- xans-product xans-product-image ">
 
 								<div class="only-pc">
@@ -212,7 +212,7 @@ th, td{
 											
 											<c:forEach var="sizeDTO" items="${productDetail.listSize}">
 												
-												<li class="pro_opt_size" option_value="P0000FEI000A" title=""><a href="#none">
+												<li class="pro_opt_size" option_value="P0000FEI000A" title=""><a href="#" onclick="return false" >
 														<span id="sizeVal"><c:out value="${sizeDTO.pro_opt_size}" /></span>
 												</a></li>
 												
@@ -583,6 +583,9 @@ function showChart(){
 		      data.addRows(arrTotalPoint);
 
 		      var options = {
+		    		 
+		    		  
+		    
 		        chart: {
 		          title: '최근 2주 평균 가격' 
 		          
@@ -597,10 +600,21 @@ function showChart(){
 		        legend: {
 		            position: 'none'
 		        },
+		        /* 
+		        colors: ['black'],
+			     
+		        lineWidth:24,
+		         */
+		        
 		        series: {
 	      
-	                0: { color: 'black' }
+	                0:{ 
+	                	color : 'black', 
+	                	lineWidth: 5 
+	                } 
 	            },
+	            
+
 	            vAxis: {
 	            	  viewWindowMode: "explicit",   
 	            	  viewWindow: {min: 0}, 
@@ -610,9 +624,12 @@ function showChart(){
 	            	  format:'#,###원'
        	  
 	            	}
-
+	          
 		      };
 
+		      
+		      
+		      
 		      var chart = new google.charts.Line(document.getElementById('lineChart'));
 				
 

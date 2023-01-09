@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet"  type="text/css"  href="${contextPath}/resources/css/product/c1.css">
 <link rel="stylesheet"  type="text/css"  href="${contextPath}/resources/css/product/c2.css">
+
 </head>
 <body class="magiedumatin">
 <%@ include file="../include/header2.jsp"%>
@@ -46,29 +47,28 @@
     </div>
         <div class="only-pc">
             <div class="xans-element- xans-product xans-product-normalpaging paginate">
-    <a href="#none">&lt;&lt;</a>
-    <c:if test="${pageMaker.prev }">
-    	<li class="Paginate_button previous">
-    		<a href="#none">&lt;</a>
+    <!-- <a href="#none">&lt;&lt;</a> -->
+    <c:if test="${pageMaker.prev}">
+    	<li class="paginate_button previous">
+    		<a href="${pageMaker.startPage-1}">&lt;</a>
     	</li>
     </c:if>
     
     <c:forEach var="num" begin= "${pageMaker.startPage }" end = "${pageMaker.endPage }">
-    	<li class="paginate_button">
-    		<a href="# class="this xans-record-">${num }</a>
+    	<li class="paginate_button ${pageMaker.cri.pageNum ==num ? "active":""}">
+    		<a href="${num}" class="this xans-record-">${num}</a>
     	</li>
     </c:forEach>
     
-    <c:if test = "${pageMaker.next }">
-    <li class="paginate_button next">
-   	 <a href="#">&gt;</a>
-   	</li>
+    <c:if test = "${pageMaker.next}">
+	    <li class="paginate_button next">
+	   	 	<a href="${pageMaker.endPage+1}">&gt;</a>
+	   	</li>
    	</c:if>
-   	<a href="#">&gt;&gt;</a>
-    <form id="actionForm" action="/product/list" method="get">
-    	<input type = "hidden" name = "pageNum" value = "${pageMaker.cri.pageNum }">
-    	<input type = "hidden" name = "amount" value = "${pageMaker.cri.amount }">
-    	
+   	<!-- <a href="#">&gt;&gt;</a> -->
+    <form id="actionForm" action="/product/list/${category}" method="get">
+    	<input type = "hidden" name = "pageNum" value = "${pageMaker.cri.pageNum}">
+    	<input type = "hidden" name = "amount" value = "${pageMaker.cri.amount}">
     </form>
     </div>
         </div>
