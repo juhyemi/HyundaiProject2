@@ -253,7 +253,7 @@ $(document).ready(function(){
 											ec-dev-name="option1" ec-dev-class="ProductOption0"
 											class="ec-product-button" required="true">
 											<c:forEach var="sizeList" items="${sizeList }">
-												<li class="pro_opt_size" option_value="P0000FEI000A" name="${sizeList.pro_opt_size}"><a href="#none">
+												<li class="pro_opt_size" option_value="P0000FEI000A" name="${sizeList.pro_opt_size}"><a href="javascript:void(0)">
 														<span><c:out value="${sizeList.pro_opt_size }" /></span>
 												</a></li>
 											</c:forEach>
