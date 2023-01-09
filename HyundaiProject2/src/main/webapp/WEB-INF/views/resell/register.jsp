@@ -307,29 +307,11 @@
 									<!-- <input id="input3" type="submit"
 										value="최저가 순위보기" />  -->
 									<a href="#none" id="getRank" class="input2" onclick="getMyRank();"><span>순위 확인</span></a> <a
-										href="#none" class="input3" onclick="show_resell_modal();"><span>최저가
+										href="#none" class="input3" onclick="show_resell_modal(${product.resellPrice});"><span>최저가
 											순위보기</span></a>
 								</form>
 							</div>
    						
-   						  <c:if test="${fn:length(product.resellPrice) == 0}">
-							<!-- size modal창-->
-							<div class="background show" id="resellModal">
-								<div class="window">
-									<div class="popup">
-										<p style="height: 192px;">데이터 없음 </p>
-										<div id="closeModal">
-											<button type="button"
-												class="btn btn-order btn-dark btn-full close-resell-btn"
-												onclick="close_modal();">
-												<span id="closeModalPrice">창 닫기</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							</c:if>
-							
-							 <c:if test="${fn:length(product.resellPrice) > 0}">
 							<!-- size modal창-->
 							<div class="background show" id="resellModal">
 								<div class="window">
@@ -352,7 +334,7 @@
 									</div>
 								</div>
 							</div>
-							</c:if>
+						
 
 
 							<div id="showPriceRank"></div>
@@ -551,9 +533,14 @@
 
 
 	<script>
-function show_resell_modal() {
+function show_resell_modal(size) {
+	
+	if(size > 0) {
 	const resellModal = document.getElementById("resellModal")
 	resellModal.style.display = "flex"
+	} else if (size == 0) {
+		alert("등록된 개인상품이 없습니다.");
+	}
 }
 
 function close_modal() {
@@ -584,7 +571,10 @@ function close_modal() {
  $(".send_re_price").val(re_price);
  $(".send_pro_opt_id").val(pro_opt_id);
  $(".send_re_available").val(re_available);
- $(".reg_product").submit();
+ 
+ if(confirm("등록하시겠습니까?")) {
+ 	$(".reg_product").submit();
+ }
 	}
 
 </script>

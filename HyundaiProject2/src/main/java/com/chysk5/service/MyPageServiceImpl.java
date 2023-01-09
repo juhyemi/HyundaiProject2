@@ -96,8 +96,6 @@ public class MyPageServiceImpl implements MyPageService {
 					log.info("순위 :" + index);
 					resultList.get(i).setMy_rank(index);
 				}
-
-				
 				index++;
 			}
 
