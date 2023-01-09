@@ -23,8 +23,6 @@ public interface CartMapper {
 	// 카트 물품 존재 체크- 장바구니 담기시
 	public int checkCart(CartDTO Cart);
 	
-
-	
     // 카트에 물품 존재 할 시 장바구니 수량 증가
 	public void increaseCount(CartDTO Cart);
 	

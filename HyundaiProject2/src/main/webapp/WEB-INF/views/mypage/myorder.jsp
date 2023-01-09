@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/mypage.css">
@@ -28,14 +27,11 @@
 					<div class="menu-block">
 						<ul>
 							<li class="js-order active"><a href="/mypage/myorder">주문내역</a></li>
-
+							<li><a href="/mypage/myResell">나의 판매 목록</a></li>
 							<li class="js-board"><a
-								href="/board/consult/list.html?board_no=9">1:1 문의</a></li>
-							<li class="js-recent"><a
-								href="/product/recent_view_product.html">최근 본 상품</a></li>
-							<li><a href="#">나의 판매 목록</a></li>
+								href="/mypage/myarticle">내가 쓴 글</a></li>
 							<li class="js-modify"><a href="/mypage/modify">내 계정</a></li>
-							<li onclick="logoutSubmit();"><a href="#">로그아웃</a></li>
+							<li onclick="logoutSubmit();"><a href="javascript:void(0)">로그아웃</a></li>
 						</ul>
 						
 						<form id="logoutFrm" action="/member/logout" method="post">

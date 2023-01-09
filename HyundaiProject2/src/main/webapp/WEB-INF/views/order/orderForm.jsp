@@ -41,17 +41,19 @@ footer{
     var price1=parseInt($(this).val()); 
     totalprice+=price1;
     });
-   totalprice=totalprice.toLocaleString('ko-KR');    
-   var tag="";
-   tag+=`<div class="products-block-order"><div class="total-price-block"><div class="block summary"><ul>
-   <li class="price-title">상품 금액</li><li class="pro-price-total"><strong>\${totalprice}</strong></li>
-   </ul><ul class="displaynone"><li class="price-title">부가세</li><li class="price"><strong></strong></li>
-   </ul><ul><li class="price-title">배송비</li><li class="price"><strong>0</strong></li></ul>
-   </div><div class="block total"><ul><li class="price-title">전체합계</li><li class="price"><strong>\${totalprice}</strong></li>
-   </ul></div></div><!-- // total-price-block --><div class="order-btn-block"><button type="submit" class="btn btn-md btn-dark btn-full" id="btn_payment">
-   <input type="hidden" name="order_total_price" value=\${totalprice} >
-   <span id="total_order_sale_price_view">\${totalprice}</span> &nbsp; <span>결제하기</span></button>
-   </div></div>`
+
+	totalprice=totalprice.toLocaleString('ko-KR'); 	
+	var tag="";
+	tag+=`<div class="products-block-order"><div class="total-price-block"><div class="block summary"><ul>
+	<li class="price-title">상품 금액</li><li class="pro-price-total"><strong>\${totalprice}</strong></li>
+	</ul><ul class="displaynone"><li class="price-title">부가세</li><li class="price"><strong></strong></li>
+	</ul><ul><li class="price-title">배송비</li><li class="price"><strong>0</strong></li></ul>
+	</div><div class="block total"><ul><li class="price-title">전체합계</li><li class="price"><strong>\${totalprice}</strong></li>
+	</ul></div></div><!-- // total-price-block --><div class="order-btn-block"><button type="submit" class="btn btn-md btn-dark btn-full" id="btn_payment">
+	<input type="hidden" name="order_total_price" value=\${totalprice} >
+	<span id="total_order_sale_price_view">\${totalprice}</span> &nbsp; <span>결제하기</span></button>
+	</div></div>`
+
     $(".products-block-order").html(tag);
    //.리셀 주문 확인
     resell_order();
@@ -388,6 +390,7 @@ function searchSubmit(inputId){
                      </div>
                        <!-------------------- 주문 ---->
                       <div class="form-block flex-column-2 post-block">
+
 								<label class="ePlaceholderEach">
 									<p class="form-title">우편번호*</p> <input type="text"
 									id="sample6_postcode" name="order_post" placeholder="우편번호"> <!-- <input id="order_post" name="order_post" fw-filter="isFill" fw-label="수취자 주소1"
@@ -627,4 +630,5 @@ function searchSubmit(inputId){
     }
 </script>
 
-   <%@ include file="../include/footer.jsp"%>
+	<%@ include file="../include/footer.jsp"%>
+
