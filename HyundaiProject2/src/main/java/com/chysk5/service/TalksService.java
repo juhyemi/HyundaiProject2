@@ -19,4 +19,6 @@ public interface TalksService {
 	
 	public List<TalksImageDTO> getAttachList(String talks_id);
 
+	// 조회수 증가
+	public int updateViews(String talks_id);
 }

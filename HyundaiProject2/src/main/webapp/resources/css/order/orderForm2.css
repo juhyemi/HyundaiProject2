@@ -1,4 +1,4 @@
-html,
+ html,
 body,
 div,
 dl,
@@ -2246,9 +2246,9 @@ a {
 
 .orderform header .logo {
     display: block;
-    width: 226px;
-    height: 34px;
-    background-image: url("/img/common/logo-black.svg");
+    width: 190px;
+    height: 80px;
+    background-image: url("../../img/common/logo-black.png");
     background-repeat: no-repeat;
     background-position: 0 0;
     -webkit-background-size: 100% 100%;

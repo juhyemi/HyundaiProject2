@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +26,7 @@ import com.chysk5.service.MemberService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+import okhttp3.Headers;
 
 /*
  * 신수진 작성 
@@ -135,22 +137,67 @@ public class MemberController {
 	
 	// 비밀번호 찾기 Action
 	@PostMapping("/findPwd")
-	public MemberDTO findPwdAction(MemberDTO member, Model model) {
+	public ResponseEntity<String> findPwdAction(MemberDTO member, Model model) {
 		
-		log.info("find password action...." + member);
+		log.info("find password controller....");
 		
-		MemberDTO result = service.findPwd(member);
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 		
-		return result;
+		MemberDTO dto = service.findPwd(member);
+		
+		
+		try{
+			if(dto != null) {
+				String msg = "<script>alert('회원정보 확인이 완료되었습니다.'); location.href='/member/findPwd/" + dto.getMem_id() + "';</script>";
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+				
+			}else {
+				throw new Exception();
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('일치하는 회원정보가 없습니다.'); location.href='/member/findPwd';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
 	}
 	
-	@GetMapping("/pwdModify")
-	public void pwdModify() {}
+	// 비밀번호 변경 페이지로 이동
+	@GetMapping("/findPwd/{mem_id}")
+	public String pwdModify(@PathVariable("mem_id") String mem_id, Model model) {
+		
+		model.addAttribute("mem_id", mem_id);
+		
+		return "/member/pwdModify";
+	}
 	
+	// 비밀번호 변경
 	@PostMapping("/pwdModify")
-	public void pwdModifyAction(MemberDTO member) {
+	public ResponseEntity<String> pwdModifyAction(MemberDTO member) {
 		
 		log.info("modify password .... " + member);
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
+		
+		service.modifyPwd(member);
+		
+		try {
+			String msg = "<script>alert('비밀번호가 변경되었습니다. \\n로그인 페이지로 이동합니다.'); location.href='/member/login';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return entity;
 	}
 	
 	// 비밀번호 확인

@@ -80,7 +80,7 @@
 										<tr>
 											<th>총 구매 금액</th>
 											<td class="xans-element- xans-myshop xans-myshop-bankbook ">
-												<fmt:formatNumber type="number" maxFractionDigits="3" value="${totalOrderPrice}" /> (0회) <span class="js-limit-price"></span>
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${totalOrderPrice}" /> (<c:out value="${totalOrderCount}"/>회) <span class="js-limit-price"></span>
 											</td>
 
 										</tr>

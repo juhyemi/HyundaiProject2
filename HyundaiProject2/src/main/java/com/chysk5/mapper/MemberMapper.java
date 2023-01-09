@@ -27,6 +27,7 @@ public interface MemberMapper {
 	public MemberDTO findPwd(MemberDTO member);
 	
 	// 비밀번호 변경
+	public int modifyPwd(MemberDTO member);
 	
 	// 회원정보 변경
 	public void updateMember(MemberDTO member);

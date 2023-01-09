@@ -87,4 +87,13 @@ public class TalksServiceimpl implements TalksService {
 		return attachMapper.findBytalksId(talks_talks_id);
 	}
 
+	// 조회수 증가
+	@Override
+	public int updateViews(String talks_id) {
+
+		log.info("update views service.....");
+		
+		return mapper.updateViews(talks_id);
+	}
+
 }

@@ -15,6 +15,7 @@ public interface TalksMapper {
 	public int delete(@Param("talks_id") String talks_id, @Param("mem_id") String mem_id);
 	
 	public int register(@Param("mem_id") String mem_id, @Param("talks_title") String talks_title, @Param("talks_content") String talks_content);
-	
-
+		
+	// 조회수 증가
+	public int updateViews(String talks_id);
 }
