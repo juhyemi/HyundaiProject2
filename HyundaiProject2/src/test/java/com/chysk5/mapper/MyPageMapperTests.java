@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
-import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.domain.CancelProductDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -25,6 +24,7 @@ public class MyPageMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private MyPageMapper mapper;
 	
+	/*
 	@Test
 	public void testGetMyResellList() {
 		
@@ -35,6 +35,7 @@ public class MyPageMapperTests {
 			log.info("등록한 리셀 상품: " + a);
 		}
 	}
+	*/
 	
 	@Test
 	public void testModifyPrice() {
@@ -52,6 +53,7 @@ public class MyPageMapperTests {
 		}
 	}
 	
+	/*
 	@Test
 	public void testAllList() {
 		List<AllBuyProductDTO> list = mapper.getAllList("kb");
@@ -59,6 +61,18 @@ public class MyPageMapperTests {
 		for(AllBuyProductDTO a : list) {
 			log.info(a);
 		}
+		
+	}
+	*/
+	
+	@Test
+	public void testCancelList() {
+		
+		List<CancelProductDTO> list = mapper.getCancelList("kb", null, null);
+		for(CancelProductDTO a : list) {
+			log.info(a);
+		}
+		
 		
 	}
 }
