@@ -14,5 +14,6 @@ public interface TalksService {
 	
 	public int register(String mem_id, String talks_title, String talks_content);
 	
-
+	// 조회수 증가
+	public int updateViews(String talks_id);
 }

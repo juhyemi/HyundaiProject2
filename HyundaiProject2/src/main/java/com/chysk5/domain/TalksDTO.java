@@ -18,5 +18,6 @@ public class TalksDTO {
 	private String member_mem_id;
 	private String talks_loc;
 	private String talks_talks_id;
+	private String views;
 
 }

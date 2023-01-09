@@ -4,6 +4,23 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/mypage/myarticle.css">
 <link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".tab_class_cs").on("click", function(){
+		$(".tab_class").removeClass("selected");
+		$(this).addClass("selected");
+		$("#myTalks").css("display", "none");
+		$("#myReply").css("display", "block");
+	});
+	
+	$(".tab_class").on("click", function(){
+		$(".tab_class_cs").removeClass("selected");
+		$(this).addClass("selected");
+		$("#myTalks").css("display", "block");
+		$("#myReply").css("display", "none");
+	});
+});
+</script>
 </head>
 <body class="magiedumatin">
 	<%@ include file="../include/header2.jsp"%>
@@ -14,7 +31,7 @@
 				<div class="xans-element- xans-board xans-board-listpackage-9 xans-board-listpackage xans-board-9 myshop-wrap ">
 					<div class="xans-element- xans-myshop xans-myshop-asyncbenefit header ">
 						<h2>
-							Hello, <span><span class="xans-member-var-name">신수진</span></span>
+							Hello, <span><span class="xans-member-var-name"><sec:authentication property="principal.member.mem_name"/></span></span>
 						</h2>
 					</div>
 					<!-- myshop-layout -->
@@ -44,15 +61,16 @@
 				            </div>
 				            <div class="xans-element- xans-myshop xans-myshop-orderhistorytab order-tab ">
 				            	<ul class="menu">
-									<li class="tab_class selected"><a href="/myshop/order/list.html?history_start_date=2022-10-08&amp;history_end_date=2023-01-06&amp;past_year=2022">Fashion Talks <sup>(<span id="xans_myshop_total_orders">1</span>)</sup></a></li>
-							        <li class="tab_class_cs"><a href="/myshop/order/list.html?mode=cs&amp;history_start_date=2022-10-08&amp;history_end_date=2023-01-06&amp;past_year=2022">replies <sup>(<span id="xans_myshop_total_orders_cs">1</span>)</sup></a></li>
+									<li class="tab_class selected"><a href="javascript:void(0)">Fashion Talks <sup>(<span id="xans_myshop_total_orders">${fn:length(tList)}</span>)</sup></a></li>
+							        <li class="tab_class_cs"><a href="javascript:void(0)">replies <sup>(<span id="xans_myshop_total_orders_cs">${fn:length(rList)}</span>)</sup></a></li>
 							    </ul>
 							</div>
 
-							<div class="only-pc" style="margin-top: -1px;">
+							<!-- 내가 쓴 글 -->
+							<div id="myTalks" class="only-pc" style="margin-top: -1px;">
 								<table class="table-base">
 									<colgroup class="xans-element- xans-board xans-board-listheader-9 xans-board-listheader xans-board-9 ">
-										<col style="width: 200px;" class="">
+										<col style="width: 200px;">
 										<col style="width: auto;">
 										<col style="width: 200px;">
 									</colgroup>
@@ -62,11 +80,46 @@
 											<th scope="col">SUBJECT</th>
 											<th scope="col">WRITER</th>
 										</tr>
-										<tr style="background-color: #FFFFFF; color: #555555;" class="xans-record-">
-											<td class=""><span class="txtNum">2023-01-06</span></td>
-											<td class="subject left txtBreak"><a href="/article/11-문의/9/245258/" style="color: #555555;">문의</a> </td>
-											<td>신수진</td>
+										<c:forEach var="list" items="${tList}">
+											<tr style="background-color: #FFFFFF; color: #555555;" class="xans-record-">
+												<td class=""><span class="txtNum"><fmt:formatDate pattern="yyyy-MM-dd" value='${list.talks_regdate}'/></span></td>
+												<td class="subject left txtBreak"><a href="/talks/tcontent/${list.talks_id}" style="color: #555555;"><c:out value="${list.talks_title}"/></a> </td>
+												<td><c:out value="${list.member_mem_id}"/></td>
+											</tr>										
+										</c:forEach>
+									</thead>
+								</table>
+								<div class="xans-element- xans-board xans-board-empty-9 xans-board-empty xans-board-9 empty-icon-block line-bottom" style="display: none;">
+									<div class="inner"> 
+										<p>검색결과가 없습니다.</p>
+									</div>
+								</div>
+							</div>
+							
+							<!-- 내가 쓴 댓글 -->
+							<div id="myReply" class="only-pc" style="margin-top: -1px; display: none">
+								<table class="table-base">
+									<colgroup class="xans-element- xans-board xans-board-listheader-9 xans-board-listheader xans-board-9 ">
+										<col style="width: 200px;">
+										<col style="width: 300px;">
+										<col style="width: auto;">
+										<col style="width: 200px;">
+									</colgroup>
+									<thead class="xans-element- xans-board xans-board-listheader-9 xans-board-listheader xans-board-9 ">
+										<tr>
+											<th scope="col" class="">DATE</th>
+											<th scope="col">TITLE</th>
+											<th scope="col">CONTENT</th>
+											<th scope="col">WRITER</th>
 										</tr>
+										<c:forEach var="list" items="${rList}">
+											<tr style="background-color: #FFFFFF; color: #555555;" class="xans-record-">
+												<td class=""><span class="txtNum"><fmt:formatDate pattern="yyyy-MM-dd" value='${list.com_regdate}'/></span></td>
+												<td class="subject left txtBreak"><a href="/talks/tcontent/${list.talks_talks_id}" style="color: #555555;"><c:out value="${list.talks_title}"/></a> </td>
+												<td><a href="/talks/tcontent/${list.talks_talks_id}" style="color: #555555;"><c:out value="${list.com_content}"/></a></td>
+												<td><c:out value="${list.member_mem_id}"/></td>
+											</tr>										
+										</c:forEach>
 									</thead>
 								</table>
 								<div class="xans-element- xans-board xans-board-empty-9 xans-board-empty xans-board-9 empty-icon-block line-bottom" style="display: none;">
@@ -87,23 +140,6 @@
 										<input id="board_sort" name="board_sort" value="" type="hidden">
 										<div class="xans-element- xans-board xans-board-search-9 xans-board-search xans-board-9 ">
 											<ul>
-												<li class="search-date"><select id="search_date" name="search_date" fw-filter="" fw-label="" fw-msg="">
-														<option value="week">일주일</option>
-														<option value="month">한달</option>
-														<option value="month3">세달</option>
-														<option value="all">전체</option>
-												</select></li>
-												<li class="search-key"><select id="search_key" name="search_key" fw-filter="" fw-label="" fw-msg="">
-														<option value="subject">제목</option>
-														<option value="content">내용</option>
-														<option value="writer_name">글쓴이</option>
-														<option value="member_id">아이디</option>
-														<option value="nick_name">별명</option>
-												</select></li>
-												<li class="search"><input id="search" name="search" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text"></li>
-												<li class="search-btn"><button type="button" class="btn btn-sm btn-white btn-120" onclick="BOARD.form_submit('boardSearchForm');">
-														<span>SEARCH</span>
-													</button></li>
 											</ul>
 										</div>
 									</form>

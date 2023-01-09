@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.domain.ReplyDTO;
+import com.chysk5.domain.TalksDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -59,6 +61,49 @@ public class MyPageMapperTests {
 		for(AllBuyProductDTO a : list) {
 			log.info(a);
 		}
+	}
+	
+	// 총 구매 금액
+	@Test
+	public void testTotalOrderPrice() {
+		log.info("test total order price....");
 		
+		int result = mapper.totalOrderPrice("aaaa1");
+		
+		log.info("result : " + result);
+	}
+	
+	// 총 구매 횟수
+	@Test
+	public void testTotalOrderCount() {
+		log.info("test total order count.....");
+		
+		int result = mapper.totalOrderCount("jinjin");
+		
+		log.info("result : " + result);
+	}
+	
+	// 내가 쓴 글
+	@Test
+	public void testSelectMyTalks() {
+		log.info("test select my talks.....");
+		
+		List<TalksDTO> list = mapper.selectMyTalks("jinjin");
+		
+		for(TalksDTO a : list) {
+			log.info(a);
+		}
+	}	
+	
+	// 내가 쓴 댓글
+	@Test
+	public void testSelectMyReply() {
+		log.info("test select my reply.....");
+		
+		List<ReplyDTO> list = mapper.selectMyReply("jinjin");
+		
+		for(ReplyDTO a : list) {
+			log.info(a);
+		}
 	}
 }

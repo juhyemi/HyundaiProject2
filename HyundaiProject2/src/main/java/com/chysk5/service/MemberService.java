@@ -25,6 +25,9 @@ public interface MemberService {
 	// 비밀번호 찾기
 	public MemberDTO findPwd(MemberDTO member);
 	
+	// 비밀번호 변경
+	public int modifyPwd(MemberDTO member);
+	
 	// 회원 탈퇴
 	public int delMember(String mem_id);
 	

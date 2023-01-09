@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.domain.ReplyDTO;
 import com.chysk5.domain.SoldOutProductDTO;
+import com.chysk5.domain.TalksDTO;
 
 public interface MyPageMapper {
 
@@ -23,4 +25,13 @@ public interface MyPageMapper {
 	
 	// 총 구매 금액
 	public int totalOrderPrice(String mem_id);
+	
+	// 총 구매 횟수
+	public int totalOrderCount(String mem_id);
+	
+	// 내가 쓴 글 조회
+	public List<TalksDTO> selectMyTalks(String mem_id);
+	
+	// 내가 쓴 댓글 조회
+	public List<ReplyDTO> selectMyReply(String mem_id);
 }

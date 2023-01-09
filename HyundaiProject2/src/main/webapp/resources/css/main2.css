@@ -722,7 +722,7 @@ body.product-detail footer {
     z-index: 1000;
     width: 580px;
     height: 100vh;
-    padding: 60px 80px 0 80px;
+    padding: 110px 80px 0 80px;
     background-color: #fff;
     border-left: 1px solid #e5e5e5;
     opacity: 0;
@@ -4100,9 +4100,9 @@ body.magiedumatin header div.menu .link a:hover,body.magiedumatin header div.men
 }
 
 body.magiedumatin header .logo {
-    width: 213px;
-    height: 34px;
-    background-image: url("/img/common/logo-magiedumatin-white.svg");
+    width: 145px;
+    height: 66px;
+    background-image: url("../img/common/logo.png");
 }
 
 body.magiedumatin header .util li .util-search-block .flex input {

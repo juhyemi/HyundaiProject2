@@ -1,11 +1,11 @@
 @charset "UTF-8";
 .cscenter-wrap {
-  padding: 60px var(--wrap-padding) 0 var(--wrap-padding);
+  padding: 60px 380px 60px;
 }
 
 @media (max-width: 1280px) {
   .cscenter-wrap {
-      padding:60px var(--wrap-padding-md) 0 var(--wrap-padding-md);
+      padding:60px 150px;
   }
 }
 
@@ -24,7 +24,7 @@
 .cscenter-wrap .cscenter-layout {
   margin-top: 48px;
   display: grid;
-  grid-template-columns: repeat(12,minmax(10px,1fr));
+  grid-template-columns: repeat(10,minmax(10px,1fr));
   gap: 30px;
 }
 
@@ -114,14 +114,8 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  padding-bottom: 16px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #1E1E1E;
-}
-
-.cscenter-wrap .cscenter-layout .contents-block .title-block h2 {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
 }
 
 .cscenter-wrap .cscenter-layout .contents-block .title-block span a {
@@ -784,6 +778,7 @@
 .board-read-block .detail {
   padding: 32px 16px;
   border-bottom: 1px solid #E5E5E5;
+  min-height: 250px;
 }
 
 .board-read-block .attach {
@@ -792,7 +787,7 @@
 }
 
 .board-read-block .reply-block {
-  padding: 32px 16px;
+  padding: 32px 10px;
   border-bottom: 1px solid #E5E5E5;
 }
 
@@ -4994,4 +4989,141 @@ body.product-detail footer {
       -o-transform: translateX(100%);
       transform: translateX(100%);
   }
+}
+
+.CommentBox .comment_option {
+    position: relative;
+    padding-top: 16px;
+    margin-bottom: 11px;
+    overflow: hidden;
+    padding-left: 10px;
+}
+
+.CommentBox .comment_option .comment_title {
+    float: left;
+    margin-top: 3px;
+    margin-right: 12px;
+    font-size: 17px;
+}
+
+.CommentBox .comment_list .comment_area {
+    position: relative;
+    padding: 12px 23px 10px 10px;
+}
+
+.CommentBox .comment_list .CommentItem {
+    position: relative;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.CommentBox .comment_list .CommentItem:last-child {
+    border-bottom: 0;
+}
+
+.CommentBox .comment_list .comment_nick_box {
+    margin-bottom: 4px;
+}
+
+.CommentBox .comment_list .comment_nick_box .comment_nick_info {
+    display: inline-block;
+    position: relative;
+    font-size: 13px;
+    vertical-align: top;
+}
+
+.CommentBox .comment_list .comment_nick_box .comment_nickname {
+    font-weight: 600;
+}
+
+.CommentBox .comment_list .comment_text_box {
+    position: relative;
+    font-size: 13px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.CommentBox .comment_list .comment_text_box .comment_text_view {
+    overflow: hidden;
+}
+
+.CommentBox .comment_list .comment_info_box {
+    margin-top: 7px;
+    font-size: 12px;
+    color: #979797;
+}
+
+.CommentWriter {
+    margin: 12px 0 0px;
+    padding: 16px 10px 10px 18px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    box-sizing: border-box;
+    background: #ffffff;
+    height: 85px;
+}
+
+.CommentWriter .comment_inbox {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.CommentBox .comment_list+.CommentWriter {
+    margin-top: 10px;
+}
+
+.CommentWriter .comment_inbox_text {
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: block;
+    width: 100%;
+    min-height: 17px;
+    padding-right: 1px;
+    border: 0;
+    font-size: 13px;
+    -webkit-appearance: none;
+    resize: none;
+    box-sizing: border-box;
+    background: transparent;
+    color: #000000;
+    outline: 0;
+}
+
+
+.CommentWriter .attach_box {
+    float: left;
+    padding-top: 10px;
+}
+
+.CommentWriter .register_box {
+    float: right;
+}
+
+.CommentWriter .register_box .button {
+    display: inline-block;
+    min-width: 46px;
+    height: 34px;
+    line-height: 36px;
+    font-size: 13px;
+    color: #b7b7b7;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: top;
+}
+
+.register_box a:hover{
+	color: #b7b7b7 !important;
+}
+
+.title-block h2{
+	font-weight: 500;
+    font-size: 21px;
+    line-height: 1.1;
+    color: #1E1E1E;
+}
+
+.removeBtn:hover{
+	text-decoration: underline;
+	cursor: pointer;
 }

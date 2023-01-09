@@ -7,12 +7,6 @@
 <body class="magiedumatin">    
 <%@ include file="../include/header2.jsp"%>
 <script type="text/javascript">
-$(document).ready(function(){
-	
-	
-	
-	
-});
 
 function frmSubmit(){
 	if($("#passwd").val() != $("#user_passwd_confirm").val()){
@@ -30,6 +24,7 @@ function frmSubmit(){
 		<div id="contents">
 			<form id="findPasswdForm" action="/member/pwdModify" method="post" >
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="mem_id" value="${mem_id}"/>
 				<div
 					class="xans-element- xans-member xans-member-findpasswd member-wrap ">
 					<div class="title-block">
@@ -38,16 +33,16 @@ function frmSubmit(){
 					<div class="find-block">
 						<fieldset>
 							<div class="form-block mt20">
-								<label class="ePlaceholderEach required" title="비밀번호">
-									<p class="form-title">비밀번호</p> 
-									<input id="passwd" name="mem_pwd" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호*">
+								<label class="ePlaceholderEach required" title="새로운 비밀번호">
+									<p class="form-title">새로운 비밀번호</p> 
+									<input id="passwd" name="mem_pwd" autocomplete="off" maxlength="16" value="" type="password" placeholder="새로운 비밀번호*">
 								</label>
 							</div>
 
 							<div class="form-block email mt20" id="email_view" style="">
-								<label class="ePlaceholderEach required" title="비밀번호 확인">
-									<p class="form-title">비밀번호 확인</p> 
-									<input id="user_passwd_confirm" name="user_passwd_confirm" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호 확인*">
+								<label class="ePlaceholderEach required" title="새로운 비밀번호 확인">
+									<p class="form-title">새로운 비밀번호 확인</p> 
+									<input id="user_passwd_confirm" name="user_passwd_confirm" autocomplete="off" maxlength="16" value="" type="password" placeholder="새로운 비밀번호 확인*">
 								</label>
 							</div>
 

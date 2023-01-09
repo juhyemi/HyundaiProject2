@@ -46,10 +46,11 @@ div {
 #container {
   position: relative;
 }
-/* @media (max-width: 1280px)
+
+@media (max-width: 1280px)
 .cscenter-wrap {
-    padding: 60px var(--wrap-padding-md) 0 var(--wrap-padding-md);
-} */
+    padding: 60px 150px;
+}
 .cscenter-wrap {
  padding: 60px 380px;
 }

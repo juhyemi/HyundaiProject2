@@ -10,7 +10,7 @@
 </head>
  <%@ include file="../include/header2.jsp"%>
 
-<body>
+<body class="magiedumatin">
   <div id="gnb">
      <div class="dimmer"></div>
     <div class="menu-block depth1">

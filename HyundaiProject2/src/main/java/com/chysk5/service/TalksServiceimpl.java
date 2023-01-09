@@ -62,4 +62,13 @@ public class TalksServiceimpl implements TalksService {
 		return mapper.register(mem_id, talks_title, talks_content);
 	}
 
+	// 조회수 증가
+	@Override
+	public int updateViews(String talks_id) {
+
+		log.info("update views service.....");
+		
+		return mapper.updateViews(talks_id);
+	}
+
 }

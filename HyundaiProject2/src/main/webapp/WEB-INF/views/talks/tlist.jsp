@@ -6,6 +6,32 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
 <link rel="stylesheet"  type="text/css"  href="${contextPath}/resources/css/talks/talksList.css">
+<script type="text/javascript">
+// 조회수 증가
+function updateView(tno){
+	var csrfHeadName="${_csrf.headerName}";
+    var csrfTokenValue="${_csrf.token}";
+    
+	$.ajax({
+		url : '/talks/updateView',
+		type : 'post',
+		data : {
+			talks_id : tno
+		},
+		beforeSend : function(xhr) {
+	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+	    },
+	    success : function(result){
+	    	location.href="/talks/tcontent/"+tno;
+	    },
+	    error : function(error){
+	    	console.log(error);
+	    }
+	});
+	
+}
+	
+</script>
 </head>
 <body class="magiedumatin">
 <%@ include file="../include/header2.jsp"%>
@@ -30,8 +56,9 @@
     <ul class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1">
     <c:forEach var="tList" items="${talksList}">
 	    <li class="xans-record-">
-	                            <a href="/talks/tcontent/${tList.talks_id}"><c:out value="${tList.talks_title}" /></a>
+	                            <span><a href="javascript:void(0)" onclick="updateView('${tList.talks_id}');"><c:out value="${tList.talks_title}" /></a></span>
 	                            <span><fmt:formatDate value="${tList.talks_regdate}" pattern="yyyy-MM-dd"/></span>
+	                            <span>jinjin</span>
 	                        </li>
     </c:forEach>
     </ul>

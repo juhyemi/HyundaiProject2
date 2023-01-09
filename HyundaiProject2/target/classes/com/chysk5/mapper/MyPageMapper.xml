@@ -147,9 +147,6 @@
     ON A.order_no = B.order_no
     
 	</select>
-	
-	
-  
 
 	<!-- 총 구매 금액 -->
 	<select id="totalOrderPrice" resultType="int">
@@ -165,12 +162,27 @@
 		WHERE p.pro_opt_id = m.opt_id
 	</select>
 	
-	<!-- 주문 내역 조회 -->
-	<resultMap type="com.chysk5.domain.MyOrderDTO" id="myOrderMap">
-		<id property="mem_id" column="mem_id"/>
-		<result property="order_no" column="order_no"/>
-		<result property="order_date" column="order_date"/>
-		<result property="order_total_price" column="order_total_price"/>		
-	</resultMap>
+	<!-- 총 구매 횟수 -->
+	<select id="totalOrderCount" resultType="int">
+		SELECT COUNT(order_no)
+		FROM order_total
+		WHERE member_mem_id = #{mem_id}
+	</select>
+
+	<!-- 내가 쓴 글 조회 -->
+	<select id="selectMyTalks" resultType="com.chysk5.domain.TalksDTO">
+		SELECT talks_id, talks_title, talks_content, talks_regdate, member_mem_id
+		FROM talks
+		WHERE member_mem_id = #{mem_id}
+		ORDER BY talks_regdate desc
+	</select>
+	
+	<!-- 내가 쓴 댓글 조회 -->
+	<select id="selectMyReply" resultType="com.chysk5.domain.ReplyDTO">
+		SELECT com_id, com_content, com_regdate, talks_talks_id, r.member_mem_id, talks_title
+		FROM reply r, talks t
+		WHERE r.talks_talks_id = t.talks_id AND r.member_mem_id = #{mem_id}
+		ORDER BY com_regdate DESC
+	</select>
 	
   </mapper>

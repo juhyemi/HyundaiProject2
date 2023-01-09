@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.MemberDTO;
 import com.chysk5.domain.MyResellProductDTO;
+import com.chysk5.domain.ReplyDTO;
 import com.chysk5.domain.SoldOutProductDTO;
+import com.chysk5.domain.TalksDTO;
 import com.chysk5.service.MemberService;
 import com.chysk5.service.MyPageService;
 
@@ -45,9 +47,10 @@ public class MypageController {
 		String mem_id = prin.getName();
 		
 		int totalOrderPrice = service.totalOrderPrice(mem_id);
+		int totalOrderCount = service.totalOrderCount(mem_id);
 		
 		model.addAttribute("totalOrderPrice", totalOrderPrice);
-		
+		model.addAttribute("totalOrderCount", totalOrderCount);		
 	}
 	
 	// 주문내역 페이지로 이동
@@ -81,9 +84,19 @@ public class MypageController {
 	
 	// 내가 쓴 글 페이지로 이동
 	@GetMapping("/myarticle")
-	public void myarticle() {
+	public void myarticle(Principal prin, Model model) {
+		log.info("mytalks controller.....");
 		
+		String mem_id = prin.getName();
 		
+		List<TalksDTO> talksList = service.getMyTalks(mem_id);
+		log.info("mytalks list : " + talksList);
+		
+		List<ReplyDTO> replyList = service.getMyReply(mem_id);
+		log.info("myrelpy list: " + replyList);
+		
+		model.addAttribute("tList", talksList);
+		model.addAttribute("rList", replyList);
 	}
 	
 	// 회원 정보 수정 페이지로 이동

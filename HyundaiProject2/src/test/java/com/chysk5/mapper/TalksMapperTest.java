@@ -17,7 +17,8 @@ import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Log4j
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", 
+				"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 public class TalksMapperTest {
 	
 	@Setter(onMethod_ = @Autowired)
@@ -53,6 +54,16 @@ public class TalksMapperTest {
 //		log.info(resultPage);
 //		log.info("DELETE COUNT :" + mapper.delete("3"));
 //	}
+	
+	// 조회수 증가
+	@Test
+	public void testUpdateViews() {
+		log.info("test update views....");
+		
+		int result = mapper.updateViews("9");
+		
+		log.info("result : " + result);
+	}
 
 
 }

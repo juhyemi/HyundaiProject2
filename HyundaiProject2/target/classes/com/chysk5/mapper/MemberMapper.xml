@@ -66,8 +66,15 @@
 	<select id="findPwd" resultType="com.chysk5.domain.MemberDTO">
 		SELECT mem_id, mem_name, mem_email
 		FROM member
-		WHERE mem_id = ${mem_id} AND mem_name = ${mem_name} AND mem_email = ${mem_email}
+		WHERE mem_id = #{mem_id} AND mem_name = #{mem_name} AND mem_email = #{mem_email}
 	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="modifyPwd">
+		UPDATE member
+		SET mem_pwd = #{mem_pwd}
+		WHERE mem_id = #{mem_id}
+	</update>
 
 	<!-- 회원 탈퇴 -->
 	<delete id="deleteMember">
