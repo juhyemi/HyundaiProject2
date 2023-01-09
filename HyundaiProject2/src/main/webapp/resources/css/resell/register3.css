@@ -6,6 +6,8 @@ table.type06 {
   line-height: 1.5;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  height: 200px;
+  display: flex;
 }
 table.type06 th {
   width: 150px;
@@ -16,7 +18,7 @@ table.type06 th {
 }
 table.type06 td {
   width: 200px;
-  padding: 10px;
+  padding: 10px 30px;
   vertical-align: top;
 }
 

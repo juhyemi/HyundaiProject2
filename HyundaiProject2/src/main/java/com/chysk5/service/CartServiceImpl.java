@@ -99,6 +99,18 @@ public class CartServiceImpl implements CartSerivce {
 		mapper.deleteAll (mem_id);
 		
 	}
+
+	// 장바구니에 담겨있는 상품 수량
+	@Override
+	public int selectCartCnt(String mem_id) {
+
+		log.info("select cart cnt " + mem_id);
+		
+		int result = mapper.selectCartCnt(mem_id);
+		
+		log.info("select cart service result : " + result);
+		return result;
+	}
 	
 	
 }
