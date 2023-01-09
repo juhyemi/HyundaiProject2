@@ -3,6 +3,7 @@ package com.chysk5.controller;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.lang.Nullable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chysk5.domain.AllBuyProductDTO;
+import com.chysk5.domain.CancelProductDTO;
 import com.chysk5.domain.MemberDTO;
 import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.domain.SoldOutProductDTO;
@@ -52,16 +54,26 @@ public class MypageController {
 	
 	// 주문내역 페이지로 이동
 	@GetMapping("/myorder")
-	public String myorder(Principal prc, Model model) {
+	public String myorder(Principal prc, Model model, @Nullable String start_date, @Nullable  String end_date) {
 		
 		 String mem_id=prc.getName();
 		 
-		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id);
+		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id, start_date, end_date);
+		 List<CancelProductDTO> cancelList = service.getCancelList(mem_id, start_date, end_date);
+		 
+		 log.info("startDate 들어왔나? " + start_date);
+		 log.info("endDate 들어왔나? " + end_date);
+		 
 		 
 		 model.addAttribute("allList", allList);
+		 model.addAttribute("cancelList", cancelList);
 		 
 		 for(AllBuyProductDTO a : allList) {
 			 log.info(a);
+		 }
+		 
+		 for(CancelProductDTO a : cancelList) {
+			 log.info("취소 목록: " + a);
 		 }
 		 /*
 		 List<BuyProductDTO> buyResellList = service.getBuyProduct(mem_id);
@@ -101,15 +113,15 @@ public class MypageController {
 	
 	// 내가 등록한 상품 페이지 이동
 	@GetMapping("/myResell")
-	public String getMyResellList(Model model) {
+	public String getMyResellList(Model model, @Nullable String start_date, @Nullable  String end_date) {
 		log.info("MyResell 페이지 이동");
 			
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    User user = (User)authentication.getPrincipal();    
 	    String mem_id = user.getUsername();
 	    
-	    List<MyResellProductDTO> myResellList = service.getMyResellList(mem_id);
-	    List<SoldOutProductDTO> mySoldOutList = service.getSoldOutList(mem_id);
+	    List<MyResellProductDTO> myResellList = service.getMyResellList(mem_id, start_date, end_date);
+	    List<SoldOutProductDTO> mySoldOutList = service.getSoldOutList(mem_id, start_date, end_date);
 	    
 	    for(SoldOutProductDTO a : mySoldOutList) {
 	    	log.info("@@@@@@@@@@" + a);
@@ -141,5 +153,16 @@ public class MypageController {
 		service.modifyPrice(re_id, re_price);
 		
 		return "redirect:/mypage/myResell";
+	}
+	
+	//내가 구매한 상품 구매 취소
+	@PostMapping("myorder/cancel")
+	public String cancel(@RequestParam("order_no") String order_no, @RequestParam("pro_opt_id") String pro_opt_id) {
+		
+		log.info("주문취소 상품 id: " + pro_opt_id);
+		log.info("주문 취소 주문 id: " + order_no);
+		service.cancelOrder(pro_opt_id, order_no);
+		
+		return "redirect:/mypage/myorder";
 	}
 }

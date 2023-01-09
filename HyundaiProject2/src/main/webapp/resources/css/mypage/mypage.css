@@ -2470,7 +2470,9 @@ input[type=text],input[type=password] {
   -moz-appearance: none;
   appearance: none;
   padding: 8px 0;
+  /*
   background-color: #191919;
+  */
   border: none;
   border-bottom: 1px solid #e5e5e5;
   font-size: 13px;
@@ -5409,5 +5411,19 @@ body.product-detail footer {
 
   .prdList.grid1 li .description .summary {
       font-size: 13px;
+  }
+  
+  .itemslist {
+  	margin: 10px;
+  }
+  
+  .fText{
+  	background-color:white;
+  }
+  
+  .showResell {
+  	border: 1px;
+  	solid: red;
+  	color: red;
   }
 }

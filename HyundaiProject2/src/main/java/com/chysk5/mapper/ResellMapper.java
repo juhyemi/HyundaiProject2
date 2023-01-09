@@ -16,6 +16,7 @@ import com.chysk5.domain.ResellProductImgDTO;
 import com.chysk5.domain.ResellProductListDTO;
 import com.chysk5.domain.ResellProductSearchIdDTO;
 import com.chysk5.domain.ResellProductSizeDTO;
+import com.chysk5.domain.UpdateProductDTO;
 
 public interface ResellMapper {
 
@@ -25,7 +26,9 @@ public interface ResellMapper {
    public int register(RegResellProductDTO regResellProductDTO);
    public int getMyRank(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
    public int existData(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
-
+   public int updateRegStatus(@Param("pro_opt_id") String pro_opt_id, @Param("order_no") String order_no);
+//   public int updateRegStatus(UpdateProductDTO updateDTO);
+   
 	/* Resell 상품 리스트 불러오기 */
    public List<ResellProductListDTO> getResellProductList();
    public List<ResellProductImgDTO> getResellProductListImg(String proId);
