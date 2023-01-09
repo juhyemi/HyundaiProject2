@@ -14,8 +14,9 @@ public interface ResellService {
 
    public ResellProductInfoDTO getMyResellProduct(String pro_opt_id);
    public List<ResellPriceDTO> getPrice(String pro_opt_id);
-   public int register(RegResellProductDTO regResellProductDTO);
+   public int register(RegResellProductDTO regResellProductDTO, String order_no);
    public int getPriceRank(String pro_opt_id, int pInt);
+ //  public int updateRegStatus(String pro_opt_id, String order_no);
 
 	
    public List<ResellProductListDTO> getResellProductList();

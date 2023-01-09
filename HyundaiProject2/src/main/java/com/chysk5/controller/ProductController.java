@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.chysk5.domain.Criteria;
-import com.chysk5.domain.PageDTO;
 import com.chysk5.domain.ProductDTO;
 import com.chysk5.domain.ProductImgDTO;
 import com.chysk5.domain.ProductSizeDTO;
@@ -81,22 +79,22 @@ public class ProductController {
 		
 	}
 	
-//	//페이징
-//	@GetMapping("list")
-//	public String list(Criteria cri, Model model) {
-//		
-//		log.info("list: " + cri);
-//		model.addAttribute("list", service.getPageList(cri));
-//		model.addAttribute("pageMaker", new PageDTO(cri, 123));
-//		
-//		int total = service.getTotal(cri);
-//		
-//		log.info("total: " + total);
-//		
-//		model.addAttribute("pageMaker", new PageDTO(cri, total));
-//		
-//		return "product/list";
-//	}
+	//새상품 리스트
+		@GetMapping("newIn")
+		public String productList (Model model) {
 
+			log.info("call newInController........");
+
+
+			List<ProductDTO> nList = service.getNewIn();
+			
+			log.info(nList);
+			
+			model.addAttribute("nList", nList);
+			
+			
+			return "product/newIn";
+
+		}
 
 }

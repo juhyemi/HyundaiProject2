@@ -33,10 +33,12 @@
     color: #fff;
 }
 
+/*
 .header-banner-block .inner a:hover {
     color: #fff !important;
     text-decoration: underline;
 }
+*/
 
 .header-banner-block .inner .btn-close-dark {
     position: absolute;
@@ -1328,8 +1330,13 @@ a.line,a.underline {
     text-decoration: underline;
 }
 
+/*
 a:hover {
     color: #1E1E1E !important;
+}
+*/
+a:hover {
+ opacity: 0.8;   
 }
 
 body {
@@ -5028,4 +5035,8 @@ h1,h3 {
 
 .xans-layout-multishopshipping .worldshipLayer .select select {
     width: 100%;
+}
+
+.input2:hover{
+	color:red;
 }

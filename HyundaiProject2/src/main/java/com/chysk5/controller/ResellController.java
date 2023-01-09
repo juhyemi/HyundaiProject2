@@ -1,6 +1,7 @@
 package com.chysk5.controller;
 
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -91,9 +92,10 @@ public class ResellController {
 	
 
 	@GetMapping("/register")
-	public String getMyResellProduct(@RequestParam("pro_opt_id") String pro_opt_id, Model model){
+	public String getMyResellProduct(@RequestParam("pro_opt_id") String pro_opt_id, @RequestParam("order_no") String order_no, Model model){
 		
 		log.info("pro_opt_id: " + pro_opt_id);
+		log.info("order_no: " + order_no);
 		ResellProductInfoDTO resellProductInfoDTO = new ResellProductInfoDTO();
 		
 		resellProductInfoDTO = service.getMyResellProduct(pro_opt_id);
@@ -104,17 +106,28 @@ public class ResellController {
 		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_price());
 		
 		model.addAttribute("product", resellProductInfoDTO);
+		model.addAttribute("order_no", order_no);
 		
 		return "resell/register";
 	}
 	
+	/* 개인 상품 등록 */
 	@PostMapping("/register")
-	public String regMyResellProduct(RegResellProductDTO regResellProductDTO, RedirectAttributes rttr) {
+	public String regMyResellProduct(RegResellProductDTO regResellProductDTO, RedirectAttributes rttr, Principal prin, @RequestParam("order_no") String order_no) {
 		
+		
+		regResellProductDTO.setMember_mem_id(prin.getName());
 		log.info("register: " + regResellProductDTO);
-		service.register(regResellProductDTO);
-		rttr.addFlashAttribute("result");
-		return "redirect:/main";
+		log.info("order_no : " + order_no);
+		int result = service.register(regResellProductDTO, order_no);
+		
+		if(result == 1) {
+			rttr.addFlashAttribute("result");
+			return "redirect:/main";
+		}
+		//rttr.addFlashAttribute("result");
+		return "";
+		//return "redirect:/main";
 	}
 	
 	@ResponseBody
