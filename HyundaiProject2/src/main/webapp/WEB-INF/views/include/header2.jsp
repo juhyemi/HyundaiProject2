@@ -80,7 +80,7 @@
 			<li class="active"><a href="/" class="">
 					<span>Home</span>
 				</a></li>
-			<li><a href="/product/list.html?cate_no=45">
+			<li><a href="/product/newIn">
 					<span>New In</span>
 				</a></li>
 			<!-- <li><a href="/product/list.html?cate_no=66"><span style="color: red;">Black Friday</span></a></li> -->

@@ -81,6 +81,18 @@ public class ProductServiceImpl implements ProductService {
 		log.info("get total count serviceImpl.....");
 		return mapper.getTotalCount(cri);
 	}
-	
+	// new 상품목록 list
+	@Override
+	public List<ProductDTO> getNewIn() {
+		log.info("call newproductService...........");
+
+
+		List<ProductDTO> list = mapper.getNewIn();
+
+		log.info(list);
+
+		return mapper.getNewIn();
+
+	} 
 
 }

@@ -3,6 +3,7 @@ package com.chysk5.service;
 import java.util.List;
 
 import com.chysk5.domain.TalksDTO;
+import com.chysk5.domain.TalksImageDTO;
 
 public interface TalksService {
 	
@@ -14,5 +15,8 @@ public interface TalksService {
 	
 	public int register(String mem_id, String talks_title, String talks_content);
 	
+	public void imageRegister(TalksDTO talks);
+	
+	public List<TalksImageDTO> getAttachList(String talks_id);
 
 }

@@ -186,6 +186,7 @@ a:-webkit-any-link {
     cursor: pointer;
 }
 .board-list-block ul li span {
+  float: left;
   display: block;
   margin-top: 8px;
   font-weight: 400;
@@ -266,7 +267,7 @@ input, select, textarea {
   padding-top: 16px;
 }
 .board-search-block ul li.search input {
-  width: 100%;
+  width: 600px;
   height: 35px;
   border: 1px solid #DFDFDF;
   padding: 0 8px;
