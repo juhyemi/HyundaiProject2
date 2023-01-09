@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.OrderDTO;
 import com.chysk5.domain.ResellPriceSearchDTO;
+import com.chysk5.domain.ResellProductIdDTO;
 import com.chysk5.domain.productImageDTO;
 
 
@@ -35,5 +36,8 @@ public interface OrderMapper {
     // 이미지 얻기
     public productImageDTO getProductImage(ResellPriceSearchDTO resellDto);
     
+    public String getReproductOptId(String re_id);
+    
+    public void insertresellOrderDetail(@Param("order_no")String order_no,@Param("pro_opt_id")String pro_opt_id);
 }
 
