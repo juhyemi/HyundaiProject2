@@ -6,8 +6,8 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insertMember">
-		INSERT INTO member(mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth, mem_solar_cal)
-		VALUES (#{mem_id}, #{mem_pwd}, #{mem_name}, #{mem_phone}, #{mem_email}, #{mem_birth}, ${mem_solar_cal})
+		INSERT INTO member(mem_id, mem_pwd, mem_name, mem_phone, mem_email, mem_birth)
+		VALUES (#{mem_id}, #{mem_pwd}, #{mem_name}, #{mem_phone}, #{mem_email}, #{mem_birth})
 	</insert>
 	
 	<insert id="insertAuth">

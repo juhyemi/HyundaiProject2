@@ -61,8 +61,8 @@ function updateView(tno){
                 								
     <c:forEach var="tList" items="${talksList}">
 	    <li class="xans-record-">
-	    						<span style="width: 10%;"><a href="javascript:void(0)" onclick="updateView('${tList.talks_id}');"><c:out value="${tList.talks_title}" /></a></span>
-	                            <span style="width: 60%; "><a href="/talks/tcontent/${tList.talks_id}"><c:out value="${tList.talks_title}" /></a></span>
+	    						<span style="width: 10%;"><c:out value="${tList.talks_id}"/></span>
+	                            <span style="width: 60%; "><a href="javascript:void(0)" onclick="updateView('${tList.talks_id}');"><c:out value="${tList.talks_title}" /></a></span>
 	                            <span style="width: 10%; text-align: center;"><c:out value="${tList.member_mem_id}" /></span>
 	                            <span style="width: 10%; text-align: center;"><fmt:formatDate value="${tList.talks_regdate}" pattern="yyyy-MM-dd"/></span>
 								<span style="width: 10%; text-align: center;"><c:out value="${tList.views}" /></span>
@@ -88,5 +88,3 @@ function updateView(tno){
         </div>
     </div>
     <%@ include file="../include/footer.jsp"%>
-</body>
-</html>

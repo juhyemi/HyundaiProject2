@@ -235,8 +235,6 @@ function replyDel(rno){
 						});
 	</script>
 
-<%@ include file="../include/header2.jsp"%>
-
 	<div id="wrap">
 		<div id="container">
 			<div id="contents">
@@ -357,5 +355,3 @@ function replyDel(rno){
 		</div>
 	</div>
 	<%@ include file="../include/footer.jsp"%>
-</body>
-</html>
