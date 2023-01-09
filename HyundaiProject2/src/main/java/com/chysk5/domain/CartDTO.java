@@ -39,11 +39,10 @@ public class CartDTO {
 	private String pro_opt_size;
 	private String pro_opt_stock;
 	
-	
 	private String pro_loc;
 	
 	private String re_id;
-	
+
 	  public CartDTO(String member_mem_id, String product_option_pro_opt_id) {
 	  
 	  this.member_mem_id=member_mem_id;

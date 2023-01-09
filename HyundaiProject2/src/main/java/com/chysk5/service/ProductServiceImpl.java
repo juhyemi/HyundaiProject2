@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.chysk5.domain.Criteria;
+import com.chysk5.domain.ProductCriteria;
 import com.chysk5.domain.ProductDTO;
 import com.chysk5.domain.ProductImgDTO;
 import com.chysk5.domain.ProductSizeDTO;
@@ -22,16 +23,17 @@ public class ProductServiceImpl implements ProductService {
 
 	// 상품 목록 select 메소드
 	@Override
-	public List<ProductDTO> getPListDB(String category) {
+	public List<ProductDTO> getPListDB(String category,ProductCriteria criteria) {
 		log.info("call productService...........");
 
-		log.info(category);
+		log.info("category : "+category);
+		log.info("criteria : "+criteria);
 
-		List<ProductDTO> list = mapper.getPList(category);
+		List<ProductDTO> list = mapper.getPList(category,criteria);
 
 		log.info(list);
 
-		return mapper.getPList(category);
+		return list;
 
 	} 
 
@@ -69,18 +71,12 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 	
-//	@Override
-//	public List<ProductDTO> getPageList(Criteria cri) {
-//		log.info("call PageList serviceImpl....." + cri);
-//		
-//		return mapper.getPageList(cri);
-//	}
-	
 	@Override
-	public int getTotal(Criteria cri) {
+	public int getTotal(String category) {
 		log.info("get total count serviceImpl.....");
-		return mapper.getTotalCount(cri);
+		return mapper.getTotalCount(category);
 	}
+
 	// new 상품목록 list
 	@Override
 	public List<ProductDTO> getNewIn() {

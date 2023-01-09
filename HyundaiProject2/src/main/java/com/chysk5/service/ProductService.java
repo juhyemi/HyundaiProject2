@@ -3,13 +3,14 @@ package com.chysk5.service;
 import java.util.List;
 
 import com.chysk5.domain.Criteria;
+import com.chysk5.domain.ProductCriteria;
 import com.chysk5.domain.ProductDTO;
 import com.chysk5.domain.ProductImgDTO;
 import com.chysk5.domain.ProductSizeDTO;
 
 public interface ProductService {
 	
-	public List<ProductDTO> getPListDB(String category);
+	public List<ProductDTO> getPListDB(String category,ProductCriteria criteria);
 	
 	public ProductDTO getProductOption(String pro_id);
 	
@@ -18,8 +19,10 @@ public interface ProductService {
 	public List<ProductImgDTO> getProductImg(String pro_id);
 	
 	public List<ProductDTO> getProductSearch(String keyword);
-		
-	public int getTotal(Criteria cri);
+	
+	//public List<ProductDTO> getPageList(ProductCriteria cri);
+	
+	public int getTotal(String category);
 	
 	public List<ProductDTO> getNewIn();
 
