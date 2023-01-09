@@ -392,10 +392,6 @@ function modifyCnt(type,cartNo){
 											<strong id="pro-price_${cartlist.cart_no}" value="${cartlist.pro_price}"><fmt:formatNumber value="${cartlist.pro_price*cartlist.cart_amount}" pattern="#,###" /> <!-- 143,000 --></strong>
 										</div>
 
-										<div class="del">
-											<a href="javascript:void(0);"
-												onclick="Basket.deleteBasketItem(0);" target="_top"><span>Remove</span></a>
-										</div>
 
 									</div>
 								</div>
