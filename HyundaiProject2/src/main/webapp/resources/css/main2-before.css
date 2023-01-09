@@ -2644,7 +2644,7 @@ input[type=text],input[type=password] {
 }
 
 input:focus {
-  border-bottom: 1px solid #1e1e1e !important;
+  border-bottom: 1px solid #e5e5e5 !important;
 }
 
 input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,input:-webkit-autofill:active {

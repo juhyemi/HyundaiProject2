@@ -21,6 +21,7 @@
 <link rel="icon" href="${contextPath}/resources/img/common/favicon2.png">
 <link rel="stylesheet" type="text/css" href="../resources/css/main1.css">
 <link rel="stylesheet" type="text/css" href="../resources/css/main2.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2-before.css">
 <link rel="stylesheet" type="text/css"
 	href="../resources/css/order/orderForm1.css">
 <link rel="stylesheet" type="text/css"
@@ -45,7 +46,6 @@ footer{
 	tag+=`<div class="products-block-order"><div class="total-price-block"><div class="block summary"><ul>
 	<li class="price-title">상품 금액</li><li class="pro-price-total"><strong>\${totalprice}</strong></li>
 	</ul><ul class="displaynone"><li class="price-title">부가세</li><li class="price"><strong></strong></li>
-	</ul><ul><li class="price-title">할인금액</li><li class="price"><strong>-</strong><strong id="total_sale_price_view">0</strong></li>
 	</ul><ul><li class="price-title">배송비</li><li class="price"><strong>0</strong></li></ul>
 	</div><div class="block total"><ul><li class="price-title">전체합계</li><li class="price"><strong>\${totalprice}</strong></li>
 	</ul></div></div><!-- // total-price-block --><div class="order-btn-block"><button type="submit" class="btn btn-md btn-dark btn-full" id="btn_payment">
@@ -316,27 +316,31 @@ function searchSubmit(inputId){
 								<div class="form-block email-block flex">
 									<label class="ePlaceholder required">
 										<p class="form-title active" style="margin-bottom: 10px;">이름</p>
-										<div style="font: italic 1.4em/1.0em 돋움체;">
+										<div style="border-bottom: 1px solid #e5e5e5; width: 100px;">
 											<sec:authentication property="principal.member.mem_name" />
 										</div>
 									</label>
 								</div>
 							</div>
-							<div class="ePlaceholderGroup" title="휴대전화">
-								<div class="form-block email-block flex">
-									<label class="ePlaceholder required">
-										<p class="form-title active" style="margin-bottom: 10px;">휴대전화</p>
-										<div class="phone" style="font: italic 1.4em/1.0em 돋움체;">
-											<sec:authentication property="principal.member.mem_phone" />
+							<div class=" ePlaceholderGroup" title="휴대전화*">
+										<div class="form-block phone-block flex-column-2 mt40">
+											<label class="ePlaceholder required">
+												<p class="form-title active">휴대전화*</p>
+												<div class="phone">
+													<input id="rphone2_2" size="4" value="<sec:authentication property='principal.member.mobile1' />" type="text" disabled>
+													-
+													<input id="rphone2_2" size="4" value="<sec:authentication property='principal.member.mobile2' />" type="text" disabled>
+													-
+													<input id="rphone2_3" size="4" value="<sec:authentication property='principal.member.mobile3' />" type="text" disabled>
+												</div>
+											</label>
 										</div>
-									</label>
-								</div>
-							</div>
+									</div>
 							<div class="ePlaceholderGroup" title="이메일">
 								<div class="form-block email-block flex">
 									<label class="ePlaceholder required">
 										<p class="form-title active" style="margin-bottom: 10px;">이메일</p>
-										<div class="email" style="font: italic 1.4em/1.0em 돋움체;">
+										<div class="email" style="border-bottom: 1px solid #e5e5e5;">
 											<sec:authentication property="principal.member.mem_email" />
 										</div>
 									</label>
@@ -379,7 +383,7 @@ function searchSubmit(inputId){
 								<label class="ePlaceholderEach required" title="받는사람*">
 									<input id="rname" name="rname" fw-filter="isFill"
 									fw-label="수취자 성명" fw-msg="" class="inputTypeText"
-									placeholder="받는사람*" size="15" style="width:80px;" value="" type="text">
+									placeholder="받는사람*" size="15" style="width:100px;" value="" type="text">
 								</label>
 							</div>
 
@@ -537,11 +541,6 @@ function searchSubmit(inputId){
 							<ul class="displaynone">
 								<li class="price-title">부가세</li>
 								<li class="price"><strong></strong></li>
-							</ul>
-							<ul>
-								<li class="price-title">할인금액</li>
-								<li class="price"><strong>-</strong><strong
-									id="total_sale_price_view">0</strong></li>
 							</ul>
 							<ul>
 								<li class="price-title">배송비</li>

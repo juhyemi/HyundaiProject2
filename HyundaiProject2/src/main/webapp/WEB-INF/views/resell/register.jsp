@@ -1,48 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <%@ include file="../include/header.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="/js/slick/slick.css"
-	crossorigin="anonymous">
-
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/resell/register1.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/resell/register2.css">
-
-	<link rel="stylesheet" type="text/css" href="/resources/css/resell/register4.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/main1.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/main2.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/css/resell/register3.css">
-
-<link id="smartPopup" rel="stylesheet" type="text/css"
-	href="https://app4you.cafe24.com/SmartPopup/assets/css/front.css?vs=202103191120"
-	media="all">
-<link rel="stylesheet" type="text/css"
-	href="https://app4you.cafe24.com/SmartPopup/assets/uipack/slick/1.8.1/css/smart-popup.slick.css?vs=202103191120">
-<script
-	src="https://app4you.cafe24.com/SmartPopup/assets/uipack/slick/1.8.1/js/smart-popup.slick.js?vs=202103191120"></script>
-
-
+<link rel="stylesheet" type="text/css" href="/js/slick/slick.css" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/resources/css/resell/register1.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/resell/register2.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/resell/register4.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/resell/register3.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main2.css">
+<link id="smartPopup" rel="stylesheet" type="text/css" href="https://app4you.cafe24.com/SmartPopup/assets/css/front.css?vs=202103191120" media="all">
+<link rel="stylesheet" type="text/css" href="https://app4you.cafe24.com/SmartPopup/assets/uipack/slick/1.8.1/css/smart-popup.slick.css?vs=202103191120">
+<script	src="https://app4you.cafe24.com/SmartPopup/assets/uipack/slick/1.8.1/js/smart-popup.slick.js?vs=202103191120"></script>
 <script src="https://static.sixshop.com/resources/js/norequire/ssa.js"></script>
 
 <!--  
 <link rel="stylesheet" type="text/css"
 	href="https://contents.sixshop.com/uploadedFiles/67701/css/designSetting1672214543310.css"> -->
-
-
-
-<title>"${product.resellProductDTO.pro_name}"</title>
-
 </head>
-
-<body class="display display-home display desktop">
-
-	<%@ include file="../include/header2.jsp"%>
+<body class="display display-home display desktop magiedumatin">
+<%@ include file="../include/header2.jsp"%>
 
 	<div id="searchOptimizeTextDiv"
 		style="position: absolute !important; top: -999999px !important; left: -999999px !important"></div>
@@ -295,7 +272,7 @@
 						<div id="shopProductContentInfo"
 							class="content clearfix info align_left">
 							<div id="shopProductNameWrapper" class="row">
-								<h1 id="shopProductName"
+								<h1 id="shopProductName" style="font-size: 40px;"
 									class="row name designSettingElement productName">${product.resellProductDTO.pro_name}
 								</h1>
 
@@ -307,7 +284,7 @@
 
 
 
-							<div id="resellProduct">
+							<div id="resellProduct" style="margin-top: 55px;">
 								<span id="resellProductCaption" class="resellProductCaption">
 									<span class="size">${product.resellProductDTO.pro_opt_size}</span>
 								</span> <span id="resellProductCaption" class="resellProductCaption">
@@ -320,7 +297,7 @@
 
 
 							<br>
-							<div>
+							<div style="margin-top: 45px; margin-bottom: 60px;">
 								<form action="" method="post">
 
 									<input id="input1" type="text"
