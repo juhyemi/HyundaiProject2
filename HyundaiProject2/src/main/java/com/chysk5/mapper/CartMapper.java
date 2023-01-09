@@ -40,5 +40,6 @@ public interface CartMapper {
 	
 	public String totalPrice(String mem_id);
 	
+	public void deleteAll(String mem_id);
 }
 

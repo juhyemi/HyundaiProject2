@@ -58,10 +58,8 @@ public class OrderController {
 	@Secured({"ROLE_MEMBER"})
 	public String resellOrderForm(ResellPriceSearchDTO dto, Model model) {
 		
-		log.info("#########################resellOrderForm 컨트롤러 호출 ");
-		
-		log.info(dto);
-	
+		log.info("#########################resellOrderForm 컨트롤러 호출 ");		
+		log.info(dto);	
 		List<CartDTO>orderFormList = service.resellOrderFormList(dto);
 		String order_resell_check= "1";//리셀 상품인경우가 1이었나???? 뭐였지 ㅋㅋ
 		model.addAttribute("orderReselCheck",order_resell_check);
@@ -89,6 +87,7 @@ public class OrderController {
          List<CartDTO>cart=service.orderComplete(order,mem_id,order_resell_check,re_id);
          log.info("주문 완료 서비스 완료");
          //장바구니 상품만 삭제
+ 
          if(order_resell_check==0) {
          cart.forEach(of->service.orderDelete(mem_id,of));	 
          log.info("주문시 장바구니 삭제 완료");
