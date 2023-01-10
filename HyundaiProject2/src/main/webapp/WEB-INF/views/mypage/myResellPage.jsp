@@ -475,9 +475,19 @@ function modifyPrice(re_id, index) {
 	og_price = og_price.replace(",", "");
 	console.log(og_price);
 	
+	var tmpPrice = parseInt(og_price);
+	
+	if(tmpPrice % 100 == 0) {
+	
     $(".modify_re_id").val(re_id);
   	$(".modify_re_price").val(og_price);
-  	$(".modify_price").submit();
+  	
+  	if(confirm("판매 가격을 수정하시겠습니까?")) {
+  		$(".modify_price").submit();
+	}}
+	else {
+		alert("100원 단위로 입력해주세요.");
+	}
 }
 
 </script>

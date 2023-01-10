@@ -307,7 +307,7 @@
 									<!-- <input id="input3" type="submit"
 										value="최저가 순위보기" />  -->
 									<a href="#none" id="getRank" class="input2" onclick="getMyRank();"><span>순위 확인</span></a> <a
-										href="#none" class="input3" onclick="show_resell_modal(${product.resellPrice});"><span>최저가
+										href="#none" class="input3" onclick="show_resell_modal(${fn:length(product.resellPrice)});"><span>최저가
 											순위보기</span></a>
 								</form>
 							</div>
@@ -535,6 +535,8 @@
 	<script>
 function show_resell_modal(size) {
 	
+	console.log("size : " + size);
+	
 	if(size > 0) {
 	const resellModal = document.getElementById("resellModal")
 	resellModal.style.display = "flex"
@@ -597,6 +599,8 @@ function getMyRank() {
 	with_tax = with_tax.toLocaleString("ko-KR");
 	
 	console.log(og_price, og_comma,with_tax, tmpPrice); 
+	
+	if(og_price != "") {
 	     
 	$.ajax({
 		type: "get",
@@ -621,8 +625,15 @@ function getMyRank() {
 		error: function() {
 			alert("ajax 통신 실패");
 		}
-	})
+	})}
+	else if(og_price == ""){
+		alert("가격을 입력하세요.");
 	}
+	
+	
+	}
+	
+	
 
 
 
