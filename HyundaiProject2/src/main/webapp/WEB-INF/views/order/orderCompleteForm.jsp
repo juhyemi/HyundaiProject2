@@ -189,7 +189,7 @@
               <div class="title-block">
                 <h2><sec:authentication property="principal.member.mem_name" />님의 주문이 완료되었습니다.</h2>
               </div>
-              <p class="desc-block">주문내역 및 배송에 관한 안내는 <a href="/myshop/order/list.html" class="line">주문내역</a>을 통하여
+              <p class="desc-block">주문내역 및 배송에 관한 안내는 <a href="/mypage/myorder" class="line">주문내역</a>을 통하여
                 가능합니다.</p>
             </div>
             <div class="detail-block">
