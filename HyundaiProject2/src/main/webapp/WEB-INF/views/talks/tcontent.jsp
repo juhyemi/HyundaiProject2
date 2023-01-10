@@ -258,10 +258,15 @@ function replyDel(rno){
 									</ul>
 									<div class="detail">
 										<div class="fr-view fr-view-article">
-
-											<p>
+											<div class="imgbox">
+												<img src="/resources/images/1.jpg"/>
+												<img src="/resources/images/1.jpg"/>
+											</div>
+											
+											<p style="text-align: center; margin-top: 20px;">
 												<strong><span style="font-size: 14px;">${talksContent.talks_content}</span></strong>
 											</p>
+											
 
 										</div>
 									</div>
