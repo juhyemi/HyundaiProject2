@@ -559,23 +559,35 @@ function close_modal() {
 	function regResell(){
 // let member_mem_id = "chung"; 여기서 회원 정보 안보냄
 // let re_id = "10"; // 시퀀스 사용
+
+
  let re_price = document.getElementById("input1").value;
  let pro_opt_id = $("#btn_buyNow").data("prooptid");
  let re_available = "0"; 
  
  re_price = re_price.replace(',','');
  
+ var tmpPrice = parseInt(re_price); 
+ 
  console.log(re_price);
  console.log(pro_opt_id);
  console.log(re_available);
+ 
+ if(tmpPrice % 1000 == 0) {
  
 
  $(".send_re_price").val(re_price);
  $(".send_pro_opt_id").val(pro_opt_id);
  $(".send_re_available").val(re_available);
  
+
+ 
  if(confirm("등록하시겠습니까?")) {
  	$(".reg_product").submit();
+ }
+ } 
+ else {
+	 alert("1000원 단위로 입력하세요.");
  }
 	}
 
@@ -600,14 +612,13 @@ function getMyRank() {
 	
 	console.log(og_price, og_comma,with_tax, tmpPrice); 
 	
-	if(og_price != "") {
 	     
 	$.ajax({
 		type: "get",
 		url: "/resell/register/myRank",
 		data: productInfo,
 		success: function(data) {
-			if(tmpPrice % 100 == 0) {
+			if(tmpPrice % 1000 == 0) {
 				if(data == 1) {
 					$("#showPriceRank").text("최저가 입니다. 빠른 판매를 원하시면 해당 가격으로 설정하세요");
 					$("#product-order-total-quantity").text(og_comma);
@@ -618,17 +629,14 @@ function getMyRank() {
 					$("#product-order-total-price").text(with_tax);
 					}
 			} else {
-				alert("100원 단위로 입력하세요.");
+				alert("1000원 단위로 입력하세요.");
 			}
 			},
 
 		error: function() {
-			alert("ajax 통신 실패");
+			alert("단위에 맞춰서 입력하세요.");
 		}
-	})}
-	else if(og_price == ""){
-		alert("가격을 입력하세요.");
-	}
+	})
 	
 	
 	}

@@ -477,7 +477,7 @@ function modifyPrice(re_id, index) {
 	
 	var tmpPrice = parseInt(og_price);
 	
-	if(tmpPrice % 100 == 0) {
+	if(tmpPrice % 1000 == 0) {
 	
     $(".modify_re_id").val(re_id);
   	$(".modify_re_price").val(og_price);
@@ -486,7 +486,7 @@ function modifyPrice(re_id, index) {
   		$(".modify_price").submit();
 	}}
 	else {
-		alert("100원 단위로 입력해주세요.");
+		alert("1000원 단위로 입력해주세요.");
 	}
 }
 
