@@ -7,10 +7,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.chysk5.domain.TalksDTO;
-import com.chysk5.service.TalksService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -46,14 +44,57 @@ public class TalksMapperTest {
 		
 	}
 	
-//	@Test
-//	public void deleteTest() throws Exception {
-//		
-//		String resultPage = delete.perform(MockMvcRequestBuilders.post("talks/delete").param("talks_id", "3")
-//				).andReturn().getTalksList().getViewName();
-//		log.info(resultPage);
-//		log.info("DELETE COUNT :" + mapper.delete("3"));
-//	}
+	@Test
+	public void deleteTest() throws Exception {
+		
+		
+		
+	}
+	
+	@Test
+	public void register() {
+		log.info("selectTalksList...............");
+		
+		TalksDTO talks = new TalksDTO();
+		talks.setMember_mem_id("baby");
+		talks.setTalks_title("jldk");
+		talks.setTalks_content("a;skdfj;lk");
+		
+		int i = mapper.register(talks);
+		
+		log.info(i);
+		
+	}
+	
+	@Test
+	public void testFindTalksId() {
+		log.info("findTalksId...............");
+		
+		TalksDTO talks = new TalksDTO();
+		talks.setMember_mem_id("baby");
+		talks.setTalks_title("첨부파일,,");
+		talks.setTalks_content("아니 첨부파일,,");
+		
+		int i = mapper.findTalksId(talks);
+		
+		log.info(i);
+		
+	}
+	
+	// 첨부파일 사진 가져오기
+	@Test
+	public void getImg() {
+		log.info("getImg...............");
+		
+		TalksDTO talks = new TalksDTO();
+		
+		String talks_id = "43";
+		
+		
+		
+	}
+	
+	
 	
 	// 조회수 증가
 	@Test

@@ -3,6 +3,7 @@ package com.chysk5.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chysk5.domain.TalksDTO;
 import com.chysk5.domain.TalksImageDTO;
@@ -58,33 +59,10 @@ public class TalksServiceimpl implements TalksService {
 	
 	//talks 게시판 글 등록
 	@Override
-	public int register(String mem_id, String talks_title, String talks_content) {
-		log.info("registerTalks.........." + talks_title);
-		log.info("registerTalks.........." + talks_content);
+	public int register(TalksDTO talks) {
+		log.info("registerTalks..........");
 		
-		return mapper.register(mem_id, talks_title, talks_content);
-	}
-	
-	//talks 첨부파일 등록
-	@Override
-	public void imageRegister(TalksDTO talks) {
-		
-		log.info("imageRegister.........." + talks);
-		
-		if(talks.getAttachList() == null || talks.getAttachList().size() <= 0) {
-			return;
-		}
-		talks.getAttachList().forEach(attach ->{
-			attach.setTalks_talks_id(talks.getTalks_id());
-			attachMapper.insert(attach);
-		
-		});
-	}
-	@Override
-	public List<TalksImageDTO> getAttachList(String talks_talks_id){
-		log.info("get Attach list by talks_id" + talks_talks_id);
-		
-		return attachMapper.findBytalkstalksId(talks_talks_id);
+		return mapper.register(talks);
 	}
 
 	// 조회수 증가
@@ -95,5 +73,40 @@ public class TalksServiceimpl implements TalksService {
 		
 		return mapper.updateViews(talks_id);
 	}
+	
+	// talks_id 찾기
+	@Override
+	public int findTalksId(TalksDTO talks) {
+		log.info("findTalksId service...............");
+		
+		return mapper.findTalksId(talks);
+	}
+	// 첨부파일 가져오기
+	@Override
+	public List<TalksImageDTO> getImg(String talks_id){
+		log.info("get attachImg.........");
+		
+		return mapper.getImg(talks_id);
+	}
+
+	// 첨부파일 삽입
+	@Transactional
+	@Override
+	public void registerImage(TalksDTO talks) {
+		log.info("registerImage........");
+		
+		if(talks.getAttachList() == null || talks.getAttachList().size() <= 0) {
+			return; 
+		}
+		talks.getAttachList().forEach(attach -> {
+			log.info("이것이 문제입니까?");
+			attach.setTalks_talks_id(talks.getTalks_id());
+			log.info(attach);
+			mapper.registerImage(attach);
+			
+		});
+		
+	}
+	
 
 }
