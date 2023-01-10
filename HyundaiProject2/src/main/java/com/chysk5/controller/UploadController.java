@@ -68,7 +68,7 @@ public class UploadController {
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
 		log.info("fileName: " + fileName);
-		File file = new File("C:\\upload\\" + fileName);
+		File file = new File("C:\\dev64\\workspace-project\\HyundaiProject2\\src\\main\\webapp\\resources\\images\\talksImgs\\" + fileName);
 		
 		log.info("file: " + file);
 		ResponseEntity<byte[]> result = null;
@@ -116,7 +116,7 @@ public class UploadController {
 //		log.info(uploadFile);
 		
 		List<AttachFileDTO> list = new ArrayList<>();
-		String uploadFolder = "C:\\upload";
+		String uploadFolder = "C:\\dev64\\workspace-project\\HyundaiProject2\\src\\main\\webapp\\resources\\images\\talksImgs";
 		
 		String uploadFolderPath = getFolder();
 		

@@ -23,14 +23,14 @@
 				 $("#btnDel").hide();
 				
 			}else{ */
-			$("#btnDel").click(function() {
+		/*0110	$("#btnDel").click(function() {
 				var answer = confirm('해당 글을 삭제하시겠습니까?');
 				if (answer) {
 
 					$("#deleteForm").submit();
 
 				}
-			});
+			}); 0110*/
 
 			/* 	} */
 
@@ -250,35 +250,40 @@ function replyDel(rno){
 							<div class="xans-element- xans-board xans-board-read-1 xans-board-read xans-board-1 ">
 								<div class="board-read-block">
 									<ul class="title">
-										<li>
-											<a href="javascript:void(0)">${talksContent.talks_title}</a> <span>${talksContent.member_mem_id }</span> 
-											<span style="width: 50%; float:left;"><fmt:formatDate value="${talksContent.talks_regdate}" pattern="yyyy-MM-dd" /></span>
-											<span style="text-align: right;">Views <c:out value="${talksContent.views}"/></span>
-										</li>
+										<li><a href="javascript:void(0)">${talksContent.talks_title}</a> <span>${talksContent.member_mem_id }</span> <span style="width: 50%; float: left;"><fmt:formatDate value="${talksContent.talks_regdate}" pattern="yyyy-MM-dd" /></span> <span style="text-align: right;">Views <c:out value="${talksContent.views}" /></span></li>
 									</ul>
 									<div class="detail">
 										<div class="fr-view fr-view-article">
+											<div class="imgbox">
 
-											<p>
+												<c:forEach var="list" items="${list }">
+													<img src="${contextPath}/resources/images/talksImgs/${list.uuid }_${list.filename}"/>
+												</c:forEach>
+											</div>
+
+											<p style="text-align: center; margin-top: 20px;">
 												<strong><span style="font-size: 14px;">${talksContent.talks_content}</span></strong>
 											</p>
+											
 
 										</div>
 									</div>
 
 									<div class="CommentBox">
 										<div class="comment_option">
-											<h3 class="comment_title">댓글 (<span id="replyLen">3</span>)</h3>
+											<h3 class="comment_title">
+												댓글 (<span id="replyLen">3</span>)
+											</h3>
 										</div>
-										
+
 										<ul class="comment_list">
-												
+
 										</ul>
-										
-										
+
+
 										<div class="CommentWriter">
 											<div class="comment_inbox">
-												<textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden; overflow-wrap: break-word; height: 20px;"  spellcheck="false"></textarea>
+												<textarea placeholder="댓글을 남겨보세요" rows="1" class="comment_inbox_text" style="overflow: hidden; overflow-wrap: break-word; height: 20px;" spellcheck="false"></textarea>
 											</div>
 											<div class="comment_attach">
 												<div class="attach_box"></div>
@@ -289,23 +294,23 @@ function replyDel(rno){
 										</div>
 									</div>
 									<div class="btn-group-center mt40">
-											<c:if test="${loginUser eq talksContent.member_mem_id}">
-												<a id="btnDel" href="#" class= "btn btn-sm btn-white btn-pd32">
-													<span>Delete</span>
-												</a>											
-											</c:if>
-											<form id="deleteForm" action="/talks/delete" method="post">
-												<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-												<input type="hidden" name="talks_id" value="${talksContent.talks_id }" />
-												<input type="hidden" name="writer" value="${talksContent.member_mem_id }" />
-												<input type="hidden" name="loginUser" value= "${loginUser}" />
-											</form>
-
-											<a href="/talks/tlist" class="btn btn-sm btn-dark btn-pd32">
-												<span>Back to List</span>
+										<c:if test="${loginUser eq talksContent.member_mem_id}">
+											<a id="btnDel" href="#" class="btn btn-sm btn-white btn-pd32">
+												<span>Delete</span>
 											</a>
+										</c:if>
+										<form id="deleteForm" action="/talks/delete" method="post">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+											<input type="hidden" name="talks_id" value="${talksContent.talks_id }" />
+											<input type="hidden" name="writer" value="${talksContent.member_mem_id }" />
+											<input type="hidden" name="loginUser" value="${loginUser}" />
+										</form>
+
+										<a href="/talks/tlist" class="btn btn-sm btn-dark btn-pd32">
+											<span>Back to List</span>
+										</a>
 									</div>
-									
+
 
 								</div>
 							</div>

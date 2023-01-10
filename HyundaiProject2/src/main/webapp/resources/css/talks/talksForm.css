@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .cscenter-wrap {
-  padding: 60px var(--wrap-padding) 0 var(--wrap-padding);
+  padding: 60px 320px 0 320px;
 }
 
 @media (max-width: 1280px) {
@@ -22,9 +22,9 @@
 }
 
 .cscenter-wrap .cscenter-layout {
-  margin-top: 48px;
+  margin-top: 35px;
   display: grid;
-  grid-template-columns: repeat(12,minmax(10px,1fr));
+  grid-template-columns: repeat(10,minmax(10px,1fr));
   gap: 30px;
 }
 
@@ -116,6 +116,7 @@
   align-items: center;
   padding-bottom: 16px;
   border-bottom: 1px solid #1E1E1E;
+  margin-bottom: 20px;
 }
 
 .cscenter-wrap .cscenter-layout .contents-block .title-block h2 {
@@ -341,12 +342,12 @@
 
 .cscenter-wrap .cscenter-layout .contents-block .cscenter-base-block {
   display: grid;
-  grid-template-columns: repeat(10,minmax(10px,1fr));
+  grid-template-columns: repeat(9,minmax(10px,1fr));
   gap: 30px;
 }
 
 .cscenter-wrap .cscenter-layout .contents-block .cscenter-base-block .base-block {
-  grid-column: auto/span 6;
+  grid-column: auto/span 5;
 }
 
 .cscenter-wrap .cscenter-layout .contents-block .cscenter-base-block .base-block .desc-block {
@@ -5159,6 +5160,8 @@ body.product-detail footer {
     border-radius: 0;
     width: 100%;
     height: 30px;
+    padding: 0px 10px;
+    margin: 5px 0 10px;
 }
 
   textarea {
@@ -5166,5 +5169,7 @@ body.product-detail footer {
     height: 500px;
     resize: none;
     border: 1px solid #CCCCCC;
+    padding: 10px;
+    margin-top: 5px;
   }
  
