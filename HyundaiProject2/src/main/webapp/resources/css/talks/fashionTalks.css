@@ -1,8 +1,6 @@
 @charset "UTF-8";
-
 .uploadResult {
   width:100%;
-  background-color: gray;
 }
 .uploadResult ul{
   display:flex;
@@ -43,4 +41,14 @@
 
 .bigPicture img {
   width:600px;
+}
+
+.imgbox{
+	overflow: hidden;
+    text-align: center;
+}
+
+.imgbox img{
+    max-height: 500px;
+    margin-bottom: 10px;
 }
