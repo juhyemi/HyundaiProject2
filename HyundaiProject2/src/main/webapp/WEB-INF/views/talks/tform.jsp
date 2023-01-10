@@ -307,7 +307,7 @@
 			<div id="contents">
 				<div class="xans-element- xans-board xans-board-writepackage-9 xans-board-writepackage xans-board-9 cscenter-wrap ">
 					<div class="header">
-						<h2>Talks</h2>
+						<h2>Fashion Talks</h2>
 					</div>
 
 					<div class="xans-element- xans-board xans-board-write-9 xans-board-write xans-board-9 cscenter-layout ">
@@ -348,6 +348,21 @@
 												</ul>
 											</div>
 										</div>
+
+										<!-- row -->
+
+
+									</fieldset>
+								</div>
+
+								<div class="side-block">
+									<!-- attach image-block -->
+									<div class="xans-element- xans-board xans-board-listpackage-3 xans-board-listpackage xans-board-3 faq-block ">
+										<div class="title-block">
+											<h2>Attach Images</h2>
+										</div>
+										<div><input name='uploadFile' type="file" multiple></div>
+										<div class="imgBox" style="height: 450px;"></div>
 										<div class="ul-desc">
 											<ul>
 												<li>게시글 작성시 개인정보(전화번호, 이메일, 이름 등)가 포함되지 않도록 주의해 주세요.<br> 개인정보가 포함된 경우 관리자에 의해 통보 없이 삭제될 수 있습니다.<br>

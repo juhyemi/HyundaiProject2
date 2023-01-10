@@ -255,6 +255,7 @@ function replyDel(rno){
 									<div class="detail">
 										<div class="fr-view fr-view-article">
 											<div class="imgbox">
+
 												<c:forEach var="list" items="${list }">
 													<img src="${contextPath}/resources/images/talksImgs/${list.uuid }_${list.filename}"/>
 												</c:forEach>
@@ -263,6 +264,7 @@ function replyDel(rno){
 											<p style="text-align: center; margin-top: 20px;">
 												<strong><span style="font-size: 14px;">${talksContent.talks_content}</span></strong>
 											</p>
+											
 
 										</div>
 									</div>
