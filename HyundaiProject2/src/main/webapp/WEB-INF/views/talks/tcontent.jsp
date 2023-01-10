@@ -272,7 +272,7 @@ function replyDel(rno){
 									<div class="CommentBox">
 										<div class="comment_option">
 											<h3 class="comment_title">
-												댓글 (<span id="replyLen">3</span>)
+												댓글 (<span id="replyLen"></span>)
 											</h3>
 										</div>
 

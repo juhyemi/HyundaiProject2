@@ -61,7 +61,7 @@ $(document).ready(function(){
      var csrfTokenValue="${_csrf.token}";
    
   
-	$('#btn_Buy').click(function() {
+	$('#buy_btn').click(function() {
 		var proid =$('#pro_id').val();			
 	    var proname=$('#pro_name').val();	
 	    var pro_opt_size=$('.ec-product-selected').attr('name');
@@ -293,17 +293,17 @@ function cartCnt(){
 								<div class="buy-block ">
 								 <!--  로그인시  장바구니 담기-->
 									<sec:authorize access="isAuthenticated()">
-										<button type="button" class="btn btn-order btn-dark btn-full">
+										<button type="button" id="buy_btn" class="btn btn-order btn-dark btn-full">
 											<span id="btn_Buy">ADD TO CART</span>
 										</button>
 									</sec:authorize>
                                   <!--  비로그인시 로그인창 이동 -->
 									<sec:authorize access="isAnonymous()">
-										<a href="/member/login" class="btn btn-order btn-dark btn-full">
+										<a href="/member/login" id="buybtn" class="btn btn-order btn-dark btn-full">
 											<button type="button" class="btn btn-order btn-dark btn-full">
 												<span id="btnBuy">ADD TO CART</span>
 												 <script type="text/javascript" id="btnBuy">
-												 $('#btnBuy').click(function() {
+												 $('#buybtn').click(function() {
 												 alert("로그인 해야합니다");
 												 });
 					                          </script>

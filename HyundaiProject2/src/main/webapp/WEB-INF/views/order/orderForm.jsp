@@ -410,7 +410,7 @@ function searchSubmit(inputId){
 							
 							
 						
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소*" size="50" >
+							<input type="text" id="sample6_detailAddress" placeholder="상세주소*" size="50" style="width: 100%;" >
 						
                             <!-------------------- 주문 ---->
                            <div class=" ePlaceholderGroup" title="휴대전화*">
