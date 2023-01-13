@@ -13,6 +13,12 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : CustomLoginSuccessHandler
+ * @author : Sujin Shin
+ * @Date : Dec 31. 2022.
+ * 로그인 성공 시, 권한에 따른 처리를 해주는 핸들러
+*********************************/
 @Log4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
@@ -28,11 +34,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		log.warn("ROLE NAMES: " + roleNames);
 		
-		if(roleNames.contains("ROLE_ADMIN")) {
-			
-		}
-		
-		if(roleNames.contains("ROLE_USER")) {
+		if(roleNames.contains("ROLE_MEMBER")) {
 			response.sendRedirect("/mypage/index");
 			return;
 		}

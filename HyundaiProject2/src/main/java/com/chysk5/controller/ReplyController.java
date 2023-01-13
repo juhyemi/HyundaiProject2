@@ -16,9 +16,12 @@ import com.chysk5.service.TalksService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-/*
- * 신수진 작성
- * */
+/*********************************
+ * @function : ReplyController
+ * @author : Sujin Shin
+ * @Date : Jan 08. 2023.
+ * 댓글 목록 조회, 등록, 삭제 요청 처리를 위한 컨트롤러
+*********************************/
 @Log4j
 @Controller
 @RequestMapping("/reply/")

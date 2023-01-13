@@ -1,3 +1,9 @@
+<%
+// 파일명 : /mypage/index.jsp
+// 작성자 : 신수진
+// 작성일자 : 2022/12/28
+// 마이페이지 시작 페이지
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>

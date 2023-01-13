@@ -5,9 +5,12 @@ import java.security.Principal;
 import com.chysk5.domain.AuthDTO;
 import com.chysk5.domain.MemberDTO;
 
-/*
- * 신수진 작성
- * */
+/*********************************
+ * @function : MemberService
+ * @author : Sujin Shin
+ * @Date : Dec 28. 2022.
+ * 
+*********************************/
 public interface MemberService {
 	
 	// 회원정보 조회

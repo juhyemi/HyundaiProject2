@@ -1,3 +1,9 @@
+<%
+// 파일명 : /memeber/join.jsp
+// 작성자 : 신수진
+// 작성일자 : 2022/12/28
+// 회원가입 페이지
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">
@@ -65,27 +71,12 @@ $(document).ready(function(){
 		
 	}); // end send eamil
 	
-	// 인증번호 비교 
-	$('#btn_verify_mobile_confirm').click(function () {
-		const inputCode = $("#verify_sms_number").val();
-		const $resultMsg = $('#mail-check-warn');
-		
-		if(inputCode === code){
-			$resultMsg.html('인증번호가 일치합니다.');
-			$resultMsg.css('color','green');
-			$('#mail-Check-Btn').attr('disabled',true);
-			$('#email').attr('readonly',true);
-			$("#expiryTime").css("color", "white");
-		}else{
-			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-			$resultMsg.css('color','red');
-		}
-	});
-	
 });
 
 var idPass = false;
+var emailPass = false;
 
+// 아이디 중복 확인
 function checkId(){
 	var csrfHeadName="${_csrf.headerName}";
     var csrfTokenValue="${_csrf.token}";
@@ -121,6 +112,25 @@ function checkId(){
 	}
 }
 
+// 이메일 인증번호 확인
+function emailCheck(){
+	const inputCode = $("#verify_sms_number").val();
+	const $resultMsg = $('#mail-check-warn');
+	
+	if(inputCode === code){
+		$resultMsg.html('인증번호가 일치합니다.');
+		$resultMsg.css('color','green');
+		$('#mail-Check-Btn').attr('disabled',true);
+		$('#email').attr('readonly',true);
+		$("#expiryTime").css("color", "white");
+		emailPass = true;
+	}else{
+		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+		$resultMsg.css('color','red');
+	}
+}
+
+// 회원가입 form submit
 function frmSubmit(){
 	if(idPass == false){
 		alert("아이디 중복 확인을 해주세요.");
@@ -137,6 +147,11 @@ function frmSubmit(){
 	if($("#name").val() == ''){
 		alert("이름을 입력해주세요.");
 		$("#name").focus();
+		return;
+	}
+	
+	if(emailPass == false){
+		alert("이메일 인증이 필요합니다.");
 		return;
 	}
 	
@@ -195,6 +210,7 @@ function frmSubmit(){
 											<label class="ePlaceholderEach required" title="비밀번호 확인*">
 												<p class="form-title">비밀번호 확인*</p> <input id="user_passwd_confirm" name="user_passwd_confirm" autocomplete="off" maxlength="16" value="" type="password" placeholder="비밀번호 확인*">
 												<div class="err-msg">비밀번호 확인 항목은 필수 입력값입니다.</div>
+												
 											</label>
 										</div>
 									</div>
@@ -254,7 +270,7 @@ function frmSubmit(){
 													<input id="verify_sms_number" class="inputTypeText" type="text" placeholder="인증번호 6자리를 입력해주세요" disabled="disabled" maxlength="6">
 													<span class="time" id="expiryTime"></span>
 												</div>
-												<button type="button" class="btn btn-md btn-white btn-135" id="btn_verify_mobile_confirm">확인</button>
+												<button type="button" class="btn btn-md btn-white btn-135" id="btn_verify_mobile_confirm" onclick="emailCheck();">확인</button>
 												
 											</div>
 										</div>

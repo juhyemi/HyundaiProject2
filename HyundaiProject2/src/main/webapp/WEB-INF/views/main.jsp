@@ -1,3 +1,9 @@
+<%
+// 파일명 : main.jsp
+// 작성자 : 정기범, 신수진
+// 작성일자 : 2022/12/28
+// 메인 페이지
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">

@@ -86,6 +86,7 @@ public class MemberTests {
 		}
 	}
 
+	// 권한 삽입
 	@Test
 	public void testInsertAuth() {
 
