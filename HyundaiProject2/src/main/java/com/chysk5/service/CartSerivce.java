@@ -10,17 +10,11 @@ public interface CartSerivce {
 	
 	public List<CartDTO>cartList(String mem_id);
 	// 장바구니 추가
-	public void addCart(CartDTO cart);
+	public String addCart(CartDTO cart);
 	// 상품 옵션 id 가져오기
 	public String searchOptid(ProductOptionDTO product);
-	// 장바구니 상품 존재 여부
-	public int checkCart(CartDTO cart);
-	
-    //장바구니 물품존재시 수량 증가
-	public void increaseCount(CartDTO cart); 
-	
 	//장바구니 물품 삭제
-     public void delete(String mem_id, String pro_optId);
+     //public void delete(String mem_id, String pro_optId);
      //장바구니 수량 변경
      public void updateCnt(CartCntUpdateDTO cntDTO);
      //장바구니 체크박스

@@ -297,14 +297,23 @@ function cartCnt(){
 								<div class="buy-block ">
 								 <!--  로그인시  장바구니 담기-->
 									<sec:authorize access="isAuthenticated()">
+<<<<<<< HEAD
+										<button type="button" class="btn btn-order btn-dark btn-full" id ="buy_btn">
+=======
 										<button type="button" id="buy_btn" class="btn btn-order btn-dark btn-full">
+>>>>>>> 5ad7a9a0b7d308e0f2195dd97873f868fdd3db93
 											<span id="btn_Buy">ADD TO CART</span>
 										</button>
 									</sec:authorize>
                                   <!--  비로그인시 로그인창 이동 -->
 									<sec:authorize access="isAnonymous()">
+<<<<<<< HEAD
+										<a href="/member/login" class="btn btn-order btn-dark btn-full">
+											<button type="button" class="btn btn-order btn-dark btn-full" id="buybtn">
+=======
 										<a href="/member/login" id="buybtn" class="btn btn-order btn-dark btn-full">
 											<button type="button" class="btn btn-order btn-dark btn-full">
+>>>>>>> 5ad7a9a0b7d308e0f2195dd97873f868fdd3db93
 												<span id="btnBuy">ADD TO CART</span>
 												 <script type="text/javascript" id="btnBuy">
 												 $('#buybtn').click(function() {

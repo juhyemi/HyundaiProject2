@@ -29,7 +29,7 @@ public class CartServiceImpl implements CartSerivce {
 		log.info("cartlist..!");		
     return mapper.cartList(mem_id);	
 		
-	};
+	}
 	
 	// 카트 option_id 조회
 	@Override
@@ -38,54 +38,50 @@ public class CartServiceImpl implements CartSerivce {
 		log.info("서비스 cart optid 조회");
 		return mapper.searchOptid(product);
 	}  
-	
-	@Override
-	// 카트 물건 추가
-	public void addCart(CartDTO cart) {
-	    	
-		log.info("서비스 cart insert...!");
 		
-		mapper.addCart(cart);
-	};
-	
 	@Override
-	public int checkCart(CartDTO cart) {
-		log.info("서비스 checkCart.!");
-		return mapper.checkCart(cart);
+	@Transactional
+	// 카트 물건 추가
+	public String addCart(CartDTO cart) {    	
+		log.info("서비스 cart insert...!");
+		if(mapper.checkCart(cart)>0) {
+			mapper.increaseCount(cart);
+			log.info("장바구니 존재 o 수량 증가");
+			return "update"; 
+		}
+		else {			
+		   mapper.addCart(cart);
+		   log.info("장바구니 존재 x 장바구니 등록");
+		   return "insert";
+		}
 	}
+	
 	// 수량 변경
 	@Override
 	 public void updateCnt(CartCntUpdateDTO cntDTO) {
 		log.info("수량 변경...!");		
 		 mapper.updateCnt(cntDTO);
 	}
-	
-	// 장바구니 물품 존재시 count 증가
-	  @Override public void increaseCount(CartDTO cart) {
-	  log.info("서비스 increaseCount.!"); mapper.increaseCount(cart); 
-	  }
-	
-	
-	@Override
-	public void delete(String mem_id, String pro_optId) {
-		log.info("서비스 delete...!");
-		mapper.delete(mem_id, pro_optId);
-	}
+		
+	/*
+	 * @Override public void delete(String mem_id, String pro_optId) {
+	 * log.info("서비스 delete...!"); mapper.delete(mem_id, pro_optId); }
+	 */
 	
 	@Override
    public void cartCheck(String cart_no,String cart_select) {
 		log.info("카트 체크..!");
 		mapper.Cartcheck(cart_no,cart_select);
 	}
-	
+    // 장바구니 선택 삭제	
 	@Override
-	  public void deleteCheck(String mem_id) {
-	   	
+	  public void deleteCheck(String mem_id) {	   	
 	    log.info("체크 상품 삭제");
 	    mapper.deleteCheck(mem_id);
 	}
 	
 	
+	// 장바구니 전체 가격 계산
 	@Override
 	public String totalPrice(String mem_id) {
 		
@@ -93,6 +89,8 @@ public class CartServiceImpl implements CartSerivce {
 		return mapper.totalPrice(mem_id);
 		
 	}
+	
+	// 카트 전체 삭제
 	@Override
 	 public void deleteAll(String mem_id) {
 		log.info("카트 전체 삭제");
