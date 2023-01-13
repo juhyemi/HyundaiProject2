@@ -14,6 +14,12 @@ import com.chysk5.domain.ReplyDTO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : MemberMapper
+ * @author : Sujin Shin
+ * @Date : Jan 08. 2023.
+ * 댓글 조회, 등록, 삭제 테스트
+*********************************/
 @RunWith(SpringJUnit4ClassRunner.class)
 @Log4j
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/security-context.xml"})
@@ -22,7 +28,7 @@ public class ReplyMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
 
-	// 댓글 리스트
+	// 댓글 리스트 조회 테스트
 	@Test
 	public void testSelectReply() {
 		
@@ -33,7 +39,7 @@ public class ReplyMapperTests {
 		log.info("test select reply result : " + list);
 	}
 	
-	// 댓글 등록
+	// 댓글 등록 테스트
 	@Test
 	public void testInsertReply() {
 		
@@ -52,7 +58,7 @@ public class ReplyMapperTests {
 		log.info("test insert reply result : " + result);
 	}
 	
-	// 댓글 삭제
+	// 댓글 삭제 테스트
 	@Test
 	public void testDeleteReply() {
 		

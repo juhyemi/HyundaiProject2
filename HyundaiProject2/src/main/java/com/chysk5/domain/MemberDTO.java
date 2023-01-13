@@ -4,9 +4,12 @@ import java.util.List;
 
 import lombok.Data;
 
-/*
- * 신수진 작성
- * */
+/*********************************
+ * @function : MemberDTO
+ * @author : Sujin Shin
+ * @Date : Dec 30. 2022.
+ * 회원의 정보를 담는 DTO
+*********************************/
 @Data
 public class MemberDTO {
 

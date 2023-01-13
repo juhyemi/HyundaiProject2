@@ -1,16 +1,13 @@
 package com.chysk5.mapper;
-import javax.sql.DataSource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.chysk5.domain.AuthDTO;
 import com.chysk5.domain.MemberDTO;
 
 import lombok.Setter;
@@ -34,7 +31,7 @@ public class MemberMapperTests {
 	
 	// 회원가입
 	@Test
-	public void insertTest() {
+	public void testInsertMember() {
 		MemberDTO member = new MemberDTO();
 				
 		member.setMem_id("nanunkongee2");
@@ -51,6 +48,7 @@ public class MemberMapperTests {
 		log.info("insert result : " + result);
 	}
 	
+	// 로그인
 	@Test
 	public void testRead() {
 		
@@ -72,6 +70,19 @@ public class MemberMapperTests {
 		String result = mapper.checkId(mem_id);
 		
 		log.info(result);
+	}
+	
+	// 아이디 찾기
+	@Test
+	public void testFindId() {
+		
+		log.info("test find id.....");
+		
+		MemberDTO member = new MemberDTO();
+		
+	
+	
+		
 	}
 	
 	// 비밀번호 찾기

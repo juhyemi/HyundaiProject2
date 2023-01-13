@@ -19,12 +19,6 @@ public class HomeController {
 	}
 	
 	@GetMapping("/main")
-	public String main() {
-		
-		return "main";
-	}
-	
-	@GetMapping("/black-main")
-	public void blackMain() {}
+	public void main() {}
 
 }

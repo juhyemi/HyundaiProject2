@@ -12,6 +12,12 @@ import com.chysk5.domain.ReplyDTO;
 import com.chysk5.domain.SoldOutProductDTO;
 import com.chysk5.domain.TalksDTO;
 
+/*********************************
+ * @function : MyPageMapper
+ * @author : Sujin Shin, Kibeom Chung
+ * @Date : Dec 30. 2022.
+ * 마이페이지 SQL 호출을 위한 매퍼
+*********************************/
 public interface MyPageMapper {
 
 //	public List<MyResellProductDTO> getMyResellList(String mem_id);
