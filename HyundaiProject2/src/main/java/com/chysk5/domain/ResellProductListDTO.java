@@ -13,6 +13,6 @@ public class ResellProductListDTO {
 	
 	private String pro_name;
 	private String pro_id;
-	private List<ResellProductImgDTO> list;
+	private List<ResellProductImgDTO> resellProductlist;
 	
 }

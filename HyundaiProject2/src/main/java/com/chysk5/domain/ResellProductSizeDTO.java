@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class ResellProductSizeDTO {
 	
+	private String product_pro_id;
 	private String pro_opt_size;
 	
 }

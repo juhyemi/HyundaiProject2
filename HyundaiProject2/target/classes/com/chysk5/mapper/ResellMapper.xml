@@ -75,15 +75,29 @@
 	
 	
 	<!--함세강 작성  -->
-	<select id="getResellProductList" resultType="com.chysk5.domain.ResellProductListDTO">
+	<!-- <select id="getResellProductList" resultType="com.chysk5.domain.ResellProductListDTO"> -->
+	<select id="getResellProductList" resultMap="test">
 		select * from resell_Prolist_view
-	
 	</select>
 	
+	<resultMap id="test" type="com.chysk5.domain.ResellProductListDTO" >
+		<result property="pro_name" column="pro_name" />
+		<result property="pro_id" column="pro_id" />
+		<collection property="resellProductlist"  column="{product_pro_id=pro_id}" ofType="ResellProductImgDTO" select="selectList" />
+	</resultMap>
+	
+	<select id="selectList" resultType="com.chysk5.domain.ResellProductImgDTO">
+		select * from pro_image where product_pro_id = #{product_pro_id}
+	</select>
+	
+	
+	
+	<!-- 
 	<select id="getResellProductListImg" resultType="com.chysk5.domain.ResellProductImgDTO">
 		select * from pro_image where product_pro_id = #{proId}
 	</select>
-	
+	 -->
+	<!--  리팩토링중
 	<select id="getResellProductDetail" resultType="com.chysk5.domain.ResellProductDetailInfoDTO">
 		select pro_id, pro_name,pro_category, pro_price
 		from product
@@ -102,7 +116,44 @@
 		where pro_id = #{proId}
 		order by pro_opt_size desc
 	</select>
+	 -->
+	 
+	 <!--제품 리셀 상세 뿌리는 코드  -->
+	<select id="getResellProductDetail" resultMap="resellMap">
+		select pro_id, pro_name,pro_category, pro_price
+		from product
+		where pro_id = #{proId}
+		
+	</select>
 	
+	<resultMap id="resellMap" type="com.chysk5.domain.ResellProductDetailInfoDTO" >
+		<result property="pro_name" column="pro_name" />
+		<result property="pro_id" column="pro_id" />
+		<result property="pro_category" column="pro_category" />
+		<result property="pro_price" column="pro_price" />
+		<collection property="listSize" column="{proId=pro_id}" ofType="ResellProductSizeDTO" select="selectSize"></collection>
+		<collection property="listImg" column="{proId=pro_id}" ofType="ResellProductImgDTO" select="selectImge"></collection>
+	</resultMap>
+	
+	<select id="selectSize" resultType="com.chysk5.domain.ResellProductSizeDTO">
+		select pro_opt_size
+		from resell_pro_detail_size
+		where pro_id = #{proId}
+		order by pro_opt_size desc
+	</select>
+	
+	
+	<select id="selectImge" resultType="com.chysk5.domain.ResellProductImgDTO">
+		select *
+		from pro_image
+		where product_pro_id = #{proId}
+	</select>
+	
+	
+	
+	
+	
+	<!--제품 리셀 상품 상세 옵션 번호 뿌리는 코드  -->
 	<select id="getResellProductSearchOptId" resultType="com.chysk5.domain.ResellProductSearchIdDTO">
 		
 		select pro_opt_id
