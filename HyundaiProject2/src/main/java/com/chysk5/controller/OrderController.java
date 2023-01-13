@@ -1,11 +1,7 @@
 package com.chysk5.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import java.security.Principal;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -17,11 +13,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.OrderDTO;
+import com.chysk5.domain.OrderListDTO;
 import com.chysk5.domain.OrderReselCheckDTO;
 import com.chysk5.domain.OrderTotalPriceDTO;
-import com.chysk5.domain.ReSellOrderFormDTO;
 import com.chysk5.domain.ResellPriceSearchDTO;
-import com.chysk5.service.CartSerivce;
 import com.chysk5.service.OrderService;
 
 import lombok.AllArgsConstructor;
@@ -40,16 +35,13 @@ public class OrderController {
 	@GetMapping("/orderForm")
 	@Secured({"ROLE_MEMBER"})
 	public String orderform(Principal prc,Model model,OrderReselCheckDTO dto) {
-		 log.info("주문서 이동");
-		 // 유저 id
-		 String mem_id=prc.getName();
-	     log.info("mem_id:"+mem_id);
-	     String order_resell_check= dto.getOrder_resell_check();
-	     log.info("리셀 체크여부 0-cart:"+ order_resell_check);
-	     List<CartDTO>orderFormList = service.orderFormList(mem_id);	     
-	     log.info("orderFormList:"+orderFormList);
-	     model.addAttribute("orderReselCheck", order_resell_check); // 리셀 체크 여부
-	     model.addAttribute("orderReselCheck", order_resell_check); // 리셀 체크 여부
+	     // 주문서 이등
+		 String mem_id=prc.getName();	     
+		 String order_resell_check= dto.getOrder_resell_check();
+		 log.info("리셀 체크여부 0-cart:"+ order_resell_check);
+	     
+	     List<OrderListDTO>orderFormList = service.orderFormList(mem_id);	     
+	     model.addAttribute("orderReselCheck", order_resell_check); // 리셀 상품 체크 여부
 	     model.addAttribute("orderFormList",orderFormList);
 	     return "order/orderForm";
 	}
@@ -60,7 +52,7 @@ public class OrderController {
 		
 		log.info("#########################resellOrderForm 컨트롤러 호출 ");		
 		log.info(dto);	
-		List<CartDTO>orderFormList = service.resellOrderFormList(dto);
+		List<OrderListDTO>orderFormList = service.resellOrderFormList(dto);
 		String order_resell_check= "1";//리셀 상품인경우가 1이었나???? 뭐였지 ㅋㅋ
 		model.addAttribute("orderReselCheck",order_resell_check);
 		model.addAttribute("orderFormList",orderFormList);
@@ -84,12 +76,12 @@ public class OrderController {
          log.info("리셀 id:"+re_id);
 		 log.info("mem_id:"+mem_id);
        	 // 주문완료
-         List<CartDTO>cart=service.orderComplete(order,mem_id,order_resell_check,re_id);
+         List<OrderListDTO>orderList=service.orderComplete(order,mem_id,order_resell_check,re_id);
          log.info("주문 완료 서비스 완료");
          //장바구니 상품만 삭제
  
          if(order_resell_check==0) {
-         cart.forEach(of->service.orderDelete(mem_id,of));	 
+        	 orderList.forEach(of->service.orderDelete(mem_id,of));	 
          log.info("주문시 장바구니 삭제 완료");
          }
         rttr.addFlashAttribute("order_total_price",order_total_price);
