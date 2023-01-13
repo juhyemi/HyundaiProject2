@@ -64,6 +64,7 @@ public class MypageController {
 		
 	}
 	
+	//기범
 	// 주문내역 페이지로 이동
 	@GetMapping("/myorder")
 	public String myorder(Principal prc, Model model, @Nullable String start_date, @Nullable  String end_date) {
@@ -133,6 +134,7 @@ public class MypageController {
 		model.addAttribute("member", member);
 	}
 	
+	//기범
 	// 내가 등록한 상품 페이지 이동
 	@GetMapping("/myResell")
 	public String getMyResellList(Model model, @Nullable String start_date, @Nullable  String end_date) {
@@ -155,6 +157,7 @@ public class MypageController {
 		return "mypage/myResellPage";
 	}
 	
+	// 기범
 	// 내가 등록한 상품 삭제
 	@ResponseBody
 	@DeleteMapping(value="/myResell/{pro_opt_id}")
@@ -166,6 +169,7 @@ public class MypageController {
 		return;
 	}
 	
+	// 기범
 	// 내가 등록한 상품 가격 수정
 	@PostMapping("/myResell")
 	public String modify(@RequestParam(name="re_id") String re_id, @RequestParam(name="re_price") int re_price) {
@@ -177,6 +181,7 @@ public class MypageController {
 		return "redirect:/mypage/myResell";
 	}
 	
+	//기범
 	//내가 구매한 상품 구매 취소
 	@PostMapping("myorder/cancel")
 	public String cancel(@RequestParam("order_no") String order_no, @RequestParam("pro_opt_id") String pro_opt_id) {
