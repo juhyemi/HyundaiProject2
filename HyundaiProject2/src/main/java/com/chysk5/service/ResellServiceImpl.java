@@ -32,39 +32,39 @@ public class ResellServiceImpl implements ResellService {
    private final ResellMapper mapper;
    private final MyPageMapper mpMapper;
    
-   @Transactional
-   @Override
-   public ResellProductInfoDTO getMyResellProduct(String pro_opt_id) {
-      log.info("reselldata 넘김");
-      ResellProductInfoDTO resellInfo = new ResellProductInfoDTO();
-      
-      resellInfo.setResellPrice(getPrice(pro_opt_id));
-      resellInfo.setResellProductDTO(mapper.getMyResellProduct(pro_opt_id));
-      resellInfo.getResellProductDTO().setPro_opt_id(pro_opt_id);
-      
-       return resellInfo;
-   }
-
+   /*
+    * 정기범 작성
+    * 내가 등록하려는 상품에 대한 정보 + 해당 상품을 리셀로 등록한 가격정보 를 가져옴
+    */
 //   @Transactional
    @Override
-   public int register(RegResellProductDTO regResellProductDTO, String order_no                                                                                                                                        ) {
-      log.info("reselldata go!!!!");
-      int result1 = mapper.register(regResellProductDTO); //상품 등록
- //     int result2 = updateRegStatus(regResellProductDTO.getProduct_option_pro_opt_id(), order_no);      
+   public ResellProductInfoDTO getMyResellProduct(String pro_opt_id) {
+      ResellProductInfoDTO resellInfo = new ResellProductInfoDTO();
+      
+      resellInfo.setResellPrice(getPrice(pro_opt_id)); // 리셀에 등록된 상품중 내가 올리려는 상품이 등록된 가격 리스트를 저장
+      resellInfo.setResellProductDTO(mapper.getMyResellProduct(pro_opt_id)); // 내가 올리려는 상품에 대한 정보를 저장
+      resellInfo.getResellProductDTO().setPro_opt_id(pro_opt_id); // 변수로 들어온 pro_opt_id 를 도메인의 setter 를 이용하여 저장
+      
+       return resellInfo; // 위에서 저장한 정보를 뿌리기 위하여 Controller에게 데이터 전달
+   }
+
+   /*
+    * 정기범 작성
+    * 상품을 직접 등록하는 부분
+    * 상품을 등록한 후, 등록되었다는 상태를 다른테이블에서 알아야함으로, update 구문이 추가적으로 필요하다
+    * 그래서 등록한 후 update 쿼리를 실행하는 mapper 메서드를 호출함으로써 Transaction 처리를 진행함
+    */
+   @Transactional
+   @Override
+   public int register(RegResellProductDTO regResellProductDTO, String order_no) {
+      int result1 = mapper.register(regResellProductDTO); //r_product 테이블에 insert 함으로써 새로운 데이터 삽입
       String pro_opt_id = regResellProductDTO.getProduct_option_pro_opt_id();
-      log.info(pro_opt_id);
-      log.info(order_no);
-      
-      
-      log.info("******************"+order_no+"**************");
+
       
       int result2 = mapper.updateRegStatus(pro_opt_id, order_no);
-//      int result3 = mpMapper.cancelOrder(pro_opt_id, order_no);
-      
-      log.info(result2);
-      
-      if(result1 == 1 && result2 == 1) {
-    	  log.info("정상 업데이트 완료");
+            
+      if(result1 == 1 && result2 == 1) { // 정상적인 작업이라면 insert 도 하나의 행이 삽입, 
+    	  								 // update 도 하나의 행이 수정되어야 함.
     	  return 1;
       } else {
     	  log.info("업데이트중 오류 발생");
@@ -72,20 +72,25 @@ public class ResellServiceImpl implements ResellService {
       }
    }
 
+   /*
+    * 정기범 작성
+    * 상품 id 별로 리셀 테이블에 저장된 가격 정보를 조회하는 역할
+    * getMyResellProduct 메서드에서 사용됨
+    */
    @Override
    public List<ResellPriceDTO> getPrice(String pro_opt_id) {
-      log.info("XL별 리스트 가져오기");
-      List<ResellPriceDTO> getPrice = new ArrayList<>();
-      getPrice = mapper.getPriceList(pro_opt_id);
-      log.info(getPrice);
+      List<ResellPriceDTO> getPrice = new ArrayList<>(); // 가격 리스트를 저장하기 위해 arraylist 선언
+      getPrice = mapper.getPriceList(pro_opt_id); // mapper에 접근하여 해당 상품 id값을 가진 행들의 가격 리스트를 저장
       return getPrice;
    }
 
-
+   /*
+    * 정기범 작성
+    * 내가 작성한 순위가 몇번째인지 가져오는 역할
+    */
    @Override
    public int getPriceRank(String pro_opt_id, int pInt) {
-      log.info("몇번째 순위인지 가져오기");
-      int existData = mapper.existData(pro_opt_id, pInt);
+      int existData = mapper.existData(pro_opt_id, pInt);  // 컨트롤러에서 정수형으로 변경한 금액을 매개변수로 하여 
       int rank = 0;
       
       if(existData != 0) {

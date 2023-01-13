@@ -92,19 +92,14 @@ public class ResellController {
 	}
 	
 
+	/*
+	 * 정기범 작성
+	 * resell/register.jsp 로 들어왔을때 보여줄 정보들을 전달하는 역할
+	 */
 	@GetMapping("/register")
 	public String getMyResellProduct(@RequestParam("pro_opt_id") String pro_opt_id, @RequestParam("order_no") String order_no, Model model){
 		
-		log.info("pro_opt_id: " + pro_opt_id);
-		log.info("order_no: " + order_no);
-		ResellProductInfoDTO resellProductInfoDTO = new ResellProductInfoDTO();
-		
-		resellProductInfoDTO = service.getMyResellProduct(pro_opt_id);
-		
-		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_name());
-		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_opt_id());
-		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_opt_size());
-		log.info("resellProduct: " + resellProductInfoDTO.getResellProductDTO().getPro_price());
+		ResellProductInfoDTO resellProductInfoDTO = service.getMyResellProduct(pro_opt_id);
 		
 		model.addAttribute("product", resellProductInfoDTO);
 		model.addAttribute("order_no", order_no);
@@ -112,37 +107,39 @@ public class ResellController {
 		return "resell/register";
 	}
 	
-	/* 개인 상품 등록 */
+	/*
+	 * 정기범 작성
+	 * 개인 상품 등록하는 역할
+	 * db에 직접 insert 해야 하므로 Post Method를 사용
+	 */
 	@PostMapping("/register")
-	public String regMyResellProduct(RegResellProductDTO regResellProductDTO, RedirectAttributes rttr, Principal prin, @RequestParam("order_no") String order_no) {
-		
-		
-		regResellProductDTO.setMember_mem_id(prin.getName());
-		log.info("register: " + regResellProductDTO);
-		log.info("order_no : " + order_no);
+	public String regMyResellProduct(RegResellProductDTO regResellProductDTO, 
+			RedirectAttributes rttr, Principal prin, @RequestParam("order_no") String order_no) {
+				
+		regResellProductDTO.setMember_mem_id(prin.getName()); // 현재 로그인한 회원 아이디 가져옴
 		int result = service.register(regResellProductDTO, order_no);
+		rttr.addFlashAttribute("result");
 		
-		if(result == 1) {
-			rttr.addFlashAttribute("result");
-			return "redirect:/main";
-		}
-		//rttr.addFlashAttribute("result");
-		return "";
-		//return "redirect:/main";
+		return "redirect:/main"; // 등록후 main 화면으로 redirect 시킴
 	}
 	
+	/*
+	 * 정기범 작성
+	 * register 페이지에서 내가 작성한 금액이 몇번째 순위인지 확인하는 역할
+	 * ajax 를 통해 일부분만 변화시킴
+	 */
 	@ResponseBody
 	@GetMapping("/register/myRank")
 	public String getPriceRank(PriceRankDTO priceRankDTO) {
-		log.info("getPriceRank*********");
-		log.info(priceRankDTO.getPro_opt_id());
-		log.info(priceRankDTO.getRe_price());
+		
+		// , 및 특수문자를 가져온 상태로 데이터를 받았을경우 특수문자를 없애서 다시 저장
 		String noCommaPrice = priceRankDTO.getRe_price().replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]", "");
 		
+		// db의 값과 비교하기 위해 문자열 숫자값을 정수형으로 변환
 		int pInt = Integer.parseInt(noCommaPrice);
 		
+		// db를 통해 내가 작성한 금액이 몇번째 순위인지 저장
 		String rank = String.valueOf(service.getPriceRank(priceRankDTO.getPro_opt_id(), pInt));
-		log.info(rank + "번째 순위 임 !!!");
 		return rank;
 	}
 }
