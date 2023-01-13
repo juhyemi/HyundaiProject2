@@ -9,25 +9,29 @@
 </head>
 <body class="product-detail magiedumatin">
 
+<!--
+	* 출력 : 상품 상세페이지를 보여주는 jsp
+    * 작성자 : 김주혜, 윤태영
+-->
+
 	<%@ include file="../include/header2.jsp"%>
 
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	/* 사이즈 선택 가능하게 하는 script
+	   사이즈 종류 만큼 버튼 생성 
+	   사이즈 종류가 하나일 경우 자동 선택
+	   작성자 : 김주혜*/
 	var a = $(".pro_opt_size").length;
-
-	
 	if (a === 1) {        
             $('.pro_opt_size').addClass("ec-product-selected");
-    }else{
-    	
-    	$(".pro_opt_size").on("click", function(){
-    		
+    }else{ 	
+    	$(".pro_opt_size").on("click", function(){    		
         	$(".pro_opt_size").removeClass("ec-product-selected");
 			$(this).addClass("ec-product-selected");		     
     	}); 
-    } 
-	 
+    } 	 
 });
 
 function smsRestockClose() {

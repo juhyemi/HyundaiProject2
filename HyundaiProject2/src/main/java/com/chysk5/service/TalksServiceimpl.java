@@ -7,21 +7,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.chysk5.domain.TalksDTO;
 import com.chysk5.domain.TalksImageDTO;
-import com.chysk5.mapper.TalksImageMapper;
 import com.chysk5.mapper.TalksMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+/*
+ * 김주혜, 신수진 작성
+ * */
 @Log4j
 @Service
 @RequiredArgsConstructor
 public class TalksServiceimpl implements TalksService {
 	
 	private final TalksMapper mapper; 
-	private final TalksImageMapper attachMapper;
 	
-	//talks게시판 목록 리스트
+	// talks게시판 목록 리스트
 	@Override
 	public List<TalksDTO> getTalksList() {
 		
@@ -34,7 +35,7 @@ public class TalksServiceimpl implements TalksService {
 		return mapper.getTalksList();	
 	}
 
-	//talks게시판 상세정보
+	// talks게시판 상세정보
 	@Override
 	public TalksDTO getTalksContent(String talks_id) {
 		
@@ -47,7 +48,7 @@ public class TalksServiceimpl implements TalksService {
 		return mapper.getTalksContent(talks_id);	
 	}
 	
-	//talks 게시판 글 삭제
+	// talks 게시판 글 삭제
 	@Override
 	public int delete(String talks_id, String mem_id) {
 		log.info("deletetalks........." + talks_id);
@@ -57,7 +58,7 @@ public class TalksServiceimpl implements TalksService {
 		return mapper.delete(talks_id, mem_id);
 	}
 	
-	//talks 게시판 글 등록
+	// talks 게시판 글 등록
 	@Override
 	public int register(TalksDTO talks) {
 		log.info("registerTalks..........");
@@ -99,14 +100,11 @@ public class TalksServiceimpl implements TalksService {
 			return; 
 		}
 		talks.getAttachList().forEach(attach -> {
-			log.info("이것이 문제입니까?");
+			log.info("register Image service impl,,,,,,");
 			attach.setTalks_talks_id(talks.getTalks_id());
 			log.info(attach);
 			mapper.registerImage(attach);
 			
 		});
-		
 	}
-	
-
 }

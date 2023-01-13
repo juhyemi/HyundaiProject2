@@ -19,7 +19,9 @@ import com.chysk5.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
-
+/*
+ * 작성자 : 김주혜
+ */
 @Controller
 @Log4j
 @RequestMapping("/product/")
@@ -28,35 +30,28 @@ public class ProductController {
 
 	private final ProductService service;
 	
-	//상품 리스트
+//	상품 리스트
+//	작성자 : 김주혜
 	@GetMapping("list/{category}")
 	public String productList(@PathVariable("category") String category, Model model, ProductCriteria criteria) {
-
 		log.info("call productController........");
-
 		log.info(category);
-
 		List<ProductDTO> list = service.getPListDB(category,criteria);
 		log.info(list);
 		model.addAttribute("list", list);
 		model.addAttribute("category", category);
-		
 		int total = service.getTotal(category);
-		
 		model.addAttribute("pageMaker",new ProductPageDTO(criteria, total));
-		
-		
 		return "product/list";
 
 	}
 	
-	//상품 상세페이지
+//	상품 상세페이지
+//	작성자 : 김주혜
 	@GetMapping("option/{pro_id}")
 	public String productOption(@PathVariable("pro_id") String pro_id, Model model) {
-
 		log.info("call productOptionController..........");
 		log.info(pro_id);
-		
 		ProductDTO product = service.getProductOption(pro_id);
 		List<ProductSizeDTO> sizeList = service.getProductSize(pro_id);
 		List<ProductImgDTO> imgList = service.getProductImg(pro_id);
@@ -69,7 +64,8 @@ public class ProductController {
 		return "product/option";
 	}
 	
-	// 검색 상품
+//  검색 상품
+//	작성자 : 김주혜
 	@PostMapping("search")
 	public String productSearch(@RequestParam String keyword, Model model) {
 		log.info("productSearch controller..............");
@@ -82,10 +78,10 @@ public class ProductController {
 			model.addAttribute("list", list);
 			return "product/search";
 		}
-		
 	}
 	
-	//새상품 리스트
+//		신상품 리스트
+//		작성자 : 김주혜
 		@GetMapping("newIn")
 		public String productList (Model model) {
 
