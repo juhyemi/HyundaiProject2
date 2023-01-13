@@ -10,5 +10,6 @@ import lombok.ToString;
 public class ResellProductImgDTO {
 	
 	private String pro_loc;
+	private String product_pro_id;
 
 }
