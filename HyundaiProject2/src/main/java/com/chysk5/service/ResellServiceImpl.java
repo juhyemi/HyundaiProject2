@@ -129,17 +129,14 @@ public class ResellServiceImpl implements ResellService {
 		
 		log.info(list);
 		
+		/*
 		for (ResellProductListDTO dto : list) {
 			String proId = dto.getPro_id();
-			
 			List<ResellProductImgDTO> listImgs = mapper.getResellProductListImg(proId);
-			
-			
-			dto.setList(listImgs);
-			
+			dto.setResellProductlist(listImgs);
 		}
+		*/
 		
-		log.info(list);
 		
 		
 		return list;
@@ -150,11 +147,15 @@ public class ResellServiceImpl implements ResellService {
 		
 		ResellProductDetailInfoDTO dto = mapper.getResellProductDetail(proId);
 		
+		/*리팩토링 전 코드
 		List<ResellProductImgDTO> list1 = mapper.getResellProductDetailImgs(proId);
 		dto.setListImg(list1);
 		
 		List<ResellProductSizeDTO> list2 = mapper.getResellProductDetailSizes(proId);
 		dto.setListSize(list2);
+		*/
+		
+		log.info(dto);
 		
 		return dto;
 	}
@@ -179,6 +180,7 @@ public class ResellServiceImpl implements ResellService {
 			String date = dto.getRe_selldate().substring(0,10);
 			dto.setRe_selldate(date);
 		}
+		
 		detailPriceDto.setDatePriceList(list);
 		log.info("@@@@@@@@@ getResellProductPriceDetail 호출 성공");
 			

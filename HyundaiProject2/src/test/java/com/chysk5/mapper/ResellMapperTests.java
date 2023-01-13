@@ -1,5 +1,9 @@
 package com.chysk5.mapper;
 
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -12,13 +16,15 @@ import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
 import com.chysk5.domain.ResellProductDTO;
+import com.chysk5.domain.ResellProductDetailInfoDTO;
+import com.chysk5.domain.ResellProductListDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
-"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
+					   "file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
 public class ResellMapperTests {
 
@@ -83,6 +89,24 @@ public class ResellMapperTests {
 		int result = mapper.updateRegStatus("148", "6");
 		log.info(result);
 	}
+	
+	//함세강 작성
+	@Test
+	public void resellProductListMapperTest() {//Resell 상품 조회하는 mapper 테스트
+		List<ResellProductListDTO> list = mapper.getResellProductList();
+		for(ResellProductListDTO dto : list) {
+			assertThat(dto).isInstanceOf(ResellProductListDTO.class);
+			//불러와지는 객체와 같은 클래스를 가지고 있는지 비교
+		}
+	}
+	
+	@Test
+	public void getResellProductDetailTest() {
+		assertThat(mapper.getResellProductDetail("146")).isInstanceOf(ResellProductDetailInfoDTO.class);
+		
+	}
+	
+	
 	
 	
 }
