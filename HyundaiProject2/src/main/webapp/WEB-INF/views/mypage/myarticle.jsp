@@ -1,3 +1,9 @@
+<%
+// 파일명 : /mypage/myarticle.jsp
+// 작성자 : 신수진
+// 작성일자 : 2022/12/28
+// 내가 쓴 글 페이지
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/main1.css">

@@ -12,6 +12,12 @@ import com.chysk5.mapper.MemberMapper;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : CustomUserDetailsService
+ * @author : Sujin Shin
+ * @Date : Dec 31. 2022.
+ * 로그인한 사용자의 정보를 담는 서비스
+*********************************/
 @Log4j
 public class CustomUserDetailsService implements UserDetailsService{
 

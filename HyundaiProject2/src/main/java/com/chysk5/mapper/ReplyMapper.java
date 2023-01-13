@@ -6,6 +6,12 @@ import org.apache.ibatis.annotations.Param;
 
 import com.chysk5.domain.ReplyDTO;
 
+/*********************************
+ * @function : ReplyMapper
+ * @author : Sujin Shin
+ * @Date : Jan 08. 2023.
+ * 회원 가입, 권한, ID/PW 찾기, 수정, 탈퇴 SQL을 호출하기 위한 매퍼
+*********************************/
 public interface ReplyMapper {
 
 	// 댓글 목록

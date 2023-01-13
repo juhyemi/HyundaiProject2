@@ -3,9 +3,12 @@ package com.chysk5.mapper;
 import com.chysk5.domain.AuthDTO;
 import com.chysk5.domain.MemberDTO;
 
-/*
- * 신수진 작성
- * */
+/*********************************
+ * @function : MemberMapper
+ * @author : Sujin Shin
+ * @Date : Dec 26. 2022.
+ * 회원 가입, 권한, ID/PW 찾기, 수정, 탈퇴 SQL을 호출하기 위한 매퍼
+*********************************/
 public interface MemberMapper {
 
 	// 회원가입

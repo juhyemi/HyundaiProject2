@@ -13,7 +13,9 @@ import com.chysk5.mapper.ProductMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
-
+/*
+ * 작성자 : 김주혜
+ */
 @Service
 @Log4j
 @RequiredArgsConstructor
@@ -36,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 		return list;
 
 	} 
-
+	// 상품 상세 정보
 	@Override
 	public ProductDTO getProductOption(String pro_id) {
 		log.info("call ProductOptionService..........");
@@ -45,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getProductOption(pro_id);
 
 	}
-
+	// 상품 사이즈 종류
 	@Override
 	public List<ProductSizeDTO> getProductSize(String pro_id) {
 		log.info("call ProductSizeService..............");
@@ -53,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
 		return mapper.getProductSize(pro_id);
 	}
-	
+	// 상품 이미지
 	@Override
 	public List<ProductImgDTO> getProductImg(String pro_id) {
 		log.info("call ProductImgService..............");
@@ -61,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		return mapper.getProductImg(pro_id);
 	}
-	
+	// 상품 검색
 	@Override
 	public List<ProductDTO> getProductSearch(String keyword) {
 		log.info("call ProductSearch.................");
@@ -70,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getProductSearch(keyword);
 		
 	}
-	
+	// 페이징
 	@Override
 	public int getTotal(String category) {
 		log.info("get total count serviceImpl.....");
