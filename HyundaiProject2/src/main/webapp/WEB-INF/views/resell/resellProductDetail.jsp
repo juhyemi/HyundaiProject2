@@ -459,7 +459,8 @@ $(document).ready(function(){
 							  <td style="text-align: right; font-size: 10px; vertical-align: bottom;"><span id="showDetail" onclick="showChart();">자세히 살펴보기</span></td>
 						  </tr>`
 			  
-				for(var i=9; i<14;i++){
+				 /* for(var i=9; i<14;i++){  */
+				 for(var i=13; 8<i;i--){ 
 					
 					/* 여기부터 하면 됩니다. 0,1,2,3,4 */
 					console.log(result.datePriceList[i].re_selldate)
@@ -476,7 +477,7 @@ $(document).ready(function(){
 									<td class="even"> - </td>
 								</tr>
 							   	`
-						}else{
+						}else {
 							tabletag+=`
 								<tr>
 									<th scope="row" class="even">\${result.datePriceList[i].re_selldate}</th>

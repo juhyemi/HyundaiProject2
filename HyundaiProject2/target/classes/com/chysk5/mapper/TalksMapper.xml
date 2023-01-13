@@ -4,37 +4,73 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chysk5.mapper.TalksMapper">
 
-	<select id="getTalksList" resultType="com.chysk5.domain.TalksDTO">
-	
-		SELECT talks_id, talks_title, talks_regdate, member_mem_id, views
+	<select id="getTalksList"
+		resultType="com.chysk5.domain.TalksDTO">
+
+		SELECT talks_id, talks_title, talks_regdate, member_mem_id,
+		views
 		FROM talks
 		ORDER BY to_number(talks_id) DESC
-	
+
 	</select>
-	
-	<select id="getTalksContent" resultType="com.chysk5.domain.TalksDTO">
-		
+
+	<select id="getTalksContent"
+		resultType="com.chysk5.domain.TalksDTO">
+
 		SELECT * from talks
 		WHERE talks_id = #{talks_id}
-	
+
 	</select>
-	
+
 	<delete id="delete">
-	   DELETE FROM talks
-	   WHERE talks_id = #{talks_id} AND member_mem_id = #{mem_id}
-	</delete> 
-	
-	<update id="register">
-	
-		INSERT INTO talks(talks_id,talks_title,talks_content, member_mem_id)
-    	VALUES(talks_id_seq.NEXTVAL, #{talks_title}, #{talks_content}, #{mem_id})
-	
-	</update>
+		DELETE FROM talks
+		WHERE talks_id = #{talks_id} AND
+		member_mem_id = #{mem_id}
+	</delete>
+
+	<!-- title, content 등록 -->
+	<insert id="register">
+		INSERT INTO
+		talks(talks_id,talks_title,talks_content,
+		member_mem_id)
+		VALUES(talks_id_seq.NEXTVAL, #{talks_title},
+		#{talks_content},
+		#{member_mem_id})
+	</insert>
+
+	<!-- talks_id 찾아오기 -->
+	<select id="findTalksId" resultType="int">
+
+		SELECT talks_id
+		FROM talks
+		WHERE talks_title = #{talks_title}
+		AND talks_content = #{talks_content}
+		AND member_mem_id = #{member_mem_id}
+
+	</select>
+
+	<!-- 첨부파일 이미지 삽입 -->
+	<insert id="registerImage">
+		INSERT INTO talks_image (uuid, talks_loc, filename,
+		talks_talks_id)
+		VALUES(#{uuid}, #{talks_loc}, #{filename},
+		#{talks_talks_id})
+	</insert>
+
+	<!-- 첨부파일 이미지 가져오기 -->
+	<select id="getImg" resultType="com.chysk5.domain.TalksImageDTO">
+		SELECT uuid, filename
+		FROM talks_image
+		WHERE talks_talks_id = #{talks_id}
+
+
+	</select>
 
 	<!-- 조회수 증가 -->
 	<update id="updateViews">
 		UPDATE talks
 		SET views = views + 1
-		WHERE talks_id = #{talks_id}
+		WHERE talks_id =
+		#{talks_id}
 	</update>
 </mapper>

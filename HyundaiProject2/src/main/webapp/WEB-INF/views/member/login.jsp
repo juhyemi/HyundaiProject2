@@ -51,7 +51,7 @@ $(document).ready(function(){
 										<input id="member_check_save_id0" name="remember-me" type="checkbox">
 										<label for="member_check_save_id0">자동 로그인</label>
 									</p>
-									<a href="#none" class="btnLogin btn btn-lg btn-dark btn-full" onclick="loginSubmit();">
+									<a href="javascript:void(0)" class="btnLogin btn btn-lg btn-dark btn-full" onclick="loginSubmit();">
 										<span>로그인</span>
 									</a>
 									

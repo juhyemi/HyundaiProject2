@@ -11,8 +11,7 @@ public class TalksImageDTO {
 	
 	private String uuid;
 	private String talks_loc;
-	private String fileName;
-	private boolean fileType;
+	private String filename;
 	private String talks_talks_id;
 	
 
