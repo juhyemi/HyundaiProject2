@@ -4,9 +4,12 @@ import java.util.Date;
 
 import lombok.Data;
 
-/*
- * 신수진 작성
- * */
+/*********************************
+ * @function : ReplyDTO
+ * @author : Sujin Shin
+ * @Date : Dec 30. 2022.
+ * 댓글 정보를 담는 DTO
+*********************************/
 @Data
 public class ReplyDTO {
 	

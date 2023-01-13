@@ -53,7 +53,10 @@ public class CartMapperTest {
 	    log.info(optid);
 	}
 	
-	// 장바구니에 담겨있는 수량 select
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 장바구니에 담겨있는 수량 조회 테스트
+	 * */ 
 	@Test
 	public void TestSelectCartCnt() {
 		String mem_id = "jinjin";

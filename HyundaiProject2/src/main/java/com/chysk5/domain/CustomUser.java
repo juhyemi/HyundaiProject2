@@ -9,6 +9,12 @@ import org.springframework.security.core.userdetails.User;
 
 import lombok.Getter;
 
+/*********************************
+ * @function : CustomUser
+ * @author : Sujin Shin
+ * @Date : Jan 01. 2023.
+ * 시큐리티 설정을 위한 회원 정보
+*********************************/
 @Getter
 public class CustomUser extends User{
 

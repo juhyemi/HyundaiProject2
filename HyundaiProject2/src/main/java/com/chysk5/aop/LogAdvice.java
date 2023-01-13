@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.log4j.Log4j;
 
-
 @Aspect
 @Log4j
 @Component
@@ -38,8 +37,8 @@ public class LogAdvice {
 		long endTime = System.currentTimeMillis();
 		log.info("서비스 동작 시간 : "+((endTime-startTime)/1000)+"sec");
 		
-		
 		return result;
-	}
-	
+	}	
 }
+
+

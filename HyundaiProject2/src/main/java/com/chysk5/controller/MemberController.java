@@ -28,9 +28,12 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import okhttp3.Headers;
 
-/*
- * 신수진 작성 
- * */
+/*********************************
+ * @function : MemberController
+ * @author : Sujin Shin
+ * @Date : Dec 26. 2022.
+ * 회원 가입, 이메일 인증, ID/PW 찾기, 수정, 탈퇴 요청 처리를 위한 컨트롤러
+*********************************/
 @Controller
 @Log4j
 @RequestMapping("/member/*")
@@ -46,11 +49,19 @@ public class MemberController {
 	@Autowired
 	private MailSendService mailService;
 	
-	// 회원가입 페이지로 이동
+	/*
+	 * 기능 : 회원가입 페이지 이동
+	 * 입력 : x
+	 * 출력 : member>join.jsp
+	 * */
 	@GetMapping("/join")
 	public void joinForm() {}
 	
-	// 회원가입
+	/*
+	 * 기능 : 회원가입 Action
+	 * 입력 : MemberDTO(ID/PWD, 이름, 전화번호, 이메일, 생년월일) 정보를 받아, MemberService > join 메서드 호출
+	 * 출력 : member>joinResult.jsp로 Redirect, MemberDTO 정보와 함께 전달 
+	 * */
 	@PostMapping("/join")
 	public String joinAction(MemberDTO member, RedirectAttributes rttr){
 		
@@ -63,11 +74,21 @@ public class MemberController {
 		return "redirect:/member/joinResult";
 	}
 	
-	// 회원가입 완료
+	/*
+	 * 기능 : 회원가입 완료 페이지 이동
+	 * 입력 : x
+	 * 출력 : member>joinResult.jsp
+	 * 기타 : 회원가입을 통해 받아온 MemberDTO의 정보를 담은 객체를 받아옴
+	 */
 	@GetMapping("/joinResult")
 	public void joinResult() {}
 	
-	// 아이디 중복 확인
+	/*
+	 * 기능 : 아이디 중복 확인 Action
+	 * 입력 : 회원가입 폼에 입력한 ID
+	 * 출력 : MemberService > checkId 메서드 호출
+	 * 기타 : Ajax
+	 * */ 
 	@PostMapping("/checkId")
 	@ResponseBody
 	public String checkId(String mem_id) {
@@ -81,7 +102,12 @@ public class MemberController {
 		return result;
 	}
 	
-	// 이메일 인증
+	/*
+	 * 기능 : 이메일 인증 Action
+	 * 입력 : 회원가입 폼에 입력한 email
+	 * 출력 : MailSendService > joinEmail 메서드 호출
+	 * 기타 : Ajax 
+	 * */ 
 	@GetMapping("/mailCheck")
 	@ResponseBody
 	public String mailCheck(String email) {
@@ -91,7 +117,11 @@ public class MemberController {
 		return mailService.joinEmail(email);
 	}
 	
-	// 로그인 페이지로 이동
+	/*
+	 * 기능 : 로그인 페이지로 이동
+	 * 입력 : x
+	 * 출력 : member>login.jsp, error 또는 logout 시 메세지 출력
+	 * */ 
 	@GetMapping("/login")
 	public void loginForm(String error, String logout, Model model) {
 		
@@ -107,11 +137,20 @@ public class MemberController {
 		}
 	}
 	
-	// 아이디 찾기 페이지
+	/*
+	 * 기능 : 아이디 찾기 페이지 이동
+	 * 입력 : x 
+	 * 출력 : member > findId.jsp
+	 * */ 
 	@GetMapping("/findId")
 	public void findId() {}
 	
-	// 아이디 찾기 Action
+	/*
+	 * 기능 : 아이디 찾기 Action
+	 * 입력 : 회원의 이름과 이메일
+	 * 출력 : MemberSerivce > findId 메서드 호출, MemberDTO 객체의 정보를 member에 담아 member > findIdResult로 redirect
+	 * 기타 : Ajax
+	 * */
 	@PostMapping("/findId")
 	public String findIdAction(MemberDTO member, Model model) {
 		
@@ -126,16 +165,28 @@ public class MemberController {
 		return "member/findIdResult";
 	}
 	
-	// 아이디 찾기 결과 페이지
+	/*
+	 * 기능 : 아이디 찾기 결과 페이지 이동
+	 * 입력 : x
+	 * 출력 : member>findIdResult.jsp, 아이디 찾기 폼에서 입력한 정보를 담은 MemberDTO의 객체를 받아옴
+	 * */
 	@GetMapping("/findIdResult")
 	public void findIdResult() {}
 	
 	
-	// 비밀번호 찾기 페이지
+	/*
+	 * 기능 : 비밀번호 찾기 페이지로 이동
+	 * 입력 : x
+	 * 출력 : member>findPwd.jsp
+	 * */
 	@GetMapping("/findPwd")
-	public void find_pwd() {}
+	public void findPwd() {}
 	
-	// 비밀번호 찾기 Action
+	/*
+	 * 기능 : 비밀번호 찾기 Action
+	 * 입력 : 회원의 아이디, 이름, 이메일 정보를 담은 MemberDTO
+	 * 출력 : MemberService의 findPwd 메서드 호출
+	 * */
 	@PostMapping("/findPwd")
 	public ResponseEntity<String> findPwdAction(MemberDTO member, Model model) {
 		
@@ -168,7 +219,11 @@ public class MemberController {
 		return entity;
 	}
 	
-	// 비밀번호 변경 페이지로 이동
+	/*
+	 * 기능 : 비밀번호 변경 페이지로 이동
+	 * 입력 : 비밀번호 찾기 폼에 입력한 회원 아이디(mem_id)
+	 * 출력 : member>pwdModify
+	 * */ 
 	@GetMapping("/findPwd/{mem_id}")
 	public String pwdModify(@PathVariable("mem_id") String mem_id, Model model) {
 		
@@ -177,7 +232,11 @@ public class MemberController {
 		return "/member/pwdModify";
 	}
 	
-	// 비밀번호 변경
+	/*
+	 * 기능 : 비밀번호 변경 Action
+	 * 입력 : 회원의 아이디를 담은 MemberDTO
+	 * 출력 : MemberService의 modifyPwd 메서드 호출
+	 * */ 
 	@PostMapping("/pwdModify")
 	public ResponseEntity<String> pwdModifyAction(MemberDTO member) {
 		
@@ -200,7 +259,14 @@ public class MemberController {
 		return entity;
 	}
 	
-	// 비밀번호 확인
+	/*
+	 * 기능 : 비밀번호 확인 Action
+	 * 입력 : 회원이 입력한 비밀번호(input_pwd), 로그인 세션에 저장된 회원 아이디
+	 * 	 	  회원 아이디를 통해 MemberService의 selectMember 메서드 호출해 return된 MemeberDTO의 비밀번호(mem_pwd)
+	 * 출력 : input_pwd와 mem_pwd가 일치하는 경우, 1 리턴
+	 * 		  input_pwd와 mem_pwd가 다른 경우, 0 리턴
+	 * 기타 : Ajax
+	 * */ 
 	@PostMapping("/pwCheck")
 	@ResponseBody
 	public String postPrevModify(String input_pwd, Principal prin) {
@@ -224,7 +290,11 @@ public class MemberController {
         
     }
 	
-	// 회원 정보 수정
+	/*
+	 * 기능 : 회원 정보 수정 Action
+	 * 입력 : 회원 수정 폼에서 입력된 정보를 담은 MemberDTO
+	 * 출력 : MemberService에서 updateMember 메서드 호출
+	 * */ 
 	@PostMapping("/modify")
 	public String memberModifyAction(MemberDTO member, Principal prin){
 		
@@ -239,7 +309,11 @@ public class MemberController {
 		return "redirect:/mypage/modify";
 	}
 	
-	// 회원 탈퇴
+	/*
+	 * 기능 : 회원 탈퇴 Action
+	 * 입력 : 로그인된 회원의 정보가 담긴 세션 객체
+	 * 출력 : MemberService의 delCookie, delMember 메서드 호출
+	 * */ 
 	@PostMapping("del")
 	public ResponseEntity<String> memDel(Principal prin) throws Exception{
 		
