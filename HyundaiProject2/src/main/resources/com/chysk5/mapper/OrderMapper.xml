@@ -6,7 +6,7 @@
 
 	<!-- 주문양식 주문 물품 조회 -->
 	<select id="orderFormList"
-		resultType="com.chysk5.domain.CartDTO">
+		resultType="com.chysk5.domain.OrderListDTO">
 <![CDATA[
 select c.*,p.pro_name,p.pro_price,po.pro_opt_size,po.pro_opt_stock,pi.pro_loc
 from cart c, product p, product_option po,(
@@ -40,16 +40,16 @@ order by c.cart_regdate desc
 	<insert id="insertOrderDetail">
 		insert into
 		order_detail(order_detail_amount,order_detail_check,order_total_order_no,product_option_pro_opt_id)
-		values(#{cart.cart_amount},1,#{order_no},#{cart.product_option_pro_opt_id})
+		values(#{orderList.cart_amount},1,#{order_no},#{orderList.product_option_pro_opt_id})
 	</insert>
-     
-<!--      리셀 주문 디테일 테이블 -->
-     <insert id="insertresellOrderDetail">
-        insert into
-        		order_detail(order_detail_amount,order_detail_check,order_total_order_no,product_option_pro_opt_id)
-		        values(1,1,#{order_no},#{pro_opt_id})
-	</insert>	        
-     
+
+	<!-- 리셀 주문 디테일 테이블 -->
+	<insert id="insertresellOrderDetail">
+		insert into
+		order_detail(order_detail_amount,order_detail_check,order_total_order_no,product_option_pro_opt_id)
+		values(1,1,#{order_no},#{pro_opt_id})
+	</insert>
+
 	<update id="updateResell">
 		update r_product
 		set (re_available,re_selldate) =(
@@ -63,37 +63,44 @@ order by c.cart_regdate desc
 		delete
 		from cart
 		where member_mem_id = #{mem_id}
-		and product_option_pro_opt_id=#{cart.product_option_pro_opt_id}
+		and
+		product_option_pro_opt_id=#{orderList.product_option_pro_opt_id}
 	</delete>
 
-	
-	<select id="resellOrderFormList" resultType="com.chysk5.domain.CartDTO">
+
+	<select id="resellOrderFormList"
+		resultType="com.chysk5.domain.OrderListDTO">
 		select re_price pro_price, product_option_pro_opt_id,re_id
 		from(
 		select *
 		from r_product
-		where product_option_pro_opt_id = #{proOptId} and re_available = '0'
+		where product_option_pro_opt_id =
+		#{proOptId} and re_available = '0'
 		order by re_price,re_update
 		)
-		where rownum=1
+		where
+		rownum=1
 	</select>
 
-<!-- 상품이미지 출력 -->
-	<select id="getProductImage" resultType= "com.chysk5.domain.productImageDTO">
+	<!-- 상품이미지 출력 -->
+	<select id="getProductImage"
+		resultType="com.chysk5.domain.productImageDTO">
 
 		select pro_loc from product a, pro_image b
-		where a.pro_name=#{proName}
+		where
+		a.pro_name=#{proName}
 		and b.product_pro_id=a.pro_id
 		and rownum=1
-		order by pro_Loc
+		order by
+		pro_Loc
 	</select>
 
-<!--리셀 id로 pro_opt_id -->
-<select id="getReproductOptId" resultType="String">
-   select product_option_pro_opt_id 
-   from r_product 
-   where re_id=#{re_id}
+	<!--리셀 id로 pro_opt_id -->
+	<select id="getReproductOptId" resultType="String">
+		select product_option_pro_opt_id
+		from r_product
+		where re_id=#{re_id}
 
-</select>
+	</select>
 
 </mapper>

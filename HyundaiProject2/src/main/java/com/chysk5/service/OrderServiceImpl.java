@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.OrderDTO;
+import com.chysk5.domain.OrderListDTO;
 import com.chysk5.domain.ResellPriceSearchDTO;
 import com.chysk5.domain.ResellProductSearchIdDTO;
 import com.chysk5.domain.productImageDTO;
@@ -28,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	/* 주문양식 주문 물품 조회 */
-	public List<CartDTO> orderFormList(String mem_id){			
+	public List<OrderListDTO> orderFormList(String mem_id){			
 		
 		log.info("주문 물품 조회------!");
 		return mapper.orderFormList(mem_id);
@@ -38,9 +39,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	@Transactional
-	 public List<CartDTO>orderComplete(OrderDTO order,String mem_id, int order_resell_check, String re_id) {
+	 public List<OrderListDTO>orderComplete(OrderDTO order,String mem_id, int order_resell_check, String re_id) {
 		 log.info("주문서비스 접속------!");		 
-		 List<CartDTO>orderFormList=mapper.orderFormList(mem_id);
+		 List<OrderListDTO>orderFormList=mapper.orderFormList(mem_id);
 			 
 		 log.info(".............!");
 		 log.info(order_resell_check);
@@ -72,20 +73,20 @@ public class OrderServiceImpl implements OrderService {
 	 } 
 	
 	@ Override
-	public void orderDelete(String mem_id, CartDTO cart) {
+	public void orderDelete(String mem_id, OrderListDTO orderList) {
 		log.info("주문 물품 카트 삭제");
-		mapper.cartOrderDelete(mem_id,cart);
+		mapper.cartOrderDelete(mem_id,orderList);
 		
 	}
 	
 	
 	@Override
-	public List<CartDTO> resellOrderFormList(ResellPriceSearchDTO resellDto) {
+	public List<OrderListDTO> resellOrderFormList(ResellPriceSearchDTO resellDto) {
 		ResellProductSearchIdDTO idDto = reSellMapper.getResellProductSearchOptId(resellDto);
 		String proOptId = idDto.getPro_opt_id();
 		productImageDTO imDto=mapper.getProductImage(resellDto);
 		String pro_loc=imDto.getPro_loc();
-		List<CartDTO> orderFormList = mapper.resellOrderFormList(proOptId);
+		List<OrderListDTO> orderFormList = mapper.resellOrderFormList(proOptId);
 		
 		String proName = resellDto.getProName();
 		String proSize = resellDto.getSizeVal();
@@ -93,8 +94,6 @@ public class OrderServiceImpl implements OrderService {
 		orderFormList.get(0).setPro_name(proName);
 		orderFormList.get(0).setPro_opt_size(proSize);
 		orderFormList.get(0).setCart_amount(1);
-		
-		//임시
 		orderFormList.get(0).setPro_loc(pro_loc);
 		
 		return orderFormList;
