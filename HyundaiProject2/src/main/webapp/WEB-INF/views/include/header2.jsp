@@ -168,6 +168,9 @@
 		<!-- // 그룹종료 -->
 
 	</div>
+	
+	<!--기능 : 해당 이름에 맞는 링크로 연결
+		작성자 : 김주혜-->
 
 	<div class="menu-block depth2" cate-no="Shop">
 		<div class="sub">
@@ -227,7 +230,13 @@
 $(document).ready(function(){
 	cartCnt();
 });
-
+/* 
+	* 입력 : 사용자가 검색한 단어
+	* 출력 : 없음
+	* 기능 : 입력한 keyword 값을 전달한다. 
+			 빈칸이나 아무 것도 입력하지 않은 경우 alert창을 띄워 검색어를 입력할 수 있도록 유도한다.
+    * 작성자 : 김주혜
+*/
 function searchSubmit(inputId){
 		var keyword = $('#'+inputId).val();
 		$('input[name=keyword]').val(keyword);

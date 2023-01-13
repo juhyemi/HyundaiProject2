@@ -8,7 +8,8 @@
 </head>
 <body class="magiedumatin">
 <%@ include file="../include/header2.jsp"%>
-
+<!-- 신제품 나타내는 jsp 
+	 작성자 : 김주혜 -->
    <div id="wrap">
         <div id="container">
             <div id="contents">

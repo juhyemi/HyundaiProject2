@@ -58,7 +58,7 @@
 
                                  var str = "";
 
-                                 $(".uploadResult ul li")
+                                 $(".uploadResult ul li") // 첨부한 파일
                                        .each(
                                              function(i, obj) {
 
@@ -110,7 +110,7 @@
                   function checkExtension(fileName, fileSize) {
 
                      if (fileSize >= maxSize) {
-                        alert("파일 사이즈 초과");
+                        alert("등록할 수 있는 파일의 크기가 초과되었습니다.");
                         return false;
                      }
 
@@ -289,7 +289,6 @@
                         originPath = originPath.replace(new RegExp(
                               /\\/g), "/");
 
-                        //str += "<li><a href=/"javascript:showImage(\'"+originPath+"\')\">" + "<img src='display?fileName="+fileCallPath+"'></a>" + "<span data-file=\'"+fileCallPath+"\' data-type='image'> x </span>"+ "<li>";
 
                      }
                   });

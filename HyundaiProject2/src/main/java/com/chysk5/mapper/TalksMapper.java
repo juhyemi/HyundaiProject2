@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import com.chysk5.domain.TalksDTO;
 import com.chysk5.domain.TalksImageDTO;
 
+/*
+ * 작성자 : 김주혜, 신수진
+ */
 public interface TalksMapper {
 	// 글 목록
 	public List<TalksDTO> getTalksList();

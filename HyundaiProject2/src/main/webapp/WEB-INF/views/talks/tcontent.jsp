@@ -7,6 +7,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script type="text/javascript">
+
+/*  해당 글의 내용과 해당 글의 댓글을 보여주는 jsp
+ 	작성자 : 김주혜, 신수진
+ */
 		$(document).ready(function() {
 			replyList();
 			
@@ -18,26 +22,6 @@
 
 			var writer = $('input[name=writer]').val();
 			var loginUser = $('input[name=loginUser]').val();
-
-			/* if(writer != loginUser){
-				 $("#btnDel").hide();
-				
-			}else{ */
-		/*0110	$("#btnDel").click(function() {
-				var answer = confirm('해당 글을 삭제하시겠습니까?');
-				if (answer) {
-
-					$("#deleteForm").submit();
-
-				}
-			}); 0110*/
-
-			/* 	} */
-
-			/* if(mem_id!=$("talksContent.member_mem_id"))) */	
-			
-			
-			
 		});
 	
 // 댓글 목록을 불러오는 함수
@@ -168,17 +152,17 @@ function replyDel(rno){
 
 							var writer = $('input[name=writer]').val();
 							var loginUser = $('input[name=loginUser]').val();
-
+							/* 글 삭제를 위한 script 
+							   작성자 : 김주혜*/
 							$("#btnDel").click(function() {
-								var answer = confirm('해당 글을 삭제하시겠습니까?');
+								var answer = confirm('해당 글을 삭제하시겠습니까? 삭제한 글은 다시 돌릴 수 없습니다.');
 								if (answer) {
-
 									$("#deleteForm").submit();
-
 								}
 							});
 
-							/* 첨부파일 조회를 위한 script */
+							/* 첨부파일 조회를 위한 script
+							    작성자 : 김주혜 */
 							(function() {
 								var talks_id = '<c:out value="${talks.talks_id}"/>';
 								$
@@ -257,7 +241,7 @@ function replyDel(rno){
 											<div class="imgbox">
 
 												<c:forEach var="list" items="${list }">
-													<img src="${contextPath}/resources/images/talksImgs/${list.uuid }_${list.filename}"/>
+													<img src="C:\dev64\workspace-sts\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HyundaiProject2\resources\images\talksImgs\${list.uuid }_${list.filename}"/>
 												</c:forEach>
 											</div>
 
@@ -299,6 +283,8 @@ function replyDel(rno){
 												<span>Delete</span>
 											</a>
 										</c:if>
+										<!-- 삭제할 값 보내기 위한 form 생성 
+											 작성자 : 김주혜 -->
 										<form id="deleteForm" action="/talks/delete" method="post">
 											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 											<input type="hidden" name="talks_id" value="${talksContent.talks_id }" />
