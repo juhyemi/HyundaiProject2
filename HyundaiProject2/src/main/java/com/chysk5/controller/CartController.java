@@ -22,11 +22,19 @@ import com.chysk5.service.CartSerivce;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import oracle.jdbc.proxy.annotation.Post;
-/*
- *  윤태영 작성
- *  -장바구니 목록 출력
- *  -장바구니 담기 테스트 코드
- * */
+/* 
+CartController
+@author 윤태영
+@since 2023.01.02
+ 
+<pre>
+수정일          수정자                    수정내용
+ ----------  ---------------    ---------------------------
+2023.01.02   윤태영              최초 생성
+2023.01.03   윤태영              장바구니 목록 출력, 장바구니 담기 테스트 코드                                  
+2023.01.09   신수진              main header 장바구니에 담겨있는 상품 수량 구현
+</pre>
+*/
 @Log4j
 @Controller
 @AllArgsConstructor
@@ -53,7 +61,7 @@ public class CartController {
 	}
     
     
-    //장바구니 물건 개수 출력
+    //장바구니 물건 개수 출력 
     @PostMapping("/selCartCnt")
     @ResponseBody
     public String selCatCnt(Principal prin) {

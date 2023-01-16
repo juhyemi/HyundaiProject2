@@ -34,7 +34,9 @@ footer{
 }
 </style>
 </head>
+<!-- 주문 상세 페이지 작성자 윤태영 -->
 <script> 
+/* 주문 상품 전체 총액 계산 */
  window.onload=function(){
    var totalprice=0;
    $(".each_price_class").each(function(index,item){    
@@ -59,7 +61,7 @@ footer{
     resell_order();
  }  
 
- 
+/* 리셀 주문 상품시 리셀 제품 표시 */ 
  function resell_order(){
     var resellcheck=$('input[name=order_resell_check]').val();
     console.log("리셀체크:"+resellcheck);    
@@ -562,6 +564,7 @@ function searchSubmit(inputId){
       </div>
 
    </form>
+    <!-- daum kakao 우편 번호 api연결 -->
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
