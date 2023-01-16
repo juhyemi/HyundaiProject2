@@ -12,10 +12,10 @@ import com.chysk5.domain.ResellProductListDTO;
 
 public interface ResellService {
 
-   public ResellProductInfoDTO getMyResellProduct(String pro_opt_id);
+   public ResellProductInfoDTO getMyResellProduct(String pro_opt_id); 
    public List<ResellPriceDTO> getPrice(String pro_opt_id);
-   public int register(RegResellProductDTO regResellProductDTO, String order_no);
-   public int getPriceRank(String pro_opt_id, int pInt);
+   public int register(RegResellProductDTO regResellProductDTO, String order_no); 
+   public int getPriceRank(String pro_opt_id, int pInt); 
  //  public int updateRegStatus(String pro_opt_id, String order_no);
 
 	
