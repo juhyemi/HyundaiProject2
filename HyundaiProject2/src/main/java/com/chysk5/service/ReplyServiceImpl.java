@@ -10,6 +10,12 @@ import com.chysk5.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : ReplyServiceImpl
+ * @author : Sujin Shin
+ * @Date : Jan 08. 2023.
+ * ReplyService 기능 구현 ReplyMapper 호출
+*********************************/
 @Service
 @Log4j
 @RequiredArgsConstructor
@@ -43,6 +49,5 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return mapper.deleteReply(com_id, mem_id);
 	}
-
 
 }

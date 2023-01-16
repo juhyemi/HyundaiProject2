@@ -8,12 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.CancelProductDTO;
+import com.chysk5.domain.ReplyDTO;
+import com.chysk5.domain.TalksDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : MyPageMapperTests
+ * @author : Sujin Shin, Kibeom Chung
+ * @Date : Jan 08. 2023.
+ * 마이페이지 매퍼 테스트
+*********************************/
 @RunWith(SpringRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 "file:src/main/webapp/WEB-INF/spring/security-context.xml"})
@@ -52,17 +61,17 @@ public class MyPageMapperTests {
 			log.info(a);
 		}
 	}
+
+//	@Test
+//	public void testAllList() {
+//		List<AllBuyProductDTO> list = mapper.getAllList("kb");
+//		
+//		for(AllBuyProductDTO a : list) {
+//			log.info(a);
+//		}
+//	}
 	
-	/*
-	@Test
-	public void testAllList() {
-		List<AllBuyProductDTO> list = mapper.getAllList("kb");
-		
-		for(AllBuyProductDTO a : list) {
-			log.info(a);
-		}
-	}
-	
+	// 신수진
 	// 총 구매 금액
 	@Test
 	public void testTotalOrderPrice() {
@@ -73,6 +82,7 @@ public class MyPageMapperTests {
 		log.info("result : " + result);
 	}
 	
+	// 신수진
 	// 총 구매 횟수
 	@Test
 	public void testTotalOrderCount() {
@@ -83,6 +93,7 @@ public class MyPageMapperTests {
 		log.info("result : " + result);
 	}
 	
+	// 신수진
 	// 내가 쓴 글
 	@Test
 	public void testSelectMyTalks() {
@@ -95,6 +106,7 @@ public class MyPageMapperTests {
 		}
 	}	
 	
+	// 신수진
 	// 내가 쓴 댓글
 	@Test
 	public void testSelectMyReply() {
@@ -106,7 +118,6 @@ public class MyPageMapperTests {
 			log.info(a);
 		}
 	}
-	*/
 	
 	@Test
 	public void testCancelList() {
