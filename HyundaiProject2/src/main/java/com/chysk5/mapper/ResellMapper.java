@@ -20,14 +20,23 @@ import com.chysk5.domain.UpdateProductDTO;
 
 public interface ResellMapper {
 
-   
+   // 등록할 리셀 상품 정보 출력
    public ResellProductDTO getMyResellProduct(String pro_opt_id);
+   
+   // 이미 등록된 리셀 상품 가격 조회
    public List<ResellPriceDTO> getPriceList(String pro_opt_id);
+   
+   // 리셀 상품 등록
    public int register(RegResellProductDTO regResellProductDTO);
-   public int getMyRank(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
-   public int existData(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
+   
+   // 상품 등록시 리셀 상품 등록했다고 알려주는 컬럼 값 수정
    public int updateRegStatus(@Param("pro_opt_id") String pro_opt_id, @Param("order_no") String order_no);
-//   public int updateRegStatus(UpdateProductDTO updateDTO);
+   
+// 내가 입력한 금액보다 낮은 금액의 갯수 파악
+   public int existData(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
+   
+   // 내가 등록하려는 금액의 순위 확인
+   public Integer getMyRank(@Param("pro_opt_id") String pro_opt_id, @Param("re_price") int re_price);
    
 	/* Resell 상품 리스트 불러오기 */
    public List<ResellProductListDTO> getResellProductList();

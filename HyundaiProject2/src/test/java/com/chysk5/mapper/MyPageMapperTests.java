@@ -1,5 +1,7 @@
 package com.chysk5.mapper;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -11,7 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.chysk5.domain.AllBuyProductDTO;
 import com.chysk5.domain.BuyProductDTO;
 import com.chysk5.domain.CancelProductDTO;
+import com.chysk5.domain.MyResellProductDTO;
 import com.chysk5.domain.ReplyDTO;
+import com.chysk5.domain.SoldOutProductDTO;
 import com.chysk5.domain.TalksDTO;
 
 import lombok.Setter;
@@ -34,30 +38,77 @@ public class MyPageMapperTests {
 	private MyPageMapper mapper;
 	
 	/*
+	 * 정기범
+	 * 내가 등록한 리셀 상품 목록 조회
+	 */
 	@Test
 	public void testGetMyResellList() {
 		
-		
-		List<MyResellProductDTO> getList = mapper.getMyResellList("kb");
+		List<MyResellProductDTO> getList = mapper.getMyResellList("kb", null, null);
+		List<MyResellProductDTO> getList2 = mapper.getMyResellList("kb", "2023-01-05", "2023-01-07");
 		
 		for(MyResellProductDTO a : getList) {
 			log.info("등록한 리셀 상품: " + a);
 		}
+		
+		for(MyResellProductDTO a : getList2) {
+			log.info("등록한 리셀 상품(날짜 검색): " + a);
+		}
 	}
-	*/
 	
+	/*
+	 * 정기범
+	 * 내가 등록한 상품 중 판매 완료된 상품
+	 */
+	public void testGetSoldOutList() {
+		
+		List<SoldOutProductDTO> list = mapper.getMySoldOutList("kb", null, null);
+		List<SoldOutProductDTO> list2 = mapper.getMySoldOutList("kb", "2023-01-05", "2023-01-07");
+		
+		for(SoldOutProductDTO a : list) {
+			log.info("판매된 리셀 상품: " + a);
+		}
+
+		for(SoldOutProductDTO a : list2) {
+			log.info("판매된 리셀 상품(날짜 검색): " + a);
+		}
+	}
+	
+	/*
+	 * 정기범 작성
+	 * 모든 구매 내역 조회
+	 */
+	@Test
+	public void testAllList() {
+		log.info("모든 구매내역 확인 test");
+		List<AllBuyProductDTO> list = mapper.getAllList("wenger", null, null);
+		
+		for(AllBuyProductDTO a : list) {
+			log.info(a);
+		}
+		
+	}
+	
+	/*
+	 * 정기범 작성
+	 * 가격 수정 기능 확인
+	 */
 	@Test
 	public void testModifyPrice() {
-		
-		mapper.modifyPrice("34", 90000);
-		
+		log.info("가격 수정 test");
+		mapper.modifyPrice("76", 100000);
 	}
 	
+	/*
+	 * 정기범 작성
+	 * 회원별 구매목록 조회
+	 */
 	@Test
 	public void testGetBuyProduct() {
-		List<BuyProductDTO> list = mapper.getBuyProduct("kb");
+		List<BuyProductDTO> list = mapper.getBuyProduct("wenger");
 		
 		for(BuyProductDTO a : list) {
+			assertThat(a).isInstanceOf(BuyProductDTO.class);
 			log.info(a);
 		}
 	}
@@ -70,6 +121,32 @@ public class MyPageMapperTests {
 //			log.info(a);
 //		}
 //	}
+	
+	/*
+	 * 정기범 작성
+	 * 주문 취소
+	 */
+	@Test
+	public void cancelOrder() {
+		
+		int result = mapper.cancelOrder("1301", "20");
+		
+		if (result == 1)	log.info("삭제 정상 완료");
+		else log.info("error"); 
+	}
+	
+	/*
+	 * 정기범 작성
+	 * 리셀 등록한 상품, 등록 취소
+	 */
+	@Test
+	public void cacelResellProduct() {
+		log.info("등록 상품 삭제 test");
+		int result = mapper.removeMyResellProduct("147", "user2");
+		
+		if(result == 1)	log.info("등록 취소 정상 완료");
+		else log.info("error");
+	}
 	
 	// 신수진
 	// 총 구매 금액
@@ -119,14 +196,19 @@ public class MyPageMapperTests {
 		}
 	}
 	
+	
+	
+	/*
+	 * 정기범 작성
+	 * 취소 상품 목록 조회
+	 */
 	@Test
 	public void testCancelList() {
 		
 		List<CancelProductDTO> list = mapper.getCancelList("kb", null, null);
 		for(CancelProductDTO a : list) {
+			assertThat(a).isInstanceOf(CancelProductDTO.class);
 			log.info(a);
 		}
-		
-		
 	}
 }
