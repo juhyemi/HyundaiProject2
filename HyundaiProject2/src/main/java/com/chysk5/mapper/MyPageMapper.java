@@ -19,18 +19,29 @@ import com.chysk5.domain.TalksDTO;
  * 마이페이지 SQL 호출을 위한 매퍼
 *********************************/
 public interface MyPageMapper {
-
-//	public List<MyResellProductDTO> getMyResellList(String mem_id);
-	public List<MyResellProductDTO> getMyResellList(@Param("mem_id") String mem_id, @Param("start_date") String start_date, @Param("end_date") String end_date); // 판매중인 상품 목록
+	
+	// 판매중인 상품 목록 - test 작성
+	public List<MyResellProductDTO> getMyResellList(@Param("mem_id") String mem_id, @Param("start_date") String start_date, @Param("end_date") String end_date);
+	
+	// 판매완료된 상품 목록 - test 작성
 	public List<SoldOutProductDTO> getMySoldOutList(@Param("mem_id") String mem_id, @Param("start_date") String start_date, @Param("end_date") String end_date);
+	
+	// 모든 구매 목록 - test 작성
 	public List<AllBuyProductDTO> getAllList(@Param("mem_id") String mem_id, @Param("start_date") String start_date, @Param("end_date") String end_date);
+	
+	// 주문 상품 취소 - test 작성
 	public int cancelOrder(@Param("pro_opt_id") String pro_opt_id, @Param("order_no") String order_no);
+	
+	// 주문 취소 상품 목록 - test 작성
 	public List<CancelProductDTO> getCancelList(@Param("mem_id") String mem_id, @Param("start_date") String start_date, @Param("end_date") String end_date);
-	
-	
-//	public int removeMyResellProduct(String pro_opt_id, String mem_id);
+
+	// 리셀 상품 등록 취소 - 수정 필요
 	public int removeMyResellProduct(@Param("pro_opt_id") String pro_opt_id, @Param("mem_id") String mem_id);
+	
+	// 리셀 상품 가격 수정 - test 작성
 	public int modifyPrice(@Param("re_id") String re_id, @Param("re_price") int re_price);
+	
+	// 구매 목록 - test 작성
 	public List<BuyProductDTO> getBuyProduct(String mem_id);
 	
 	// 총 구매 금액

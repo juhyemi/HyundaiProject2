@@ -129,6 +129,7 @@ public class ResellController {
 	 * ajax 를 통해 일부분만 변화시킴
 	 */
 	@ResponseBody
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/register/myRank")
 	public String getPriceRank(PriceRankDTO priceRankDTO) {
 		
@@ -138,8 +139,9 @@ public class ResellController {
 		// db의 값과 비교하기 위해 문자열 숫자값을 정수형으로 변환
 		int pInt = Integer.parseInt(noCommaPrice);
 		
+		String pro_opt_id = priceRankDTO.getPro_opt_id();
 		// db를 통해 내가 작성한 금액이 몇번째 순위인지 저장
-		String rank = String.valueOf(service.getPriceRank(priceRankDTO.getPro_opt_id(), pInt));
+		String rank = String.valueOf(service.getPriceRank(pro_opt_id, pInt));
 		return rank;
 	}
 }

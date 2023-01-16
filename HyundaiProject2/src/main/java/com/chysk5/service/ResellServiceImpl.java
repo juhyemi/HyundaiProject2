@@ -36,7 +36,7 @@ public class ResellServiceImpl implements ResellService {
     * 정기범 작성
     * 내가 등록하려는 상품에 대한 정보 + 해당 상품을 리셀로 등록한 가격정보 를 가져옴
     */
-//   @Transactional
+   @Transactional
    @Override
    public ResellProductInfoDTO getMyResellProduct(String pro_opt_id) {
       ResellProductInfoDTO resellInfo = new ResellProductInfoDTO();
@@ -88,38 +88,20 @@ public class ResellServiceImpl implements ResellService {
     * 정기범 작성
     * 내가 작성한 순위가 몇번째인지 가져오는 역할
     */
+   @Transactional
    @Override
    public int getPriceRank(String pro_opt_id, int pInt) {
-      int existData = mapper.existData(pro_opt_id, pInt);  // 컨트롤러에서 정수형으로 변경한 금액을 매개변수로 하여 
+      int existData = mapper.existData(pro_opt_id, pInt);  // 컨트롤러에서 정수형으로 변경한 금액을 매개변수로 하여
+      													   // r_product 테이블에서 내가 입력한 금액이 몇번째 순위인지 가져옴
       int rank = 0;
       
       if(existData != 0) {
          rank = mapper.getMyRank(pro_opt_id, pInt);
       }
       
-      return rank + 1;
+      return rank + 1; // 자신의 순위보다 하나 앞 순위를 리턴 함으로 +1 을 해준다.
    }
-   
-   /*
-	@Override
-	public int updateRegStatus(String pro_opt_id, String order_no) {
-
-		log.info("등록못하도록 상태 업데이트!!!");
-		log.info("주문 번호 : " + order_no);
-		log.info("상품 번호 : " + pro_opt_id);		
-		UpdateProductDTO dto = new UpdateProductDTO();
-		
-		dto.setOrder_no(order_no);
-		dto.setPro_opt_id(pro_opt_id);
-		log.info(dto);
-		int a = mapper.updateRegStatus(dto);
-		log.info(a);
-		
-		return 0;
-
-	}
-	*/
-   
+     
    
    
 

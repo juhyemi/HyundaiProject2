@@ -528,35 +528,12 @@ function dateCal(val){
 	let newDate = new Date();
 	let nowDate = new Date();
 	
-	/*
-	switch(this.val) {
-	case '1':
-		console.log("당일");
-		let calNewDate = newDate.getDate();
-		newDate.setDate(calNewDate);
-		newDate = dateFormatter(newDate);
-		
-		console.log("변환 됫엇나? " + newDate);
-		break;
-	case '2':
-		console.log("일주일");
-		let calNewDate = newDate.getDate()-7;
-		newDate.setDate(calNewDate);
-		newDate = dateFormatter(newDate);
-		
-		console.log("변환 됫엇나? " + newDate);
-		break;
-	}
-	*/
-	
 	if(val == 1) {
 		console.log("당일");
 		let calNewDate = newDate.getDate();
 		newDate.setDate(calNewDate);
 		newDate = dateFormatter(newDate);
-		
-		console.log("변환 됫엇나? " + newDate);
-		
+				
 		$('#history_start_date').val(newDate);
 		$('#history_end_date').val(newDate);
 		
@@ -571,7 +548,6 @@ function dateCal(val){
 	newDate = dateFormatter(newDate);
 	nowDate = dateFormatter(nowDate);
 	
-	console.log("변환 됫엇나? " + newDate);
 	$('#history_start_date').val(newDate);
 	$('#history_end_date').val(nowDate);
 	
