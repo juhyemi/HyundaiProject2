@@ -118,6 +118,7 @@ where p.pro_id= po.product_pro_id
 </select>
 
 
+<!-- 작성자 : 신수진 -->
 <!-- 장바구니에 담겨있는 수량 select -->
 <select id="selectCartCnt" resultType="int">
 	SELECT COUNT(*)

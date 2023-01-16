@@ -178,7 +178,7 @@
     
 	</update>
 	
-
+	<!-- 작성자 : 신수진 -->
 	<!-- 총 구매 금액 -->
 	<select id="totalOrderPrice" resultType="int">
 		SELECT NVL(SUM(pro_price*order_detail_amount), 0)
@@ -193,6 +193,7 @@
 		WHERE p.pro_opt_id = m.opt_id
 	</select>
 	
+	<!-- 작성자 : 신수진 -->
 	<!-- 총 구매 횟수 -->
 	<select id="totalOrderCount" resultType="int">
 		SELECT COUNT(order_no)
@@ -200,6 +201,7 @@
 		WHERE member_mem_id = #{mem_id}
 	</select>
 
+	<!-- 작성자 : 신수진 -->
 	<!-- 내가 쓴 글 조회 -->
 	<select id="selectMyTalks" resultType="com.chysk5.domain.TalksDTO">
 		SELECT talks_id, talks_title, talks_content, talks_regdate, member_mem_id
@@ -208,6 +210,7 @@
 		ORDER BY talks_regdate desc
 	</select>
 	
+	<!-- 작성자 : 신수진 -->
 	<!-- 내가 쓴 댓글 조회 -->
 	<select id="selectMyReply" resultType="com.chysk5.domain.ReplyDTO">
 		SELECT com_id, com_content, com_regdate, talks_talks_id, r.member_mem_id, talks_title
@@ -216,8 +219,8 @@
 		ORDER BY com_regdate DESC
 	</select>
 	
+	
 	<!-- 취소 내역 조회 -->
-
 	<select id="getCancelList" resultType="com.chysk5.domain.CancelProductDTO">
 	SELECT ot.order_date, p.pro_price, p.pro_name, po.pro_opt_size, 
 	od.order_detail_amount, ot.order_no, pi.pro_loc, po.pro_opt_id
