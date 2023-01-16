@@ -15,9 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.chysk5.domain.PriceRankDTO;
 import com.chysk5.domain.RegResellProductDTO;
 import com.chysk5.domain.ResellPriceDTO;
+import com.chysk5.domain.ResellPriceSearchDTO;
 import com.chysk5.domain.ResellProductDTO;
 import com.chysk5.domain.ResellProductDetailInfoDTO;
 import com.chysk5.domain.ResellProductListDTO;
+import com.chysk5.domain.ResellProductSearchIdDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -106,7 +108,27 @@ public class ResellMapperTests {
 		
 	}
 	
+	@Test
+	public void resellProductSearchOptIdTests() {
+		ResellPriceSearchDTO resellDto =  new ResellPriceSearchDTO();
+		resellDto.setProName("PINTUCK LOGO CROP TOP IN PINK");
+		resellDto.setSizeVal("S");
+		assertThat(mapper.getResellProductSearchOptId(resellDto)).isInstanceOf(ResellProductSearchIdDTO.class);
+
+	}
 	
+	@Test
+	public void resellProductDetailLowPriceTests() {
+		String proOptId = "338";
+		assertThat(Integer.parseInt(mapper.getResellProductDetailLowPrice(proOptId).getRe_low_price())).isGreaterThan(0);
+		
+	}
+	
+	@Test
+	public void resellProductDetailDatePriceTests() {
+		String proOptId = "338";
+		assertThat(mapper.getResellProductDetailDatePrice(proOptId).size()).isEqualTo(14);
+	}
 	
 	
 }

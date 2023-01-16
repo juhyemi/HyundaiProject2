@@ -64,7 +64,7 @@ public class ReplyControllerTests {
 	@WithMockUser
 	public void testReplyDelAction() throws Exception{
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/reply/replyDel")
-				.with("jinjin")
+				.with(user("jinjin"))
 				.param("com_id", "52")
 				).andReturn().getModelAndView().getViewName();
 		

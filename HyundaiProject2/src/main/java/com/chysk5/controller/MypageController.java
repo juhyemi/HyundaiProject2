@@ -85,39 +85,20 @@ public class MypageController {
 		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id, start_date, end_date);
 		 List<CancelProductDTO> cancelList = service.getCancelList(mem_id, start_date, end_date);
 		 
-		 log.info("startDate 들어왔나? " + start_date);
-		 log.info("endDate 들어왔나? " + end_date);
-		 
-		 
 		 model.addAttribute("allList", allList);
 		 model.addAttribute("cancelList", cancelList);
-		 
-		 for(AllBuyProductDTO a : allList) {
-			 log.info(a);
-		 }
-		 
-		 for(CancelProductDTO a : cancelList) {
-			 log.info("취소 목록: " + a);
-		 }
-		 /*
-		 List<BuyProductDTO> buyResellList = service.getBuyProduct(mem_id);
-		 model.addAttribute("buyResellList", buyResellList);
-		 
-		 for(BuyProductDTO a : buyResellList) {
-			 log.info(a);
-		 }
-		*/
 		 
 		 return "mypage/myorder";
 	}
 	
+
 	/*
 	 * 작성자 : 신수진
 	 * 기능 : 내가 쓴 글 페이지
 	 * 입력 : 로그인한 회원의 아이디
 	 * 출력 : MyPageService의 getMyTalks 메서드와, getMyReply 메서드를 호출해
 	 * 		  각 호출된 결과값을 모델 애트리뷰트에 저장한다.
-	 * */ 
+	 * */
 	@GetMapping("/myarticle")
 	public void myarticle(Principal prin, Model model) {
 		log.info("mytalks controller.....");
