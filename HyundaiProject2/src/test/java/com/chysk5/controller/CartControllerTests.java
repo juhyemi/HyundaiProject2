@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -22,9 +23,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class CartControllerTests {
 
-	@Setter(onMethod_ = { @Autowired })
+	@Setter(onMethod_ = @Autowired)
 	private WebApplicationContext ctx;
-
 	private MockMvc mockMvc;
 
 	@Before
@@ -33,9 +33,12 @@ public class CartControllerTests {
 	}
 
 	@Test
-	public void testCartList() throws Exception {
+	//@Secured({ "ROLE_MEMBER" })
+	public void testCartCheck() throws Exception {
 
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/cart/cartList")).andReturn().getModelAndView()
+		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/cartAjax/cartCheck").param("cart_no","218").param("cart_select","1"))
+				.andReturn()
+				.getModelAndView()
 				.getModelMap());
 
 	}

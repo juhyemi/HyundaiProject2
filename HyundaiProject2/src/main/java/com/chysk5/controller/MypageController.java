@@ -31,19 +31,31 @@ import com.chysk5.service.MyPageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : MyPageController
+ * @author : Sujin Shin, Kibeom Chung
+ * @Date : Dec 30. 2022.
+ * 마이페이지에서 회원의 활동 내역을 조회할 수 있는 요청을 처리하기 위한 컨트롤러
+*********************************/
 @Controller
 @Log4j
 @Secured({"ROLE_MEMBER"})
 @RequestMapping("/mypage/")
 @AllArgsConstructor
-
 public class MypageController {
 	
 	private MyPageService service;
 	
 	private MemberService mService;
-
-	// 마이페이지 메인 화면으로 이동
+	
+	/*
+	 * 작성자 : 신수진, 정기범
+	 * 기능 : 마이페이지 메인 화면
+	 * 입력 : 로그인한 회원의 아이디
+	 * 출력 : MyPageService의 totalOrderPrice(총 구매 가격)과 totalOrderCount(총 구매 횟수) 메서드를 호출,
+	 * 		  각 결과값을 모델 애트리뷰트에 저장한다.
+	 * 		  또한 getAllBuyList(전체 주문 내역)의 메서드를 호출한 결과값인 리스트를 저장한다.
+	 * */ 
 	@GetMapping("/index")
 	public void index(Model model, Principal prin) {
 		String mem_id = prin.getName();
@@ -61,25 +73,24 @@ public class MypageController {
 		model.addAttribute("totalOrderCount", totalOrderCount);	
 		model.addAttribute("allList", allList);
 		
-		
 	}
 	
-	//기범
+	/*
+	 * 정기범 작성
+	 * 내가 주문한 내역을 조회하기 위한 역할
+	 * start_date, end_date는 날짜 검색시에만 사용하므로 @Nullable 어노테이션 사용
+	 */
 	// 주문내역 페이지로 이동
 	@GetMapping("/myorder")
 	public String myorder(Principal prc, Model model, @Nullable String start_date, @Nullable  String end_date) {
 		
 		 String mem_id=prc.getName();
 		 
-		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id, start_date, end_date);
-		 List<CancelProductDTO> cancelList = service.getCancelList(mem_id, start_date, end_date);
+		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id, start_date, end_date); // 내가 주문한 모든 리스트 조회
+		 List<CancelProductDTO> cancelList = service.getCancelList(mem_id, start_date, end_date); // 주문 취소한 모든 리스트 조회
 		 
-		 log.info("startDate 들어왔나? " + start_date);
-		 log.info("endDate 들어왔나? " + end_date);
-		 
-		 
-		 model.addAttribute("allList", allList);
-		 model.addAttribute("cancelList", cancelList);
+		 model.addAttribute("allList", allList); 
+		 model.addAttribute("cancelList", cancelList); // model 이용하여 데이터 전달
 		 
 		 for(AllBuyProductDTO a : allList) {
 			 log.info(a);
@@ -88,23 +99,18 @@ public class MypageController {
 		 for(CancelProductDTO a : cancelList) {
 			 log.info("취소 목록: " + a);
 		 }
-		 /*
-		 List<BuyProductDTO> buyResellList = service.getBuyProduct(mem_id);
-		 model.addAttribute("buyResellList", buyResellList);
-		 
-		 for(BuyProductDTO a : buyResellList) {
-			 log.info(a);
-		 }
-		*/
-		 
+
 		 return "mypage/myorder";
 	}
 	
-	// 최근 본 상품 페이지로 이동
-	@GetMapping("/recent_view_product")
-	public void recentView() {}
-	
-	// 내가 쓴 글 페이지로 이동
+
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 내가 쓴 글 페이지
+	 * 입력 : 로그인한 회원의 아이디
+	 * 출력 : MyPageService의 getMyTalks 메서드와, getMyReply 메서드를 호출해
+	 * 		  각 호출된 결과값을 모델 애트리뷰트에 저장한다.
+	 * */
 	@GetMapping("/myarticle")
 	public void myarticle(Principal prin, Model model) {
 		log.info("mytalks controller.....");
@@ -121,7 +127,13 @@ public class MypageController {
 		model.addAttribute("rList", replyList);
 	}
 	
-	// 회원 정보 수정 페이지로 이동
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 회원 정보 수정 페이지로 이동
+	 * 입력 : 로그인한 회원의 아이디
+	 * 출력 : MemberService의 selectMember 메서드를 호출해 나온
+	 * 		 회원 정보를 담은 객체 결과값을 모델 애트리뷰트에 저장한다.
+	 * */ 
 	@GetMapping("/modify")
 	public void modify(Model model, Principal prin) {
 		
@@ -134,43 +146,44 @@ public class MypageController {
 		model.addAttribute("member", member);
 	}
 	
-	//기범
-	// 내가 등록한 상품 페이지 이동
+	/*
+	 * 정기범 작성
+	 * 내가 등록한 상품 페이지 이동
+	 */
 	@GetMapping("/myResell")
 	public String getMyResellList(Model model, @Nullable String start_date, @Nullable  String end_date) {
-		log.info("MyResell 페이지 이동");
 			
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	    User user = (User)authentication.getPrincipal();    
 	    String mem_id = user.getUsername();
 	    
-	    List<MyResellProductDTO> myResellList = service.getMyResellList(mem_id, start_date, end_date);
-	    List<SoldOutProductDTO> mySoldOutList = service.getSoldOutList(mem_id, start_date, end_date);
+	    List<MyResellProductDTO> myResellList = service.getMyResellList(mem_id, start_date, end_date); // 내가 판매 등록한 상품 리스트 조회
+	    List<SoldOutProductDTO> mySoldOutList = service.getSoldOutList(mem_id, start_date, end_date); // 내가 등록한 상품 중 팔린 상품 조회
 	    
-	    for(SoldOutProductDTO a : mySoldOutList) {
-	    	log.info("@@@@@@@@@@" + a);
-	    }
 		
-		model.addAttribute("myResellList", myResellList);
-		model.addAttribute("mySoldOutList", mySoldOutList);
+		model.addAttribute("myResellList", myResellList); 
+		model.addAttribute("mySoldOutList", mySoldOutList); // model 이용하여 데이터 전달
 		
 		return "mypage/myResellPage";
 	}
 	
-	// 기범
-	// 내가 등록한 상품 삭제
+	/*
+	 * 정기범 작성
+	 * 리셀 등록한 상품 등록 취소
+	 */
 	@ResponseBody
 	@DeleteMapping(value="/myResell/{pro_opt_id}")
 	public void removeMyResellProduct(@PathVariable("pro_opt_id") String pro_opt_id, Principal prc) {
-		log.info("확인: " + pro_opt_id);
-		 String mem_id=prc.getName();
-		int result = service.removeMyResellProduct(pro_opt_id, mem_id);
+		String mem_id=prc.getName();
+		int result = service.removeMyResellProduct(pro_opt_id, mem_id); // 등록한 상품 삭제하는 역할
 		
 		return;
 	}
 	
-	// 기범
-	// 내가 등록한 상품 가격 수정
+	/*
+	 * 정기범 작성
+	 * 등록한 상품 가격 수정
+	 */
 	@PostMapping("/myResell")
 	public String modify(@RequestParam(name="re_id") String re_id, @RequestParam(name="re_price") int re_price) {
 		
@@ -181,8 +194,10 @@ public class MypageController {
 		return "redirect:/mypage/myResell";
 	}
 	
-	//기범
-	//내가 구매한 상품 구매 취소
+	/*
+	 * 정기범 작성
+	 * 내가 주문한 상품을 주문 취소
+	 */
 	@PostMapping("myorder/cancel")
 	public String cancel(@RequestParam("order_no") String order_no, @RequestParam("pro_opt_id") String pro_opt_id) {
 		

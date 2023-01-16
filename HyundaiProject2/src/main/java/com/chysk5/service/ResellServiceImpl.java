@@ -36,7 +36,7 @@ public class ResellServiceImpl implements ResellService {
     * 정기범 작성
     * 내가 등록하려는 상품에 대한 정보 + 해당 상품을 리셀로 등록한 가격정보 를 가져옴
     */
-//   @Transactional
+   @Transactional
    @Override
    public ResellProductInfoDTO getMyResellProduct(String pro_opt_id) {
       ResellProductInfoDTO resellInfo = new ResellProductInfoDTO();
@@ -88,106 +88,82 @@ public class ResellServiceImpl implements ResellService {
     * 정기범 작성
     * 내가 작성한 순위가 몇번째인지 가져오는 역할
     */
+   @Transactional
    @Override
    public int getPriceRank(String pro_opt_id, int pInt) {
-      int existData = mapper.existData(pro_opt_id, pInt);  // 컨트롤러에서 정수형으로 변경한 금액을 매개변수로 하여 
+      int existData = mapper.existData(pro_opt_id, pInt);  // 컨트롤러에서 정수형으로 변경한 금액을 매개변수로 하여
+      													   // r_product 테이블에서 내가 입력한 금액이 몇번째 순위인지 가져옴
       int rank = 0;
       
       if(existData != 0) {
          rank = mapper.getMyRank(pro_opt_id, pInt);
       }
       
-      return rank + 1;
+      return rank + 1; // 자신의 순위보다 하나 앞 순위를 리턴 함으로 +1 을 해준다.
    }
-   
-   /*
-	@Override
-	public int updateRegStatus(String pro_opt_id, String order_no) {
-
-		log.info("등록못하도록 상태 업데이트!!!");
-		log.info("주문 번호 : " + order_no);
-		log.info("상품 번호 : " + pro_opt_id);		
-		UpdateProductDTO dto = new UpdateProductDTO();
-		
-		dto.setOrder_no(order_no);
-		dto.setPro_opt_id(pro_opt_id);
-		log.info(dto);
-		int a = mapper.updateRegStatus(dto);
-		log.info(a);
-		
-		return 0;
-
-	}
-	*/
+     
    
    
-   
-
-
-	@Transactional
+    /*
+	 * 작성자 : 함세강
+	 * 기능 : Resell 상품 목록 리스트 dto 가져오는 역할
+	 * 입력 : X
+	 * 출력 : List<ResellProductListDTO>
+	 */
 	@Override
 	public List<ResellProductListDTO> getResellProductList() {
 		
 		log.info("resellProdList Service 실행");
-		
+		//Resell 상품 목록을 불러오는 getResellProductList()를 호출
 		List<ResellProductListDTO> list = mapper.getResellProductList();
-		
-		log.info(list);
-		
-		/*
-		for (ResellProductListDTO dto : list) {
-			String proId = dto.getPro_id();
-			List<ResellProductImgDTO> listImgs = mapper.getResellProductListImg(proId);
-			dto.setResellProductlist(listImgs);
-		}
-		*/
-		
-		
 		
 		return list;
 	}
 
+	
+	/*
+	 * 작성자 : 함세강
+	 * 기능 : Resell 상품 상세 dto 가져오는 역할
+	 * 입력 : 상품 아이디
+	 * 출력 : ResellProductDetailInfoDTO (상품 이름, 이미지, 사이즈)
+	 */
 	@Override
 	public ResellProductDetailInfoDTO getResellProductListDetail(String proId) {
-		
+		//상품번호를 토대로 Resell상품의 상세 정보를 얻어오는 getResellProductDetail()을 호출
 		ResellProductDetailInfoDTO dto = mapper.getResellProductDetail(proId);
-		
-		/*리팩토링 전 코드
-		List<ResellProductImgDTO> list1 = mapper.getResellProductDetailImgs(proId);
-		dto.setListImg(list1);
-		
-		List<ResellProductSizeDTO> list2 = mapper.getResellProductDetailSizes(proId);
-		dto.setListSize(list2);
-		*/
-		
-		log.info(dto);
 		
 		return dto;
 	}
 	
 	
 	
+	
+	/*
+	 * 작성자 : 함세강
+	 * 기능 : Resell 상품 상세 dto 가져오는 역할
+	 * 입력 : 상품 아이디
+	 * 출력 : ResellProductDetailInfoDTO (상품 이름, 이미지, 사이즈)
+	 */
+	@Transactional
 	@Override
 	public ResellProductDetailPriceDTO getResellProductPriceDetail(ResellPriceSearchDTO resellDto) {
-		/*사이즈와 상품명을 가지고 상품 아이디를 조회하는 부분*/
+		//사이즈와 상품명을 가지고 상품옵션 아이디를 조회하는 부분
 		ResellProductSearchIdDTO idDto = mapper.getResellProductSearchOptId(resellDto);
 		String proOptId = idDto.getPro_opt_id();
 		
-		log.info("###########################proOptId : " + proOptId);
-		
+		//등록된 Resell상품의 최저가격을 가져오는 부분
 		ResellProductDetailPriceDTO detailPriceDto = mapper.getResellProductDetailLowPrice(proOptId);
 		
+		//Resell 상품의 최근 2주동안 거래된 판매 평균가격을 불러오는 getResellProductDetailDatePrice() 메서드 호출
 		List<ResellProductDetailPriceDateDTO> list = mapper.getResellProductDetailDatePrice(proOptId);
 		
-		log.info("################### avg_list: " + list);
-		
+		//반복문을 돌면서 판매일을 원하는 형식으로 가공하는 부분
 		for (ResellProductDetailPriceDateDTO dto : list) {
 			String date = dto.getRe_selldate().substring(0,10);
 			dto.setRe_selldate(date);
 		}
 		
 		detailPriceDto.setDatePriceList(list);
-		log.info("@@@@@@@@@ getResellProductPriceDetail 호출 성공");
 			
 		return detailPriceDto;
 	}

@@ -9,7 +9,18 @@ import com.chysk5.domain.CartCntUpdateDTO;
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.ProductOptionDTO;
 
-
+/* 
+cartMapper
+@author 윤태영
+@since 2023.01.02
+ 
+<pre>
+수정일          수정자                    수정내용
+ ----------  ---------------    ---------------------------
+2023.01.02   윤태영              최초 생성
+2023.01.06   윤태영              장바구니 Mapper                                  
+</pre>
+*/
 @Mapper
 public interface CartMapper {
 	
@@ -27,7 +38,7 @@ public interface CartMapper {
 	public void increaseCount(CartDTO Cart);
 	
 	// 장바구니 물품 삭제
-	public void delete(@Param("mem_id")String mem_id,@Param("pro_opt_Id")String pro_optId);
+	//public void delete(@Param("mem_id")String mem_id,@Param("pro_opt_Id")String pro_optId);
 	
 	//장바구니 체크박스
 	public void Cartcheck(@Param("cart_no")String cart_no,@Param("cart_select")String cart_select);
@@ -38,8 +49,10 @@ public interface CartMapper {
 	//장바구니 수량 update
 	public int updateCnt(CartCntUpdateDTO cntDTO);
 	
+	//장바구니 총액 계산
 	public String totalPrice(String mem_id);
-	
+
+	//장바구니 전체 삭제
 	public void deleteAll(String mem_id);
 	
 	// 장바구니에 담겨있는 수량 select

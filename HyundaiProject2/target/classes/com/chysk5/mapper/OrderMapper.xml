@@ -4,7 +4,24 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chysk5.mapper.OrderMapper">
 
-	<!-- 주문양식 주문 물품 조회 -->
+<!-- orderMapper
+@author 윤태영
+@since 2023.01.04
+ 
+<pre>
+수정일          수정자                    수정내용
+2023.01.04   윤태영              최초 생성
+2023.01.04   윤태영              카트->주문 양식 물품 조회 mapper 구현
+2023.01.05   윤태영              주문, 주문 상세 mapper 구현, 주문시 카트에 주문 물품 삭제 mapper 구현
+2023.01.05   함세강              resell 상품 주문서 조회 
+2023.01.06   윤태영              resell 주문시 업데이트, 주문,주문 상세 mapper 구현
+                        
+</pre> -->
+
+
+
+
+	<!-- 카트 -> 주문양식 주문 물품 조회 -->
 	<select id="orderFormList"
 		resultType="com.chysk5.domain.OrderListDTO">
 <![CDATA[
@@ -24,7 +41,8 @@ where p.pro_id= pi.product_pro_id
 order by c.cart_regdate desc  
 ]]>
 	</select>
-	<!-- 주문테이블 -->
+	
+	<!--  order_total 데이터 삽입 + select key (order_total_no)-->
 	<insert id="insertSelectKey">
 		<selectKey keyProperty="order.order_no" order="BEFORE"
 			resultType="String">
@@ -49,15 +67,8 @@ order by c.cart_regdate desc
 		order_detail(order_detail_amount,order_detail_check,order_total_order_no,product_option_pro_opt_id)
 		values(1,1,#{order_no},#{pro_opt_id})
 	</insert>
-
-	<update id="updateResell">
-		update r_product
-		set (re_available,re_selldate) =(
-		select '1',SYSDATE FROM DUAL
-		)
-		where re_id=#{re_id}
-	</update>
-
+	
+	     <!-- 주문 품목 장바구니 삭제 -->
 	<delete id="cartOrderDelete">
 
 		delete
@@ -66,8 +77,18 @@ order by c.cart_regdate desc
 		and
 		product_option_pro_opt_id=#{orderList.product_option_pro_opt_id}
 	</delete>
+	
+    <!-- 리셀 상품 주문시 판매시간과 판매 가능 여부 업데이트 -->
+	<update id="updateResell">
+		update r_product
+		set (re_available,re_selldate) =(
+		select '1',SYSDATE FROM DUAL
+		)
+		where re_id=#{re_id}
+	</update>
+	
 
-
+     <!--  resell 상품 주문서 조회 -->
 	<select id="resellOrderFormList"
 		resultType="com.chysk5.domain.OrderListDTO">
 		select re_price pro_price, product_option_pro_opt_id,re_id
@@ -91,13 +112,13 @@ order by c.cart_regdate desc
 		a.pro_name=#{proName}
 		and b.product_pro_id=a.pro_id
 		and rownum=1
-		order by
-		pro_Loc
+		order by pro_Loc
 	</select>
 
 	<!--리셀 id로 pro_opt_id -->
 	<select id="getReproductOptId" resultType="String">
-		select product_option_pro_opt_id
+		select
+		product_option_pro_opt_id
 		from r_product
 		where re_id=#{re_id}
 

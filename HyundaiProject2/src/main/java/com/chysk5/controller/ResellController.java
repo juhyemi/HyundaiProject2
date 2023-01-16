@@ -43,50 +43,56 @@ public class ResellController {
 	
 	private final ResellService service;
 	
+	/*
+	 * 작성자 : 함세강
+	 * 기능 : Resell 상품 목록 리스트 조회
+	 * 입력 : X
+	 * 출력 : resellProductList.jsp
+	 */
 	@GetMapping
 	public String getResellProductList(Model model) {
-		
-		log.info("resell controller 호출");
-		
+		//Resell 상품 목록을 불러오는 서비스 호출 
 		List<ResellProductListDTO> list =  service.getResellProductList();
 		
-		log.info("데이터 전달 성공");
-		log.info(list);
-		
+		//rProduct라는 속성명으로 model 객체에 담아 view단에 전송
 		model.addAttribute("rProduct", list);
 		
 		return "resell/resellProductList";
 	}
 	
 	
+	
+	/*
+	 * 작성자 : 함세강
+	 * 기능 : Resell 상품 상세 조회
+	 * 입력 : 상품 번호
+	 * 출력 : resellProductDetail.jsp
+	 */
 	@GetMapping("/{proId}")
 	public String getResellProductDetail(@PathVariable String proId,Model model) {
-		
-		log.info(">>>>>>>>>>>> getResellProductDetail 컨트롤러 호출");
-		log.info(proId);
-		
+		//상품번호를 받아와서 Resell 상품 상세 정보를 조회하는 서비스 호출
 		ResellProductDetailInfoDTO dto = service.getResellProductListDetail(proId);
 		
+		//productDetail이라는 속성에 담아서 view단에 전송
 		model.addAttribute("productDetail", dto);
-		
-		log.info("데이터 전달 성공 : "+ dto);
-		
+
 		return "resell/resellProductDetail";
 	}
 	
-
+	
+	
+	/*
+	 * 작성자 : 함세강
+	 * 기능 : 사이즈 선택된 Resell 상품 상세 평균 가격 조회
+	 * 입력 : ResellPriceSearchDTO(상품이름, 선택된 상품 사이즈)
+	 * 출력 : 선택된 Resell 상품에 대한 평균 2주 판매가격 정보 
+	 */
 	@PostMapping("/price")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public ResellProductDetailPriceDTO getResellProductPrice(@RequestBody ResellPriceSearchDTO searchDTO) {
-		log.info(searchDTO);
+		//상품 이름과 선택된 사이즈 정보를 통해서 Resell 상품의 가격을 불러오는 서비스 호출
 		ResellProductDetailPriceDTO dto = service.getResellProductPriceDetail(searchDTO);
-		
-		
-		log.info("getResellProductPrice 호출");
-		log.info(searchDTO);
-		
-		log.info(dto);
 		
 		return dto;
 	}
@@ -115,7 +121,6 @@ public class ResellController {
 	@PostMapping("/register")
 	public String regMyResellProduct(RegResellProductDTO regResellProductDTO, 
 			RedirectAttributes rttr, Principal prin, @RequestParam("order_no") String order_no) {
-				
 		regResellProductDTO.setMember_mem_id(prin.getName()); // 현재 로그인한 회원 아이디 가져옴
 		int result = service.register(regResellProductDTO, order_no);
 		rttr.addFlashAttribute("result");
@@ -129,6 +134,7 @@ public class ResellController {
 	 * ajax 를 통해 일부분만 변화시킴
 	 */
 	@ResponseBody
+	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/register/myRank")
 	public String getPriceRank(PriceRankDTO priceRankDTO) {
 		
@@ -138,8 +144,9 @@ public class ResellController {
 		// db의 값과 비교하기 위해 문자열 숫자값을 정수형으로 변환
 		int pInt = Integer.parseInt(noCommaPrice);
 		
+		String pro_opt_id = priceRankDTO.getPro_opt_id();
 		// db를 통해 내가 작성한 금액이 몇번째 순위인지 저장
-		String rank = String.valueOf(service.getPriceRank(priceRankDTO.getPro_opt_id(), pInt));
+		String rank = String.valueOf(service.getPriceRank(pro_opt_id, pInt));
 		return rank;
 	}
 }
