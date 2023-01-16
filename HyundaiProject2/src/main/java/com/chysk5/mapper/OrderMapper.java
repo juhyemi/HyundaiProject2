@@ -12,7 +12,17 @@ import com.chysk5.domain.ResellPriceSearchDTO;
 import com.chysk5.domain.ResellProductIdDTO;
 import com.chysk5.domain.productImageDTO;
 
-
+/* 
+OrderMapper
+@author 윤태영
+@since 2023.01.04
+ 
+<pre>
+수정일          수정자                    수정내용
+ ----------  ---------------    ---------------------------
+2023.01.04   윤태영              최초 생성
+ </pre>
+*/
 @Mapper
 public interface OrderMapper {
 	
@@ -24,20 +34,22 @@ public interface OrderMapper {
     	
 	// order_detail 데이터 삽입
 	public void insertOrderDetail(@Param("order_no") String order_no, @Param("orderList")OrderListDTO orderList);
-
-	
+	// 주문 품목 장바구니 삭제
     public void cartOrderDelete(@Param("mem_id")String mem_id, @Param("orderList")OrderListDTO orderList);
     
+    //리셀 상품 주문시 판매시간과 판매 가능 여부 업데이트
 	public void updateResell(String re_id); 
     
     //resell 상품 주문서 조회
     public List<OrderListDTO> resellOrderFormList(String proOptId);
         
-    // 이미지 얻기
+    // 리셀 상품 이미지 얻기
     public productImageDTO getProductImage(ResellPriceSearchDTO resellDto);
     
+    // 물품 옵션 id 얻기
     public String getReproductOptId(String re_id);
     
+    //리셀 상품 order_detail 데이터 삽입
     public void insertresellOrderDetail(@Param("order_no")String order_no,@Param("pro_opt_id")String pro_opt_id);
 }
 

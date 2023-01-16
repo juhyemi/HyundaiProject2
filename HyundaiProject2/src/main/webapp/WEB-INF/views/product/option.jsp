@@ -57,7 +57,7 @@ function product_submit_action(a, b, c) {
     product_submit(a, b, c);
 }
 
-/* 장바구니 담기 ajax */
+/* 장바구니 담기 ajax 작성자: 윤태영 */
 $(document).ready(function(){
 
      var csrfHeadName="${_csrf.headerName}";

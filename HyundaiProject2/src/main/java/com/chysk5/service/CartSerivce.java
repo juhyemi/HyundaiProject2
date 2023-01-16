@@ -5,7 +5,17 @@ import java.util.List;
 import com.chysk5.domain.CartCntUpdateDTO;
 import com.chysk5.domain.CartDTO;
 import com.chysk5.domain.ProductOptionDTO;
-
+/* 
+cartService
+@author 윤태영
+@since 2023.01.02
+ 
+<pre>
+수정일          수정자                    수정내용
+ ----------  ---------------    ---------------------------
+2023.01.02   윤태영              최초 생성
+</pre>
+*/
 public interface CartSerivce {
 	
 	public List<CartDTO>cartList(String mem_id);

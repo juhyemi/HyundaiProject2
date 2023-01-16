@@ -23,6 +23,9 @@
 <title>Document</title>
 <meta name="referrer" content="unsafe-url">
 </head>
+<!-- 기존에 체크박스 체크 유지 -->
+<!-- 장바구니 페이지  작성자: 윤태영 -->
+
 <script>
 window.onload=function(){
 	
@@ -36,7 +39,6 @@ window.onload=function(){
 
 </script>
 <script type="text/javascript">
-<!--상품 가격-->		
 
 /*전체선택*/
 /* function allCheck(){
@@ -64,7 +66,7 @@ window.onload=function(){
         } */
        
  
-/*  전체삭제 */
+/*  전체삭제 ajax*/
  function allDelete(){
         	var csrfHeadName="${_csrf.headerName}";
         	var csrfTokenValue="${_csrf.token}";
@@ -93,7 +95,7 @@ window.onload=function(){
 	       	
     }
  
-/*체크 박스 개수*/        
+/*현재 체크 되어 있는 체크 박스 개수 */        
 function getCheckedCnt()  {
 	  // 선택된 목록 가져오기
 	  const query = 'input[type=checkbox]:checked';
@@ -108,7 +110,66 @@ function getCheckedCnt()  {
 	  document.getElementById('result_check').innerText
 	    = "("+selectedElementsCnt+")";
 	}
-/* 부분체크박스 */		
+
+/* 체크박스 여부 총액 계산 */
+function reCal(){
+	var csrfHeadName="${_csrf.headerName}";
+	var csrfTokenValue="${_csrf.token}";
+		 $.ajax({
+			    url : "/cartAjax/totalPrice",
+				type :"post",
+				beforeSend : function(xhr) {
+			        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+			    }, 
+				success : function(result) {
+				    console.log("체크박스 총액계산");				    
+					var totalprice=result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');					
+					var tag="";
+					var tag1="";
+					tag+=`<span
+						class="total_product_price_display_front">\${totalprice}
+						</span>`	
+				    $(".total_product_price_display_front").html(tag);
+					tag1+=`<span
+						id="total_order_price_front">\${totalprice}
+						</span>`	    
+				    $("#total_order_price_front").html(tag1); 
+					
+				},
+				error : function() {
+					
+				}		
+			});		
+}
+ 
+//체크 박스 선택 제품 삭제
+function selectDelete(){
+	
+	var csrfHeadName="${_csrf.headerName}";
+	var csrfTokenValue="${_csrf.token}";
+	$.ajax({
+	    url : "/cartAjax/deleteCheck",
+		type :"post",
+		beforeSend : function(xhr) {
+	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
+	    }, 
+		success : function() {
+				 
+		   console.log("체크박스 선택 제품 삭제")	;
+		   $("input:checkbox[id='basket_chk_id_0']:checked").each(function(){			      
+           this.closest("li").remove(); 
+           console.log("선택제품 삭제 완료");
+           reCal();
+           getCheckedCnt();
+           });
+		},
+		error : function() {
+			alert("체크 삭제 실패");
+		}
+			 
+ });
+}
+/* 부분체크박스 선택 ajax*/		
 function cartCheck(obj, cartNo){
 		
 	var csrfHeadName="${_csrf.headerName}";
@@ -153,78 +214,13 @@ function cartCheck(obj, cartNo){
 	 });		
 	 
 }
-
-function reCal(){
-	var csrfHeadName="${_csrf.headerName}";
-	var csrfTokenValue="${_csrf.token}";
-		 $.ajax({
-			    url : "/cartAjax/totalPrice",
-				type :"post",
-				beforeSend : function(xhr) {
-			        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
-			    }, 
-				success : function(result) {
-				    console.log(result);				    
-					var totalprice=result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-					console.log(result);
-					console.log("==========");
-					console.log(totalprice);
-					var tag="";
-					var tag1="";
-					tag+=`<span
-						class="total_product_price_display_front">\${totalprice}
-						</span>`	
-				    $(".total_product_price_display_front").html(tag);
-					tag1+=`<span
-						id="total_order_price_front">\${totalprice}
-						</span>`	    
-				    $("#total_order_price_front").html(tag1); 
-					
-				},
-				error : function() {
-					
-				}		
-			});		
-}
- 
-//선택 제품 삭제
-function selectDelete(){
-	
-	var csrfHeadName="${_csrf.headerName}";
-	var csrfTokenValue="${_csrf.token}";
-	$.ajax({
-	    url : "/cartAjax/deleteCheck",
-		type :"post",
-		beforeSend : function(xhr) {
-	        xhr.setRequestHeader(csrfHeadName, csrfTokenValue);
-	    }, 
-		success : function() {
-		   //alert("체크 삭제 성공");		 
-		   console.log(".............")	;
-		   $("input:checkbox[id='basket_chk_id_0']:checked").each(function(){
-           console.log(".............");			      
-           this.closest("li").remove(); 
-           console.log("선택제품 삭제 완료");
-           reCal();
-           getCheckedCnt();
-           });
-		},
-		error : function() {
-			alert("체크 삭제 실패");
-		}
-			 
- });
-}
-
-// 수량 변경
+// 수량 변경 버튼 ajax
 function modifyCnt(type,cartNo){
 	var cartno=cartNo;
 	var type=type;
 	var csrfHeadName="${_csrf.headerName}";
     var csrfTokenValue="${_csrf.token}";
 	console.log("수량증가");
-	console.log(cartno);
-	console.log(type);
 	/* let quantity = $(this).parent("div").find("input").val(); */
 	var quantity=$("#quantity_id_"+cartno).val();	
 	console.log(quantity);		
@@ -256,9 +252,6 @@ function modifyCnt(type,cartNo){
 		    }, 
 			success : function() {
 			 	console.log("성공");				        
-				//var procnt=parseInt(quantity);							
-				//var proprice=parseInt($("#pro-price_"+cartno).text().replace(/,/g , ''));				
-				//var proprice=parseInt($("#pro-price_"+cartno).val());
 				var proprice=$("#pro-price_"+cartno).attr("value");
 			    var prototalprice=(quantity*proprice).toLocaleString('ko-KR');			
 				var tag="";
@@ -460,8 +453,7 @@ function modifyCnt(type,cartNo){
 
 </body>
 <script>
-// iframe parent window 
-
+// iframe parent window form submit
 function checkForm(){ 
 
     document.content_form.target="_parent"; 

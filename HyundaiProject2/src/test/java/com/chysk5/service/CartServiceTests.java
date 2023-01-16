@@ -15,6 +15,19 @@ import com.chysk5.domain.ProductOptionDTO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+/* 
+cartServiceTest
+@author 윤태영
+@since 2023.01.02
+ 
+<pre>
+수정일          수정자                    수정내용
+ ----------  ---------------    ---------------------------
+2023.01.02   윤태영              최초 생성
+2023.01.06   윤태영              장바구니 service test
+</pre>
+*/
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/root-context.xml",
 		"file:src/main/webapp/WEB-INF/spring/security-context.xml" })
@@ -24,21 +37,21 @@ public class CartServiceTests {
 	 @Setter(onMethod_= {@Autowired})
     private CartSerivce service;
    
-	 // 장바구니 목록 호출 -o
+	 // 장바구니 목록 호출 
 	 @Test
 	 public void cartList() {
 		 String mem_id="yoon";
 		 service.cartList(mem_id).forEach( cart ->log.info("카트 목록:"+cart));
 	 }
 	 
-	 // 장바구니 추가 // service 단에서 중복 체크 해놓아서 controller test 필수-o
+	// 장바구니 추가 
     @Test
 	 public void addCart(){
 		 CartDTO cart=new CartDTO();
 		 cart.setMember_mem_id("brsss");
 		 cart.setProduct_option_pro_opt_id("1297");
 		 service.addCart(cart);
-		// log.info("cart_no 추가:"+cart.getCart_no()); 		 
+			 
 	 }
     
     //물품 옵션 고유 넘버 조회
@@ -65,14 +78,14 @@ public class CartServiceTests {
 
     }
     
-    // 장바구니 체크 박스- o
+    // 장바구니 체크 박스
     @Test
   	 public void cartCheck(){
-  		 String cart_no="183";
+  		 String cart_no="196";
   		 String cart_select="1";
   		 String mem_id="brsss";
   		 service.cartCheck(cart_no, cart_select); 		
-  		service.cartList(mem_id).forEach( cart ->log.info("카트 체크박스:"+cart.getCart_select()));
+  		 service.cartList(mem_id).forEach( cart ->log.info("카트 체크박스:"+cart.getCart_select()));
   	 }
     
     // 장바구니 체크 선택 삭제
