@@ -35,7 +35,10 @@ public class LogAdvice {
 		date.getTime();
 		log.info("======== 서비스 끝 ======== ");
 		long endTime = System.currentTimeMillis();
-		log.info("서비스 동작 시간 : "+((endTime-startTime)/1000)+"sec");
+		//log.info("서비스 동작 시간 : "+((endTime-startTime)/1000)+"sec");
+		double time = (double)((endTime-startTime)/1000.0);
+		
+		log.info("서비스 동작 시간 : "+String.format("%.2f", time)+"sec");
 		
 		return result;
 	}	

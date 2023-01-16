@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.chysk5.domain.ResellPriceSearchDTO;
 import com.chysk5.domain.ResellProductDetailInfoDTO;
+import com.chysk5.domain.ResellProductDetailPriceDTO;
 import com.chysk5.domain.ResellProductListDTO;
 
 import lombok.Setter;
@@ -36,9 +38,16 @@ public class ResellServiceTest {
 	
 	@Test
 	public void resellProductListDetailServiceTest() {
-		
 		assertThat(service.getResellProductListDetail("146")).isInstanceOf(ResellProductDetailInfoDTO.class);
 		
+	}
+	
+	@Test
+	public void resellProductPriceDetailTest() {
+		ResellPriceSearchDTO resellDto =  new ResellPriceSearchDTO();
+		resellDto.setProName("PINTUCK LOGO CROP TOP IN PINK");
+		resellDto.setSizeVal("S");
+		assertThat(service.getResellProductPriceDetail(resellDto)).isInstanceOf(ResellProductDetailPriceDTO.class);
 	}
 	
 	
