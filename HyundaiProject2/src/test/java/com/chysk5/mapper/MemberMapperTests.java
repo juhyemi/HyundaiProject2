@@ -13,9 +13,12 @@ import com.chysk5.domain.MemberDTO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
-/*
- * 신수진 작성
- * */
+/*********************************
+ * @function : MemberMapperTests
+ * @author : Sujin Shin
+ * @Date : Jan 08. 2023.
+ * 회원 매퍼 테스트
+*********************************/
 @RunWith(SpringJUnit4ClassRunner.class)
 @Log4j
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", 
@@ -80,8 +83,10 @@ public class MemberMapperTests {
 		
 		MemberDTO member = new MemberDTO();
 		
-	
-	
+		member.setMem_name("신수진");
+		member.setMem_email("jinjin@naver.com");
+		
+		log.info("result : " + mapper.findId(member));		
 		
 	}
 	
@@ -116,5 +121,46 @@ public class MemberMapperTests {
 		int result = mapper.modifyPwd(member);
 		
 		log.info("result : " + result);
+	}
+	
+	// 회원 탈퇴
+	@Test
+	public void testDeleteMember() {
+		
+		log.info("test delete member.....");
+		
+		String mem_id = "test";
+		
+		log.info("result : " + mapper.deleteMember(mem_id));
+	}
+	
+	// 쿠키 삭제
+	@Test
+	public void testDeleteCookie() {
+		
+		log.info("test delete cookie.....");
+		
+		String username = "zzz123";
+		
+		log.info("result : " + mapper.deleteCookie(username));
+	}
+	
+	// 회원정보 변경
+	@Test
+	public void testUpdateMember() {
+		
+		log.info("test update member.....");
+		
+		MemberDTO member = new MemberDTO();
+		
+		member.setMem_id("jinjin");
+		member.setMem_name("수정수정");
+		member.setMem_phone("01012345555");
+		member.setMem_email("jinjin@naver.com");
+		member.setMem_birth("2022/11/11");
+		
+		mapper.updateMember(member);
+		
+		log.info("success...");
 	}
 }

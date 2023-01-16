@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chysk5.mapper.ReplyMapper">
-	
+
+	<!-- 작성자 : 신수진 -->
 	<!-- 댓글 리스트 -->
 	<select id="selectReply" resultType="com.chysk5.domain.ReplyDTO">
 		SELECT com_id, com_content, com_regdate, talks_talks_id, member_mem_id
@@ -12,12 +13,14 @@
 		ORDER BY com_regdate ASC
 	</select>
 
+	<!-- 작성자 : 신수진 -->
 	<!-- 댓글 등록 -->
 	<insert id="insertReply">
 		INSERT INTO reply(com_id, com_content, com_regdate, talks_talks_id, member_mem_id)
 		VALUES (reply_seq.NEXTVAL, #{com_content}, sysdate, #{talks_talks_id}, #{member_mem_id})
 	</insert>
 	
+	<!-- 작성자 : 신수진 -->
 	<!-- 댓글 삭제 -->
 	<delete id="deleteReply">
 		DELETE FROM reply

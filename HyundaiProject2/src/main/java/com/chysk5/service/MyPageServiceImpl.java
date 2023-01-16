@@ -19,6 +19,12 @@ import com.chysk5.mapper.ResellMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : MyPageServiceImpl
+ * @author : Sujin Shin, Kibeom Chung
+ * @Date : Dec 30. 2022.
+ * MyPageService 기능 구현, 기능 관련 매퍼호출
+*********************************/
 @Service
 @Log4j
 @AllArgsConstructor
@@ -136,7 +142,10 @@ public class MyPageServiceImpl implements MyPageService {
 
 	}
 
-	// 총 구매 금액
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 총 구매 금액
+	 * */ 
 	@Override
 	public int totalOrderPrice(String mem_id) {
 
@@ -145,7 +154,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return mapper.totalOrderPrice(mem_id);
 	}
 	
-	// 총 구매 횟수
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 총 구매 횟수
+	 * */ 
 	@Override
 	public int totalOrderCount(String mem_id) {
 
@@ -203,7 +215,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return cancelList;
 	}
 	
-	// 내가 쓴 글
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 내가 쓴 글 목록 조회
+	 * */ 
 	@Override
 	public List<TalksDTO> getMyTalks(String mem_id) {
 		
@@ -212,7 +227,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return mapper.selectMyTalks(mem_id);
 	}
 
-	// 내가 쓴 댓글
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 내가 쓴 댓글 목록 조회
+	 * */ 
 	@Override
 	public List<ReplyDTO> getMyReply(String mem_id) {
 		

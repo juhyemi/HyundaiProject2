@@ -9,7 +9,7 @@ import com.chysk5.domain.MemberDTO;
  * @function : MemberService
  * @author : Sujin Shin
  * @Date : Dec 28. 2022.
- * 
+ * 회원 기능 구현을 위한 서비스
 *********************************/
 public interface MemberService {
 	

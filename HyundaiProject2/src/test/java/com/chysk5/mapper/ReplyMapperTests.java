@@ -15,7 +15,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 /*********************************
- * @function : MemberMapper
+ * @function : ReplyMapperTests
  * @author : Sujin Shin
  * @Date : Jan 08. 2023.
  * 댓글 조회, 등록, 삭제 테스트

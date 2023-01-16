@@ -1,13 +1,10 @@
 package com.chysk5.service;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.chysk5.domain.AuthDTO;
-import com.chysk5.domain.CustomUser;
 import com.chysk5.domain.MemberDTO;
 import com.chysk5.mapper.MemberMapper;
 
@@ -15,6 +12,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : MemberServiceImpl
+ * @author : Sujin Shin
+ * @Date : Dec 28. 2022.
+ * MemberService 기능 구현 MemberMapper 호출
+*********************************/
 @Log4j
 @Service
 @RequiredArgsConstructor

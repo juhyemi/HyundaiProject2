@@ -6,9 +6,12 @@ import org.apache.ibatis.annotations.Param;
 
 import com.chysk5.domain.ReplyDTO;
 
-/*
- * 신수진 작성
- * */
+/*********************************
+ * @function : ReplyService
+ * @author : Sujin Shin
+ * @Date : Jan 08. 2023.
+ * 댓글 기능 구현을 위한 서비스
+*********************************/
 public interface ReplyService {
 	
 	// 댓글 리스트

@@ -30,7 +30,13 @@ public class ReplyController {
 
 	private final ReplyService service;
 	
-	// 댓글 리스트
+	/*
+	 * 기능 : 댓글 리스트
+	 * 입력 : 게시글 번호(talks_id)
+	 * 출력 : ReplyService의 selectReply 메서드 호출
+	 * 		  해당 게시글에 등록된 댓글 리스트
+	 * 기타 : Ajax
+	 * */ 
 	@PostMapping("/replyList")
 	@ResponseBody
 	public List<ReplyDTO> replyList(String talks_id){
@@ -45,7 +51,12 @@ public class ReplyController {
 		return list;
 	}
 
-	// 댓글 등록
+	/*
+	 * 기능 : 댓글 등록
+	 * 입력 : 게시글 번호(talks_id), 로그인한 회원의 ID, 작성한 댓글 내용
+	 * 출력 : ReplyService의 insertReply 메서드 호출
+	 * 기타 : Ajax
+	 * */ 
 	@PostMapping("/replyAdd")
 	@ResponseBody
 	public int replyAddAction(ReplyDTO reply, Principal prin) {
@@ -63,7 +74,12 @@ public class ReplyController {
 		return result;
 	}
 	
-	// 댓글 삭제
+	/*
+	 * 기능 : 댓글 삭제
+	 * 입력 : 댓글 번호, 로그인한 회원의 ID
+	 * 출력 : ReplyService의 deleteReply 메서드 호출
+	 * 기타 : Ajax
+	 * */ 
 	@PostMapping("/replyDel")
 	@ResponseBody
 	public int replyDelAction(Principal prin, @RequestParam("com_id") String com_id) {

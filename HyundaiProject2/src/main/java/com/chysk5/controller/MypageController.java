@@ -31,19 +31,31 @@ import com.chysk5.service.MyPageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+/*********************************
+ * @function : MyPageController
+ * @author : Sujin Shin, Kibeom Chung
+ * @Date : Dec 30. 2022.
+ * 마이페이지에서 회원의 활동 내역을 조회할 수 있는 요청을 처리하기 위한 컨트롤러
+*********************************/
 @Controller
 @Log4j
 @Secured({"ROLE_MEMBER"})
 @RequestMapping("/mypage/")
 @AllArgsConstructor
-
 public class MypageController {
 	
 	private MyPageService service;
 	
 	private MemberService mService;
-
-	// 마이페이지 메인 화면으로 이동
+	
+	/*
+	 * 작성자 : 신수진, 정기범
+	 * 기능 : 마이페이지 메인 화면
+	 * 입력 : 로그인한 회원의 아이디
+	 * 출력 : MyPageService의 totalOrderPrice(총 구매 가격)과 totalOrderCount(총 구매 횟수) 메서드를 호출,
+	 * 		  각 결과값을 모델 애트리뷰트에 저장한다.
+	 * 		  또한 getAllBuyList(전체 주문 내역)의 메서드를 호출한 결과값인 리스트를 저장한다.
+	 * */ 
 	@GetMapping("/index")
 	public void index(Model model, Principal prin) {
 		String mem_id = prin.getName();
@@ -60,7 +72,6 @@ public class MypageController {
 		model.addAttribute("totalOrderPrice", totalOrderPrice);
 		model.addAttribute("totalOrderCount", totalOrderCount);	
 		model.addAttribute("allList", allList);
-		
 		
 	}
 	
@@ -100,11 +111,13 @@ public class MypageController {
 		 return "mypage/myorder";
 	}
 	
-	// 최근 본 상품 페이지로 이동
-	@GetMapping("/recent_view_product")
-	public void recentView() {}
-	
-	// 내가 쓴 글 페이지로 이동
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 내가 쓴 글 페이지
+	 * 입력 : 로그인한 회원의 아이디
+	 * 출력 : MyPageService의 getMyTalks 메서드와, getMyReply 메서드를 호출해
+	 * 		  각 호출된 결과값을 모델 애트리뷰트에 저장한다.
+	 * */ 
 	@GetMapping("/myarticle")
 	public void myarticle(Principal prin, Model model) {
 		log.info("mytalks controller.....");
@@ -121,7 +134,13 @@ public class MypageController {
 		model.addAttribute("rList", replyList);
 	}
 	
-	// 회원 정보 수정 페이지로 이동
+	/*
+	 * 작성자 : 신수진
+	 * 기능 : 회원 정보 수정 페이지로 이동
+	 * 입력 : 로그인한 회원의 아이디
+	 * 출력 : MemberService의 selectMember 메서드를 호출해 나온
+	 * 		 회원 정보를 담은 객체 결과값을 모델 애트리뷰트에 저장한다.
+	 * */ 
 	@GetMapping("/modify")
 	public void modify(Model model, Principal prin) {
 		
