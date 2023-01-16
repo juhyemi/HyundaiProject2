@@ -89,7 +89,7 @@ public class UploadController {
 //		log.info(uploadFile);
 		
 		List<AttachFileDTO> list = new ArrayList<>();
-		String uploadFolder = "C:\\upload";
+		String uploadFolder = "C:\\upload\\";
 		
 		String uploadFolderPath = getFolder();
 		

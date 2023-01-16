@@ -1,12 +1,14 @@
 package com.chysk5.controller;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -30,5 +32,41 @@ public class TalksControllerTests {
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
+	
+	// talks 목록
+	@Test
+	public void testTalkstList() throws Exception {
+
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/talks/tlist")).andReturn().getModelAndView()
+				.getModelMap());
+
+	}
+	
+	// talks 내용
+	@Test
+	public void testTalkstContent() throws Exception {
+
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/talks/tcontent/65")).andReturn().getModelAndView()
+				.getModelMap());
+
+	}
+	// talks 글 삭제
+	@Test
+	public void testTalksDelete() throws Exception {
+
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/talks/delete")).andReturn().getModelAndView()
+				.getModelMap());
+
+	}
+	
+	// talks 글 등록
+	@Test
+	public void testTalkstRegister() throws Exception {
+
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/talks/register")).andReturn().getModelAndView()
+				.getModelMap());
+
+	}
+	
 
 }

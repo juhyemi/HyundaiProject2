@@ -32,13 +32,30 @@ public class ProductControllerTests {
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
-	
+	// 카테고리별 목록
 	@Test
 	public void testproductList() throws Exception {
 
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/product/list")).andReturn().getModelAndView()
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/product/list/Tops")).andReturn().getModelAndView()
 				.getModelMap());
 
 	}
+	
+	// 상세페이지
+	@Test
+	public void testproductOption() throws Exception {
+
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/product/option/1")).andReturn().getModelAndView()
+				.getModelMap());
+
+	}
+	// 검색
+		@Test
+		public void testproductSearch() throws Exception {
+
+			log.info(mockMvc.perform(MockMvcRequestBuilders.get("/product/search")).andReturn().getModelAndView()
+					.getModelMap());
+
+		}
 
 }

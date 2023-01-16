@@ -241,7 +241,7 @@ function replyDel(rno){
 											<div class="imgbox">
 
 												<c:forEach var="list" items="${list }">
-													<img src="C:\upload\\${list.uuid }_${list.filename}"/>
+													<img src="C:\upload\ ${list.uuid }_${list.filename}"/>
 												</c:forEach>
 											</div>
 
