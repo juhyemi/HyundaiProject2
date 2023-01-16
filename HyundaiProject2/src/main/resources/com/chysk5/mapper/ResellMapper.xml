@@ -75,7 +75,25 @@
 	
 	
 	<!--함세강 작성  -->
-	<!-- <select id="getResellProductList" resultType="com.chysk5.domain.ResellProductListDTO"> -->
+
+	<!--  
+	<select id="getResellProductList" resultType="com.chysk5.domain.ResellProductListDTO">
+		select * from resell_Prolist_view
+	</select>
+	
+	<select id="getResellProductListImg" resultType="com.chysk5.domain.ResellProductImgDTO">
+		select * from pro_image where product_pro_id = #{proId}
+	</select>
+	--> 
+	 
+	<!--리팩토링후 시작  -->
+	
+	<!--
+	작성자 : 함세강
+	기능 : Resell 상품 리스트 조회
+	입력 : X
+	출력 : Resell상품 이미지, 상품명 -->
+	
 	<select id="getResellProductList" resultMap="test">
 		select * from resell_Prolist_view
 	</select>
@@ -90,14 +108,15 @@
 		select * from pro_image where product_pro_id = #{product_pro_id}
 	</select>
 	
-	
-	
-	<!-- 
-	<select id="getResellProductListImg" resultType="com.chysk5.domain.ResellProductImgDTO">
-		select * from pro_image where product_pro_id = #{proId}
-	</select>
-	 -->
-	<!--  리팩토링중
+
+
+
+
+	<!--리팩토링후 끝  -->
+	 
+	 
+	 
+	<!--  리팩토링 전 
 	<select id="getResellProductDetail" resultType="com.chysk5.domain.ResellProductDetailInfoDTO">
 		select pro_id, pro_name,pro_category, pro_price
 		from product
@@ -118,12 +137,19 @@
 	</select>
 	 -->
 	 
+	 
+	 <!-- 리팩토링 시작 -->
 	 <!--제품 리셀 상세 뿌리는 코드  -->
+	 
+	 <!--
+	작성자 : 함세강
+	기능 : Resell 상품 상세 정보를 가져오는 역할
+	입력 : 상품번호
+	출력 : 특정 Resell상품 이미지, 상품명 -->
 	<select id="getResellProductDetail" resultMap="resellMap">
 		select pro_id, pro_name,pro_category, pro_price
 		from product
 		where pro_id = #{proId}
-		
 	</select>
 	
 	<resultMap id="resellMap" type="com.chysk5.domain.ResellProductDetailInfoDTO" >
@@ -142,7 +168,6 @@
 		order by pro_opt_size desc
 	</select>
 	
-	
 	<select id="selectImge" resultType="com.chysk5.domain.ResellProductImgDTO">
 		select *
 		from pro_image
@@ -150,10 +175,16 @@
 	</select>
 	
 	
-	
+	<!-- 리팩토링 완료후 -->
 	
 	
 	<!--제품 리셀 상품 상세 옵션 번호 뿌리는 코드  -->
+	
+	 <!--
+	작성자 : 함세강
+	기능 : 상품 이름과 사이즈를 토대로 상품 옵션번호를 가져오는 역할
+	입력 : 상품 사이즈, 상품이름
+	출력 : 상품 옵션번호 -->
 	<select id="getResellProductSearchOptId" resultType="com.chysk5.domain.ResellProductSearchIdDTO">
 		
 		select pro_opt_id
@@ -163,6 +194,11 @@
 
 	</select>
 	
+	<!--
+	작성자 : 함세강
+	기능   : Resell 상품의 사이즈별 최저 가격을 불러오는 역할
+	입력   : 상품 옵션번호
+	출력   : 특정 Resell 상품의 최소 가격 -->
 	<select id="getResellProductDetailLowPrice" resultType="com.chysk5.domain.ResellProductDetailPriceDTO">
 		select re_price re_low_price
 		from(
@@ -172,9 +208,14 @@
 		    order by re_price
 		)
 		where rownum=1
-	
 	</select>
 	
+	
+	<!--
+	작성자 : 함세강
+	기능   : Resell 상품의 사이즈별 최근 2주별 평균 판매가격을 불러오는 역할
+	입력   : 상품 옵션번호
+	출력   : 특정 Resell 상품의 최근 2주 일자별 평균 판매가격 -->
 	<select id="getResellProductDetailDatePrice" resultType="com.chysk5.domain.ResellProductDetailPriceDateDTO">
 		<![CDATA[ 
 			select stv.price_date re_selldate, nvl(t.avg_price,0) avg_price

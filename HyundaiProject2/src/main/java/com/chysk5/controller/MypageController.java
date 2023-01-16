@@ -74,31 +74,15 @@ public class MypageController {
 		 List<AllBuyProductDTO> allList = service.getAllBuyList(mem_id, start_date, end_date);
 		 List<CancelProductDTO> cancelList = service.getCancelList(mem_id, start_date, end_date);
 		 
-		 log.info("startDate 들어왔나? " + start_date);
-		 log.info("endDate 들어왔나? " + end_date);
-		 
-		 
 		 model.addAttribute("allList", allList);
 		 model.addAttribute("cancelList", cancelList);
 		 
-		 for(AllBuyProductDTO a : allList) {
-			 log.info(a);
-		 }
-		 
-		 for(CancelProductDTO a : cancelList) {
-			 log.info("취소 목록: " + a);
-		 }
-		 /*
-		 List<BuyProductDTO> buyResellList = service.getBuyProduct(mem_id);
-		 model.addAttribute("buyResellList", buyResellList);
-		 
-		 for(BuyProductDTO a : buyResellList) {
-			 log.info(a);
-		 }
-		*/
-		 
 		 return "mypage/myorder";
 	}
+	
+	
+	
+	
 	
 	// 최근 본 상품 페이지로 이동
 	@GetMapping("/recent_view_product")
