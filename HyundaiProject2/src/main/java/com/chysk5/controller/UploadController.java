@@ -33,14 +33,8 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Log4j
 @RequiredArgsConstructor
 public class UploadController {
-	
-	@GetMapping("/uploadAjax")
-	public void uploadAjax() {
-		log.info("upload Ajax");
-		
-	}
 
-//	첨부파일 올라간 날짜 형식 - -> file.separator로 변경
+//	첨부파일 올라간 폴더 경로 불러오기
 //	작성자 : 김주혜
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -89,13 +83,13 @@ public class UploadController {
 	
 //	업로드한 사진 폴더 없으면 만들고 있으면 저장
 //	작성자 : 김주혜
-	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 //		log.info(uploadFile);
 		
 		List<AttachFileDTO> list = new ArrayList<>();
-		String uploadFolder = "C:\\upload";
+		String uploadFolder = "C:\\upload\\";
 		
 		String uploadFolderPath = getFolder();
 		

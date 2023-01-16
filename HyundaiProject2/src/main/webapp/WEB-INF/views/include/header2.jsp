@@ -95,11 +95,11 @@
 			<li class=""><a href="/resell">
 					<span>Resell</span>
 				</a></li>
-			<li class=""><sec:authorize access="isAnonymous()">
+			<li class=""><sec:authorize access="isAnonymous()">	<!-- 로그인이 안되어 있을 경우 -->
 					<a href="/member/login">
 						<span>Fashion Talks</span>
 					</a>
-				</sec:authorize> <sec:authorize access="isAuthenticated()">
+				</sec:authorize> <sec:authorize access="isAuthenticated()">	<!-- 로그인이 되어 있을 경우 -->
 					<a href="/talks/tlist">
 						<span>Fashion Talks</span>
 					</a>
@@ -169,8 +169,6 @@
 
 	</div>
 	
-	<!--기능 : 해당 이름에 맞는 링크로 연결
-		작성자 : 김주혜-->
 
 	<div class="menu-block depth2" cate-no="Shop">
 		<div class="sub">

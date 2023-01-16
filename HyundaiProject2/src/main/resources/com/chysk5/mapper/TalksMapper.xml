@@ -14,7 +14,7 @@
 		ORDER BY to_number(talks_id) DESC
 	</select>
 	
-	<!--해당 글 조회-->
+	<!--해당 글 상세내용 조회-->
 	<select id="getTalksContent"
 		resultType="com.chysk5.domain.TalksDTO">
 		SELECT * from talks

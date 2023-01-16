@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/*
+ * 상품 상세정보에 사용되는 DTO
+ * 김주혜 작성
+ */
 @Data
 @NoArgsConstructor
 public class ProductOptionDTO {

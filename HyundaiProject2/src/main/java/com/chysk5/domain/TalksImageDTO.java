@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/*
+ * 첨부파일에 사용되는 DTO
+ */
 @Setter
 @Getter
 @ToString
