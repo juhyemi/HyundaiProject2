@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.chysk5.domain.TalksDTO;
+import com.chysk5.domain.TalksImageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -21,7 +22,7 @@ public class TalksMapperTest {
 	
 	@Setter(onMethod_ = @Autowired)
 	private TalksMapper mapper;
-	
+	// 게시글 목록
 	@Test
 	public void selectTalksList() {
 		log.info("selectTalksList...............");
@@ -31,7 +32,7 @@ public class TalksMapperTest {
 		log.info(tList);
 		
 	}
-	
+	// 게시글 내용
 	@Test
 	public void selectTalksContent() {
 		log.info("selectTalksContent..............");
@@ -43,14 +44,22 @@ public class TalksMapperTest {
 		log.info(content);
 		
 	}
-	
+	// 게시글 삭제
 	@Test
 	public void deleteTest() throws Exception {
+		log.info("delete....");
+		
+		String talks_id = "85";
+		String mem_id = "baby";
+		
+		int deletetests = mapper.delete(talks_id, mem_id);
+		
+		log.info(deletetests);
 		
 		
 		
 	}
-	
+	// 게시글 등록
 	@Test
 	public void register() {
 		log.info("selectTalksList...............");
@@ -65,7 +74,7 @@ public class TalksMapperTest {
 		log.info(i);
 		
 	}
-	
+	// 해당 게시글 번호 찾기
 	@Test
 	public void testFindTalksId() {
 		log.info("findTalksId...............");
@@ -86,16 +95,14 @@ public class TalksMapperTest {
 	public void getImg() {
 		log.info("getImg...............");
 		
-		TalksDTO talks = new TalksDTO();
+		String talks_id = "74";
 		
-		String talks_id = "43";
-		
-		
-		
+		List<TalksImageDTO> list = mapper.getImg(talks_id);
+		log.info(list);
+
 	}
 	
-	
-	
+
 	// 조회수 증가
 	@Test
 	public void testUpdateViews() {

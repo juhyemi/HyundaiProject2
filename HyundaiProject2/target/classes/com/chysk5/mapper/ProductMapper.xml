@@ -4,7 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chysk5.mapper.ProductMapper">
 <!-- 작성자 : 김주혜 -->
-
+	
+	<!-- 카테고리별 상품 목록 및 페이징-->
 	<select id="getPList" resultType="com.chysk5.domain.ProductDTO">
 		<![CDATA[
 		select t.pro_id, t.pro_name, t.pro_category, t.pro_price, t.loc1, t.loc2
@@ -21,7 +22,7 @@
 		WHERE rn > (#{criteria.pageNum}-1) * #{criteria.amount}
 		]]> 
 	</select>
-
+	<!-- 상품 상세정보 -->
 	<select id="getProductOption"
 		resultType="com.chysk5.domain.ProductDTO">
 
@@ -30,7 +31,7 @@
 		WHERE pro_id = #{pro_id}
 
 	</select>
-
+	<!-- 상품별 해당 사이즈 -->
 	<select id="getProductSize"
 		resultType="com.chysk5.domain.ProductSizeDTO">
 
@@ -49,7 +50,7 @@
 		)
 
 	</select>
-
+	<!-- 상품별 사진 -->
 	<select id="getProductImg"
 		resultType="com.chysk5.domain.ProductImgDTO">
 
@@ -58,7 +59,7 @@
 		product_pro_id = #{pro_id}
 
 	</select>
-	
+	<!-- 검색한 상품 리스트 -->
 	<select id="getProductSearch"
 		resultType="com.chysk5.domain.ProductDTO">
 
@@ -70,13 +71,13 @@
 		ORDER BY to_number(pro_id) DESC
 
 	</select>
-	
+	<!-- 카테고리별 총 상품 개수 -->
 	<select id="getTotalCount" resultType="int">
 		SELECT count(*)
 		FROM product
 		WHERE pro_category = #{category}
 	</select>
-
+	<!-- 신상품 -->
 	<select id="getNewIn" resultType="com.chysk5.domain.ProductDTO">
 	  <![CDATA[
 		SELECT p.pro_id, p.pro_name, p.pro_price, i1.loc1, i2.loc2

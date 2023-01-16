@@ -12,7 +12,7 @@ public interface TalksService {
 	// talks 목록
 	// 작성자 : 김주혜
 	public List<TalksDTO> getTalksList();
-	// talks 글 가져오기
+	// talks 글내용 가져오기
 	// 작성자 : 김주혜
 	public TalksDTO getTalksContent(String talks_id);
 	// 글 삭제

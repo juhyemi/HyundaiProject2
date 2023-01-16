@@ -161,7 +161,7 @@ function replyDel(rno){
 								}
 							});
 
-							/* 첨부파일 조회를 위한 script
+							/* 첨부파일 첨부 조회를 위한 script
 							    작성자 : 김주혜 */
 							(function() {
 								var talks_id = '<c:out value="${talks.talks_id}"/>';
@@ -241,7 +241,7 @@ function replyDel(rno){
 											<div class="imgbox">
 
 												<c:forEach var="list" items="${list }">
-													<img src="C:\dev64\workspace-sts\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HyundaiProject2\resources\images\talksImgs\${list.uuid }_${list.filename}"/>
+													<img src="C:\upload\\${list.uuid }_${list.filename}"/>
 												</c:forEach>
 											</div>
 

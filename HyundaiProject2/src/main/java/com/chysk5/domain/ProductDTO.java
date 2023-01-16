@@ -1,14 +1,14 @@
 package com.chysk5.domain;
 
-
-
-
 import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
+/*
+ * 상품 정보에 사용되는 DTO
+ * 김주혜 작성
+ */
 @Getter
 @Setter
 @ToString
